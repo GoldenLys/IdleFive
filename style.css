@@ -1,0 +1,1048 @@
+@font-face { font-family: Pricedown; src: url(pricedown.ttf); }
+
+body {
+	background-image: url(images/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    cursor: url("images/normal.cur"), pointer;
+    overflow: hidden;
+    outline: none;
+	font-size: 1.75vh;
+}
+
+.caps:active {
+	animation:UseEffect 0.2s ease-out;
+}
+
+.caps {
+    position: absolute;
+    top: 16.5%;
+    left: 0%;
+    right: 2%;
+    bottom: 0%;
+    max-height: 60%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.caps:hover {
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.anchor {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    height: 80%;
+    width: 100%;
+}
+
+.left-s {
+	margin-left: 5%;
+}
+
+.game {
+	position:absolute;
+	top: 0.5%;
+	left: 0.5%;
+	right: 0.5%;
+	bottom: 0.5%;
+	border-radius: 0.4vh;
+    background: rgba(27, 27, 27, 0.45);
+}
+
+.sous-menu {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.menu-bas {
+	position:absolute;
+    background: rgba(255, 255, 255, 0.0);
+	left: 1%;
+	right: 1%;
+	bottom: 1%;
+    height: 5.4%;
+    text-align: center;
+}
+
+.cityname {
+	background:none;
+	background-color: rgba(0,0,0,0.80);
+	border: 0px;
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	color: rgb(255, 255, 255); 
+	border-radius: 15px;
+	font-size: 15px;
+	font-family: Maven Pro;
+	text-align: center;
+    text-transform: capitalize;
+    padding: 1vh 25px 1vh 25px;
+	overflow: hidden;
+	outline: none;
+	resize:none;
+}
+
+.success2 {
+    background: rgba(0, 0, 0, 0.50);
+    border-radius: 0.4vh;
+    font-family: Maven Pro;
+    margin: 0.3% 0.3% 0% 0.3%;
+    padding: 0% 0% 2% 0%;
+    overflow: hidden;
+}
+
+.success3 {
+    background: rgba(0, 0, 0, 0.50);
+    border-radius: 0.4vh;
+    border: 0.1vh solid #af1919;
+    color: #ffffff;
+    font-family: Maven Pro;
+    width: 29%;
+	margin-left: 36%;
+    padding-bottom: 0.5%;
+    padding-top: 1%;
+    overflow: hidden;
+}
+
+td, th {
+	border-radius: 0.4vh;
+}
+
+.arme-div {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    color: #ffffff;
+    font-family: Maven Pro;
+    max-height: 25%;
+    width: 100%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+	margin-bottom: 0.5%;
+    overflow: hidden;
+}
+
+.garage-div {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    color: #ffffff;
+    font-family: Maven Pro;
+    width: 100%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    margin-bottom: 0.5%;
+    overflow: hidden;
+}
+
+.alert-text {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    color: #ffffff;
+    position: absolute;
+    bottom: 0%;
+    font-family: Maven Pro;
+    width: 99%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+	margin-bottom: 0%;
+    overflow: hidden;
+}
+
+.success {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    font-family: Pricedown;
+    width: 47.5%;
+    height: 4vh;
+    margin-bottom: 0.2%;
+    overflow: hidden;
+}
+
+.s-desc {
+    text-align: center;
+    font-family: Pricedown;
+    font-size: 3vh;
+    display: inline;
+    color: #FFF;
+}
+
+.option-text {
+    text-align: center;
+    font-family: Maven Pro;
+    margin: 5px;
+	display: inline;
+    color: #000;
+}
+
+.capsules {
+    text-align: center;
+    font-family: Maven Pro;
+	display: inline;
+    color: #000;
+}
+
+.s-stats {
+    font-size: 2.5vh;
+    display: inline;
+}
+
+#colonne-m {
+	position: absolute;
+	top: 10%;
+	left: 1%;
+    background-color: rgba(255, 255, 255, 0.0);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 39%;
+    height: 89%;
+    z-index: 1;
+}
+
+#colonne-d {
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    background-color: rgba(255, 255, 255, 0.0);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 60%;
+    height: 89%;
+    z-index: 1;
+}
+
+#productions {
+	text-align: center;
+    border-radius: 1vh;
+	height: 100%;
+	overflow: auto;
+}
+
+#surc {
+    text-align: center;
+    border-radius: 1vh;
+    margin: 0vh 0vh 2vh 0vh;
+    height: 73%;
+    overflow: auto;
+}
+	
+.btn {
+    padding: 0.6vh 1.2vh;
+    border-radius: 0.4vh;
+    font-size: 1.75vh;
+}
+
+.btn:hover {
+    border: 0.1vh solid rgb(255, 255, 255);
+}
+
+.btn-rouge {
+    border: 0.1vh solid rgb(150, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 6px 12px;
+    border-radius: 0.4vh;
+    background-color: rgb(150, 0, 0);
+    font-family: Maven Pro;
+}
+
+.btn-weapon {
+    border: 0.1vh solid #057214;
+    color: rgb(255, 255, 255);
+    padding: 1.5vh;
+    width: 44.5%;
+    margin: 0 2.25vh 0 2.25vh;
+    border-radius: 0.4vh;
+    background-color: #057214;
+    font-family: Maven Pro;
+}
+
+.btn-.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-veh {
+    border: 0.1vh solid #057214;
+    color: rgb(255, 255, 255);
+    width: 28%;
+    height: 12.2vh;
+    margin-bottom: -13vh;
+    position: relative;
+    right: 34%;
+    bottom: 13vh;
+    border-radius: 0.4vh;
+    background-color: #057214;
+    font-family: Pricedown;
+    font-size: 2.5vh;
+}
+
+.btn-veh.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-blanc {
+    border: 0.1vh solid rgb(255, 255, 255);
+    color: #057214;
+    padding: 2vh 5vh;
+    border-radius: 0.4vh;
+    background-color: rgb(255, 255, 255);
+    font-family: Pricedown;
+}
+
+.btn-blanc:hover {
+    border: 0.1vh solid #057214;
+}
+
+.btn-buy {
+    border: 0vh solid rgb(31, 116, 27);
+    color: rgb(255, 255, 255);
+    padding: 2vh;
+    width: 15vh;
+    font-size: 4vh;
+    vertical-align: middle;
+    position: relative;
+    margin-top: -15.5vh;
+    border-radius: 0.4vh;
+    background-color: rgb(31, 116, 27);
+    text-decoration: initial;
+    font-family: Pricedown;
+}
+
+.btn-buy:hover {
+    border: 0vh solid rgb(255, 255, 255);
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.btn-buy.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0vh solid rgba(0,0,0,0.40);
+}
+
+.btn-buy2 {
+    border: 0vh solid rgb(31, 116, 27);
+    color: rgb(255, 255, 255);
+    padding: 1vh;
+    width: 25vh;
+    font-size: 2.5vh;
+    vertical-align: middle;
+    position: relative;
+    margin-top: -6vh;
+    margin-bottom: 1vh;
+    border-radius: 0.4vh;
+    background-color: rgb(31, 116, 27);
+    text-align: center;
+    text-decoration: initial;
+    font-family: Pricedown;
+}
+
+.btn-buy2:hover {
+    border: 0vh solid rgb(255, 255, 255);
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.btn-buy2.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-sell {
+	border: 0vh solid rgb(150, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 2vh;
+    width: 15vh;
+    font-size: 4vh;
+    vertical-align: middle;
+    position: relative;
+    margin-top: -15.5vh;
+    border-radius: 0.4vh;
+    background-color: rgb(150, 0, 0);
+    text-decoration: initial;
+    font-family: Pricedown;
+}
+
+.btn-sell:hover {
+    border: 0vh solid rgb(255, 255, 255);
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.btn-sell.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-sell2 {
+	border: 0vh solid rgb(150, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 1vh;
+    width: 25vh;
+    font-size: 2.5vh;
+    vertical-align: middle;
+    position: relative;
+    margin-top: -6vh;
+    margin-bottom: 1vh;
+    border-radius: 0.4vh;
+    background-color: rgb(150, 0, 0);
+    text-align: center;
+    text-decoration: initial;
+    font-family: Pricedown;
+}
+
+.btn-sell2:hover {
+    border: 0vh solid rgb(255, 255, 255);
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.btn-sell2.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-upgrade {
+    border: 0.1vh solid rgb(47, 107, 16);
+    color: rgb(255, 255, 255);
+    padding: 1vh 1.4vh;
+    border-radius: 0.4vh;
+	float: none;
+    background-color: rgb(38, 84, 14);
+    font-family: Maven Pro;
+}
+
+.btn-upgrade.disabled {
+    color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
+	border: 0.1vh solid rgba(0,0,0,0.5);
+    padding: 1vh 1.4vh;
+    border-radius: 0.4vh;
+	float: none;
+    font-family: Maven Pro;
+}
+
+.game-text {
+    text-align: center;
+	font-family: Maven Pro;
+    color: #338409;
+}
+
+.production-title {
+    text-align: center;
+    font-family: Maven Pro;
+    font-size: 2vh;
+    color: #338409;
+    text-shadow: 0px 0px 0.7px #338409;
+    -webkit-animation:shadowstyle 1000ms linear infinite;
+    -moz-animation:shadowstyle 1000ms linear infinite;
+    animation:shadowstyle 1000ms linear infinite;
+}
+
+.texte {
+	font-family: Maven Pro;
+    color: #FFF;
+	display: inline;
+}
+
+.copyright {
+	font-family: Maven Pro;
+    color: #26741b;
+	bottom: 0%;
+    left: 40%;
+	right: 40%;
+}
+
+.btexte {
+	font-family: Maven Pro;
+    color: #FFF;
+	display: contents;
+	margin-left: -20%;
+	margin-right: 1%;
+}
+
+
+.texteg {
+	font-family: Maven Pro;
+    color: #338409;
+	display: inline;
+}
+
+.red {
+	color: #FFF000;
+}
+
+.stats {
+	font-family: Maven Pro;
+    color: #FFF;
+    margin-bottom: 0.5%;
+}
+
+.statsb {
+	font-family: Maven Pro;
+    color: #000;
+	display: inline;
+}
+
+
+.desc {
+    text-align: center;
+    font-family: Maven Pro;
+    display: inline;
+    margin: 0px;
+    color: #FFF;
+}
+
+.production-desc {
+    text-align: center;
+    font-family: Maven Pro;
+    margin: 0px;
+    color: #FFF;
+}
+
+
+.valeur {
+	text-align: center;
+	font-family: Maven Pro;
+    display: inline;
+	margin: 0px;
+    color: #FFF;
+}
+
+.valeur2 {
+	text-align: center;
+	font-family: Maven Pro;
+	margin: 0px;
+    color: #FFF;
+}
+
+.gauche {
+	float: left;
+}
+
+.droite {
+	float: right;
+}
+
+.logo {
+    display: inline;
+	vertical-align: middle;
+    color: #FFF;
+}
+
+.logo2 {
+    display: inline;
+	vertical-align: middle;
+    color: #FFF;
+}
+
+.logo3 {
+    display: inline;
+	vertical-align: middle;
+    color: #FFF;
+}
+
+.level {
+    text-align: center;
+    font-family: Maven Pro;
+    color: #FFF000;
+}
+
+.title {
+    text-align: center;
+	font-family: Pricedown;
+    font-size: 3vh;
+    margin: 2.5vh 0vh 0vh 0vh;
+    color: #338409;
+}
+
+.maintitle {
+    display: inline;
+    text-align: center;
+    font-size: 5vw;
+    line-height: 7vh;
+    font-family: Pricedown;
+    color: #FFF;
+    margin-right: 0px;
+}
+
+.game-title {
+	display: inline;
+    margin-right: 0;
+	text-shadow: 0vh 0vh 0.7vh #338409;
+	-webkit-animation:shadowstyle 1000ms linear infinite;
+    -moz-animation:shadowstyle 1000ms linear infinite;
+    animation:shadowstyle 1000ms linear infinite;
+}
+
+.statsbg {
+    background-color: rgba(0,0,0,0.0);
+	border-radius: 0.4vh;
+    margin: -15px;
+    padding: 10%;
+	padding-top: 5%;
+}
+
+.arme {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-color: rgba(0,0,0,0.5);
+    background-size: 35% 75%;
+    background-position: 100%;
+    background-position-y: -20%;
+}
+
+.production {
+	background: rgba(0,0,0,0.5);
+}
+	
+	 @keyframes shadowstyle { 
+        0% { 
+            text-shadow: 0px 0px 16px #338409;
+        }
+        15% { 
+            text-shadow: 0px 0px 18px #338409; 
+        }
+        30% { 
+            text-shadow: 0px 0px 20px #338409;
+        }
+        50% {
+        	text-shadow: 0px 0px 18px #338409;
+        }
+        70% { 
+            text-shadow: 0px 0px 16px #338409;
+        }
+        85% { 
+            text-shadow: 0px 0px 1vh #338409;
+        }
+    }
+	
+	
+    ::-webkit-scrollbar {
+        width: 1.15vh;
+    }
+     
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 0.6vh rgba(0,0,0,0.66);
+        box-shadow: inset 0 0 0.6vh rgba(0,0,0,0.66);
+        background: rgba(0,0,0,0.5);
+        border-radius: 1vh;
+        padding: 1vh;
+    }
+     
+    ::-webkit-scrollbar-thumb {
+        border-radius: 1vh;
+        border: 0.1vh solid rgba(0,0,0,0.5);
+        background-image: linear-gradient(to bottom,#146b27 , #409954 , #146b27 );
+        padding: 1vh;
+    }
+
+#menu-pr {
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background: rgb(0, 0, 0);
+    background-image: url('images/menupr.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    top: 0%;
+    overflow: auto;
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+}
+
+#menu-op {
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background: rgba(0, 0, 0, 0.76);
+    top: 0%;
+    overflow: auto;
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+}
+
+#menu-sa {
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    background: rgb(0, 0, 0);
+    background-image: url('images/savemenu.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    top: 0%;
+    overflow: auto;
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+}
+
+#menu-su {
+    left: 0%;
+    right: 0%;
+    background: rgb(0, 0, 0);
+    background-image: url('images/successes.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    top: 0%;
+    overflow: auto;
+    bottom: 0%;
+    position: absolute;
+    z-index: 20;
+    text-align: center;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 7.2%;
+    right: 0;
+	text-align: center;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.copytext {
+	text-align: center;
+    font-family: Maven Pro;
+    color: #FFF;
+}
+
+.savetext {
+	background: none;
+    background-color: rgba(0,0,0,0.5);
+    border: 0px;
+    margin-bottom: 1vh;
+    color: rgb(255, 255, 255);
+    border-radius: 15px;
+    font-size: 15px;
+    font-family: Maven Pro;
+    text-align: center;
+    padding: 1vh 25px 1vh 25px;
+    overflow: hidden;
+	resize: none;
+	
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: url("images/hand.cur"), pointer;;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #801510;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 6px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(31, 116, 27);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0.1vh rgb(31, 116, 27);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 12px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.bronze {
+	color: rgb(148, 124, 52);
+	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+}
+
+.argent {
+	color: rgb(148, 148, 148);
+	text-shadow: 0.1vh 0px 0px rgb(148, 148, 148);
+}
+
+.or {
+	color: rgb(255, 190, 0);
+	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+}
+
+.vert {
+    color: rgb(56, 163, 56);
+    text-shadow: 0 0 3vh rgb(0, 130, 0);
+}
+
+.gris {
+    font-weight: bold;
+	color: rgb(150, 150, 150);
+}
+
+.gris2 {
+    color: rgb(50, 50, 50);
+    text-shadow: 0 0 2vh rgb(0, 0, 0);
+}
+
+.rougeb {
+    font-weight: bold;
+    color: #a81818;
+}
+
+.jaune {
+    font-weight: bold;
+	color: #FFF000;
+}
+
+.blanc {
+    color: #FFF;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+}
+
+
+.transparent {
+	color: rgba(255, 255, 255, 0);
+}
+
+.rare {
+	color: #192cbb;
+	text-shadow: 0px 0px 3vh #0f1753;
+}
+
+.platine {
+	color: rgb(214, 214, 214);
+	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
+}
+
+.mythic {
+	color: rgb(219, 44, 235);
+	text-shadow: 0px 0px 3vh rgb(133, 5, 158);
+}
+
+.veh {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: #FFF;
+    border-style: solid;
+    outline: none;
+    border-color: #ffffff00;
+    margin: 0.1%;
+    border-width: 0px 0px 0.1vh 0px;
+    font-size: 0.7vw;
+    font-family: Maven Pro;
+    padding: 1.5%;
+    width: 24%;
+}
+
+.veh:hover {
+    border-style: solid;
+    border-color: #ffffff;
+    margin-left: 0%;
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.veh.active {
+    color:#057214;
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #057214;
+    margin-left: 0%;
+}
+
+.weap {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: #FFF;
+    border-style: solid;
+    outline: none;
+    border-color: #ffffff00;
+    margin: 0.1%;
+    border-width: 0px 0px 0.1vh 0px;
+    font-size: 0.7vw;
+    font-family: Maven Pro;
+    padding: 1.5%;
+    width: 32.5%;
+}
+
+.weap:hover {
+    border-style: solid;
+    border-color: #ffffff;
+    margin-left: 0%;
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.weap.active {
+    color:#057214;
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #057214;
+    margin-left: 0%;
+}
+
+.tab {
+    overflow: hidden;
+    border-style: none;
+    font-family: Pricedown;
+    line-height: 1vh;
+    background: linear-gradient(to right, rgba(16, 142, 16, 0.5) 0%, rgb(24, 105, 24) 50%, rgb(126, 191, 126) 100%);
+    width: 100%;
+    position: absolute;
+	left: 0%;
+	top: 0%;
+    height: 9.5%;
+}
+
+.tab button {
+    background-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-width: 0px 0px 0.1vh 0px;
+    font-family: Pricedown;
+    border-color: #ffffff00;
+    outline: none;
+    cursor: url("images/hand.cur"), pointer;
+    font-size: 2.5vh;
+    padding: 3vh 5vh;
+}
+
+.tab button:hover {
+    border-style: solid;
+    text-shadow: 0px 0px 3vh #FFF;
+    border-color: #FFF;
+    color: #FFF;
+    cursor: url("images/hand.cur"), pointer;
+    border-width: 0px 0px 0.1vh 0px;
+}
+
+@keyframes UseEffect { 
+	0% {transform:scale(1,1);}
+	20% {transform:scale(0.7,0.7);}
+	30% {transform:scale(0.5,0.5);}
+	50% {transform:scale(0.7,0.7);}
+	70% {transform:scale(0.9,0.9);}
+	90% {transform:scale(1.0,1.0);}
+	100% {transform:scale(1,1);}
+} 
+
+.gauche {
+	float: left;
+	margin-left:2%;
+}
+
+.droite {
+	float: right;
+	margin-right:2%;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+.vehicleICON {
+    background-color: rgba(0,0,0,0.5);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 33% 100%;
+	background-position: 100%;
+}
+
+.tab2 {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    bottom: 83.5%;
+    border-radius: 0.5vh;
+}
+
+.tab2 button {
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
+    border: none;
+    width: 100%;
+    outline: none;
+    cursor: url(images/hand.cur), pointer;
+    font-size: 2.5vh;
+    font-family: Pricedown;
+    padding: 1vh;
+}
+
+.ta2 button:hover {
+    border-style: solid;
+    text-shadow: 0px 0px 1.6vh #023609;
+    border-color: #FFF;
+    color: rgb(56, 163, 56);
+    text-shadow: 0 0 3vh rgb(0, 130, 0);
+    cursor: url("images/hand.cur"), pointer;
+    border-width: 0vh 0vh 0vh 0vh;
+}
+
+.tab2 button.active {
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(200, 255, 200, 0.05) 50%, rgba(0, 0, 0, 0.0) 100%);
+    color: rgb(56, 163, 56);
+    text-shadow: 0 0 3vh rgb(0, 130, 0);
+	border-style: solid;
+    border-color: #FFF;
+    border-width: 0vh 0vh 0vh 0vh;
+}
+
+.bar {
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
+    height: 0.1vh;
+    margin: -1.5vh 0 2.1vh 0;
+    width: 100%;
+}
+
+.type2 {
+    font-family: Pricedown;
+}
+
+.type1 {
+    font-family: Maven Pro;
+}
+
+.buttonText {
+    font-size: 1.75vh;
+    font-family: Maven Pro;
+}

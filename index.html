@@ -8,35 +8,34 @@
 <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<script src="js/utils.js?v=2"></script>
-<link href="style.css?v=2" rel="stylesheet" type="text/css"></link>
-<script src="js/core.js?v=2"></script>
-<script src="js/textes.js?v=2"></script>
-<script src="js/armes.js?v=2"></script>
-<script src="js/activities.js?v=2"></script>
-<script src="js/vehicules.js?v=2"></script>
-<script src="js/save.js?v=2"></script>
-<script src="js/succes.js?v=2"></script>
+<link href="style.css?v=21" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=21"></script>
+<script src="js/data.js?v=21"></script>
+<script src="js/core.js?v=21"></script>
+<script src="js/ui.js?v=21"></script>
 
 <body class="noselect" oncontextmenu="return false;">
-    <nav class="tab">
+    <nav id="menu" class="tab">
         <p class="maintitle">IdleFive</p>
-        <button class="tablinks blanc" onclick="showPrestigeMenu();">Character</button>
-        <button class="tablinks blanc" onclick="showSuccesMenu();">Success</button>
-        <button class="tablinks blanc" onclick="showSaveMenu();">Save & Stats</button>
-        <button class="tablinks blanc" onclick="showOptionsMenu();">Guide</button>
+        <button class="tablinks blanc" id="menu1" data-id="1">Character</button>
+        <button class="tablinks blanc" id="menu2" data-id="2">Success</button>
+        <button class="tablinks blanc" id="menu3" data-id="3">Save & Stats</button>
+        <button class="tablinks blanc" id="menu4" data-id="4">Guide</button>
     </nav>
 
     <div id="colonne-m" value="Jeu">
+        <div id="game-menu" class="tab2">
+            <button class="tablinks blanc active" id="t1" data-id="1">Weapons</button>
+            <br />
+            <button class="tablinks blanc" id="t2" data-id="2">Activities</button>
+            <br />
+            <button class="tablinks blanc" id="t3" data-id="3">Garage</button>
+            <br />
+        </div>
         <div id="anchor" class="anchor">
-            <div class="caps" oncontextmenu="UseWeapon();" onclick="UseWeapon();" id="imagecaps"></div>
+            <div class="cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash"></div>
         </div>
         <div class='left-s'>
-        </div>
-        <div class="tab2">
-            <button class="tablinks blanc" id="t4" onclick="showGarageMenu();">Garage</button><br />
-            <button class="tablinks blanc" id="t3" onclick="showProdMenu();">Activities</button><br />
-            <button class="tablinks blanc active" id="t1" onclick="showGunMenu();">Weapons</button><br />
         </div>
         <div id="game-info" class="alert-text">
 
@@ -77,18 +76,13 @@
             <div id="Wtab8" style="display: none;"></div>
             <div id="Wtab9" style="display: none;"></div>
         </div>
+
         <div id="tab2" style="display: none; overflow: auto; height: 100%; width: 99%;">
-            <div class="arme-div">
-            </div>
-        </div>
-
-
-        <div id="tab3" style="display: none; overflow: auto; height: 100%; width: 99%;">
             <div id="productions"></div>
         </div>
 
 
-        <div id="tab4" style="display: none; overflow: auto; height: 100%; width: 99%;">
+        <div id="tab3" style="display: none; overflow: auto; height: 100%; width: 99%;">
             <nav class="sous-menu">
                 <input type="button" id="V1" onclick="showVTab(1);" class="veh active" value="Bikes"></input>
                 <input type="button" id="V2" onclick="showVTab(2);" class="veh" value="Motorcycles"> </input>
@@ -127,42 +121,7 @@
     </div>
     <div id="menus">
 
-        <div id="menu-sa" style="display: none;">
-            <div class="success2">
-                <p class="maintitle">Save Menu</p>
-                <br />
-                <br />
-                <input type="button" id="btnExport" class="btn btn-blanc" value="Export Save" onClick="exportSave();" />
-                <input type="button" id="btnImport" class="btn btn-blanc" value="Import Save" onClick="importSave();" />
-                <input type="button" id="Recommencer" class="btn btn-blanc" value="New Account" onclick="confirmReset();">
-                <div id="exportBody"></div>
-                <p id='debugtext' class='copytext'></p>
-            </div>
-            <div class="success2">
-                <p class="maintitle">Statistics</p>
-                <br />
-                <br />
-                <div class="stats" id="capscount"></div>
-                <br />
-                <div class="stats" id="capspscount"></div>
-                <br />
-                <div class="stats" id="addcapscount"></div>
-                <br />
-                <div class="stats" id="buyedV1"></div>
-                <br />
-                <div class="stats" id="buyedV2"></div>
-                <br />
-                <div class="stats" id="buyedV3"></div>
-                <br />
-                <div class="stats" id="time"></div>
-                <br />
-                <div class="stats" id="version"></div>
-                <br />
-                <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
-                </div>
-        </div>
-
-        <div id="menu-pr" style="display: none;">
+        <div id="menu-1" style="display: none;">
             <p class="maintitle">Change Character</p>
             <br />
             <br />
@@ -188,7 +147,7 @@
             <br />
             <br />
             <p class="texte">Multiplier bonus of </p>
-            <div class="texteg red" id="bonuscapscount">0</div>
+            <div class="texteg red" id="bonuscashcount">0</div>
             <p class="texte"> on money earned.</p>
             <br />
             <br />
@@ -196,7 +155,7 @@
             <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
         </div>
 
-        <div id="menu-su" style="display: none;">
+        <div id="menu-2" style="display: none;">
             <p class="maintitle">Success</p>
             <br />
             <br />
@@ -1005,7 +964,42 @@
             <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
         </div>
 
-        <div id="menu-op" style="display: none;">
+        <div id="menu-3" style="display: none;">
+                <div class="success2">
+                    <p class="maintitle">Save Menu</p>
+                    <br />
+                    <br />
+                    <input type="button" id="btnExport" class="btn btn-blanc" value="Export Save" onClick="exportSave();" />
+                    <input type="button" id="btnImport" class="btn btn-blanc" value="Import Save" onClick="importSave();" />
+                    <input type="button" id="Recommencer" class="btn btn-blanc" value="New Account" onclick="confirmReset();">
+                    <div id="exportBody"></div>
+                    <p id='debugtext' class='copytext'></p>
+                </div>
+                <div class="success2">
+                    <p class="maintitle">Statistics</p>
+                    <br />
+                    <br />
+                    <div class="stats" id="cashcount"></div>
+                    <br />
+                    <div class="stats" id="cashpscount"></div>
+                    <br />
+                    <div class="stats" id="addcashcount"></div>
+                    <br />
+                    <div class="stats" id="buyedV1"></div>
+                    <br />
+                    <div class="stats" id="buyedV2"></div>
+                    <br />
+                    <div class="stats" id="buyedV3"></div>
+                    <br />
+                    <div class="stats" id="time"></div>
+                    <br />
+                    <div class="stats" id="version"></div>
+                    <br />
+                    <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
+                </div>
+            </div>
+
+        <div id="menu-4" style="display: none;">
             <br />
             <p class="maintitle">HOW TO START</p>
             <br />
@@ -1014,11 +1008,13 @@
             <p class='desc'>First of all, hello to you.
                 <br /> I want to thank you for playing this little game that i created.
                 <br /> IdleFive is a GTA-Like game that aims to look like Grand Theft Auto V.
-                <br /> But, with a different vision and a different gameplay of the original game.</p><br />
+                <br /> But, with a different vision and a different gameplay of the original game.</p>
+            <br />
             <p class="title blanc">Goal</p>
             <p class='desc'>The main goal of the game is to get everything that you can buy (for now this is limited)
                 <br /> To do that you have to steal the money of people with your "Weapons".
-                <br /> You can also create your own business empire with the "Activities".</p><br />
+                <br /> You can also create your own business empire with the "Activities".</p>
+            <br />
             <p class="title blanc">How to play ?</p>
             <p class='desc'>You can start by clicking on the fist to make some money.
                 <br /> After that you can buy a Weapon and/or start an Activity to gain a lot more money.
@@ -1027,12 +1023,14 @@
 
             <p class="title blanc">Weapons</p>
             <p class='desc'>Weapons are used to do more damage and rob the money of the people on the street,
-                <br /> there is also a random quality system that can raise or lower the power of the weapon.</p><br />
+                <br /> there is also a random quality system that can raise or lower the power of the weapon.</p>
+            <br />
 
             <p class="title blanc">Activities</p>
             <p class='desc'>This is the main mechanic of the game,
                 <br /> they are used to automatise the game and the more you have,
-                <br /> the more it costs you but that also allows you to have a lot of money without doing anything.</p><br />
+                <br /> the more it costs you but that also allows you to have a lot of money without doing anything.</p>
+            <br />
 
             <p class="title blanc">Character</p>
             <p class='desc'>This is the prestige system of the game.

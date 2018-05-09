@@ -1,12 +1,12 @@
-var version = "v2.0";
+var version = "v2.1";
 var a1 = 0;
 var player = {
 	DateStarted: getDate(),
 	fl: 1,
 	rank: 0,
-	caps: 0,
-	capsps: 0,
-	bonuscaps: 1,
+	cash: 0,
+	cashps: 0,
+	bonuscash: 1,
 	prestige: 1,
 	quality: 0,
 	prestigeprice: 400,
@@ -19,7 +19,7 @@ var player = {
 	Arme: "Fist",
 	ArmePower: 0.1,
 	Rarity: "Normal",
-	GBought: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	GBought: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	buyedveh1: 0,
 	buyedveh2: 0,
 	buyedveh3: 0,
@@ -47,8 +47,8 @@ $(document).ready(function () {
 		load();
 	}
 	setInterval(function () {
-		if (player.caps !== player.caps) {
-			player.caps = 0;
+		if (player.cash !== player.cash) {
+			player.cash = 0;
 		}
 		player.playTime++;
 		updateprogression();
@@ -62,52 +62,38 @@ $(document).ready(function () {
 	save();
 	document.title = "IdleFive";
 	$("#alert").html("<p class='game-text'>Nothing to report at the moment.</font></p>");
-	console.log("Have fun of IdleFive!   - Aizen_");
 });
 
-function firstlaunch() {
-	if (player.fl == 1) {
-		player.fl = 0;
-		save();
-		showOptionsMenu();
-	}
-}
-
-function CashPS() {
-	player.capsps = 0;
+function getCashPS() {
+	player.cashps = 0;
 	for (var id = 0; id < 13; id++) {
 		if (player.productions[id] > 0) {
-			player.capsps += productions[id].value * player.productions[id];
-			player.caps += player.capsps * player.bonuscaps;
+			player.cashps += productions[id].value * player.productions[id];
+			player.cash += player.cashps * player.bonuscash;
 		}
 	}
 }
 
-function UseWeapon() {
-	player.caps = player.caps + (player.ArmePower * player.GunMult) * (player.bonuscaps + player.bonuspoints);
+function ClickWeapon() {
+	player.cash = player.cash + (player.ArmePower * player.GunMult) * (player.bonuscash + player.bonuspoints);
 	updateprogression();
 }
 
 function updateprogression() {
-	if (player.rank >= player.prestigeprice) {
-		btnPrestigeE();
-	} else {
-		btnPrestigeD();
-	}
-	if (player.caps < player.prestigeprice2) { btnPrestigeD(); }
-	$('#imagecaps').css("background-image", "url(images/" + player.WeaponID + ".png)");
-	player.caps = Math.round(player.caps * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
+	if (player.rank >= player.prestigeprice) { btnPrestigeE(); } else { btnPrestigeD(); }
+	if (player.cash < player.prestigeprice2) { btnPrestigeD(); }
+	player.cash = Math.round(player.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
 	getPrestigePrice();
-	CashPS();
+	getCashPS();
 	checkSucces();
-	updatestats();
-	firstlaunch();
+	UpdateUI();
+	if (player.fl == 1) { player.fl = 0; save(); showOptionsMenu(); }
 	save();
 }
 
 function AddPrestige() {
 	if (player.rank >= player.prestigeprice) {
-		if (player.caps >= player.prestigeprice2) {
+		if (player.cash >= player.prestigeprice2) {
 			var r = confirm("Would you like to sell all of your activities to get a permanent bonus ?");
 			if (r == true) {
 				player.prestige = player.prestige + 1;
@@ -119,13 +105,13 @@ function AddPrestige() {
 				player.Rarity = "Normal";
 				player.GBought= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 				player.rank = 0;
-				player.caps = 0;
-				player.capsps = 0;
+				player.cash = 0;
+				player.cashps = 0;
 				player.bonuspoints = 0;
 				player.productions = [];
 				player.points = player.prestige;
 				getPrestigePrice();
-				updatestats();
+				UpdateUI();
 				updateprogression();
 				location.reload();
 			}
@@ -135,8 +121,8 @@ function AddPrestige() {
 
 function getPrestigePrice() {
 	player.prestigeprice = player.prestige * 100 + 300;
-	player.bonuscaps = 1;
-	if (player.prestige > 1) player.bonuscaps = 1 + (player.prestige * 0.25);
+	player.bonuscash = 1;
+	if (player.prestige > 1) player.bonuscash = 1 + (player.prestige * 0.25);
 	player.prestigeprice2 = player.prestige * 10000000;
 	if (player.prestige == 0) {
 		player.prestigeprice = 400;
@@ -149,50 +135,6 @@ function sauvegardeauto() {
 }
 setTimeout(sauvegardeauto, 600000);
 
-function hideMenus() {
-	var a = document.getElementById('menu-sa');
-	var b = document.getElementById('menu-su');
-	var c = document.getElementById('menu-op');
-	var d = document.getElementById('menu-pr');
-	a.style.display = 'none';
-	b.style.display = 'none';
-	c.style.display = 'none';
-	d.style.display = 'none';
-}
-
-function showSaveMenu() {
-	hideMenus();
-	var a = document.getElementById('menu-sa');
-	a.style.display = 'block';
-}
-
-function showSuccesMenu() {
-	hideMenus();
-	var b = document.getElementById('menu-su');
-	b.style.display = 'block';
-}
-
-function showOptionsMenu() {
-	hideMenus();
-	var c = document.getElementById('menu-op');
-	c.style.display = 'block';
-}
-
-function showPrestigeMenu() {
-	hideMenus();
-	var d = document.getElementById('menu-pr');
-	d.style.display = 'block';
-}
-
-function btnPrestigeD() {
-	var b1 = document.getElementById('btnPrestige').classList;
-	b1.add("disabled");
-}
-
-function btnPrestigeE() {
-	var b1 = document.getElementById('btnPrestige').classList;
-	b1.remove("disabled");
-}
 
 function getRank() {
 	if (player.rank == 0) { prank = "<font class='bronze'> Bronze &#x2729;</font>"; }
@@ -229,43 +171,12 @@ function getPrestigeLevel() {
 	return pprestige;
 }
 
-function showGunMenu() {
-	hideTabs();
-	var a = document.getElementById('tab1');
-	a.style.display = 'block';
-	document.getElementById("t1").classList.add('active');
-}
-function showProdMenu() {
-	hideTabs();
-	var a = document.getElementById('tab3');
-	a.style.display = 'block';
-	document.getElementById("t3").classList.add('active');
-}
-function showGarageMenu() {
-	hideTabs();
-	var a = document.getElementById('tab4');
-	a.style.display = 'block';
-	document.getElementById("t4").classList.add('active');
-}
-
-function hideTabs() {
-	var a = document.getElementById('tab1');
-	var b = document.getElementById('tab4');
-	var c = document.getElementById('tab3');
-	a.style.display = 'none';
-	b.style.display = 'none';
-	c.style.display = 'none';
-	document.getElementById("t1").classList.remove('active');
-	document.getElementById("t4").classList.remove('active');
-	document.getElementById("t3").classList.remove('active');
-}
-
 function checkalerts() {
 	chance = random(1, 30);
-	if (player.caps > 100) {
+	if (player.cash > 100) {
 		if (chance >= 28) {
-			tax = random(100, (player.caps / 100));
-			player.caps -= tax;
+			tax = random(100, (player.cash / 100));
+			player.cash -= tax;
 			$("#alert").html("<p class='game-text rouge'>A player killed you, he stole <font class='vert'>$" + fix(tax, 3) + " </font>from your pockets !");
 		} else {
 			$("#alert").html("<p class='game-text'>Nothing to report at the moment.</p>");
@@ -276,3 +187,113 @@ function checkalerts() {
 function clearalerts() {
 	$("#alert").html("<p class='game-text'>Nothing to report at the moment.</p>");
 }
+
+var buyV = function (id) {
+	if (vehicules[id].price <= player.points) {
+	  if (player.vehicules[id] == null) {
+	  player.vehicules[id] = 1; player.points -= vehicules[id].price;
+	  } else { if (player.vehicules[id] != 1) player.vehicules[id] = 1; player.points -= vehicules[id].price; }
+	  player.buyedveh1++;
+	  player.bonuspoints += vehicules[id].value;
+	}
+	VehicleList();
+  };
+
+  function genGun() {
+	quality = random(1, 400);
+	if (quality >= 1) { setRarity("Very Used","<font class='bronze'>",0.25); }
+	if (quality >= 50) { setRarity("Used","<font class='gris'>",0.5); }
+	if (quality >= 120) { setRarity("Normal","<font class='normal'>",1); }
+	if (quality >= 220) { setRarity("Rare","<font class='rare'>",1.25); }
+	if (quality >= 350) { setRarity("Epic","<font class='or'>",1.5); }
+	if (quality >= 380) { setRarity("Legendary","<font class='rougeb'>",1.75); }
+	if (quality >= 395) { setRarity("Mythic","<font class='mythic'>",2); }
+}
+
+function genGun2() {
+	quality = random(1, 200);
+	if (quality >= 1) { setRarity("Normal","<font class='normal'>",1); }
+	if (quality >= 80) { setRarity("Rare","<font class='rare'>",1.25); }
+	if (quality >= 150) { setRarity("Epic","<font class='or'>",1.5); }
+	if (quality >= 180) { setRarity("Legendary","<font class='rougeb'>",1.75); }
+	if (quality >= 195) { setRarity("Mythic","<font class='mythic'>",2); }
+}
+
+function setRarity(Type, Class, Mult) {
+	player.Rarity = Type;
+	player.GunPower = Class;
+	player.GunMult = Mult;
+}
+
+function useW(id) {
+	var weapon = weapons[id];
+	if (player.GBought[id] == 1) {
+		player.Rarity = "Normal";
+		player.GunPower = "<font class='normal'>";
+		player.GunMult = 1;
+		player.Arme = weapon.name;
+		player.WeaponID = id;
+		player.ArmePower = weapon.power;
+	}
+	WeaponList();
+}
+
+function buyG(id) {
+	var arme = weapons[id].name;
+	var damage = weapons[id].power;
+	var pricebuy = weapons[id].price;
+	if (player.GBought[id] == 0) {
+		if (player.cash >= pricebuy) {
+			player.cash -= pricebuy;
+			player.Arme = arme;
+			player.ArmePower = damage;
+			player.WeaponID = id;
+			player.GBought[id] = 1;
+			genGun();
+		}
+	} else {
+		if (player.cash >= pricebuy * 10) {
+			player.cash -= pricebuy * 10;
+			player.Arme = arme;
+			player.WeaponID = id;
+			player.ArmePower = damage;
+			genGun2();
+		}
+	}
+	WeaponList();
+}
+
+function BuyM(id, qty) {
+	var price = GetMissionPrice(id, qty);
+	if (price <= player.cash) {
+	  player.cash -= price;
+	  if (player.productions[id] == null) {
+		player.productions[id] = qty;
+	  } else {
+		player.productions[id] += qty;
+		player.rank += qty;
+	  }
+	  MissionList();
+	}
+  }
+  
+  function SellM(id, qty) {
+	var price = GetMissionPrice(id, qty) / 2;
+	if (player.productions[id] == null) player.productions[id] = 0;
+	player.cash += price;
+	if (player.productions[id] >= qty) {
+	  player.productions[id] -= qty;
+	  player.rank -= qty;
+	} else {
+	  player.productions[id] = null;
+	}
+	MissionList();
+  }
+  
+  var GetMissionPrice = function (id, qty) {
+	var owned = 0;
+	if (player.productions[id] != null) owned = player.productions[id];
+	var price = (productions[id].price * Math.pow(productions[id].pricemodifier, owned)) * qty;
+	return price;
+  };
+  

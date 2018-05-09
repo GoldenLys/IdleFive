@@ -98,17 +98,14 @@ var load = function(){
 
 var exportSave = function(){
 	var saveData = btoa(JSON.stringify(p));
-	if(document.queryCommandSupported("copy")){
-		$("#copyToClipboard").css({"visibility":"visible"});
-	}
-    $("#exportBody").html("<p class='copytext'>Copy this code</p><textarea id='saveCode' class='savetext' style='width:100%; height:200px'>"+saveData+"</textarea><button id='copyToClipboard' class='btn btn-rouge' onclick='saveDataToClipboard()'>Copy all text</button>");
-};
-
-var saveDataToClipboard = function(){
+	window.getSelection().removeAllRanges();
+	alert("Save copied in your clipboard. (CTRL+V to paste it)");
+	$("#exportBody").html("<textarea id='saveCode'>"+saveData+"</textarea>");
 	var textField = document.getElementById("saveCode");
 	textField.select();
 	document.execCommand("copy");
 	window.getSelection().removeAllRanges();
+	$("#exportBody").html("");
 };
 
 var importSave = function(){
@@ -136,7 +133,7 @@ var restoreSave = function(save){
 };
 
 var confirmReset = function() {
-    var input = prompt("To confirm, please write 6", "");
+    var input = prompt("To confirm, please write 5", "");
     if (input == 6) {
         canSave = 0;
         localStorage.clear();

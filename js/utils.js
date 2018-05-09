@@ -80,7 +80,7 @@ var canSave = 1;
 var save = function(){
 	var date = new Date();
 	if(canSave){
-		localStorage.setItem("IdleFive", JSON.stringify(player));
+		localStorage.setItem("IdleFive", JSON.stringify(p));
 	}
 	var tmp = new Date().getTime();
 };
@@ -89,7 +89,7 @@ var load = function(){
 	var savegame = JSON.parse(localStorage.getItem("IdleFive"));
 
 	for (var property in savegame) {
-		if (typeof savegame[property] !== 'undefined') player[property] = savegame[property];
+		if (typeof savegame[property] !== 'undefined') p[property] = savegame[property];
 	}
 
 	var date = new Date();
@@ -97,7 +97,7 @@ var load = function(){
 };
 
 var exportSave = function(){
-	var saveData = btoa(JSON.stringify(player));
+	var saveData = btoa(JSON.stringify(p));
 	if(document.queryCommandSupported("copy")){
 		$("#copyToClipboard").css({"visibility":"visible"});
 	}

@@ -81,7 +81,7 @@ body {
 	color: rgb(255, 255, 255); 
 	border-radius: 15px;
 	font-size: 15px;
-	font-family: Maven Pro;
+	font-family: Rajdhani;
 	text-align: center;
     text-transform: capitalize;
     padding: 1vh 25px 1vh 25px;
@@ -93,7 +93,7 @@ body {
 .success2 {
     background: rgba(0, 0, 0, 0.50);
     border-radius: 0.4vh;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     margin: 0.3% 0.3% 0% 0.3%;
     padding: 0% 0% 2% 0%;
     overflow: hidden;
@@ -104,7 +104,7 @@ body {
     border-radius: 0.4vh;
     border: 0.1vh solid #af1919;
     color: #ffffff;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     width: 29%;
 	margin-left: 36%;
     padding-bottom: 0.5%;
@@ -120,7 +120,7 @@ td, th {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
     color: #ffffff;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     max-height: 25%;
     width: 100%;
     padding-bottom: 1%;
@@ -133,7 +133,7 @@ td, th {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
     color: #ffffff;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     width: 100%;
     padding-bottom: 1%;
     padding-top: 1%;
@@ -147,7 +147,7 @@ td, th {
     color: #ffffff;
     position: absolute;
     bottom: 0%;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     width: 99%;
     padding-bottom: 1%;
     padding-top: 1%;
@@ -175,7 +175,7 @@ td, th {
 
 .option-text {
     text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     margin: 5px;
 	display: inline;
     color: #000;
@@ -183,7 +183,7 @@ td, th {
 
 .cashules {
     text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
 	display: inline;
     color: #000;
 }
@@ -239,30 +239,64 @@ td, th {
 }
 
 .btn:hover {
-    border: 0.1vh solid rgb(255, 255, 255);
+    cursor: url("images/hand.cur"), pointer;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-width: 0vh 0.2vh 0vh 0.2vh;
 }
 
-.btn-rouge {
-    border: 0.1vh solid rgb(150, 0, 0);
+.btn-upgrade {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+    border-width: 0vh 0.1vh 0vh 0.1vh;
     color: rgb(255, 255, 255);
-    padding: 6px 12px;
+    padding: 2vh 3vh;
     border-radius: 0.4vh;
     background-color: rgb(150, 0, 0);
-    font-family: Maven Pro;
+    font-family: Rajdhani;
+}
+
+.btn-upgrade:hover {
+    background-color: rgb(70, 0, 0);
 }
 
 .btn-weapon {
-    border: 0.1vh solid #057214;
+    border: none;
     color: rgb(255, 255, 255);
     padding: 1.5vh;
     width: 44.5%;
     margin: 0 2.25vh 0 2.25vh;
     border-radius: 0.4vh;
-    background-color: #057214;
-    font-family: Maven Pro;
+    background-color: #11741e;
+    font-family: Rajdhani;
 }
 
-.btn-.disabled {
+.btn-weapon:hover {
+    background-color: #065a11;
+}
+
+.btn-weapon.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
+.btn-weapon2 {
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 1.5vh;
+    width: 44.5%;
+    margin: 0 2.25vh 0 2.25vh;
+    border-radius: 0.4vh;
+    background-color: #11741e;
+    font-family: Rajdhani;
+}
+
+.btn-weapon2:hover {
+    background-color: #065a11;
+}
+
+.btn-weapon2.disabled {
     color: rgba(0,0,0,0);
     background-color: rgba(0,0,0,0.40);
 	border: 0.1vh solid rgba(0,0,0,0.40);
@@ -303,7 +337,9 @@ td, th {
 }
 
 .btn-buy {
-    border: 0vh solid rgb(31, 116, 27);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 2vh;
     width: 15vh;
@@ -312,13 +348,15 @@ td, th {
     position: relative;
     margin-top: -15.5vh;
     border-radius: 0.4vh;
-    background-color: rgb(31, 116, 27);
+    background-color: rgb(0, 116, 0);
     text-decoration: initial;
     font-family: Pricedown;
 }
 
 .btn-buy:hover {
-    border: 0vh solid rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff;
     cursor: url("images/hand.cur"), pointer;
 }
 
@@ -329,7 +367,9 @@ td, th {
 }
 
 .btn-buy2 {
-    border: 0vh solid rgb(31, 116, 27);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 1vh;
     width: 25vh;
@@ -339,14 +379,16 @@ td, th {
     margin-top: -6vh;
     margin-bottom: 1vh;
     border-radius: 0.4vh;
-    background-color: rgb(31, 116, 27);
+    background-color: rgb(0, 116, 0);
     text-align: center;
     text-decoration: initial;
     font-family: Pricedown;
 }
 
 .btn-buy2:hover {
-    border: 0vh solid rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff;
     cursor: url("images/hand.cur"), pointer;
 }
 
@@ -357,7 +399,9 @@ td, th {
 }
 
 .btn-sell {
-	border: 0vh solid rgb(150, 0, 0);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 2vh;
     width: 15vh;
@@ -366,13 +410,15 @@ td, th {
     position: relative;
     margin-top: -15.5vh;
     border-radius: 0.4vh;
-    background-color: rgb(150, 0, 0);
+    background-color: rgb(110, 0, 0);
     text-decoration: initial;
     font-family: Pricedown;
 }
 
 .btn-sell:hover {
-    border: 0vh solid rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff;
     cursor: url("images/hand.cur"), pointer;
 }
 
@@ -383,7 +429,9 @@ td, th {
 }
 
 .btn-sell2 {
-	border: 0vh solid rgb(150, 0, 0);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 1vh;
     width: 25vh;
@@ -393,14 +441,16 @@ td, th {
     margin-top: -6vh;
     margin-bottom: 1vh;
     border-radius: 0.4vh;
-    background-color: rgb(150, 0, 0);
+    background-color: rgb(110, 0, 0);
     text-align: center;
     text-decoration: initial;
     font-family: Pricedown;
 }
 
 .btn-sell2:hover {
-    border: 0vh solid rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-color: #ffffff;
     cursor: url("images/hand.cur"), pointer;
 }
 
@@ -410,35 +460,15 @@ td, th {
 	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
-.btn-upgrade {
-    border: 0.1vh solid rgb(47, 107, 16);
-    color: rgb(255, 255, 255);
-    padding: 1vh 1.4vh;
-    border-radius: 0.4vh;
-	float: none;
-    background-color: rgb(38, 84, 14);
-    font-family: Maven Pro;
-}
-
-.btn-upgrade.disabled {
-    color: rgba(0,0,0,0.5);
-    background-color: rgba(0,0,0,0.5);
-	border: 0.1vh solid rgba(0,0,0,0.5);
-    padding: 1vh 1.4vh;
-    border-radius: 0.4vh;
-	float: none;
-    font-family: Maven Pro;
-}
-
 .game-text {
     text-align: center;
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #338409;
 }
 
 .production-title {
     text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     font-size: 2vh;
     color: #338409;
     text-shadow: 0px 0px 0.7px #338409;
@@ -448,13 +478,13 @@ td, th {
 }
 
 .texte {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #FFF;
 	display: inline;
 }
 
 .copyright {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #26741b;
 	bottom: 0%;
     left: 40%;
@@ -462,7 +492,7 @@ td, th {
 }
 
 .btexte {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #FFF;
 	display: contents;
 	margin-left: -20%;
@@ -471,7 +501,7 @@ td, th {
 
 
 .texteg {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #338409;
 	display: inline;
 }
@@ -481,13 +511,13 @@ td, th {
 }
 
 .stats {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #FFF;
     margin-bottom: 0.5%;
 }
 
 .statsb {
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     color: #000;
 	display: inline;
 }
@@ -495,7 +525,7 @@ td, th {
 
 .desc {
     text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     display: inline;
     margin: 0px;
     color: #FFF;
@@ -503,7 +533,7 @@ td, th {
 
 .production-desc {
     text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     margin: 0px;
     color: #FFF;
 }
@@ -511,7 +541,7 @@ td, th {
 
 .valeur {
 	text-align: center;
-	font-family: Maven Pro;
+	font-family: Rajdhani;
     display: inline;
 	margin: 0px;
     color: #FFF;
@@ -519,7 +549,7 @@ td, th {
 
 .valeur2 {
 	text-align: center;
-	font-family: Maven Pro;
+	font-family: Rajdhani;
 	margin: 0px;
     color: #FFF;
 }
@@ -549,13 +579,6 @@ td, th {
 	vertical-align: middle;
     color: #FFF;
 }
-
-.level {
-    text-align: center;
-    font-family: Maven Pro;
-    color: #FFF000;
-}
-
 .title {
     text-align: center;
 	font-family: Pricedown;
@@ -716,7 +739,7 @@ td, th {
 
 .copytext {
 	text-align: center;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     color: #FFF;
 }
 
@@ -728,7 +751,7 @@ td, th {
     color: rgb(255, 255, 255);
     border-radius: 15px;
     font-size: 15px;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     text-align: center;
     padding: 1vh 25px 1vh 25px;
     overflow: hidden;
@@ -806,6 +829,22 @@ input:checked + .slider:before {
 	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
 }
 
+.platine {
+	color: rgb(214, 214, 214);
+	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
+}
+
+.rare {
+	color: #192cbb;
+	text-shadow: 0px 0px 3vh #0f1753;
+}
+
+.mythic {
+	color: rgb(219, 44, 235);
+	text-shadow: 0px 0px 3vh rgb(133, 5, 158);
+}
+
+
 .vert {
     color: rgb(56, 163, 56);
     text-shadow: 0 0 3vh rgb(0, 130, 0);
@@ -823,7 +862,8 @@ input:checked + .slider:before {
 
 .rougeb {
     font-weight: bold;
-    color: #a81818;
+    color: rgb(163, 36, 36);
+    text-shadow: 0 0 3vh rgb(80, 15, 15);
 }
 
 .jaune {
@@ -841,21 +881,6 @@ input:checked + .slider:before {
 	color: rgba(255, 255, 255, 0);
 }
 
-.rare {
-	color: #192cbb;
-	text-shadow: 0px 0px 3vh #0f1753;
-}
-
-.platine {
-	color: rgb(214, 214, 214);
-	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
-}
-
-.mythic {
-	color: rgb(219, 44, 235);
-	text-shadow: 0px 0px 3vh rgb(133, 5, 158);
-}
-
 .veh {
     background-color: rgba(255, 255, 255, 0.02);
     color: #FFF;
@@ -865,7 +890,7 @@ input:checked + .slider:before {
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
     font-size: 0.7vw;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     padding: 1.5%;
     width: 24%;
 }
@@ -894,7 +919,7 @@ input:checked + .slider:before {
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
     font-size: 0.7vw;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
     padding: 1.5%;
     width: 32.5%;
 }
@@ -928,33 +953,31 @@ input:checked + .slider:before {
 }
 
 .tab button {
+    float: right;
     background-color: rgba(255, 255, 255, 0);
     border-style: solid;
-    border-width: 0px 0px 0.1vh 0px;
-    font-family: Pricedown;
+    border-width: 0vh 0.4vh 0vh 0.4vh;
     border-color: #ffffff00;
+    font-family: Pricedown;
     outline: none;
-    cursor: url("images/hand.cur"), pointer;
-    font-size: 2.5vh;
-    padding: 3vh 5vh;
+    font-size: 3.5vh;
+    padding: 2.6vh;
+    width: 15%;
+    border-radius: 0.5vh;
 }
 
 .tab button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
     border-style: solid;
     text-shadow: 0px 0px 3vh #FFF;
     border-color: #FFF;
     color: #FFF;
     cursor: url("images/hand.cur"), pointer;
-    border-width: 0px 0px 0.1vh 0px;
 }
 
 @keyframes UseEffect { 
 	0% {transform:scale(1,1);}
-	20% {transform:scale(0.7,0.7);}
-	30% {transform:scale(0.5,0.5);}
-	50% {transform:scale(0.7,0.7);}
-	70% {transform:scale(0.9,0.9);}
-	90% {transform:scale(1.0,1.0);}
+	50% {transform:scale(0.95,0.95);}
 	100% {transform:scale(1,1);}
 } 
 
@@ -1013,6 +1036,7 @@ input:checked + .slider:before {
     text-shadow: 0 0 3vh rgb(0, 130, 0);
     cursor: url("images/hand.cur"), pointer;
     border-width: 0vh 0vh 0vh 0vh;
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.0) 100%);
 }
 
 .tab2 button.active {
@@ -1036,10 +1060,30 @@ input:checked + .slider:before {
 }
 
 .type1 {
-    font-family: Maven Pro;
+    font-family: Rajdhani;
 }
 
 .buttonText {
     font-size: 1.75vh;
-    font-family: Maven Pro;
+    font-family: Rajdhani;
+}
+
+.Bronze {
+	color: rgb(148, 124, 52);
+	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+}
+
+.Silver {
+	color: rgb(148, 148, 148);
+	text-shadow: 0.1vh 0px 0px rgb(148, 148, 148);
+}
+
+.Gold {
+	color: rgb(255, 190, 0);
+	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+}
+
+.Platinum {
+	color: rgb(214, 214, 214);
+	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
 }

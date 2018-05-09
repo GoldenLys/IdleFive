@@ -278,7 +278,7 @@ function BuyM(id, qty) {
   }
   
   function SellM(id, qty) {
-	var price = GetMissionPrice(id, qty) / 2;
+	var price = GetMissionPrice(id, qty) / 8;
 	if (player.productions[id] == null) player.productions[id] = 0;
 	player.cash += price;
 	if (player.productions[id] >= qty) {
@@ -293,7 +293,7 @@ function BuyM(id, qty) {
   var GetMissionPrice = function (id, qty) {
 	var owned = 0;
 	if (player.productions[id] != null) owned = player.productions[id];
-	var price = (productions[id].price * Math.pow(productions[id].pricemodifier, owned)) * qty;
+	var price = (qty * productions[id].price) * Math.pow(productions[id].pricemodifier, owned);
 	return price;
   };
   

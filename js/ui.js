@@ -14,7 +14,7 @@
 	$("#cashpscount").html("Dollars per second <font class='desc vert'> $" + CashPSText + "</font>");
 	$("#buyedV1").html("Bikes bought <font class='desc'>" + player.buyedveh1 + "/7</font>");
 	$("#buyedV2").html("Motorcycles bought <font class='desc'>" + player.buyedveh2 + "/47</font>");
-	$("#buyedV3").html("Sports Classics Cars bought <font class='desc'>" + player.buyedveh3 + "/33</font>");
+	$("#buyedV3").html("Sports Classics cars bought <font class='desc'>" + player.buyedveh3 + "/33</font>");
 	$("#addcashcount").html("Dollars per clicks <font class='desc vert'> $" + ClicCashText + "</font>");
 	$("#quality").html("Weapon | <strong>" + player.GunPower + player.Arme + "</strong> - <strong>" + player.Rarity + "<br><font class='blanc'></strong>Damage |<strong> </font>" + ClicCashText + "</strong></font><br>" + points + prestigeText);
 	$("#bonuscashcount").html(BonusCashText + "(+0.25)");
@@ -63,7 +63,7 @@ var MissionList = function () {
 			"<a href='#' class='btn-buy" + canBuy + " gauche' onClick='BuyM(" + i + ", 1);''>BUY</a>" +
 			"<a href='#' class='btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>BUY 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 3) + "</font></a>" +
 			"<a href='#' class='btn-sell" + canSell + " droite' onClick='SellM(" + i + ", 1);'>SELL</a>" +
-			"<a href='#' class='btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>SELL 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10) / 2, 3) + "</font></a><br><br>" +
+			"<a href='#' class='btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>SELL 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10) / 8, 3) + "</font></a><br><br>" +
 			"<div class='bar'></div>"
 		);
 		missions.append(MissionDIV);

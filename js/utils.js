@@ -134,7 +134,7 @@ var restoreSave = function(save){
 
 var confirmReset = function() {
     var input = prompt("To confirm, please write 5", "");
-    if (input == 6) {
+    if (input == 5) {
         canSave = 0;
         localStorage.clear();
         location.reload();

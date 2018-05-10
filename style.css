@@ -17,11 +17,12 @@ body {
 
 .cash {
     position: absolute;
-    top: 16.5%;
+    top: 21.5%;
     left: 0%;
-    right: 2%;
+    right: 1%;
     bottom: 0%;
-    max-height: 60%;
+    max-height: 50%;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -61,6 +62,16 @@ body {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
 }
+
+.sous-menu2 {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    position: relative;
+    left: 0.5%;
+    width: 98.5%;
+    padding: 0.3%;
+}
+
 
 .menu-bas {
 	position:absolute;
@@ -224,18 +235,29 @@ td, th {
 	overflow: auto;
 }
 
-#surc {
+.surc {
     text-align: center;
-    border-radius: 1vh;
-    margin: 0vh 0vh 2vh 0vh;
-    height: 73%;
+    border-radius: 0.5vh;
+    position: relative;
+    margin-bottom: 3.5%;
+    top: 1%;
+    left: 0.5%;
+    width: 99%;
+    height: 66%;
     overflow: auto;
 }
 	
 .btn {
+    outline: none;
     padding: 0.6vh 1.2vh;
     border-radius: 0.4vh;
     font-size: 1.75vh;
+}
+
+.btn.disabled {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .btn:hover {
@@ -244,6 +266,14 @@ td, th {
     border-color: rgb(255, 255, 255);
     border-width: 0vh 0.2vh 0vh 0.2vh;
 }
+
+.btn.disabled:hover {
+    cursor: url("images/normal.cur"), pointer;
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
+}
+
 
 .btn-upgrade {
     border-style: solid;
@@ -258,6 +288,12 @@ td, th {
 
 .btn-upgrade:hover {
     background-color: rgb(70, 0, 0);
+}
+
+.btn-upgrade.disabled:hover {
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0.40);
+	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .btn-weapon {
@@ -275,12 +311,6 @@ td, th {
     background-color: #065a11;
 }
 
-.btn-weapon.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
-}
-
 .btn-weapon2 {
     border: none;
     color: rgb(255, 255, 255);
@@ -296,12 +326,6 @@ td, th {
     background-color: #065a11;
 }
 
-.btn-weapon2.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
-}
-
 .btn-veh {
     border: 0.1vh solid #057214;
     color: rgb(255, 255, 255);
@@ -315,12 +339,6 @@ td, th {
     background-color: #057214;
     font-family: Pricedown;
     font-size: 2.5vh;
-}
-
-.btn-veh.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .btn-blanc {
@@ -357,13 +375,6 @@ td, th {
     border-style: solid;
     border-width: 0vh 0.4vh 0vh 0.4vh;
     border-color: #ffffff;
-    cursor: url("images/hand.cur"), pointer;
-}
-
-.btn-buy.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0vh solid rgba(0,0,0,0.40);
 }
 
 .btn-buy2 {
@@ -389,13 +400,6 @@ td, th {
     border-style: solid;
     border-width: 0vh 0.4vh 0vh 0.4vh;
     border-color: #ffffff;
-    cursor: url("images/hand.cur"), pointer;
-}
-
-.btn-buy2.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .btn-sell {
@@ -419,13 +423,6 @@ td, th {
     border-style: solid;
     border-width: 0vh 0.4vh 0vh 0.4vh;
     border-color: #ffffff;
-    cursor: url("images/hand.cur"), pointer;
-}
-
-.btn-sell.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .btn-sell2 {
@@ -451,13 +448,6 @@ td, th {
     border-style: solid;
     border-width: 0vh 0.4vh 0vh 0.4vh;
     border-color: #ffffff;
-    cursor: url("images/hand.cur"), pointer;
-}
-
-.btn-sell2.disabled {
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.40);
-	border: 0.1vh solid rgba(0,0,0,0.40);
 }
 
 .game-text {
@@ -579,6 +569,7 @@ td, th {
 	vertical-align: middle;
     color: #FFF;
 }
+
 .title {
     text-align: center;
 	font-family: Pricedown;
@@ -590,11 +581,9 @@ td, th {
 .maintitle {
     display: inline;
     text-align: center;
-    font-size: 5vw;
-    line-height: 7vh;
+    font-size: 8vh;
     font-family: Pricedown;
     color: #FFF;
-    margin-right: 0px;
 }
 
 .game-title {
@@ -618,9 +607,9 @@ td, th {
     background-repeat: no-repeat;
     background-position: bottom;
     background-color: rgba(0,0,0,0.5);
-    background-size: 38% 78%;
-    background-position: 94%;
-    background-position-y: -19%;
+    background-size: 32% 74%;
+    background-position: 94.5%;
+    background-position-y: -15%;
 }
 
 .production {
@@ -667,6 +656,7 @@ td, th {
     }
 
 #menu-1 {
+    top: 9.5%;
     left: 0%;
     right: 0%;
     bottom: 0%;
@@ -675,7 +665,6 @@ td, th {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    top: 0%;
     overflow: auto;
     position: absolute;
     z-index: 20;
@@ -683,6 +672,7 @@ td, th {
 }
 
 #menu-2 {
+    top: 9.5%;
     left: 0%;
     right: 0%;
     background: rgb(0, 0, 0);
@@ -690,7 +680,6 @@ td, th {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    top: 0%;
     overflow: auto;
     bottom: 0%;
     position: absolute;
@@ -699,6 +688,7 @@ td, th {
 }
 
 #menu-3 {
+    top: 9.5%;
     left: 0%;
     right: 0%;
     bottom: 0%;
@@ -707,7 +697,6 @@ td, th {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    top: 0%;
     overflow: auto;
     position: absolute;
     z-index: 20;
@@ -715,11 +704,14 @@ td, th {
 }
 
 #menu-4 {
+    top: 9.5%;
     left: 0%;
     right: 0%;
     bottom: 0%;
-    background: rgba(0, 0, 0, 0.76);
-    top: 0%;
+    background-image: url('images/tutorial.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     overflow: auto;
     position: absolute;
     z-index: 20;
@@ -863,7 +855,7 @@ input:checked + .slider:before {
 .rougeb {
     font-weight: bold;
     color: rgb(163, 36, 36);
-    text-shadow: 0 0 3vh rgb(80, 15, 15);
+    text-shadow: 0 0 0.1vh rgb(180, 100, 100);
 }
 
 .jaune {
@@ -918,7 +910,7 @@ input:checked + .slider:before {
     border-color: #ffffff00;
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
-    font-size: 0.7vw;
+    font-size: 1.5vh;
     font-family: Rajdhani;
     padding: 1.5%;
     width: 32.5%;
@@ -939,16 +931,44 @@ input:checked + .slider:before {
     margin-left: 0%;
 }
 
+.succes {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: #FFF;
+    border-style: solid;
+    outline: none;
+    border-color: #ffffff00;
+    margin: 0.1%;
+    border-width: 0px 0px 0.1vh 0px;
+    font-size: 1.5vh;
+    font-family: Rajdhani;
+    padding: 1.5%;
+    width: 24.3%;
+}
+
+.succes:hover {
+    border-style: solid;
+    border-color: #ffffff;
+    margin-left: 0%;
+    cursor: url("images/hand.cur"), pointer;
+}
+
+.succes.active {
+    color:#057214;
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #057214;
+    margin-left: 0%;
+}
+
 .tab {
     overflow: hidden;
     border-style: none;
     font-family: Pricedown;
-    line-height: 1vh;
-    background: linear-gradient(to right, rgba(16, 142, 16, 0.5) 0%, rgb(24, 105, 24) 50%, rgb(126, 191, 126) 100%);
-    width: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 0, 0.2) 50%, rgba(0, 255, 0, 0.2) 100%);
+    right: 0%;
     position: absolute;
-	left: 0%;
-	top: 0%;
+    left: 0%;
+    top: 0%;
     height: 9.5%;
 }
 
@@ -956,18 +976,19 @@ input:checked + .slider:before {
     float: right;
     background-color: rgba(255, 255, 255, 0);
     border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
+    border-width: 0vh 0vh 0.4vh 0vh;
     border-color: #ffffff00;
     font-family: Pricedown;
     outline: none;
     font-size: 3vh;
-    padding: 3vh;
+    line-height: 2.75vh;
+    height: 9.5vh;
     width: 15%;
-    border-radius: 0.5vh;
+    border-radius: 0.3vh;
 }
 
 .tab button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.07);
     border-style: solid;
     text-shadow: 0px 0px 3vh #FFF;
     border-color: #FFF;
@@ -1013,12 +1034,12 @@ input:checked + .slider:before {
     overflow: hidden;
     width: 100%;
     position: absolute;
-    bottom: 83.5%;
+    top: 0%;
     border-radius: 0.5vh;
 }
 
 .tab2 button {
-    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(200, 255, 200, 0.05) 50%, rgba(0, 0, 0, 0.0) 100%);
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(200, 255, 200, 0) 50%, rgba(0, 0, 0, 0.0) 100%);
     border: none;
     width: 100%;
     outline: none;
@@ -1028,7 +1049,7 @@ input:checked + .slider:before {
     padding: 1vh;
 }
 
-.ta2 button:hover {
+.tab2 button:hover {
     border-style: solid;
     text-shadow: 0px 0px 1.6vh #023609;
     border-color: #FFF;
@@ -1041,17 +1062,19 @@ input:checked + .slider:before {
 
 .tab2 button.active {
     background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
-    color: rgb(56, 163, 56);
+    color: rgb(255, 255, 255);
     text-shadow: 0 0 3vh rgb(0, 130, 0);
 	border-style: solid;
     border-color: #FFF;
     border-width: 0vh 0vh 0vh 0vh;
 }
 
+.tab2 button.active:hover { color: rgb(56, 163, 56);}
+
 .bar {
     background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
     height: 0.1vh;
-    margin: -1.5vh 0 2.1vh 0;
+    margin: 0.5vh 0 2.1vh 0;
     width: 100%;
 }
 
@@ -1065,6 +1088,13 @@ input:checked + .slider:before {
 
 .buttonText {
     font-size: 1.75vh;
+    font-family: Rajdhani;
+}
+
+.SuccessText {
+    font-weight: bold;
+    color: #FF0;
+    font-size: 2.75vh;
     font-family: Rajdhani;
 }
 
@@ -1088,26 +1118,29 @@ input:checked + .slider:before {
 	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
 }
 
-.icon1 {
+#t1:after {
+    content: "";
+    display: inline;
+    padding: 0vh 3vh 0vh 0vh;
+    background-repeat: no-repeat;
+    background-size: 3vh;
     background-image: url(images/weapon.png);
-    background-position: top;
+   }
+
+#t2:after {
+    
+    content: "";
+    display: inline;
+    padding: 0vh 3vh 0vh 0vh;
     background-repeat: no-repeat;
     background-size: 3vh;
-    height: 3vh;
-}
-
-.icon2 {
     background-image: url(images/missions.png);
-    background-position: top;
+   }
+#t3:after {
+    content: "";
+    display: inline;
+    padding: 0vh 3vh 0vh 0vh;
     background-repeat: no-repeat;
     background-size: 3vh;
-    height: 3vh;
-}
-
-.icon3 {
     background-image: url(images/garage.png);
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: 3vh;
-    height: 3vh;
-}
+   }

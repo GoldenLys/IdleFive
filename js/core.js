@@ -1,4 +1,4 @@
-var version = "v2.3.1";
+var version = "v2.4";
 var a1 = 0;
 var p = {
 	DateStarted: getDate(),
@@ -26,6 +26,7 @@ var p = {
 	points: 0,
 	bonuspoints: 0,
 	playTime: 0,
+	tutorial:0,
 };
 
 $(document).ready(function () {
@@ -66,12 +67,10 @@ function ClickWeapon() {
 }
 
 function updateprogression() {
-	if (p.rank >= p.prestigeprice) { btnPrestigeE(); } else { btnPrestigeD(); }
-	if (p.cash < p.prestigeprice2) { btnPrestigeD(); }
+	if (p.rank >= p.prestigeprice) { if(p.cash>=p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } }
 	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
 	getPrestigePrice();
 	getCashPS();
-	checkSucces();
 	UpdateUI();
 	if (p.fl == 1) { p.fl = 0; save(); showOptionsMenu(); }
 	save();
@@ -121,38 +120,39 @@ function sauvegardeauto() {
 setTimeout(sauvegardeauto, 600000);
 
 
-function getRank(rank) {
-	if (rank == 0) { rank = "Bronze"; nbrStars = 1; }
-	if (rank >= 1) { rank = "Bronze"; nbrStars = 2; }
-	if (rank >= 5) { rank = "Bronze"; nbrStars = 3; }
-	if (rank >= 15) { rank = "Bronze"; nbrStars = 4; }
-	if (rank >= 30) { rank = "Bronze"; nbrStars = 5; }
-	if (rank >= 50) { rank = "Bronze"; nbrStars = 6; }
-	if (rank >= 100) { rank = "Silver"; nbrStars = 1; }
-	if (rank >= 200) { rank = "Silver"; nbrStars = 2; }
-	if (rank >= 300) { rank = "Silver"; nbrStars = 3; }
-	if (rank >= 400) { rank = "Silver"; nbrStars = 4; }
-	if (rank >= 500) { rank = "Silver"; nbrStars = 5; }
-	if (rank >= 600) { rank = "Silver"; nbrStars = 6; }
-	if (rank >= 700) { rank = "Gold"; nbrStars = 1; }
-	if (rank >= 800) {rank = "Gold"; nbrStars = 2;  }
-	if (rank >= 900) { rank = "Gold"; nbrStars = 3; }
-	if (rank >= 1000) { rank = "Gold"; nbrStars = 4; }
-	if (rank >= 1100) { rank = "Gold"; nbrStars = 5; }
-	if (rank >= 1200) { rank = "Gold"; nbrStars = 6; }
-	if (rank >= 1300) { rank = "Platinum"; nbrStars = 1; }
-	if (rank >= 2600) { rank = "Platinum"; nbrStars = 2; }
-	if (rank >= 3900) { rank = "Platinum"; nbrStars = 3; }
-	if (rank >= 5200) { rank = "Platinum"; nbrStars = 4; }
-	if (rank >= 6500) { rank = "Platinum"; nbrStars = 5; }
-	if (rank >= 7800) { rank = "Platinum"; nbrStars = 6; }
-	if (rank >= 9100) { rank = "Platinum"; nbrStars = 7; }
-	if (rank >= 10400) { rank = "Platinum"; nbrStars = 8; }
-	if (rank >= 11700) { rank = "Platinum"; nbrStars = 9; }
-	if (rank >= 13000) { rank = "Platinum"; nbrStars = 10; }
+function getRank(rankNBR) {
+	var rankText = "";
+	if (rankNBR == 0) { rankText = "Bronze"; nbrStars = 1; }
+	if (rankNBR >= 1) { rankText = "Bronze"; nbrStars = 2; }
+	if (rankNBR >= 5) { rankText = "Bronze"; nbrStars = 3; }
+	if (rankNBR >= 15) { rankText = "Bronze"; nbrStars = 4; }
+	if (rankNBR >= 30) { rankText = "Bronze"; nbrStars = 5; }
+	if (rankNBR >= 50) { rankText = "Bronze"; nbrStars = 6; }
+	if (rankNBR >= 100) { rankText = "Silver"; nbrStars = 1; }
+	if (rankNBR >= 200) { rankText = "Silver"; nbrStars = 2; }
+	if (rankNBR >= 300) { rankText = "Silver"; nbrStars = 3; }
+	if (rankNBR >= 400) { rankText = "Silver"; nbrStars = 4; }
+	if (rankNBR >= 500) { rankText = "Silver"; nbrStars = 5; }
+	if (rankNBR >= 600) { rankText = "Silver"; nbrStars = 6; }
+	if (rankNBR >= 700) { rankText = "Gold"; nbrStars = 1; }
+	if (rankNBR >= 800) { rankText = "Gold"; nbrStars = 2;  }
+	if (rankNBR >= 900) { rankText = "Gold"; nbrStars = 3; }
+	if (rankNBR >= 1000) { rankText = "Gold"; nbrStars = 4; }
+	if (rankNBR >= 1100) { rankText = "Gold"; nbrStars = 5; }
+	if (rankNBR >= 1200) { rankText = "Gold"; nbrStars = 6; }
+	if (rankNBR >= 1300) { rankText = "Platinum"; nbrStars = 1; }
+	if (rankNBR >= 2600) { rankText = "Platinum"; nbrStars = 2; }
+	if (rankNBR >= 3900) { rankText = "Platinum"; nbrStars = 3; }
+	if (rankNBR >= 5200) { rankText = "Platinum"; nbrStars = 4; }
+	if (rankNBR >= 6500) { rankText = "Platinum"; nbrStars = 5; }
+	if (rankNBR >= 7800) { rankText = "Platinum"; nbrStars = 6; }
+	if (rankNBR >= 9100) { rankText = "Platinum"; nbrStars = 7; }
+	if (rankNBR >= 10400) { rankText = "Platinum"; nbrStars = 8; }
+	if (rankNBR >= 11700) { rankText = "Platinum"; nbrStars = 9; }
+	if (rankNBR >= 13000) { rankText = "Platinum"; nbrStars = 10; }
 	var stars = "";
 	for (var id = 0; id < nbrStars; id++) { stars += " &#x2729;"; }
-	result = "<font class='" + rank + "'> " + rank + stars + "</font>";
+	result = "<font class='" + rankText + "'> " + rankText + stars + "</font>";
 	return result;
 }
 
@@ -240,8 +240,8 @@ function buyG(id) {
 			genGun();
 		}
 	} else {
-		if (p.cash >= pricebuy * 10) {
-			p.cash -= pricebuy * 10;
+		if (p.cash >= pricebuy * 2) {
+			p.cash -= pricebuy * 2;
 			p.Arme = arme;
 			p.WeaponID = id;
 			p.ArmePower = damage;

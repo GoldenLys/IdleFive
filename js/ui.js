@@ -26,7 +26,7 @@
 	$("#prestigepricecount").html(getRank(p.prestigeprice));
 	$("#prestigepricecount2").html("<div class='money'></div>" + fix(p.prestigeprice2, 2));
 	$("#version").html("Current version " + version);
-	$('#imagecash').css("background-image", "url(images/A/" + p.WeaponID + ".png)");
+	$('#imagecash').css("background-image", "url(http://aizen.hol.es/images/A/" + p.WeaponID + ".png)");
 	document.title = "idleFive " + version;
 	showTutorial(p.tutorial);
 	ClickEvents();
@@ -98,7 +98,7 @@ function WeaponList() {
 		view2 = p.GBought[i] > 0 ? 'style="display:none;"' : '';
 		canBuy = weapon.price > p.cash ? ' disabled' : '';
 		canBuy2 = weapon.price * 2 > p.cash ? ' disabled' : '';
-		url = "url('images/A/" + i + ".png')";
+		url = "url('http://aizen.hol.es/images/A/" + i + ".png')";
 
 		var weaponsDIV = $(
 			"<div class='arme-div arme' id='weap" + i + "'>" +
@@ -138,7 +138,7 @@ function VehicleList() {
 			multiplier = "adds <font class='gris'>" + fix(vehicle.value, 2) + "</font>";
 		}
 
-		url = "url('images/V/" + i + ".jpg')";
+		url = "url('http://aizen.hol.es/images/V/" + i + ".jpg')";
 		canBuy = vehicle.price > p.points ? ' disabled' : '';
 		type = "";
 		if (vehicle.type == 0) { type = " <font class='rougeb bold'>damage</font> "; }
@@ -175,7 +175,7 @@ function showSTab(id) { hideSTabs(); $('#Stab' + id).show(); $("#S" + id).addCla
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
 function ClickEvents() {
-	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs();  $("#tab" + id).show(); $("#body").css("background-image", "url(images/bg-" + id + ".jpg"); $("#t" + id).addClass("active"); });
+	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs();  $("#tab" + id).show(); $("#body").css("background-image", "url(http://aizen.hol.es/images/bg-" + id + ".jpg"); $("#t" + id).addClass("active"); });
 	$("#menu").on("click", "button", function () { var id = $(this).data('id'); hideMenus(); $("#menu-" + id).show(); });
 }
 

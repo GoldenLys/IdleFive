@@ -2,11 +2,11 @@
 
 body {
     background-color: rgba(27, 27, 27, 0.45);
-    background-image: url(images/bg-2.jpg);
+    background-image: url(http://aizen.hol.es/images/bg-2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    cursor: url("images/normal.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/normal.cur"), pointer;
     overflow: hidden;
     outline: none;
 	font-size: 1.75vh;
@@ -29,7 +29,7 @@ body {
 }
 
 .cash:hover {
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
 }
 
 .anchor {
@@ -249,12 +249,12 @@ td, th {
 }
 
 .btn:hover {
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
     border-style: none;
 }
 
 .btn.disabled:hover {
-    cursor: url("images/normal.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/normal.cur"), pointer;
     color: rgba(0,0,0,0);
     background-color: rgba(0,0,0,0.40);
 	border: 0.1vh solid rgba(0,0,0,0.40);
@@ -641,7 +641,7 @@ td, th {
 
 #menu-1 {
     background: rgb(0, 0, 0);
-    background-image: url('images/menu1.jpg');
+    background-image: url('http://aizen.hol.es/images/menu1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -652,7 +652,7 @@ td, th {
 
 #menu-2 {
     background: rgb(0, 0, 0);
-    background-image: url('images/menu2.jpg');
+    background-image: url('http://aizen.hol.es/images/menu2.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -663,7 +663,7 @@ td, th {
 
 #menu-3 {
     background: rgb(0, 0, 0);
-    background-image: url('images/menu3.jpg');
+    background-image: url('http://aizen.hol.es/images/menu3.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -673,7 +673,7 @@ td, th {
 }
 
 #menu-4 {
-    background-image: url('images/menu4.jpg');
+    background-image: url('http://aizen.hol.es/images/menu4.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -726,7 +726,7 @@ td, th {
 
 .slider {
   position: absolute;
-  cursor: url("images/hand.cur"), pointer;;
+  cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;;
   top: 0;
   left: 0;
   right: 0;
@@ -855,7 +855,7 @@ input:checked + .slider:before {
     border-style: solid;
     border-color: #ffffff;
     margin-left: 0%;
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
 }
 
 .veh.active {
@@ -884,7 +884,7 @@ input:checked + .slider:before {
     border-style: solid;
     border-color: #ffffff;
     margin-left: 0%;
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
 }
 
 .weap.active {
@@ -913,7 +913,7 @@ input:checked + .slider:before {
     border-style: solid;
     border-color: #ffffff;
     margin-left: 0%;
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
 }
 
 .succes.active {
@@ -957,7 +957,7 @@ input:checked + .slider:before {
     text-shadow: 0px 0px 3vh #FFF;
     border-color: #FFF;
     color: #FFF;
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
 }
 
 @keyframes UseEffect { 
@@ -999,7 +999,7 @@ input:checked + .slider:before {
     border: none;
     width: 100%;
     outline: none;
-    cursor: url(images/hand.cur), pointer;
+    cursor: url(http://aizen.hol.es/images/hand.cur), pointer;
     text-shadow: 0 0 3vh rgb(0, 0, 0);
     font-size: 2vh;
     font-family: Rajdhani;
@@ -1012,7 +1012,7 @@ input:checked + .slider:before {
     border-color: #FFF;
     color: rgb(56, 163, 56);
     text-shadow: 0 0 3vh rgb(255, 255, 255);
-    cursor: url("images/hand.cur"), pointer;
+    cursor: url("http://aizen.hol.es/images/hand.cur"), pointer;
     border-width: 0vh 0vh 0vh 0vh;
     background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.0) 100%);
 }
@@ -1074,7 +1074,7 @@ input:checked + .slider:before {
     padding: 0vh 3vh 0vh 0vh;
     background-repeat: no-repeat;
     background-size: 3vh;
-    background-image: url(images/weapon.png);
+    background-image: url(http://aizen.hol.es/images/weapon.png);
 }
 
 #t2:after {
@@ -1084,7 +1084,7 @@ input:checked + .slider:before {
     padding: 0vh 3vh 0vh 0vh;
     background-repeat: no-repeat;
     background-size: 3vh;
-    background-image: url(images/missions.png);
+    background-image: url(http://aizen.hol.es/images/missions.png);
 }
 
 #t3:after {
@@ -1093,7 +1093,7 @@ input:checked + .slider:before {
     padding: 0vh 3vh 0vh 0vh;
     background-repeat: no-repeat;
     background-size: 3vh;
-    background-image: url(images/garage.png);
+    background-image: url(http://aizen.hol.es/images/garage.png);
 }
 
 .vehicleICON {
@@ -1149,7 +1149,7 @@ input:checked + .slider:before {
  }
 
  .level {
-    background-image: url(images/level.png);
+    background-image: url(http://aizen.hol.es/http://aizen.hol.es/images/level.png);
     background-repeat: no-repeat;
     display: inline-block;
     background-position: left center;
@@ -1160,7 +1160,7 @@ input:checked + .slider:before {
 }
 
 .money {
-    background-image: url(images/cash.png);
+    background-image: url(http://aizen.hol.es/http://aizen.hol.es/images/cash.png);
     background-repeat: no-repeat;
     display: inline-block;
     background-position: left center;

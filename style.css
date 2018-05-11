@@ -608,7 +608,7 @@ td, th {
     ::-webkit-scrollbar-thumb {
         border-radius: 1vh;
         border: 0.1vh solid rgba(0,0,0,0.5);
-        background-image: linear-gradient(to bottom,#146b27 , #409954 , #146b27 );
+        background-image: linear-gradient(to bottom,#146b27 , #2c6f3b , #146b27 );
     }
 
 .menu-discord {

@@ -4,13 +4,14 @@
 	BonusCashText = fix(p.bonuscash, 2);
 	CashText = fix(p.cash, 2);
 	prestigeText = "";
+	if(p.rank<400) { PrestigePoints=0; } else { PrestigePoints= p.rank/400; }
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = "<br>A new character slot is available."; } }
 	points = "";
 	if (p.points > 0) { points = "You have <font class='jaune'> " + p.points + " CP</font>."; }
-	$("#prestigepoints").html(p.points + " (+" + p.prestige + ")");
+	$("#prestigepoints").html(p.points + " (+" + PrestigePoints + ")");
 	$("#valeurclic").html("You have <strong><font class='vert'>$" + CashText + "</font></strong> (+<font class='vert'>$" + CashPSText + "</font>/s)");
 	$("#cashcount").html("Dollars <font class='desc vert'> $" + CashText + "</font>");
-	$("#time").html("You started the " + p.DateStarted + "<br>And played since <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
+	$("#time").html("You started the " + p.DateStarted + "<br>And played for <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	$("#cashpscount").html("Dollars per second <font class='desc vert'> $" + CashPSText + "</font>");
 	$("#buyedV1").html("Bikes bought <font class='desc'>" + p.VBought[0] + "/7</font>");
 	$("#buyedV2").html("Motorcycles bought <font class='desc'>" + p.VBought[1] + "/47</font>");

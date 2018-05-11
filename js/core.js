@@ -1,4 +1,4 @@
-var version = "v2.5";
+var version = "v2.6";
 var a1 = 0;
 var p = {
 	DateStarted: getDate(),
@@ -79,8 +79,9 @@ function updateprogression() {
 function AddPrestige() {
 	if (p.rank >= p.prestigeprice) {
 		if (p.cash >= p.prestigeprice2) {
-			var r = confirm("Would you like to sell all of your activities to get a permanent bonus ?");
+			var r = confirm("Would you like to reset your character to get some bonuses ?");
 			if (r == true) {
+				p.points = p.rank/400;
 				p.ArmePower = 0.1;
 				p.WeaponID = 0;
 				p.GunMult = 1;
@@ -92,7 +93,6 @@ function AddPrestige() {
 				p.cash = 0;
 				p.cashps = 0;
 				p.productions = [];
-				p.points = p.prestige;
 				p.prestige++;
 				getPrestigePrice();
 				UpdateUI();

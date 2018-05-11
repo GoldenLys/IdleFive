@@ -1,4 +1,4 @@
-var prefixes = ["M","B","t","q","Q","s","S","o","n",
+var prefixes = ["M","B","t","q","Q","s","S","O","N",
 	"D","UD","DD","TD","qD","QD","sD","SD","OD","ND",
 	"V","UV","DV","TV","qV","QV","sV","SV","OV","NV",
 	"T","UT","DT","TT","qT","QT","sT","ST","OT","NT",
@@ -61,15 +61,20 @@ function random(min, max){
 }
 
 function toHHMMSS(id) {
-    var sec_num = parseInt(id, 10); // don't forget the second parm
+    var sec_num = parseInt(id, 10);
     var hours   = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-    if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
-    var time    = hours+' hours '+minutes+' minutes '+seconds+' seconds ';
+	var seconds = sec_num - (hours * 3600) - (minutes * 60);
+	var secondstext = 0;
+	var minutestext = 0;
+	var hourstext = 0;
+	if (hours > 0) {hourstext = hours + " hours ";} else {hourstext = "";}
+	if (minutes > 0) {minutestext = minutes + " minutes ";} else {minutestext = "";}
+	if (seconds > 0) {secondstext = seconds + " seconds ";} else {secondstext = "0 seconds";}
+	if (hours == 1) {hourstext = hours + " hour ";}
+	if (minutes == 1) {minutestext = minutes + " minute ";}
+	if (seconds == 1) {secondstext = seconds + " second ";}
+	var time = hourstext + minutestext + secondstext;
     return time;
 }
 
@@ -99,7 +104,7 @@ var load = function(){
 var exportSave = function(){
 	var saveData = btoa(JSON.stringify(p));
 	window.getSelection().removeAllRanges();
-	alert("Save copied in your clipboard. (CTRL+V to paste it)");
+	alert("Save copied in your clipboard.");
 	$("#exportBody").html("<textarea id='saveCode'>"+saveData+"</textarea>");
 	var textField = document.getElementById("saveCode");
 	textField.select();
@@ -133,8 +138,8 @@ var restoreSave = function(save){
 };
 
 var confirmReset = function() {
-    var input = prompt("To confirm, please write 5", "");
-    if (input == 5) {
+	var r = confirm("Do you really want to reset all of your stats ?");
+	if (r == true) {
         canSave = 0;
         localStorage.clear();
         location.reload();

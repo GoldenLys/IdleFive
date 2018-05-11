@@ -66,8 +66,8 @@ var MissionList = function () {
 			"<a href='#' class='btn btn-buy" + canBuy + " gauche' onClick='BuyM(" + i + ", 1);''>BUY</a>" +
 			"<a href='#' class='btn btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>BUY 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 3) + "</font></a>" +
 			"<a href='#' class='btn btn-sell" + canSell + " droite' onClick='SellM(" + i + ", 1);'>SELL</a>" +
-			"<a href='#' class='btn btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>SELL 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10) / 8, 3) + "</font></a><br><br>" +
-			"<div class='bar'></div>"
+			"<a href='#' class='btn btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>SELL 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10) / 8, 3) + "</font></a>" +
+			"<br /><br /><div class='bar'></div>"
 		);
 		missions.append(MissionDIV);
 	}
@@ -105,9 +105,8 @@ function WeaponList() {
 			"<p class='btexte'>Damage : " + damage + "</font></p><br><br>" +
 			"<input type='button' class='btn btn-weapon" + canBuy + "' " + view2 + " value='Buy this weapon' onClick='buyG(" + i + ");' />" +
 			"<input type='button' class='btn btn-weapon" + canBuy2 + "' " + view + " value='Try to modify this weapon' onClick='buyG(" + i + ");' />" +
-
 			"<input type='button' class='btn btn-weapon2' " + view + " value='Use this weapon (normal)' onClick='useW(" + i + ");' />" +
-			"<br></div>"
+			"<br /><br /><div class='bar'></div></div>"
 		);
 		if (i < 13) { $('#Wtab1').append(weaponsDIV); }
 		if (i > 12) { if (i < 28) { $('#Wtab2').append(weaponsDIV); } }
@@ -139,17 +138,17 @@ function VehicleList() {
 
 		url = "url('images/V/" + i + ".png')";
 		canBuy = vehicle.price > p.points ? ' disabled' : '';
-		type = " <font class='rougeb'>ERROR</font> ";
+		type = "";
 		if (vehicle.type == 0) { type = " <font class='rougeb bold'>damage</font> "; }
 		if (vehicle.type == 1) { type = " <font class='vert bold'>cash</font> "; }
 
 		var vehiclesDIV = $(
-			"<div id='veh" + i + "' class='garage-div vehicleICON' style=" + url + ">" +
+			"<div id='veh" + i + "' class='vehicleICON'>" +
 			"<p class='title blanc'>" + name + vehicle.name + "</font></p><br><br>" +
 			"<p class='btexte'>" + cost + "</font></p><br>" +
 			"<p class='btexte'> " + multiplier + "</font> of" + type + "multiplier</p><br><br>" +
 			"<input type='button' class='btn btn-veh" + canBuy + "' " + bought + " value='Purchase' onClick='buyV(" + i + ");' />" +
-			"<br></div>"
+			"<br /><br /><div class='bar'></div></div>"
 		);
 		if (i < 7) { $('#Vtab1').append(vehiclesDIV); }
 		if (i > 6) { if (i < 53) { $('#Vtab2').append(vehiclesDIV); } }

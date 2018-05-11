@@ -1,4 +1,4 @@
-var version = "v2.6";
+var version = "v2.6.2";
 var a1 = 0;
 var p = {
 	DateStarted: getDate(),

@@ -8,11 +8,11 @@
 <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=25" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=26"></script>
-<script src="js/data.js?v=26"></script>
-<script src="js/core.js?v=26"></script>
-<script src="js/ui.js?v=26"></script>
+<link href="style.css?v=262" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=262"></script>
+<script src="js/data.js?v=262"></script>
+<script src="js/core.js?v=262"></script>
+<script src="js/ui.js?v=262"></script>
 
 <body class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
@@ -26,9 +26,9 @@
 
     <div id="colonne-m" value="Jeu">
         <div id="game-menu" class="tab2">
-            <button class="tablinks blanc active" id="t1" data-id="1">Weapons</button>
+            <button class="tablinks blanc" id="t1" data-id="1">Weapons</button>
             <br />
-            <button class="tablinks blanc" id="t2" data-id="2">Missions</button>
+            <button class="tablinks blanc active" id="t2" data-id="2">Missions</button>
             <br />
             <button class="tablinks blanc" id="t3" data-id="3">Vehicles</button>
             <br />
@@ -61,22 +61,18 @@
                 <input type="button" id="W8" onclick="showWTab(8);" class="weap" value="Thrown Weapons"></input>
                 <input type="button" id="W9" onclick="showWTab(9);" class="weap" value="Special Weapons"></input>
             </nav>
-            <div id="Wtab1">
-            </div>
-
-            <div id="Wtab2" style="display: none;">
-            </div>
-
-            <div id="Wtab3" style="display: none;"></div>
-            <div id="Wtab4" style="display: none;"></div>
-            <div id="Wtab5" style="display: none;"></div>
-            <div id="Wtab6" style="display: none;"></div>
-            <div id="Wtab7" style="display: none;"></div>
-            <div id="Wtab8" style="display: none;"></div>
-            <div id="Wtab9" style="display: none;"></div>
+            <div class="Wtab" id="Wtab1"></div>
+            <div class="Wtab" id="Wtab2" style="display: none;"></div>
+            <div class="Wtab" id="Wtab3" style="display: none;"></div>
+            <div class="Wtab" id="Wtab4" style="display: none;"></div>
+            <div class="Wtab" id="Wtab5" style="display: none;"></div>
+            <div class="Wtab" id="Wtab6" style="display: none;"></div>
+            <div class="Wtab" id="Wtab7" style="display: none;"></div>
+            <div class="Wtab" id="Wtab8" style="display: none;"></div>
+            <div class="Wtab" id="Wtab9" style="display: none;"></div>
         </div>
 
-        <div id="tab2" style="display: none; overflow: auto; height: 100%; width: 99%;">
+        <div id="tab2" style="display: block; overflow: auto; height: 100%; width: 99%;">
             <div id="productions"></div>
         </div>
 
@@ -100,58 +96,60 @@
                 <input type="button" id="V15" onclick="showVTab(15);" class="veh" value="Military"> </input>
                 <input type="button" id="V16" onclick="showVTab(16);" class="veh" value="Commercials"> </input>
             </nav>
-            <div id="Vtab1" style="display: block;"></div>
-            <div id="Vtab2" style="display: none;"></div>
-            <div id="Vtab3" style="display: none;"></div>
-            <div id="Vtab4" style="display: none;"></div>
-            <div id="Vtab5" style="display: none;"></div>
-            <div id="Vtab6" style="display: none;"></div>
-            <div id="Vtab7" style="display: none;"></div>
-            <div id="Vtab8" style="display: none;"></div>
-            <div id="Vtab9" style="display: none;"></div>
-            <div id="Vtab10" style="display: none;"></div>
-            <div id="Vtab11" style="display: none;"></div>
-            <div id="Vtab12" style="display: none;"></div>
-            <div id="Vtab13" style="display: none;"></div>
-            <div id="Vtab14" style="display: none;"></div>
-            <div id="Vtab15" style="display: none;"></div>
-            <div id="Vtab16" style="display: none;"></div>
+            <div class="Vtab" id="Vtab1" style="display: block;"></div>
+            <div class="Vtab" id="Vtab2" style="display: none;"></div>
+            <div class="Vtab" id="Vtab3" style="display: none;"></div>
+            <div class="Vtab" id="Vtab4" style="display: none;"></div>
+            <div class="Vtab" id="Vtab5" style="display: none;"></div>
+            <div class="Vtab" id="Vtab6" style="display: none;"></div>
+            <div class="Vtab" id="Vtab7" style="display: none;"></div>
+            <div class="Vtab" id="Vtab8" style="display: none;"></div>
+            <div class="Vtab" id="Vtab9" style="display: none;"></div>
+            <div class="Vtab" id="Vtab10" style="display: none;"></div>
+            <div class="Vtab" id="Vtab11" style="display: none;"></div>
+            <div class="Vtab" id="Vtab12" style="display: none;"></div>
+            <div class="Vtab" id="Vtab13" style="display: none;"></div>
+            <div class="Vtab" id="Vtab14" style="display: none;"></div>
+            <div class="Vtab" id="Vtab15" style="display: none;"></div>
+            <div class="Vtab" id="Vtab16" style="display: none;"></div>
         </div>
     </div>
     <div id="menus">
 
         <div class="menu" id="menu-1" style="display: none;">
-            <p class="maintitle">Change Character</p>
-            <br />
-            <br />
-            <p class="texte">You are actually using the character number </p>
-            <p class="texteg" id="prestigecount">0</p>
-            <br />
-            <br />
-            <div class="success3">
-                <p class="texte">You need a rank of </p>
-                <div class="texteg" id="prestigepricecount"></div>
-                <p class="texte"> as well as the sum of </p>
-                <div class="texteg vert" id="prestigepricecount2"></div>
-                <p class="texte">to switch to another character.</p>
+            <div class="success2">
+                <p class="title blanc">Change Character</p>
                 <br />
                 <br />
-                <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" value="Create a new character" onClick="AddPrestige();"
-                />
+                <p class="texte">You are actually using the character number </p>
+                <p class="texteg" id="prestigecount">0</p>
                 <br />
                 <br />
-                <p class='texte'>You have
-                    <div class="texteg red" id="prestigepoints">0(+0)</div> Character Points (CP).</p>
+                <div class="success3">
+                    <p class="texte">You need a rank of </p>
+                    <div class="texteg" id="prestigepricecount"></div>
+                    <p class="texte"> as well as the sum of </p>
+                    <div class="texteg vert" id="prestigepricecount2"></div>
+                    <p class="texte">to switch to another character.</p>
+                    <br />
+                    <br />
+                    <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" value="Create a new character" onClick="AddPrestige();"
+                    />
+                    <br />
+                    <br />
+                    <p class='texte'>You have
+                        <div class="texteg red" id="prestigepoints">0(+0)</div> Character Points (CP).</p>
+                </div>
+                <br />
+                <br />
+                <p class="texte">Multiplier bonus of </p>
+                <div class="texteg red" id="bonuscashcount">0</div>
+                <p class="texte"> on money earned.</p>
+                <br />
+                <br />
+                <br />
+                <span onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92.5%; bottom: 1.5%; left: 1%; right: 1%;">Close</span>
             </div>
-            <br />
-            <br />
-            <p class="texte">Multiplier bonus of </p>
-            <div class="texteg red" id="bonuscashcount">0</div>
-            <p class="texte"> on money earned.</p>
-            <br />
-            <br />
-            <br />
-            <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
         </div>
 
         <div class="menu" id="menu-2" style="display: none;">
@@ -219,7 +217,7 @@
         </div>
     </div>
     <div id="discord" style="display: none;">
-        <iframe src="https://titanembeds.com/embed/444253095182991360?defaultchannel=444253095182991362&css=225" height="100%" width="100%" frameborder="0"></iframe>
+        <iframe src="https://titanembeds.com/embed/444253095182991360?css=225" height="100%" width="100%" frameborder="0"></iframe>
     </div>
 </body>
 

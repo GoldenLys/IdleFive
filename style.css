@@ -1,7 +1,8 @@
 @font-face { font-family: Pricedown; src: url(pricedown.ttf); }
 
 body {
-	background-image: url(images/bg.jpg);
+    background-color: rgba(27, 27, 27, 0.45);
+    background-image: url(images/bg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -127,19 +128,6 @@ td, th {
 	border-radius: 0.4vh;
 }
 
-.arme-div {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 0.4vh;
-    color: #ffffff;
-    font-family: Rajdhani;
-    max-height: 25%;
-    width: 100%;
-    padding-bottom: 1%;
-    padding-top: 1%;
-	margin-bottom: 0.5%;
-    overflow: hidden;
-}
-
 .garage-div {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
@@ -262,9 +250,7 @@ td, th {
 
 .btn:hover {
     cursor: url("images/hand.cur"), pointer;
-    border-style: solid;
-    border-color: rgb(255, 255, 255);
-    border-width: 0vh 0.2vh 0vh 0.2vh;
+    border-style: none;
 }
 
 .btn.disabled:hover {
@@ -355,9 +341,6 @@ td, th {
 }
 
 .btn-buy {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 2vh;
     width: 15vh;
@@ -372,15 +355,10 @@ td, th {
 }
 
 .btn-buy:hover {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff;
+    background-color: rgb(0, 50, 0);
 }
 
 .btn-buy2 {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 1vh;
     width: 25vh;
@@ -390,22 +368,17 @@ td, th {
     margin-top: -6vh;
     margin-bottom: 1vh;
     border-radius: 0.4vh;
-    background-color: rgb(0, 116, 0);
+    background-color: rgb(0, 120, 0);
     text-align: center;
     text-decoration: initial;
     font-family: Pricedown;
 }
 
 .btn-buy2:hover {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff;
+    background-color: rgb(0, 50, 0);
 }
 
 .btn-sell {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 2vh;
     width: 15vh;
@@ -420,15 +393,10 @@ td, th {
 }
 
 .btn-sell:hover {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff;
+    background-color: rgb(70, 0, 0);
 }
 
 .btn-sell2 {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff00;
     color: rgb(255, 255, 255);
     padding: 1vh;
     width: 25vh;
@@ -445,9 +413,7 @@ td, th {
 }
 
 .btn-sell2:hover {
-    border-style: solid;
-    border-width: 0vh 0.4vh 0vh 0.4vh;
-    border-color: #ffffff;
+    background-color: rgb(70, 0, 0);
 }
 
 .game-text {
@@ -601,15 +567,6 @@ td, th {
     margin: -15px;
     padding: 10%;
 	padding-top: 5%;
-}
-
-.arme {
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-color: rgba(0,0,0,0.5);
-    background-size: 32% 74%;
-    background-position: 94.5%;
-    background-position-y: -15%;
 }
 
 .production {
@@ -1029,14 +986,6 @@ input:checked + .slider:before {
                                     supported by Chrome and Opera */
 }
 
-.vehicleICON {
-    background-color: rgba(0,0,0,0.5);
-    background-position: right bottom;
-    background-repeat: no-repeat;
-    background-size: 33% 100%;
-	background-position: 100%;
-}
-
 .tab2 {
     overflow: hidden;
     width: 100%;
@@ -1077,13 +1026,6 @@ input:checked + .slider:before {
 }
 
 .tab2 button.active:hover { color: rgb(56, 163, 56);}
-
-.bar {
-    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
-    height: 0.1vh;
-    margin: 0.5vh 0 2.1vh 0;
-    width: 100%;
-}
 
 .type2 {
     font-family: Pricedown;
@@ -1153,16 +1095,47 @@ input:checked + .slider:before {
     background-image: url(images/garage.png);
 }
 
-#document:root {
-    --modal: #546E7A;
-    --noroleusers: #ECEFF1;
-    --main: #000000;
-    --placeholder: #636363;
-    --sidebardivider: #90A4AE;
-    --leftsidebar: #607D8B;
-    --rightsidebar: #607D8B;
-    --header: #263238;
-    --chatmessage: #C3C4C5;
-    --discrim: #FFFFFF;
-    --chatbox: #37474F;
+.vehicleICON {
+    background-repeat: no-repeat;
+    background-size: 28% 85%;
+    background-position: 97% top;
+}
+
+.Wtab {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    height: 79%;
+    overflow: auto;
+}
+
+
+.arme {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 32% 74%;
+    background-position: 94.5%;
+    background-position-y: -15%;
+    border-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
+    border-style: solid;
+    border-width: 0.1vh 0vh 0.1vh 0vh;
+}
+
+.Vtab {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.4vh;
+    height: 76.5%;
+    overflow: auto;
+}
+
+.arme-div {
+    color: #ffffff;
+    font-family: Rajdhani;
+    overflow: hidden;
+}
+
+.bar {
+    background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
+    padding: 0vh 0vh 0.1vh 0vh;
+    height: 0.1vh;
+    width: 100%;
 }

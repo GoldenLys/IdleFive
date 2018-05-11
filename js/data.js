@@ -25,7 +25,7 @@ var weapons = {
     8: { name: "Cue Stick", power: 1000, price: 350000 },
     9: { name: "Golf Club", power: 2000, price: 750000 },
     10: { name: "Hatchet", power: 25000, price: 1250000 },
-    11: { name: "Machete", power: 50000, price: 5000000 },
+    11: { name: "Machete", power: 50000, price: 5000000 }, //END OF TYPE 1
     12: { name: "Wrench", power: 100000, price: 8500000 },
     13: { name: "Stun Gun", power: 100, price: 100000 },
     14: { name: "Flare Gun", power: 2500, price: 950000 },
@@ -41,7 +41,7 @@ var weapons = {
     24: { name: "Marksman Pistol", power: 10000000, price: 1750000000 },
     25: { name: "Double Action Revolver", power: 20000000, price: 2500000000 },
     26: { name: "Heavy Revolver", power: 50000000, price: 5000000000 },
-    27: { name: "Heavy Revolver MKII", power: 100000000, price: 100000000000 },
+    27: { name: "Heavy Revolver MKII", power: 100000000, price: 100000000000 }, //END OF TYPE 2
     28 : {name: "Assault Shotgun", power: 1000000000, price: 1000000000000},
     29 : {name: "Bullpup Shotgun", power: 1250000000, price: 1500000000000},
     30 : {name: "Double Barrel Shotgun", power: 1500000000, price: 2000000000000},
@@ -50,7 +50,7 @@ var weapons = {
     33 : {name: "Sawed-Off Shotgun", power: 3000000000, price: 10000000000000},
     34 : {name: "Sweeper Shotgun", power: 3500000000, price: 17500000000000},
     35 : {name: "Pump Shotgun", power: 5000000000, price: 20000000000000},
-    36 : {name: "Pump Shotgun MKII", power: 10000000000, price: 40000000000000},
+    36 : {name: "Pump Shotgun MKII", power: 10000000000, price: 40000000000000}, //END OF TYPE 3
 };
 
 var vehicules = {
@@ -106,7 +106,7 @@ var vehicules = {
     49: { name: 'Vindicator', price: 2, value: 0.2, type: 0 },
     50: { name: 'Vortex', price: 2, value: 0.1, type: 0 },
     51: { name: 'Wolfsbane', price: 2, value: 0.1, type: 1 },
-    52: { name: 'Zombie Bobber', price: 2, value: 0.1, type: 1 }, //END OF TYPE 3
+    52: { name: 'Zombie Bobber', price: 2, value: 0.1, type: 1 }, //END OF TYPE 2
     53: { name: '190z', price: 10, value: 0.5, type: 1 },
     54: { name: 'Ardent', price: 3, value: 0.1, type: 1 },
     55: { name: 'Casco', price: 3, value: 0.1, type: 1 },
@@ -140,7 +140,7 @@ var vehicules = {
     83: { name: 'Turismo Classic', price: 10, value: 0.5, type: 1 },
     84: { name: 'Viseris', price: 5, value: 0.2, type: 1 },
     85: { name: 'Z-Type', price: 10, value: 0.5, type: 1 },
-    86: { name: 'Stirling GT', price: 10, value: 0.5, type: 1 }
+    86: { name: 'Stirling GT', price: 10, value: 0.5, type: 1 } //END OF TYPE 3
 };
 
 var success = {
@@ -157,7 +157,7 @@ var success = {
     10: { name: "the billiardaire",desc: "obtained $1t.", type: 1, value: 1000000000000, }, 
     11: { name: "the trilliard",desc: "obtained $1q.", type: 1, value: 1000000000000000, }, 
     12: { name: "Pickpocket",desc: "hired 100 pickpockets.", type: 2, value: 100, value2: 0, }, 
-    13: { name: "grocery stalker",desc: "rob 100 grocery stores.", type: 2, value: 100, value2: 1, }, 
+    13: { name: "grocery stalker",desc: "rob 100 grocery stores.", type: 2, value: 100, value2: 1, }, //END OF TYPE 1
     14: { name: "armored van stalker",desc: "rob 100 armored vans.", type: 2, value: 100, value2: 2, }, 
     15: { name: "street boss",desc: "win 100 street races.", type: 2, value: 100, value2: 3, }, 
     16: { name: "manufacturer of false papers",desc: "buy 100 false papers factories.", type: 2, value: 100, value2: 4, }, 
@@ -168,10 +168,10 @@ var success = {
     21: { name: "the eagle nest",desc: "buy a total of 100 hangars.", type: 2, value: 100, value2: 9, }, 
     22: { name: "zombie apocalypse preparation",desc: "buy a total of 100 bunkers.", type: 2, value: 100, value2: 10, }, 
     23: { name: "professionnal car dealer",desc: "Steal 100 vehicles.", type: 2, value: 100, value2: 11, }, 
-    24: { name: "the big score",desc: "rob the union depository a hundred times.", type: 2, value: 100, value2: 12, }, 
+    24: { name: "the big score",desc: "rob the union depository a hundred times.", type: 2, value: 100, value2: 12, }, //END OF TYPE 2
     25: { name: "all bikes bought",desc: "bought all vehicles of this category.", type: 3, value: 7, value2: 0, }, 
     26: { name: "all motorcycles bought",desc: "bought all vehicles of this category.", type: 3, value: 47, value2: 1, }, 
-    27: { name: "all classics sports cars bought",desc: "bought all vehicles of this category.", type: 3, value: 33, value2: 2, },
+    27: { name: "all classics sports cars bought",desc: "bought all vehicles of this category.", type: 3, value: 33, value2: 2, }, 
     28: { name: "all sports cars bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 3, }, 
     29: { name: "all super cars bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 4, }, 
     30: { name: "all muscles cars bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 5, }, 
@@ -184,11 +184,11 @@ var success = {
     37: { name: "all SUVs bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 12, }, 
     38: { name: "all helicopters bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 13, }, 
     39: { name: "all military vehicles bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 14, }, 
-    40: { name: "all commercial cars bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 15, }, 
+    40: { name: "all commercial cars bought",desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 15, }, //END OF TYPE 3
     41: { name: "<font class='Bronze'> Bronze &#x2729; &#x2729;</font>",desc: "obtained this rank.", type: 4, value: 1, }, 
     42: { name: "<font class='Silver'> Silver &#x2729;</font>",desc: "obtained this rank.", type: 4, value: 100, }, 
     43: { name: "<font class='Gold'> Gold &#x2729;</font>",desc: "obtained this rank.", type: 4, value: 700, }, 
-    44: { name: "<font class='Platinum'> Platinum &#x2729;</font>",desc: "obtained this rank.", type: 4, value: 1300, }, 
+    44: { name: "<font class='Platinum'> Platinum &#x2729;</font>",desc: "obtained this rank.", type: 4, value: 1300, }, //END OF TYPE 4
     45: { name: "Character 2",desc: "You have unlocked the character number 2.", type: 5, value: 2, }, 
     46: { name: "Character 3",desc: "You have unlocked the character number 3.", type: 5, value: 3, }, 
     47: { name: "Character 4",desc: "You have unlocked the character number 4.", type: 5, value: 4, }, 
@@ -197,7 +197,7 @@ var success = {
     50: { name: "Character 7",desc: "You have unlocked the character number 7.", type: 5, value: 7, }, 
     51: { name: "Character 8",desc: "You have unlocked the character number 8.", type: 5, value: 8, }, 
     52: { name: "Character 9",desc: "You have unlocked the character number 9.", type: 5, value: 9, }, 
-    53: { name: "Character 10",desc: "You have unlocked the character number 10.", type: 5, value: 10, }, 
+    53: { name: "Character 10",desc: "You have unlocked the character number 10.", type: 5, value: 10, }, //END OF TYPE 5
 };
 
 var tutorialtexts = {

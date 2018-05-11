@@ -4,7 +4,7 @@
 	BonusCashText = fix(p.bonuscash, 2);
 	CashText = fix(p.cash, 2);
 	prestigeText = "";
-	if(p.rank<400) { PrestigePoints=0; } else { PrestigePoints= p.rank/400; }
+	if(p.rank<400) { PrestigePoints=0; } else { PrestigePoints= Math.trunc(p.rank/400); }
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = "<br>A new character slot is available."; } }
 	points = "";
 	if (p.points > 0) { points = "You have <font class='jaune'> " + p.points + " CP</font>."; }
@@ -19,9 +19,9 @@
 	$("#addcashcount").html("Dollars per clicks <font class='desc vert'> $" + ClicCashText + "</font>");
 	$("#quality").html("Weapon | <strong>" + p.GunPower + p.Arme + "</strong> - <strong>" + p.Rarity + "<br><font class='blanc'></strong>Damage |<strong> </font>" + ClicCashText + "</strong></font><br>" + points + prestigeText);
 	$("#bonuscashcount").html(BonusCashText + " (+0.15)");
-	$("#rank").html("Rank | <strong>" + getRank(p.rank) + "</strong>");
+	$("#rank").html("Level <strong>" + getRank(p.rank) + "</strong>");
 	$("#prestigecount").html(p.prestige);
-	$("#prestigepricecount").html(getRank(p.prestigeprice) + " <font class='blanc'>(" + p.prestigeprice + ")</font>");
+	$("#prestigepricecount").html(getRank(p.prestigeprice));
 	$("#prestigepricecount2").html("$" + fix(p.prestigeprice2, 2));
 	$("#version").html("Current version " + version);
 	$('#imagecash').css("background-image", "url(images/" + p.WeaponID + ".png)");
@@ -100,10 +100,10 @@ function WeaponList() {
 
 		var weaponsDIV = $(
 			"<div class='arme-div arme' id='weap" + i + "'>" +
-			"<p class='title blanc'>" + name + "</p><br><br>" +
-			"<p class='btexte'>" + cost + "</font></p><br>" +
-			"<p class='btexte'>Damage : " + damage + "</font></p><br><br>" +
-			"<input type='button' class='btn btn-weapon" + canBuy + "' " + view2 + " value='Buy this weapon' onClick='buyG(" + i + ");' />" +
+			"<p class='title blanc wleft'>" + name + "</p><br><br>" +
+			"<p class='btexte wleft'>" + cost + "</font></p><br>" +
+			"<p class='btexte wleft'>Damage : " + damage + "</font></p><br><br>" +
+			"<input type='button' class='btn btn-weapon" + canBuy + " gauche' " + view2 + " value='Buy this weapon' onClick='buyG(" + i + ");' /><br />" +
 			"<input type='button' class='btn btn-weapon" + canBuy2 + "' " + view + " value='Try to modify this weapon' onClick='buyG(" + i + ");' />" +
 			"<input type='button' class='btn btn-weapon2' " + view + " value='Use this weapon (normal)' onClick='useW(" + i + ");' />" +
 			"<br /><br /><div class='bar'></div></div>"
@@ -153,6 +153,7 @@ function VehicleList() {
 		if (i < 7) { $('#Vtab1').append(vehiclesDIV); }
 		if (i > 6) { if (i < 53) { $('#Vtab2').append(vehiclesDIV); } }
 		if (i > 52) { if (i < 87) { $('#Vtab3').append(vehiclesDIV); } }
+		if (i > 86) { if (i < 142) { $('#Vtab4').append(vehiclesDIV); } }
 		$('#veh' + i).css('background-image', url);
 	}
 }
@@ -238,15 +239,15 @@ function PrevTuto() {
 }
 
 function toggleDiscord() {
-	if ($('#menu-1').css('right') == '20%') {
-		for (var id = 1; id < 5; id++) { $('#menu-' + id).removeClass('menu-discord').addClass('menu'); }
+	if ($('#menu-1').css('right') == '30%') {
+		for (var menulist = 1; menulist < 5; menulist++) { $('#menu-' + menulist).removeClass('menu-discord').addClass('menu'); }
 		$("#discord").hide();
 		$("#colonne-m").css("right", "60%");
 		$("#colonne-d").css("right", "0%").css("left", "40%");
 	} else { 
-		for (var id = 1; id < 5; id++) { $('#menu-' + id).removeClass('menu').addClass('menu-discord'); }
+		for (var menulist2 = 1; menulist2 < 5; menulist2++) { $('#menu-' + menulist2).removeClass('menu').addClass('menu-discord'); }
 		$("#discord").show();
-		$("#colonne-m").css("right", "70%");
-		$("#colonne-d").css("right", "19.5%").css("left", "30%");
+		$("#colonne-m").css("right", "75%");
+		$("#colonne-d").css("right", "29.5%").css("left", "25%");
 	 }
 }

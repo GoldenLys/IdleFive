@@ -616,7 +616,7 @@ td, th {
     position: absolute;
     top: 9.5%;
     left: 0%;
-    right: 20%;
+    right: 30%;
     bottom: 0%;
 }
 
@@ -626,6 +626,17 @@ td, th {
     left: 0%;
     right: 0%;
     bottom: 0%;
+}
+
+#discord {
+    top: 9.5%;
+    left: 70%;
+    right: 0%;
+    bottom: 0%;
+    overflow: auto;
+    position: absolute;
+    z-index: 20;
+    text-align: center;
 }
 
 #menu-1 {
@@ -667,17 +678,6 @@ td, th {
     background-attachment: fixed;
     background-size: cover;
     overflow: auto;
-    z-index: 20;
-    text-align: center;
-}
-
-#discord {
-    top: 9.5%;
-    left: 80%;
-    right: 0%;
-    bottom: 0%;
-    overflow: auto;
-    position: absolute;
     z-index: 20;
     text-align: center;
 }
@@ -1104,7 +1104,7 @@ input:checked + .slider:before {
 .Wtab {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
-    height: 79%;
+    height: 76%;
     overflow: auto;
 }
 
@@ -1112,9 +1112,9 @@ input:checked + .slider:before {
 .arme {
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 32% 74%;
-    background-position: 94.5%;
-    background-position-y: -15%;
+    background-size: 35% 59%;
+    background-position: 88.5%;
+    background-position-y: 8%;
     border-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
     border-style: solid;
     border-width: 0.1vh 0vh 0.1vh 0vh;
@@ -1139,3 +1139,10 @@ input:checked + .slider:before {
     height: 0.1vh;
     width: 100%;
 }
+
+.wleft
+ {
+    display: block;
+    text-align: center;
+    margin: 1% 1% -3% -50%;
+ }

@@ -14,7 +14,7 @@
 <script src="js/core.js?v=264"></script>
 <script src="js/ui.js?v=264"></script>
 
-<body class="noselect" oncontextmenu="return false;">
+<body id="body" class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
         <p class="maintitle" style="line-height: 8vh;">IdleFive</p>
         <button onClick="toggleDiscord();" class="tablinks blanc">Chat</button>
@@ -26,11 +26,11 @@
 
     <div id="colonne-m" value="Jeu">
         <div id="game-menu" class="tab2">
-            <button class="tablinks blanc" id="t1" data-id="1">Weapons</button>
+            <button class="tablinks blanc" id="t1" data-id="1">Weapons   </button>
             <br />
-            <button class="tablinks blanc active" id="t2" data-id="2">Missions</button>
+            <button class="tablinks blanc active" id="t2" data-id="2">Missions   </button>
             <br />
-            <button class="tablinks blanc" id="t3" data-id="3">Vehicles</button>
+            <button class="tablinks blanc" id="t3" data-id="3">Vehicles   </button>
             <br />
         </div>
         <div class="cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash"></div>
@@ -122,7 +122,7 @@
                 <br />
                 <br />
                 <p class="texte">You are actually using the character number </p>
-                <p class="texteg" id="prestigecount">0</p>
+                <p class="texteg blanc" id="prestigecount">0</p>
                 <br />
                 <br />
                 <div class="success3">

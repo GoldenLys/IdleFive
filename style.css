@@ -2,7 +2,7 @@
 
 body {
     background-color: rgba(27, 27, 27, 0.45);
-    background-image: url(images/bg.jpg);
+    background-image: url(images/bg-2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -641,7 +641,7 @@ td, th {
 
 #menu-1 {
     background: rgb(0, 0, 0);
-    background-image: url('images/menupr.jpg');
+    background-image: url('images/menu1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -652,7 +652,7 @@ td, th {
 
 #menu-2 {
     background: rgb(0, 0, 0);
-    background-image: url('images/successes.jpg');
+    background-image: url('images/menu2.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -663,7 +663,7 @@ td, th {
 
 #menu-3 {
     background: rgb(0, 0, 0);
-    background-image: url('images/savemenu.jpg');
+    background-image: url('images/menu3.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -673,7 +673,7 @@ td, th {
 }
 
 #menu-4 {
-    background-image: url('images/tutorial.jpg');
+    background-image: url('images/menu4.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -928,7 +928,7 @@ input:checked + .slider:before {
     overflow: hidden;
     border-style: none;
     font-family: Pricedown;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 0, 0.2) 50%, rgba(0, 255, 0, 0.2) 100%);
+    background: linear-gradient(to right, rgba(0, 100, 0, 0.0) 0%, rgba(0, 100, 0, 0.6) 50%, rgba(0, 100, 0, 0.8) 100%);
     right: 0%;
     position: absolute;
     left: 0%;
@@ -1000,9 +1000,10 @@ input:checked + .slider:before {
     width: 100%;
     outline: none;
     cursor: url(images/hand.cur), pointer;
-    font-size: 2.5vh;
+    text-shadow: 0 0 3vh rgb(0, 0, 0);
+    font-size: 2vh;
     font-family: Rajdhani;
-    padding: 1vh;
+    padding: 1.5vh;
 }
 
 .tab2 button:hover {
@@ -1010,7 +1011,7 @@ input:checked + .slider:before {
     text-shadow: 0px 0px 1.6vh #023609;
     border-color: #FFF;
     color: rgb(56, 163, 56);
-    text-shadow: 0 0 3vh rgb(0, 130, 0);
+    text-shadow: 0 0 3vh rgb(255, 255, 255);
     cursor: url("images/hand.cur"), pointer;
     border-width: 0vh 0vh 0vh 0vh;
     background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.0) 100%);
@@ -1063,7 +1064,7 @@ input:checked + .slider:before {
 }
 
 .Platinum {
-	color: rgb(214, 214, 214);
+	color: rgb(139, 212, 255);
 	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
 }
 
@@ -1146,3 +1147,25 @@ input:checked + .slider:before {
     text-align: center;
     margin: 1% 1% -3% -50%;
  }
+
+ .level {
+    background-image: url(images/level.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: left center;
+    background-size: 2vh;
+    width: 2vh;
+    margin-bottom: -0.35vh;
+    padding: 0.5vh 0vh 1.5vh 0vh;
+}
+
+.money {
+    background-image: url(images/cash.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: left center;
+    background-size: 2vh;
+    width: 2vh;
+    margin-bottom: -0.35vh;
+    padding: 1vh 0vh 1vh 0.1vh;
+}

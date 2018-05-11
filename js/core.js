@@ -1,4 +1,4 @@
-var version = "v2.6.4";
+var version = "v2.7";
 var a1 = 0;
 var p = {
 	DateStarted: getDate(),
@@ -20,8 +20,8 @@ var p = {
 	Arme: "Fist",
 	ArmePower: 0.1,
 	Rarity: "Very used",
-	GBought: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	VBought: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	GBought: [],
+	VBought: [],
 	vehicules: [],
 	points: 0,
 	bonuspoints: 0,
@@ -38,7 +38,7 @@ $(document).ready(function () {
 			p.cash = 0;
 		}
 		p.playTime++;
-		updateprogression();
+		UpdateStats();
 	}, 1000);
 	setInterval(function () {
 		checkalerts();
@@ -62,17 +62,22 @@ function getCashPS() {
 }
 
 function ClickWeapon() {
-	p.cash = p.cash + (p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints + p.VehMult);
-	updateprogression();
+	p.cash += (p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints + p.VehMult);
+	UpdateUI();
 }
 
-function updateprogression() {
+function UpdateStats() {
+	for (var gun = 0; gun < 37; gun++) { if(p.GBought[gun] == null) { p.GBought[gun]=0; } }
+	for (var vehicle = 0; vehicle < 182; vehicle++) { if(p.VBought[vehicle] == null) { p.VBought[vehicle]=0; } }
 	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } }
 	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
+	var rank=0;
+	for (var id = 0; id < 12; id++) { if(p.productions[id] == null) { p.productions[id]=0; } rank+=p.productions[id];  }
+	p.rank=rank;
+	if (p.fl == 1) { p.fl = 0; showTutorialDIV(); }
 	getPrestigePrice();
 	getCashPS();
 	UpdateUI();
-	if (p.fl == 1) { p.fl = 0; save(); showOptionsMenu(); }
 	save();
 }
 
@@ -88,14 +93,14 @@ function AddPrestige() {
 				p.GunPower = "<font class='normal'>";
 				p.Arme = "Fist";
 				p.Rarity = "Very used";
-				p.GBought = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				p.GBought = [];
 				p.rank = 0;
 				p.cash = 0;
 				p.cashps = 0;
 				p.productions = [];
 				p.prestige++;
 				UpdateUI();
-				updateprogression();
+				UpdateStats();
 			}
 		}
 	}
@@ -163,6 +168,7 @@ function checkalerts() {
 		if (chance >= 28) {
 			tax = random(100, (p.cash / 100) * 50);
 			p.cash -= tax;
+			console.log("A player killed you, he stole $" + fix(tax, 3) + " from your pockets !");
 			$("#alert").html("<p class='game-text rouge'>A player killed you, he stole <font class='vert'>$" + fix(tax, 3) + " </font>from your pockets !");
 		} else {
 			$("#alert").html("<p class='game-text'>Nothing to report at the moment.</p>");
@@ -182,10 +188,12 @@ var buyV = function (id) {
 		if (id < 7) { p.VBought[0]++; }
 		if (id > 6) { if (id < 53) { p.VBought[1]++; } }
 		if (id > 52) { if (id < 87) { p.VBought[2]++; } }
+		if (i > 86) { if (i < 143) { p.VBought[3]++; } }
+		if (i > 142) { if (i < 183) { p.VBought[4]++; } }
 		if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
 		if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
 	}
-	VehicleList();
+	UpdateUI();
 };
 
 function genGun(id) {
@@ -224,7 +232,7 @@ function genGun(id) {
 			p.WeaponID = id;
 			p.ArmePower = weapon.power;
 		}
-		WeaponList();
+		UpdateUI();
 	}
 
 	function buyG(id) {
@@ -249,7 +257,7 @@ function genGun(id) {
 				genGun2(id);
 			}
 		}
-		WeaponList();
+		UpdateUI();
 	}
 
 	function BuyM(id, qty) {
@@ -263,7 +271,7 @@ function genGun(id) {
 				p.productions[id] += qty;
 				p.rank += qty;
 			}
-			MissionList();
+			UpdateUI();
 		}
 	}
 
@@ -277,7 +285,7 @@ function genGun(id) {
 		} else {
 			p.productions[id] = null;
 		}
-		MissionList();
+		UpdateUI();
 	}
 
 	var GetMissionPrice = function (id, qty) {

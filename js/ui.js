@@ -9,23 +9,25 @@
 	points = "";
 	if (p.points > 0) { points = "You have <font class='jaune'> " + p.points + " CP</font>."; }
 	$("#prestigepoints").html(p.points + " (+" + PrestigePoints + ")");
-	$("#valeurclic").html("You have <strong><font class='vert'>$" + CashText + "</font></strong> (+<font class='vert'>$" + CashPSText + "</font>/s)");
-	$("#cashcount").html("Dollars <font class='desc vert'> $" + CashText + "</font>");
+	$("#valeurclic").html("<div class='money'></div><strong><font class='vert'>" + CashText + "</font></strong> (+<div class='money'></div><font class='vert'>" + CashPSText + "</font>/s)");
+	$("#cashcount").html("<div class='money'></div><font class='desc vert'>" + CashText + "</font> in your pockets.");
 	$("#time").html("You started the " + p.DateStarted + "<br>And played for <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
-	$("#cashpscount").html("Dollars per second <font class='desc vert'> $" + CashPSText + "</font>");
+	$("#cashpscount").html("<div class='money'></div><font class='desc vert'>" + CashPSText + "</font> per second.");
 	$("#buyedV1").html("Bikes bought <font class='desc'>" + p.VBought[0] + "/7</font>");
 	$("#buyedV2").html("Motorcycles bought <font class='desc'>" + p.VBought[1] + "/47</font>");
 	$("#buyedV3").html("Sports Classics cars bought <font class='desc'>" + p.VBought[2] + "/33</font>");
-	$("#addcashcount").html("Dollars per clicks <font class='desc vert'> $" + ClicCashText + "</font>");
+	$("#buyedV4").html("Sports cars bought <font class='desc'>" + p.VBought[3] + "/33</font>");
+	$("#buyedV5").html("Super cars bought <font class='desc'>" + p.VBought[4] + "/33</font>");
+	$("#addcashcount").html("<div class='money'></div><font class='desc vert'>" + ClicCashText + "</font> per clicks.");
 	$("#quality").html("Weapon | <strong>" + p.GunPower + p.Arme + "</strong> - <strong>" + p.Rarity + "<br><font class='blanc'></strong>Damage |<strong> </font>" + ClicCashText + "</strong></font><br>" + points + prestigeText);
 	$("#bonuscashcount").html(BonusCashText + " (+0.15)");
-	$("#rank").html("Level <strong>" + getRank(p.rank) + "</strong>");
+	$("#rank").html("<div class='level'></div><strong>" + getRank(p.rank) + "</strong>");
 	$("#prestigecount").html(p.prestige);
 	$("#prestigepricecount").html(getRank(p.prestigeprice));
-	$("#prestigepricecount2").html("$" + fix(p.prestigeprice2, 2));
+	$("#prestigepricecount2").html("<div class='money'></div>" + fix(p.prestigeprice2, 2));
 	$("#version").html("Current version " + version);
-	$('#imagecash').css("background-image", "url(images/" + p.WeaponID + ".png)");
-	document.title = "IdleFive " + version;
+	$('#imagecash').css("background-image", "url(images/A/" + p.WeaponID + ".png)");
+	document.title = "idleFive " + version;
 	showTutorial(p.tutorial);
 	ClickEvents();
 	WeaponList();
@@ -61,8 +63,8 @@ var MissionList = function () {
 
 			"<p class='title " + colorTitle + "'>" + productions[i].name + "</p><br>" +
 			"<p class='jaune'>Level " + owned + "<br>" +
-			"<p class='valeur2'>Value:&nbsp;<font class='valeur vert'> $" + fix(cost, 2) + "</font></p><br>" +
-			"<p class='production-desc'><font class='vert'>$" + fix(p.bonuscash * productions[i].value * owned, 3) + "</font> per second" + "</p><br><br>" +
+			"<p class='valeur2'>Value: <font class='money'></font><font class='valeur vert'>" + fix(cost, 2) + "</font></p><br>" +
+			"<p class='production-desc'><div class='money'></div><font class='vert'>" + fix(p.bonuscash * productions[i].value * owned, 3) + "</font> per second" + "</p><br><br>" +
 			"<a href='#' class='btn btn-buy" + canBuy + " gauche' onClick='BuyM(" + i + ", 1);''>BUY</a>" +
 			"<a href='#' class='btn btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>BUY 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 3) + "</font></a>" +
 			"<a href='#' class='btn btn-sell" + canSell + " droite' onClick='SellM(" + i + ", 1);'>SELL</a>" +
@@ -83,12 +85,12 @@ function WeaponList() {
 		if (p.GBought[i] == 1) {
 			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' vert';
 			name = "<font class='vert'>" + weapon.name + "</font>";
-			cost = "Modification : <font class='" + canBuy + "'>$" + fix(weapon.price * 2, 2) + "</font>";
+			cost = "Modification : <font class='money'></font><font class='" + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
 			damage = "<font class='rougeb'>" + fix(weapon.power, 1) + "</font>";
 		} else {
 			canBuy = weapon.price > p.cash ? ' rougeb' : ' vert';
 			name = "<font class='gris'>" + weapon.name + "</font>";
-			cost = "Price : <font class='" + canBuy + "'>$" + fix(weapon.price, 2) + "</font>";
+			cost = "Price : <div class='money'></div><font class='" + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
 			damage = "<font class='gris'>" + fix(weapon.power, 1) + "</font>";
 		}
 
@@ -96,13 +98,13 @@ function WeaponList() {
 		view2 = p.GBought[i] > 0 ? 'style="display:none;"' : '';
 		canBuy = weapon.price > p.cash ? ' disabled' : '';
 		canBuy2 = weapon.price * 2 > p.cash ? ' disabled' : '';
-		url = "url('images/" + i + ".png')";
+		url = "url('images/A/" + i + ".png')";
 
 		var weaponsDIV = $(
 			"<div class='arme-div arme' id='weap" + i + "'>" +
 			"<p class='title blanc wleft'>" + name + "</p><br><br>" +
-			"<p class='btexte wleft'>" + cost + "</font></p><br>" +
-			"<p class='btexte wleft'>Damage : " + damage + "</font></p><br><br>" +
+			"<p class='btexte wleft'>" + cost + "</font><br>" +
+			"Damage : " + damage + "</font></p><br><br>" +
 			"<input type='button' class='btn btn-weapon" + canBuy + " gauche' " + view2 + " value='Buy this weapon' onClick='buyG(" + i + ");' /><br />" +
 			"<input type='button' class='btn btn-weapon" + canBuy2 + "' " + view + " value='Try to modify this weapon' onClick='buyG(" + i + ");' />" +
 			"<input type='button' class='btn btn-weapon2' " + view + " value='Use this weapon (normal)' onClick='useW(" + i + ");' />" +
@@ -136,7 +138,7 @@ function VehicleList() {
 			multiplier = "adds <font class='gris'>" + fix(vehicle.value, 2) + "</font>";
 		}
 
-		url = "url('images/V/" + i + ".png')";
+		url = "url('images/V/" + i + ".jpg')";
 		canBuy = vehicle.price > p.points ? ' disabled' : '';
 		type = "";
 		if (vehicle.type == 0) { type = " <font class='rougeb bold'>damage</font> "; }
@@ -153,7 +155,8 @@ function VehicleList() {
 		if (i < 7) { $('#Vtab1').append(vehiclesDIV); }
 		if (i > 6) { if (i < 53) { $('#Vtab2').append(vehiclesDIV); } }
 		if (i > 52) { if (i < 87) { $('#Vtab3').append(vehiclesDIV); } }
-		if (i > 86) { if (i < 142) { $('#Vtab4').append(vehiclesDIV); } }
+		if (i > 86) { if (i < 143) { $('#Vtab4').append(vehiclesDIV); } }
+		if (i > 142) { if (i < 183) { $('#Vtab5').append(vehiclesDIV); } }
 		$('#veh' + i).css('background-image', url);
 	}
 }
@@ -172,7 +175,7 @@ function showSTab(id) { hideSTabs(); $('#Stab' + id).show(); $("#S" + id).addCla
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
 function ClickEvents() {
-	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs(); $("#tab" + id).show(); $("#t" + id).addClass("active"); });
+	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs();  $("#tab" + id).show(); $("#body").css("background-image", "url(images/bg-" + id + ".jpg"); $("#t" + id).addClass("active"); });
 	$("#menu").on("click", "button", function () { var id = $(this).data('id'); hideMenus(); $("#menu-" + id).show(); });
 }
 

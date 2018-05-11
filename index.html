@@ -8,15 +8,16 @@
 <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=24" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=24"></script>
-<script src="js/data.js?v=24"></script>
-<script src="js/core.js?v=24"></script>
-<script src="js/ui.js?v=24"></script>
+<link href="style.css?v=25" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=25"></script>
+<script src="js/data.js?v=25"></script>
+<script src="js/core.js?v=25"></script>
+<script src="js/ui.js?v=25"></script>
 
 <body class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
         <p class="maintitle" style="line-height: 8vh;">IdleFive</p>
+        <button onClick="toggleDiscord();" class="tablinks blanc">Chat</button>
         <button class="tablinks blanc" id="menu1" data-id="1">Character</button>
         <button class="tablinks blanc" id="menu2" data-id="2">Success</button>
         <button class="tablinks blanc" id="menu3" data-id="3">Save & Stats</button>
@@ -119,7 +120,7 @@
     </div>
     <div id="menus">
 
-        <div id="menu-1" style="display: none;">
+        <div class="menu" id="menu-1" style="display: none;">
             <p class="maintitle">Change Character</p>
             <br />
             <br />
@@ -153,7 +154,7 @@
             <span onClick="hideMenus();" class="btn btn-blanc">Close</span>
         </div>
 
-        <div id="menu-2" style="display: none;">
+        <div class="menu" id="menu-2" style="display: none;">
             <p class="title blanc" id="successcount">0</p>
             <nav class="sous-menu2">
                 <input type="button" id="S0" onclick="showSTab(0);" class="succes active" value="Player"></input>
@@ -170,7 +171,7 @@
             <span onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92.5%; bottom: 1.5%; left: 1%; right: 1%;">Close</span>
         </div>
 
-        <div id="menu-3" style="display: none;">
+        <div class="menu" id="menu-3" style="display: none;">
             <div class="success2">
                 <p class="maintitle">Save Menu</p>
                 <br />
@@ -205,7 +206,7 @@
             </div>
         </div>
 
-        <div id="menu-4" style="display: none;">
+        <div class="menu" id="menu-4" style="display: none;">
             <div id="tutorial" class="success2" style="height: 28vh;">
                 <p id="tutorial-title" class="title blanc"></p>
                 <br />
@@ -216,6 +217,9 @@
             </div>
             <span onclick="closeTutorial();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close tutorial</span>
         </div>
+    </div>
+    <div id="discord" style="display: none;">
+        <iframe src="https://titanembeds.com/embed/444253095182991360?defaultchannel=444253095182991362&css=225" height="100%" width="100%" frameborder="0"></iframe>
     </div>
 </body>
 

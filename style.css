@@ -206,7 +206,7 @@ td, th {
 
 #colonne-m {
     position: absolute;
-    top: 10%;
+    top: 9.5%;
     left: 0.5%;
     background-color: rgba(255, 255, 255, 0.0);
     color: rgb(255, 255, 255);
@@ -218,8 +218,8 @@ td, th {
 
 #colonne-d {
     position: absolute;
-    top: 10%;
-    right: -0.2%;
+    top: 9.5%;
+    right: 0%;
     background-color: rgba(255, 255, 255, 0.0);
     color: rgb(255, 255, 255);
     text-align: center;
@@ -655,63 +655,70 @@ td, th {
         background-image: linear-gradient(to bottom,#146b27 , #409954 , #146b27 );
     }
 
-#menu-1 {
+.menu-discord {
+    position: absolute;
+    top: 9.5%;
+    left: 0%;
+    right: 20%;
+    bottom: 0%;
+}
+
+.menu {
+    position: absolute;
     top: 9.5%;
     left: 0%;
     right: 0%;
     bottom: 0%;
+}
+
+#menu-1 {
     background: rgb(0, 0, 0);
     background-image: url('images/menupr.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     overflow: auto;
-    position: absolute;
     z-index: 20;
     text-align: center;
 }
 
 #menu-2 {
-    top: 9.5%;
-    left: 0%;
-    right: 0%;
     background: rgb(0, 0, 0);
     background-image: url('images/successes.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     overflow: auto;
-    bottom: 0%;
-    position: absolute;
     z-index: 20;
     text-align: center;
 }
 
 #menu-3 {
-    top: 9.5%;
-    left: 0%;
-    right: 0%;
-    bottom: 0%;
     background: rgb(0, 0, 0);
     background-image: url('images/savemenu.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     overflow: auto;
-    position: absolute;
     z-index: 20;
     text-align: center;
 }
 
 #menu-4 {
-    top: 9.5%;
-    left: 0%;
-    right: 0%;
-    bottom: 0%;
     background-image: url('images/tutorial.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    overflow: auto;
+    z-index: 20;
+    text-align: center;
+}
+
+#discord {
+    top: 9.5%;
+    left: 80%;
+    right: 0%;
+    bottom: 0%;
     overflow: auto;
     position: absolute;
     z-index: 20;
@@ -980,10 +987,10 @@ input:checked + .slider:before {
     border-color: #ffffff00;
     font-family: Pricedown;
     outline: none;
-    font-size: 3vh;
+    font-size: 2.75vh;
     line-height: 2.75vh;
     height: 9.5vh;
-    width: 15%;
+    width: 12%;
     border-radius: 0.3vh;
 }
 
@@ -1125,7 +1132,7 @@ input:checked + .slider:before {
     background-repeat: no-repeat;
     background-size: 3vh;
     background-image: url(images/weapon.png);
-   }
+}
 
 #t2:after {
     
@@ -1135,7 +1142,8 @@ input:checked + .slider:before {
     background-repeat: no-repeat;
     background-size: 3vh;
     background-image: url(images/missions.png);
-   }
+}
+
 #t3:after {
     content: "";
     display: inline;
@@ -1143,4 +1151,18 @@ input:checked + .slider:before {
     background-repeat: no-repeat;
     background-size: 3vh;
     background-image: url(images/garage.png);
-   }
+}
+
+#document:root {
+    --modal: #546E7A;
+    --noroleusers: #ECEFF1;
+    --main: #000000;
+    --placeholder: #636363;
+    --sidebardivider: #90A4AE;
+    --leftsidebar: #607D8B;
+    --rightsidebar: #607D8B;
+    --header: #263238;
+    --chatmessage: #C3C4C5;
+    --discrim: #FFFFFF;
+    --chatbox: #37474F;
+}

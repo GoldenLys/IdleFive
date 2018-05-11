@@ -20,7 +20,7 @@
 	$("#bonuscashcount").html(BonusCashText + " (+0.15)");
 	$("#rank").html("Rank | <strong>" + getRank(p.rank) + "</strong>");
 	$("#prestigecount").html(p.prestige);
-	$("#prestigepricecount").html(getRank(p.prestigeprice) +" <font class='blanc'>(" + p.prestigeprice + ")</font>");
+	$("#prestigepricecount").html(getRank(p.prestigeprice) + " <font class='blanc'>(" + p.prestigeprice + ")</font>");
 	$("#prestigepricecount2").html("$" + fix(p.prestigeprice2, 2));
 	$("#version").html("Current version " + version);
 	$('#imagecash').css("background-image", "url(images/" + p.WeaponID + ".png)");
@@ -187,7 +187,7 @@ function SuccessList() {
 		if (succes.type == 1) { if (p.cash >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 2) { if (p.productions[succes.value2] >= 100) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 3) { if (p.VBought[succes.value2] == succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
-		if (succes.type == 4) { if (p.rank > succes.value) { p.succes[i] = 1; } }
+		if (succes.type == 4) { if (p.rank >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 5) { if (p.prestige >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 
 		var view = p.succes[i] > 0 ? '' : ' style="display:none;"';
@@ -207,7 +207,7 @@ function SuccessList() {
 }
 
 function showTutorial(id) {
-	p.tutorial=id;
+	p.tutorial = id;
 	$("#tutorial-title").html("tutorial - " + tutorialtexts[id].title);
 	$("#tutorial-text").html(tutorialtexts[id].text);
 }
@@ -235,4 +235,18 @@ function PrevTuto() {
 	if (p.tutorial == 6) { $("#next").addClass("disabled"); } else {
 		$("#next").removeClass("disabled");
 	}
+}
+
+function toggleDiscord() {
+	if ($('#menu-1').css('right') == '20%') {
+		for (var id = 1; id < 5; id++) { $('#menu-' + id).removeClass('menu-discord').addClass('menu'); }
+		$("#discord").hide();
+		$("#colonne-m").css("right", "60%");
+		$("#colonne-d").css("right", "0%").css("left", "40%");
+	} else { 
+		for (var id = 1; id < 5; id++) { $('#menu-' + id).removeClass('menu').addClass('menu-discord'); }
+		$("#discord").show();
+		$("#colonne-m").css("right", "70%");
+		$("#colonne-d").css("right", "19.5%").css("left", "30%");
+	 }
 }

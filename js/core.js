@@ -1,4 +1,4 @@
-var version = "v2.4";
+var version = "v2.5";
 var a1 = 0;
 var p = {
 	DateStarted: getDate(),
@@ -189,27 +189,27 @@ var buyV = function (id) {
 
 function genGun() {
 	quality = random(1, 400);
-	if (quality >= 1) { setRarity("Very Used", "<font class='bronze'>", 0.25); }
-	if (quality >= 50) { setRarity("Used", "<font class='gris'>", 0.5); }
-	if (quality >= 120) { setRarity("Normal", "<font class='normal'>", 1); }
-	if (quality >= 220) { setRarity("Rare", "<font class='rare'>", 1.25); }
-	if (quality >= 350) { setRarity("Epic", "<font class='or'>", 1.5); }
-	if (quality >= 380) { setRarity("Legendary", "<font class='rougeb'>", 1.75); }
-	if (quality >= 395) { setRarity("Mythic", "<font class='mythic'>", 2); }
+	if (quality >= 1) { setRarity("Very Used", "bronze", 0.25); }
+	if (quality >= 50) { setRarity("Used", "gris", 0.5); }
+	if (quality >= 120) { setRarity("Normal", "normal", 1); }
+	if (quality >= 220) { setRarity("Rare", "rare", 1.25); }
+	if (quality >= 350) { setRarity("Epic", "or", 1.5); }
+	if (quality >= 380) { setRarity("Legendary", "rougeb", 1.75); }
+	if (quality >= 395) { setRarity("Mythic", "mythic", 2); }
 }
 
 function genGun2() {
 	quality = random(1, 200);
-	if (quality >= 1) { setRarity("Normal", "<font class='normal'>", 1); }
-	if (quality >= 80) { setRarity("Rare", "<font class='rare'>", 1.25); }
-	if (quality >= 150) { setRarity("Epic", "<font class='or'>", 1.5); }
-	if (quality >= 180) { setRarity("Legendary", "<font class='rougeb'>", 1.75); }
-	if (quality >= 195) { setRarity("Mythic", "<font class='mythic'>", 2); }
+	if (quality >= 1) { setRarity("Normal", "normal", 1); }
+	if (quality >= 80) { setRarity("Rare", "rare", 1.25); }
+	if (quality >= 150) { setRarity("Epic", "or", 1.5); }
+	if (quality >= 180) { setRarity("Legendary", "rougeb", 1.75); }
+	if (quality >= 195) { setRarity("Mythic", "mythic", 2); }
 }
 
 function setRarity(Type, Class, Mult) {
 	p.Rarity = Type;
-	p.GunPower = Class;
+	p.GunPower = "<font class='" + Class + "'>";
 	p.GunMult = Mult;
 }
 

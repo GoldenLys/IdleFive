@@ -242,15 +242,21 @@ function PrevTuto() {
 }
 
 function toggleDiscord() {
-	if ($('#menu-1').css('right') == '30%') {
+	if ($('#menu-1').css('right') == '27%') {
+		//HIDE DISCORD
 		for (var menulist = 1; menulist < 5; menulist++) { $('#menu-' + menulist).removeClass('menu-discord').addClass('menu'); }
 		$("#discord").hide();
-		$("#colonne-m").css("right", "60%");
+		$("#colonne-m").css("right", "59.6%");
+		$("#menu").css("right", "0%");
 		$("#colonne-d").css("right", "0%").css("left", "40%");
+		$("#btnDiscord").html("Chat<br><font class='buttonText rougeb'>(OFF)</font>");
 	} else { 
+		//SHOW DISCORD
 		for (var menulist2 = 1; menulist2 < 5; menulist2++) { $('#menu-' + menulist2).removeClass('menu').addClass('menu-discord'); }
 		$("#discord").show();
-		$("#colonne-m").css("right", "75%");
-		$("#colonne-d").css("right", "29.5%").css("left", "25%");
+		$("#menu").css("right", "27%");
+		$("#colonne-m").css("right", "72.7%");
+		$("#colonne-d").css("right", "27%").css("left", "27%");
+		$("#btnDiscord").html("Chat<br><font class='buttonText vert'>(ON)</font>");
 	 }
 }

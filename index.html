@@ -8,16 +8,16 @@
 <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=264" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=264"></script>
-<script src="js/data.js?v=264"></script>
-<script src="js/core.js?v=264"></script>
-<script src="js/ui.js?v=264"></script>
+<link href="style.css?v=271" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=271"></script>
+<script src="js/data.js?v=271"></script>
+<script src="js/core.js?v=271"></script>
+<script src="js/ui.js?v=271"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
         <p class="maintitle" style="line-height: 8vh;">IdleFive</p>
-        <button onClick="toggleDiscord();" class="tablinks blanc">Chat</button>
+        <button id="btnDiscord" onClick="toggleDiscord();" class="tablinks blanc">Chat<br><font class="buttonText rougeb">(OFF)</font></button>
         <button class="tablinks blanc" id="menu1" data-id="1">Character</button>
         <button class="tablinks blanc" id="menu2" data-id="2">Success</button>
         <button class="tablinks blanc" id="menu3" data-id="3">Save & Stats</button>
@@ -49,7 +49,7 @@
     </div>
 
     <div id="colonne-d" value="tabs">
-        <div id="tab1" style="display: none; overflow: auto; height: 100%; width: 99%;">
+        <div id="tab1" style="display: none; overflow: auto; height: 100%; width: 100%;">
             <nav class="sous-menu">
                 <input type="button" id="W1" onclick="showWTab(1);" class="weap active" value="Melee Weapons"></input>
                 <input type="button" id="W2" onclick="showWTab(2);" class="weap" value="Handguns"></input>
@@ -72,12 +72,12 @@
             <div class="Wtab" id="Wtab9" style="display: none;"></div>
         </div>
 
-        <div id="tab2" style="display: block; overflow: auto; height: 100%; width: 99%;">
+        <div id="tab2" style="display: block; overflow: auto; height: 100%; width: 100%;">
             <div id="productions"></div>
         </div>
 
 
-        <div id="tab3" style="display: none; height: 100%; width: 99%;">
+        <div id="tab3" style="display: none; height: 100%; width: 100%; overflow: auto;">
             <nav class="sous-menu">
                 <input type="button" id="V1" onclick="showVTab(1);" class="veh active" value="Bikes"></input>
                 <input type="button" id="V2" onclick="showVTab(2);" class="veh" value="Motorcycles"> </input>

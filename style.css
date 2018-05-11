@@ -60,7 +60,6 @@ body {
     border-radius: 0.4vh;
     padding-top: 1%;
     padding-bottom: 1%;
-    margin-top: 0.5%;
     margin-bottom: 0.5%;
 }
 
@@ -195,12 +194,12 @@ td, th {
 #colonne-m {
     position: absolute;
     top: 9.5%;
-    left: 0.5%;
+    left: 0%;
     background-color: rgba(255, 255, 255, 0.0);
     color: rgb(255, 255, 255);
     text-align: center;
-    right: 60%;
-    bottom: 0.5%;
+    right: 59.6%;
+    bottom: 0%;
     z-index: 1;
 }
 
@@ -212,7 +211,7 @@ td, th {
     color: rgb(255, 255, 255);
     text-align: center;
     left: 40%;
-    bottom: 0.5%;
+    bottom: 0%;
     z-index: 1;
 }
 
@@ -616,7 +615,7 @@ td, th {
     position: absolute;
     top: 9.5%;
     left: 0%;
-    right: 30%;
+    right: 27%;
     bottom: 0%;
 }
 
@@ -629,8 +628,8 @@ td, th {
 }
 
 #discord {
-    top: 9.5%;
-    left: 70%;
+    top: 0%;
+    left: 73%;
     right: 0%;
     bottom: 0%;
     overflow: auto;
@@ -1105,7 +1104,11 @@ input:checked + .slider:before {
 .Wtab {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
-    height: 76%;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
     overflow: auto;
 }
 
@@ -1124,8 +1127,7 @@ input:checked + .slider:before {
 .Vtab {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
-    height: 76.5%;
-    overflow: auto;
+    margin: -1.5% 0% 0% 0%;
 }
 
 .arme-div {

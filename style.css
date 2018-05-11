@@ -1149,7 +1149,7 @@ input:checked + .slider:before {
  }
 
  .level {
-    background-image: url(http://aizen.hol.es/http://aizen.hol.es/IdleFive/images/level.png);
+    background-image: url(http://aizen.hol.es/IdleFive/images/level.png);
     background-repeat: no-repeat;
     display: inline-block;
     background-position: left center;
@@ -1160,7 +1160,7 @@ input:checked + .slider:before {
 }
 
 .money {
-    background-image: url(http://aizen.hol.es/http://aizen.hol.es/IdleFive/images/cash.png);
+    background-image: url(http://aizen.hol.es/IdleFive/images/cash.png);
     background-repeat: no-repeat;
     display: inline-block;
     background-position: left center;

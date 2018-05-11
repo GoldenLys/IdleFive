@@ -188,8 +188,8 @@ var buyV = function (id) {
 		if (id < 7) { p.VBought[0]++; }
 		if (id > 6) { if (id < 53) { p.VBought[1]++; } }
 		if (id > 52) { if (id < 87) { p.VBought[2]++; } }
-		if (i > 86) { if (i < 143) { p.VBought[3]++; } }
-		if (i > 142) { if (i < 183) { p.VBought[4]++; } }
+		if (i > 86) { if (id < 143) { p.VBought[3]++; } }
+		if (i > 142) { if (id < 183) { p.VBought[4]++; } }
 		if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
 		if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
 	}

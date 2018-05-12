@@ -116,8 +116,8 @@ body {
     border: 0.1vh solid #af1919;
     color: #ffffff;
     font-family: Rajdhani;
-    width: 29%;
-	margin-left: 36%;
+    width: 40%;
+    margin-left: 30%;
     padding-bottom: 0.5%;
     padding-top: 1%;
     overflow: hidden;
@@ -282,33 +282,35 @@ td, th {
 }
 
 .btn-weapon {
-    border: none;
+    border: 0.1vh solid rgba(255, 255, 255, 1);
     color: rgb(255, 255, 255);
+    background-color: #ffffff45;
     padding: 1.5vh;
     width: 44.5%;
     margin: 0 2.25vh 0 2.25vh;
     border-radius: 0.4vh;
-    background-color: #11741e;
     font-family: Rajdhani;
 }
 
 .btn-weapon:hover {
-    background-color: #065a11;
+    background-color: #FFF;
+    color: #11741e;
 }
 
 .btn-weapon2 {
-    border: none;
+    border: 0.1vh solid rgba(255, 255, 255, 1);
     color: rgb(255, 255, 255);
+    background-color: #ffffff45;
     padding: 1.5vh;
     width: 44.5%;
     margin: 0 2.25vh 0 2.25vh;
     border-radius: 0.4vh;
-    background-color: #11741e;
     font-family: Rajdhani;
 }
 
 .btn-weapon2:hover {
-    background-color: #065a11;
+    background-color: #FFF;
+    color: #11741e;
 }
 
 .btn-veh {
@@ -459,10 +461,6 @@ td, th {
 	font-family: Rajdhani;
     color: #338409;
 	display: inline;
-}
-
-.red {
-	color: #FFF000;
 }
 
 .stats {
@@ -799,6 +797,10 @@ input:checked + .slider:before {
 	text-shadow: 0px 0px 3vh rgb(133, 5, 158);
 }
 
+.tactical {
+    color: rgb(50, 50, 50);
+    text-shadow: 0 0 0.5vh rgb(18, 18, 18);
+}
 
 .vert {
     color: rgb(56, 163, 56);
@@ -812,7 +814,7 @@ input:checked + .slider:before {
 
 .gris2 {
     color: rgb(50, 50, 50);
-    text-shadow: 0 0 2vh rgb(0, 0, 0);
+    text-shadow: 0 0 0.5vh rgb(18, 18, 18);
 }
 
 .rougeb {
@@ -943,8 +945,8 @@ input:checked + .slider:before {
     border-color: #ffffff00;
     font-family: Pricedown;
     outline: none;
-    font-size: 2.75vh;
-    line-height: 2.75vh;
+    font-size: 2.5vh;
+    line-height: 2.5vh;
     height: 9.5vh;
     width: 12%;
     border-radius: 0.3vh;
@@ -1116,9 +1118,9 @@ input:checked + .slider:before {
 .arme {
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 35% 59%;
-    background-position: 88.5%;
-    background-position-y: 8%;
+    background-size: 44% 59%;
+    background-position: 94%;
+    background-position-y: 7%;
     border-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0.0) 100%);
     border-style: solid;
     border-width: 0.1vh 0vh 0.1vh 0vh;
@@ -1171,3 +1173,25 @@ input:checked + .slider:before {
     margin-bottom: -0.35vh;
     padding: 1vh 0vh 1vh 0.1vh;
 }
+
+.lang {
+    background: url(images/eng.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: left center;
+    background-size: 5vh;
+    width: 5vh;
+    margin: 0vh 0vh -0.35vh 1vh;
+    padding: 3vh 0vh 2vh 0vh;
+    border-radius: 0.4vh;
+    border-style: solid;
+    border-color: #FFFFFF00;
+    border-width: 0.3vh;
+}
+
+.lang:hover {
+    border-style: solid;
+    border-color: #FFF;
+    border-width: 0.3vh;
+}
+

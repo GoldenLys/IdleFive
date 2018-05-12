@@ -1,36 +1,39 @@
 <html>
 
 <head>
-    <title>IdleFive</title>
+    <title>idleFive</title>
     <meta charset="UTF-8" />
 </head>
 <link rel="shortcut icon" type="image/x-icon" href="http://aizen.hol.es/IdleFive/images/fav.ico" />
 <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=271" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=271"></script>
-<script src="js/data.js?v=271"></script>
-<script src="js/core.js?v=271"></script>
-<script src="js/ui.js?v=271"></script>
+<link href="style.css?v=28" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=28"></script>
+<script src="js/data.js?v=28"></script>
+<script src="js/core.js?v=28"></script>
+<script src="js/ui.js?v=28"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
-        <p class="maintitle" style="line-height: 8vh;">IdleFive</p>
-        <button id="btnDiscord" onClick="toggleDiscord();" class="tablinks blanc">Chat<br><font class="buttonText rougeb">(OFF)</font></button>
-        <button class="tablinks blanc" id="menu1" data-id="1">Character</button>
-        <button class="tablinks blanc" id="menu2" data-id="2">Success</button>
-        <button class="tablinks blanc" id="menu3" data-id="3">Save & Stats</button>
-        <button class="tablinks blanc" id="menu4" data-id="4">Guide</button>
+        <p class="maintitle" style="line-height: 8vh;">idleFive<font id="lang" class='lang' onclick="ChangeLang();"></font></p>
+        <button id="btnDiscord" onClick="toggleDiscord();" class="tablinks blanc">Chat
+            <br>
+            <font class="buttonText rougeb">(OFF)</font>
+        </button>
+        <button class="tablinks blanc" id="menu1" data-id="1"></button>
+        <button class="tablinks blanc" id="menu2" data-id="2"></button>
+        <button class="tablinks blanc" id="menu3" data-id="3"></button>
+        <button class="tablinks blanc" id="menu4" data-id="4"></button>
     </nav>
 
     <div id="colonne-m" value="Jeu">
         <div id="game-menu" class="tab2">
-            <button class="tablinks blanc" id="t1" data-id="1">Weapons   </button>
+            <button class="tablinks blanc" id="t1" data-id="1"></button>
             <br />
-            <button class="tablinks blanc active" id="t2" data-id="2">Missions   </button>
+            <button class="tablinks blanc active" id="t2" data-id="2"></button>
             <br />
-            <button class="tablinks blanc" id="t3" data-id="3">Vehicles   </button>
+            <button class="tablinks blanc" id="t3" data-id="3"></button>
             <br />
         </div>
         <div class="cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash"></div>
@@ -118,33 +121,30 @@
 
         <div class="menu" id="menu-1" style="display: none;">
             <div class="success2">
-                <p class="title blanc">Change Character</p>
+                <p id="character-title" class="title blanc"></p>
                 <br />
                 <br />
-                <p class="texte">You are actually using the character number </p>
+                <p id="character-number" class="texte"></p>
                 <p class="texteg blanc" id="prestigecount">0</p>
                 <br />
                 <br />
                 <div class="success3">
-                    <p class="texte">You need a rank of </p>
-                    <div class="texteg" id="prestigepricecount"></div>
-                    <p class="texte"> as well as the sum of </p>
+                    <p id="character-text1" class="texte"></p>
+                    <div class="texteg" id="prestigepricecount"></div><br />
+                    <p id="character-text2" class="texte"></p>
                     <div class="texteg vert" id="prestigepricecount2"></div>
-                    <p class="texte">to switch to another character.</p>
+                    <p id="character-text3" class="texte"></p>
                     <br />
                     <br />
                     <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" value="Create a new character" onClick="AddPrestige();"
                     />
                     <br />
                     <br />
-                    <p class='texte'>You have
-                        <div class="texteg red" id="prestigepoints">0(+0)</div> Character Points (CP).</p>
+                    <p id="character-text4" class='texte'></p>
                 </div>
                 <br />
                 <br />
-                <p class="texte">Multiplier bonus of </p>
-                <div class="texteg red" id="bonuscashcount">0</div>
-                <p class="texte"> on money earned.</p>
+                <p id="character-text5" class="texte"></p>
                 <br />
                 <br />
                 <br />
@@ -171,7 +171,7 @@
 
         <div class="menu" id="menu-3" style="display: none;">
             <div class="success2">
-                <p class="maintitle">Save Menu</p>
+                <p class="title blanc">Save Menu</p>
                 <br />
                 <br />
                 <input type="button" id="btnExport" class="btn btn-blanc" value="Export Save" onClick="exportSave();" />
@@ -181,27 +181,30 @@
                 <p id='debugtext' class='copytext'></p>
             </div>
             <div class="success2" style="padding-bottom: 1%;">
-                <p class="maintitle">Statistics</p>
+                <p class="title blanc">Statistics</p>
                 <br />
                 <br />
-                <div class="stats" id="cashcount"></div>
+                <font class="stats" id="cashcount"></font>
                 <br />
-                <div class="stats" id="cashpscount"></div>
+                <font class="stats" id="cashpscount"></font>
                 <br />
-                <div class="stats" id="addcashcount"></div>
+                <font class="stats" id="addcashcount"></font>
                 <br />
-                <div class="stats" id="buyedV1"></div>
+                <font class="stats" id="buyedV1"></font>
                 <br />
-                <div class="stats" id="buyedV2"></div>
+                <font class="stats" id="buyedV2"></font>
                 <br />
-                <div class="stats" id="buyedV3"></div>
+                <font class="stats" id="buyedV3"></font>
                 <br />
-                <div class="stats" id="time"></div>
+                <font class="stats" id="buyedV4"></font>
                 <br />
-                <div class="stats" id="version"></div>
+                <font class="stats" id="buyedV5"></font>
                 <br />
-                <span onclick="closeTutorial();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close</span>
+                <font class="stats" id="time"></font>
+                <br />
+                <font class="stats" id="version"></font>
             </div>
+            <span onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close</span>
         </div>
 
         <div class="menu" id="menu-4" style="display: none;">
@@ -210,10 +213,10 @@
                 <br />
                 <br />
                 <p id="tutorial-text" class='desc'></p>
-                <span onClick="NextTuto();" id="next" style="position: absolute; left: 13%; right: 14%; top: 26%; bottom: 67%;" class="btn btn-blanc">Next</span>
-                <span onClick="PrevTuto();" id="prev" style="position: absolute; left: 87%; right: 1%; top: 26%; bottom: 67%;" class="btn btn-blanc">Previous</span>
+                <span onClick="NextTuto();" id="tuto-next" style="position: absolute; left: 13%; right: 14%; top: 26%; bottom: 67%;" class="btn btn-blanc">Next</span>
+                <span onClick="PrevTuto();" id="tuto-prev" style="position: absolute; left: 87%; right: 1%; top: 26%; bottom: 67%;" class="btn btn-blanc">Previous</span>
             </div>
-            <span onclick="closeTutorial();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close tutorial</span>
+            <span onclick="closeTutorial();" id="tuto-close" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close tutorial</span>
         </div>
     </div>
     <div id="discord" style="display: none;">
@@ -222,3 +225,4 @@
 </body>
 
 </html>
+

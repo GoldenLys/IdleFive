@@ -1,17 +1,18 @@
 var productions = {
     0: { name: 'Pickpocketing', price: 1, pricemodifier: 1.05, value: 0.1, },
     1: { name: 'Rob A Grocery Store', price: 3, pricemodifier: 1.05, value: 0.5, },
-    2: { name: 'Rob An Armored Van', price: 50, pricemodifier: 1.05, value: 1, },
+    2: { name: 'Security Van Heist', price: 50, pricemodifier: 1.05, value: 1, },
     3: { name: 'Street Race', price: 100, pricemodifier: 1.05, value: 5, },
-    4: { name: 'False Papers Factory', price: 500, pricemodifier: 1.05, value: 10, },
+    4: { name: 'Document Forgery', price: 500, pricemodifier: 1.05, value: 10, },
     5: { name: 'Weed Farm', price: 2000, pricemodifier: 1.05, value: 50, },
-    6: { name: 'False Money Factory', price: 10000, pricemodifier: 1.05, value: 100, },
-    7: { name: 'Meth Workshop', price: 50000, pricemodifier: 1.05, value: 250, },
-    8: { name: 'Cocaine Workshop', price: 150000, pricemodifier: 1.05, value: 1000, },
+    6: { name: 'Counterfeit Cash', price: 10000, pricemodifier: 1.05, value: 100, },
+    7: { name: 'Meth', price: 50000, pricemodifier: 1.05, value: 250, },
+    8: { name: 'Cocaine', price: 150000, pricemodifier: 1.05, value: 1000, },
     9: { name: 'Hangar', price: 750000, pricemodifier: 1.05, value: 5000, },
     10: { name: 'Bunker', price: 12500000, pricemodifier: 1.05, value: 10000, },
     11: { name: 'Vehicle Trafficking', price: 25000000, pricemodifier: 1.05, value: 25000, },
-    12: { name: 'Rob the Union Depository', price: 200000000, pricemodifier: 1.05, value: 200000, },
+    12: { name: 'Union Depository Heist', price: 200000000, pricemodifier: 1.05, value: 200000, },
+    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.05, value: 15000000, },
 };
 
 var weapons = {
@@ -265,10 +266,10 @@ var success = {
     23: { name: "professionnal car dealer", desc: "Steal 100 vehicles.", type: 2, value: 100, value2: 11, },
     24: { name: "the big score", desc: "rob the union depository a hundred times.", type: 2, value: 100, value2: 12, }, //END OF TYPE 2
     25: { name: "all bikes bought", desc: "bought all vehicles of this category.", type: 3, value: 7, value2: 0, },
-    26: { name: "all motorcycles bought", desc: "bought all vehicles of this category.", type: 3, value: 47, value2: 1, },
-    27: { name: "all classics sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 33, value2: 2, },
-    28: { name: "all sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 55, value2: 3, },
-    29: { name: "all super cars bought", desc: "bought all vehicles of this category.", type: 3, value: 38, value2: 4, },
+    26: { name: "all motorcycles bought", desc: "bought all vehicles of this category.", type: 3, value: 46, value2: 1, },
+    27: { name: "all classics sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 34, value2: 2, },
+    28: { name: "all sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 56, value2: 3, },
+    29: { name: "all super cars bought", desc: "bought all vehicles of this category.", type: 3, value: 39, value2: 4, },
     30: { name: "all muscles cars bought", desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 5, },
     31: { name: "all compacts cars bought", desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 6, },
     32: { name: "all sedans cars bought", desc: "bought all vehicles of this category.", type: 3, value: 0, value2: 7, },
@@ -303,4 +304,24 @@ var tutorialtexts = {
     4: { title: "Weapons", text: "Weapons are used to do more damage and get 'manually' an amount of <div class='money'></div>,<br /> there is also a random quality system applied to the weapons that can raise or lower the power of the weapon.", },
     5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and <div class='level'></div>,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
     6: { title: "Vehicles", text: "They are used to upgrades your cash or damage multiplier,<br /> to buy them you need Character Points (CP).", },
+};
+
+var textsENG = {
+    menus: ["Character", "Success", "Save & Stats", "Guide", "Chat", "Weapons", "Missions", "Vehicles"],
+    weapons: ["Price", "Modification", "Damage", "Buy this weapon", "Try to modify this weapon", "Use this weapon (normal)"],
+    missions: ["Buy", "Sell", "Level", "Value", "product" , "per level", "and currently", "/s"],
+    vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase", "IN YOUR GARAGE"],
+    infos: ["Weapon", "Damage", "A new character slot is available.", "Nothing to report at the moment.", "You have", "A player just killed you, he stole", "in your pockets !", "Level"],
+    character: ["Change character", "You are actually using the character number", "You must reach the level", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
+    guide: ["Tutorial", "Next", "Previous", "Close tutorial"],
+};
+
+var textsFRA = {
+    menus: ["Personnage", "Succès", "Sauvegarde & Stats", "Guide", "Chat", "Armes", "Missions", "Vehicules"],
+    weapons: ["Prix", "Modification", "Dégats", "Acheter cette arme", "Essayer de modifier cette arme", "Utiliser cette arme (normal)"],
+    missions: ["Acheter", "Vendre", "Niveau", "Valeur", "produit" , "par niveau", "et actuellement", "/s"],
+    vehicles: ["Prix", "ajoute", "au multiplicateur de", "cash", "dégats", "", "Acheter", "DANS VOTRE GARAGE"],
+    infos: ["Arme", "Dégats", "Un emplacement pour un autre personnage est disponible.", "Rien à signaler pour le moment.", "Vous avez", "Un joueur viens de vous tuer, il a volé ", "dans vos poches !", "Niveau"],
+    character: ["Changer de personnage", "Vous utilisez actuellement le personnage numéro", "Vous devez atteindre le niveau", "et obtenir", "pour passer à un autre personnage.", "Vous pouvez actuellement obtenir", "points de personnage (CP).", "Votre bonus actuel est de", "sur l'argent gagné."],
+    guide: ["Tutoriel", "Suivant", "Précédent", "Fermer le tutoriel"],
 };

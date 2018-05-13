@@ -104,6 +104,7 @@ function AddPrestige() {
 function ForcePrestige() {
 	p.rank = p.prestigeprice;
 	p.cash = p.prestigeprice2;
+	AddPrestige();
 }
 
 function getPrestigePrice() {
@@ -116,12 +117,6 @@ function getPrestigePrice() {
 		p.prestigeprice2 = 10000000;
 	}
 }
-
-function sauvegardeauto() {
-	save();
-}
-setTimeout(sauvegardeauto, 600000);
-
 
 function getRank(rankNBR) {
 	var Class = "";

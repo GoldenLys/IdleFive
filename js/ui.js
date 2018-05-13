@@ -100,12 +100,12 @@ var MissionList = function () {
 
 			"<font class='title " + colorTitle + "'>" + production.name + "</font><br><br>" +
 			"<font class='jaune'>" + texts.missions[2] + " " + owned + "</font><br><br>" +
-			"<font class='valeur2'>" + texts.missions[3] + ": <font class='money'></font><font class='valeur vert'>" + fix(cost, 2) + "</font></font><br>" +
+			"<font class='valeur2'>" + texts.missions[3] + ": <font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font><br>" +
 			"<p class='production-desc'>" + texts.missions[4] + " <font class='money'></font><font class='gris'>" + fix(p.bonuscash * production.value, 2) + "</font> " + texts.missions[5] + "<br>" + texts.missions[6] + " <font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[7] + "</p>" +
 			"<a href='#' class='btn btn-buy" + canBuy + " gauche' onClick='BuyM(" + i + ", 1);''>" + texts.missions[0] + "</a>" +
-			"<a href='#' class='btn btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>" + texts.missions[0] + " 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 3) + "</font></a>" +
+			"<a href='#' class='btn btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>" + texts.missions[0] + " 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 1) + "</font></a>" +
 			"<a href='#' class='btn btn-sell" + canSell + " droite' onClick='SellM(" + i + ", 1);'>" + texts.missions[1] + "</a>" +
-			"<a href='#' class='btn btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>" + texts.missions[1] + " 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10) / 8, 3) + "</font></a>" +
+			"<a href='#' class='btn btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>" + texts.missions[1] + " 10<br> <font class='buttonText'>$" + fix(GetMissionSPrice(i, 10), 1) + "</font></a>" +
 			"<br /><br /><div class='bar'></div>"
 		);
 		missions.append(MissionDIV);

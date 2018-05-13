@@ -1,4 +1,4 @@
-var version = "v2.8.4";
+var version = "v2.8.5";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -269,7 +269,8 @@ function BuyM(id, qty) {
 }
 
 function SellM(id, qty) {
-	var price = GetMissionPrice(id, qty) / 8;
+	var price = GetMissionSPrice(id, qty);
+	console.log(price);
 	if (p.productions[id] == null) p.productions[id] = 0;
 	p.cash += price;
 	if (p.productions[id] >= qty) {
@@ -285,6 +286,25 @@ function SellM(id, qty) {
 var GetMissionPrice = function (id, qty) {
 	var owned = 0;
 	if (p.productions[id] != null) owned = p.productions[id];
-	var price = (qty * productions[id].price) * Math.pow(productions[id].pricemodifier, owned);
+	var total = 0;
+	CurPrice = (productions[id].price * Math.pow(productions[id].pricemodifier, owned));
+	for (var value = 0; value < qty; value++) {
+		Newprice = (productions[id].price * Math.pow(productions[id].pricemodifier, owned + value));
+		total += Newprice;
+	}
+	price = total;
+	return price;
+};
+
+var GetMissionSPrice = function (id, qty) {
+	var owned = 0;
+	if (p.productions[id] != null) owned = p.productions[id];
+	var total = 0;
+	CurPrice = (productions[id].price * Math.pow(productions[id].pricemodifier, owned));
+	for (var value = 0; value < qty; value++) {
+		Newprice = (productions[id].price * Math.pow(productions[id].pricemodifier, owned - value));
+		total += Newprice;
+	}
+	price = total / 2;
 	return price;
 };

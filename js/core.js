@@ -187,13 +187,9 @@ var buyV = function (id) {
 
 function genGun(id) {
 	quality = random(1, 500);
-	if (quality >= 1) { setRarity("Very used", "gris", 0.25); }
-	if (quality >= 50) { setRarity("Used", "gris", 0.5); }
+	if (quality >= 1) { setRarity("Very used", "gris", 0.5); }
+	if (quality >= 50) { setRarity("Used", "gris", 0.75); }
 	if (quality >= 150) { setRarity("Normal", "normal", 1); }
-	if (quality >= 250) { setRarity("Good condition", "rare", 1.25); }
-	if (quality >= 320) { setRarity("Very good state", "or", 1.5); }
-	if (quality >= 420) { setRarity("Factory new", "rougeb", 1.75); }
-	if (quality >= 495) { setRarity("Military grade", "mythic", 2); }
 }
 
 function genGun2(id) {

@@ -44,11 +44,21 @@ $(document).ready(function () {
 
 
 function idleFiveLoop() {
-	if (p.cash !== p.cash) {
-		p.cash = 0;
-	}
+	if (p.cash !== p.cash) { p.cash = 0; }
 	p.playTime++;
-	UpdateStats();
+	for (var mission = 0; mission < 14; mission++) { if (p.productions[mission] == null) { p.productions[mission] = 0; } }
+	for (var gun = 0; gun < 37; gun++) { if (p.GBought[gun] == null) { p.GBought[gun] = 0; } }
+	for (var vehicle = 0; vehicle < 182; vehicle++) { if (p.VBought[vehicle] == null) { p.VBought[vehicle] = 0; } }
+	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } }
+	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
+	var rank = 0;
+	for (var id = 0; id < 12; id++) { if (p.productions[id] == null) { p.productions[id] = 0; } rank += p.productions[id]; }
+	p.rank = rank;
+	if (p.fl == 1) { p.fl = 0; showTutorialDIV(); }
+	getPrestigePrice();
+	getCashPS();
+	UpdateUI();
+	save();
 }
 
 function getCashPS() {
@@ -64,22 +74,6 @@ function getCashPS() {
 function ClickWeapon() {
 	p.cash += (p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints + p.VehMult);
 	UpdateUI();
-}
-
-function UpdateStats() {
-	for (var mission = 0; mission < 14; mission++) { if (p.productions[mission] == null) { p.productions[mission] = 0; } }
-	for (var gun = 0; gun < 37; gun++) { if (p.GBought[gun] == null) { p.GBought[gun] = 0; } }
-	for (var vehicle = 0; vehicle < 182; vehicle++) { if (p.VBought[vehicle] == null) { p.VBought[vehicle] = 0; } }
-	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } }
-	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
-	var rank = 0;
-	for (var id = 0; id < 12; id++) { if (p.productions[id] == null) { p.productions[id] = 0; } rank += p.productions[id]; }
-	p.rank = rank;
-	if (p.fl == 1) { p.fl = 0; showTutorialDIV(); }
-	getPrestigePrice();
-	getCashPS();
-	UpdateUI();
-	save();
 }
 
 function AddPrestige() {
@@ -100,7 +94,7 @@ function AddPrestige() {
 				p.cashps = 0;
 				p.productions = [];
 				p.prestige++;
-				UpdateStats();
+				UpdateUI();
 				hideMenus();
 			}
 		}

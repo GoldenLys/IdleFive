@@ -98,7 +98,7 @@ var load = function(){
 	}
 
 	var date = new Date();
-	UpdateStats();
+	UpdateUI();
 };
 
 var exportSave = function(){

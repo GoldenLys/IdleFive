@@ -224,7 +224,7 @@ function SuccessList() {
 		var succes = success[i];
 		if (p.succes[i] > 0) { succeslevel++; }
 
-		if (succes.type == 0) { p.succes[0] = 1; }
+		if (succes.type == 0) { if (p.tutorial==6) { p.succes[0] = 1; } }
 		if (succes.type == 1) { if (p.cash >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 2) { if (p.productions[succes.value2] >= 100) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 3) { if (p.VBought[succes.value2] == succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }

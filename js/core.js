@@ -1,4 +1,4 @@
-var version = "v2.8.2";
+var version = "v2.8.3";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -34,10 +34,10 @@ var p = {
 
 $(document).ready(function () {
 	if (localStorage.getItem("IdleFive") != null) { load(); }
-	setInterval(idleFiveLoop(), 1000);
-	setInterval(checkalerts(1, 30), 60000);
-	setInterval(clearalerts(), 10000);
-	console.log(p.lang);
+	setInterval(function () { idleFiveLoop(); }, 1000);
+	setInterval(function () { checkalerts(1, 30); }, 60000);
+	setInterval(function () { clearalerts(); }, 10000);
+	if (p.lang != "English") { ChangeLang(); }
 	save();
 	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
 });
@@ -124,36 +124,36 @@ setTimeout(sauvegardeauto, 600000);
 
 
 function getRank(rankNBR) {
-	var rankText = "";
-	if (rankNBR == 0) { rankText = "Bronze"; }
-	if (rankNBR >= 1) { rankText = "Bronze"; }
-	if (rankNBR >= 5) { rankText = "Bronze"; }
-	if (rankNBR >= 15) { rankText = "Bronze"; }
-	if (rankNBR >= 30) { rankText = "Bronze"; }
-	if (rankNBR >= 50) { rankText = "Bronze"; }
-	if (rankNBR >= 100) { rankText = "Silver"; }
-	if (rankNBR >= 200) { rankText = "Silver"; }
-	if (rankNBR >= 300) { rankText = "Silver"; }
-	if (rankNBR >= 400) { rankText = "Silver"; }
-	if (rankNBR >= 500) { rankText = "Silver"; }
-	if (rankNBR >= 600) { rankText = "Silver"; }
-	if (rankNBR >= 700) { rankText = "Gold"; }
-	if (rankNBR >= 800) { rankText = "Gold"; }
-	if (rankNBR >= 900) { rankText = "Gold"; }
-	if (rankNBR >= 1000) { rankText = "Gold"; }
-	if (rankNBR >= 1100) { rankText = "Gold"; }
-	if (rankNBR >= 1200) { rankText = "Gold"; }
-	if (rankNBR >= 1300) { rankText = "Platinum"; }
-	if (rankNBR >= 2600) { rankText = "Platinum"; }
-	if (rankNBR >= 3900) { rankText = "Platinum"; }
-	if (rankNBR >= 5200) { rankText = "Platinum"; }
-	if (rankNBR >= 6500) { rankText = "Platinum"; }
-	if (rankNBR >= 7800) { rankText = "Platinum"; }
-	if (rankNBR >= 9100) { rankText = "Platinum"; }
-	if (rankNBR >= 10400) { rankText = "Platinum"; }
-	if (rankNBR >= 11700) { rankText = "Platinum"; }
-	if (rankNBR >= 13000) { rankText = "Platinum"; }
-	result2 = "<font class='" + rankText + "'> " + rankNBR + "</font>";
+	var Class = "";
+	if (rankNBR == 0) { Class = "Bronze"; }
+	if (rankNBR >= 1) { Class = "Bronze"; }
+	if (rankNBR >= 5) { Class = "Bronze"; }
+	if (rankNBR >= 15) { Class = "Bronze"; }
+	if (rankNBR >= 30) { Class = "Bronze"; }
+	if (rankNBR >= 50) { Class = "Bronze"; }
+	if (rankNBR >= 100) { Class = "Silver"; }
+	if (rankNBR >= 200) { Class = "Silver"; }
+	if (rankNBR >= 300) { Class = "Silver"; }
+	if (rankNBR >= 400) { Class = "Silver"; }
+	if (rankNBR >= 500) { Class = "Silver"; }
+	if (rankNBR >= 600) { Class = "Silver"; }
+	if (rankNBR >= 700) { Class = "Gold"; }
+	if (rankNBR >= 800) { Class = "Gold"; }
+	if (rankNBR >= 900) { Class = "Gold"; }
+	if (rankNBR >= 1000) { Class = "Gold"; }
+	if (rankNBR >= 1100) { Class = "Gold"; }
+	if (rankNBR >= 1200) { Class = "Gold"; }
+	if (rankNBR >= 1300) { Class = "Platinum"; }
+	if (rankNBR >= 2600) { Class = "Platinum"; }
+	if (rankNBR >= 3900) { Class = "Platinum"; }
+	if (rankNBR >= 5200) { Class = "Platinum"; }
+	if (rankNBR >= 6500) { Class = "Platinum"; }
+	if (rankNBR >= 7800) { Class = "Platinum"; }
+	if (rankNBR >= 9100) { Class = "Platinum"; }
+	if (rankNBR >= 10400) { Class = "Platinum"; }
+	if (rankNBR >= 11700) { Class = "Platinum"; }
+	if (rankNBR >= 13000) { Class = "Platinum"; }
+	result2 = "<font class='" + Class + "'> " + rankNBR + "</font>";
 	return result2;
 }
 
@@ -268,6 +268,7 @@ function BuyM(id, qty) {
 			p.productions[id] += qty;
 			p.rank += qty;
 		}
+		getCashPS();
 		UpdateUI();
 	}
 }
@@ -282,6 +283,7 @@ function SellM(id, qty) {
 	} else {
 		p.productions[id] = null;
 	}
+	getCashPS();
 	UpdateUI();
 }
 

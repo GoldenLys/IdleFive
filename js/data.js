@@ -314,6 +314,10 @@ var textsENG = {
     infos: ["Weapon", "Damage", "A new character slot is available.", "Nothing to report at the moment.", "You have", "A player just killed you, he stole", "in your pockets !", "Level"],
     character: ["Change character", "You are actually using the character number", "You must reach the level", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
     guide: ["Tutorial", "Next", "Previous", "Close tutorial"],
+    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Trown Weapons", "Special Weapons"],
+    vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles", "Compacts", "Sedans", "Off-Road", "Coupes", "Emergency", "Boats", "SUV", "Helicopters", "Military", "Commercials"],
+    success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
+    stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version"],
 };
 
 var textsFRA = {
@@ -324,4 +328,8 @@ var textsFRA = {
     infos: ["Arme", "Dégats", "Un emplacement pour un autre personnage est disponible.", "Rien à signaler pour le moment.", "Vous avez", "Un joueur viens de vous tuer, il a volé ", "dans vos poches !", "Niveau"],
     character: ["Changer de personnage", "Vous utilisez actuellement le personnage numéro", "Vous devez atteindre le niveau", "et obtenir", "pour passer à un autre personnage.", "Vous pouvez actuellement obtenir", "points de personnage (CP).", "Votre bonus actuel est de", "sur l'argent gagné."],
     guide: ["Tutoriel", "Suivant", "Précédent", "Fermer le tutoriel"],
+    weapontype: ["", "Corps à corps", "Pistolets", "Fusils à Pompes", "Mitraillettes", "Fusils d'Assaut", "Fusils de Précision", "Armes Lourdes", "Explosifs & Autres", "Armes Spéciales"],
+    vehicletype: ["", "Vélos", "Motos", "Sportives Classiques", "Sportives", "Supersportives", "Grosses Cylindrées", "Compactes", "Berlines", "Tout-Terrain", "Coupés", "Véhicules de secours", "Bateaux", "SUV", "Hélicoptères", "Véhicules Militaires", "Véhicules Industriels"],
+    success: ["succès obtenus.", "Joueur", "Argent", "Missions", "Vehicules", "Fermer"],
+    stats: ["Sauvegarde", "Statistiques", "Exporter", "Importer", "Nouveau Compte", "Fermer", "dans vos poches.", "par seconde.", "par clic.", "acheté(e)s", "Vous avez débuter le", "et joué pendant", "Version actuelle"],
 };

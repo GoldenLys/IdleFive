@@ -36,7 +36,7 @@ $(document).ready(function () {
 	if (localStorage.getItem("IdleFive") != null) { load(); }
 	setInterval(function () { idleFiveLoop(); }, 1000);
 	setInterval(function () { checkalerts(1, 30); }, 60000);
-	setInterval(function () { clearalerts(); }, 10000);
+	setInterval(function () { clearalerts(); }, 20000);
 	if (p.lang != "English") { ChangeLang(); }
 	save();
 	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
@@ -202,12 +202,12 @@ function genGun(id) {
 }
 
 function genGun2(id) {
-	quality = random(1, 200);
+	quality = random(1, 204);
 	if (quality >= 1) { setRarity("Normal", "normal", 1); }
 	if (quality >= 80) { setRarity("Good condition", "rare", 1.25); }
 	if (quality >= 150) { setRarity("Very good state", "or", 1.5); }
 	if (quality >= 180) { setRarity("Factory new", "rougeb", 1.75); }
-	if (quality >= 195) { setRarity("Military grade", "mythic", 2); }
+	if (quality >= 190) { setRarity("Military grade", "mythic", 2); }
 	if (quality >= 200) { setRarity("Special forces", "tactical", 3); }
 }
 

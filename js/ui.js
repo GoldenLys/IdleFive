@@ -292,3 +292,9 @@ function ChangeLang() {
 	}
 	UpdateUI();
 }
+
+function showTutorialDIV() {
+	hideMenus(); 
+	$("#menu-4").show();
+	showTutorial(0);
+}

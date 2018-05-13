@@ -1,4 +1,4 @@
-var version = "v2.8";
+var version = "v2.8.2";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -33,26 +33,23 @@ var p = {
 
 
 $(document).ready(function () {
-	if (localStorage.getItem("IdleFive") != null) {
-		load();
-	}
-	setInterval(function () {
-		if (p.cash !== p.cash) {
-			p.cash = 0;
-		}
-		p.playTime++;
-		UpdateStats();
-	}, 1000);
-	setInterval(function () {
-		checkalerts(1, 30);
-	}, 60000);
-	setInterval(function () {
-		clearalerts();
-	}, 10000);
+	if (localStorage.getItem("IdleFive") != null) { load(); }
+	setInterval(idleFiveLoop(), 1000);
+	setInterval(checkalerts(1, 30), 60000);
+	setInterval(clearalerts(), 10000);
 	console.log(p.lang);
 	save();
 	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
 });
+
+
+function idleFiveLoop() {
+	if (p.cash !== p.cash) {
+		p.cash = 0;
+	}
+	p.playTime++;
+	UpdateStats();
+}
 
 function getCashPS() {
 	p.cashps = 0;

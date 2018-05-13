@@ -92,7 +92,7 @@ body {
 	color: rgb(255, 255, 255); 
 	border-radius: 15px;
 	font-size: 15px;
-	font-family: Rajdhani;
+	font-family: Ubuntu;
 	text-align: center;
     text-transform: capitalize;
     padding: 1vh 25px 1vh 25px;
@@ -104,7 +104,7 @@ body {
 .success2 {
     background: rgba(0, 0, 0, 0.50);
     border-radius: 0.4vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     margin: 0.3% 0.3% 0% 0.3%;
     padding: 0% 0% 2% 0%;
     overflow: hidden;
@@ -115,7 +115,7 @@ body {
     border-radius: 0.4vh;
     border: 0.1vh solid #af1919;
     color: #ffffff;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     width: 40%;
     margin-left: 30%;
     padding-bottom: 0.5%;
@@ -131,7 +131,7 @@ td, th {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 0.4vh;
     color: #ffffff;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     width: 100%;
     padding-bottom: 1%;
     padding-top: 1%;
@@ -145,7 +145,7 @@ td, th {
     color: #ffffff;
     position: absolute;
     bottom: 0%;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     width: 99%;
     padding-bottom: 1%;
     padding-top: 1%;
@@ -173,7 +173,7 @@ td, th {
 
 .option-text {
     text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     margin: 5px;
 	display: inline;
     color: #000;
@@ -181,7 +181,7 @@ td, th {
 
 .cashules {
     text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 	display: inline;
     color: #000;
 }
@@ -268,7 +268,7 @@ td, th {
     padding: 2vh 3vh;
     border-radius: 0.4vh;
     background-color: rgb(150, 0, 0);
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .btn-upgrade:hover {
@@ -289,7 +289,7 @@ td, th {
     width: 44.5%;
     margin: 0 2.25vh 0 2.25vh;
     border-radius: 0.4vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .btn-weapon:hover {
@@ -305,7 +305,7 @@ td, th {
     width: 44.5%;
     margin: 0 2.25vh 0 2.25vh;
     border-radius: 0.4vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .btn-weapon2:hover {
@@ -419,13 +419,13 @@ td, th {
 
 .game-text {
     text-align: center;
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #338409;
 }
 
 .production-title {
     text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     font-size: 2vh;
     color: #338409;
     text-shadow: 0px 0px 0.7px #338409;
@@ -435,13 +435,13 @@ td, th {
 }
 
 .texte {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #FFF;
 	display: inline;
 }
 
 .copyright {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #26741b;
 	bottom: 0%;
     left: 40%;
@@ -449,7 +449,7 @@ td, th {
 }
 
 .btexte {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #FFF;
 	display: contents;
 	margin-left: -20%;
@@ -458,19 +458,19 @@ td, th {
 
 
 .texteg {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #338409;
 	display: inline;
 }
 
 .stats {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #FFF;
     margin-bottom: 0.5%;
 }
 
 .statsb {
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     color: #000;
 	display: inline;
 }
@@ -478,7 +478,7 @@ td, th {
 
 .desc {
     text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     display: inline;
     margin: 0px;
     color: #FFF;
@@ -486,7 +486,7 @@ td, th {
 
 .production-desc {
     text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     margin: 0px;
     color: #FFF;
 }
@@ -494,7 +494,7 @@ td, th {
 
 .valeur {
 	text-align: center;
-	font-family: Rajdhani;
+	font-family: Ubuntu;
     display: inline;
 	margin: 0px;
     color: #FFF;
@@ -502,7 +502,7 @@ td, th {
 
 .valeur2 {
 	text-align: center;
-	font-family: Rajdhani;
+	font-family: Ubuntu;
 	margin: 0px;
     color: #FFF;
 }
@@ -692,7 +692,7 @@ td, th {
 
 .copytext {
 	text-align: center;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     color: #FFF;
 }
 
@@ -704,7 +704,7 @@ td, th {
     color: rgb(255, 255, 255);
     border-radius: 15px;
     font-size: 15px;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     text-align: center;
     padding: 1vh 25px 1vh 25px;
     overflow: hidden;
@@ -847,7 +847,7 @@ input:checked + .slider:before {
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
     font-size: 0.7vw;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     padding: 1.5%;
     width: 24%;
 }
@@ -876,7 +876,7 @@ input:checked + .slider:before {
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
     font-size: 1.5vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     padding: 1.5%;
     width: 32.5%;
 }
@@ -905,7 +905,7 @@ input:checked + .slider:before {
     margin: 0.1%;
     border-width: 0px 0px 0.1vh 0px;
     font-size: 1.5vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     padding: 1.5%;
     width: 24.3%;
 }
@@ -1003,7 +1003,7 @@ input:checked + .slider:before {
     cursor: url(http://aizen.hol.es/IdleFive/images/hand.cur), pointer;
     text-shadow: 0 0 3vh rgb(0, 0, 0);
     font-size: 2vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     padding: 1.5vh;
 }
 
@@ -1034,19 +1034,19 @@ input:checked + .slider:before {
 }
 
 .type1 {
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .buttonText {
     font-size: 1.75vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .SuccessText {
     font-weight: bold;
     color: #FF0;
     font-size: 2.75vh;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
 }
 
 .Bronze {
@@ -1134,7 +1134,7 @@ input:checked + .slider:before {
 
 .arme-div {
     color: #ffffff;
-    font-family: Rajdhani;
+    font-family: Ubuntu;
     overflow: hidden;
 }
 

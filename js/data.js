@@ -325,7 +325,7 @@ var textsFRA = {
     weapons: ["Prix", "Modification", "Dégats", "Acheter cette arme", "Essayer de modifier cette arme", "Utiliser cette arme (normal)"],
     missions: ["Acheter", "Vendre", "Niveau", "Valeur", "produit" , "par niveau", "et actuellement", "/s"],
     vehicles: ["Prix", "ajoute", "au multiplicateur de", "cash", "dégats", "", "Acheter", "DANS VOTRE GARAGE"],
-    infos: ["Arme", "Dégats", "Un emplacement pour un autre personnage est disponible.", "Rien à signaler pour le moment.", "Vous avez", "Un joueur viens de vous tuer, il a volé ", "dans vos poches !", "Niveau"],
+    infos: ["Arme", "Dégats", "Un emplacement pour un nouveau personnage est disponible.", "Rien à signaler pour le moment.", "Vous avez", "Un joueur viens de vous tuer, il a volé ", "dans vos poches !", "Niveau"],
     character: ["Changer de personnage", "Vous utilisez actuellement le personnage numéro", "Vous devez atteindre le niveau", "et obtenir", "pour passer à un autre personnage.", "Vous pouvez actuellement obtenir", "points de personnage (CP).", "Votre bonus actuel est de", "sur l'argent gagné."],
     guide: ["Tutoriel", "Suivant", "Précédent", "Fermer le tutoriel"],
     weapontype: ["", "Corps à corps", "Pistolets", "Fusils à Pompes", "Mitraillettes", "Fusils d'Assaut", "Fusils de Précision", "Armes Lourdes", "Explosifs & Autres", "Armes Spéciales"],

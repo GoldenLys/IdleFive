@@ -39,7 +39,7 @@ $(document).ready(function () {
 	setInterval(function () { idleFiveLoop(); }, 1000);
 	setInterval(function () { checkalerts(1, 30); }, 60000);
 	setInterval(function () { clearalerts(); }, 20000);
-	if (p.lang != "English") { ChangeLang(); }
+	if (p.lang != "English") { p.lang="English"; ChangeLang(); }
 	save();
 	UpdateTexts();
 	ClickEvents();

@@ -30,7 +30,7 @@ var p = {
 	tutorial: 0,
 	lang: "English",
 	isInMenu: 0,
-	BackgroundsToggle: 1,
+	BackgroundsToggle: 0,
 };
 
 

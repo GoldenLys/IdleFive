@@ -1,4 +1,4 @@
-var version = "v2.8.5";
+var version = "v2.8.6";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -29,6 +29,7 @@ var p = {
 	playTime: 0,
 	tutorial: 0,
 	lang: "English",
+	isInMenu: 0,
 };
 
 
@@ -39,6 +40,8 @@ $(document).ready(function () {
 	setInterval(function () { clearalerts(); }, 20000);
 	if (p.lang != "English") { ChangeLang(); }
 	save();
+	UpdateTexts();
+	ClickEvents();
 	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
 });
 
@@ -46,6 +49,7 @@ $(document).ready(function () {
 function idleFiveLoop() {
 	if (p.cash !== p.cash) { p.cash = 0; }
 	p.playTime++;
+	if (p.prestige > 1) p.bonuscash = 1 + (p.prestige * 0.15);
 	for (var mission = 0; mission < 14; mission++) { if (p.productions[mission] == null) { p.productions[mission] = 0; } }
 	for (var gun = 0; gun < 37; gun++) { if (p.GBought[gun] == null) { p.GBought[gun] = 0; } }
 	for (var vehicle = 0; vehicle < 182; vehicle++) { if (p.VBought[vehicle] == null) { p.VBought[vehicle] = 0; } }
@@ -65,8 +69,8 @@ function getCashPS() {
 	p.cashps = 0;
 	for (var id = 0; id < 14; id++) {
 		if (p.productions[id] > 0) {
-			p.cashps += productions[id].value * p.productions[id];
-			p.cash += p.cashps * (p.bonuscash + p.VehMult);
+			p.cashps += (productions[id].value * p.productions[id]) * (p.bonuscash + p.bonuscash + p.VehMult);
+			p.cash += p.cashps;
 		}
 	}
 }
@@ -81,7 +85,7 @@ function AddPrestige() {
 		if (p.cash >= p.prestigeprice2) {
 			var r = confirm("Would you like to reset your character to get some bonuses ?");
 			if (r == true) {
-				p.points = Math.trunc(p.rank / 400);
+				p.points = Math.trunc(p.rank / 200);
 				p.ArmePower = 0.1;
 				p.WeaponID = 0;
 				p.GunMult = 1;
@@ -95,6 +99,7 @@ function AddPrestige() {
 				p.productions = [];
 				p.prestige++;
 				UpdateUI();
+				SuccessCount();
 				hideMenus();
 			}
 		}
@@ -108,10 +113,9 @@ function ForcePrestige() {
 }
 
 function getPrestigePrice() {
-	p.prestigeprice = p.prestige * 100 + 300;
+	p.prestigeprice = p.prestige * 50 + 400;
 	p.bonuscash = 1;
-	if (p.prestige > 1) p.bonuscash = 1 + (p.prestige * 0.15);
-	p.prestigeprice2 = (p.prestige * 1e7) * p.prestige;
+	p.prestigeprice2 = (p.prestige * 1e7) + 1e7;
 	if (p.prestige == 0) {
 		p.prestigeprice = 400;
 		p.prestigeprice2 = 10000000;
@@ -120,34 +124,11 @@ function getPrestigePrice() {
 
 function getRank(rankNBR) {
 	var Class = "";
-	if (rankNBR == 0) { Class = "Bronze"; }
-	if (rankNBR >= 1) { Class = "Bronze"; }
-	if (rankNBR >= 5) { Class = "Bronze"; }
-	if (rankNBR >= 15) { Class = "Bronze"; }
-	if (rankNBR >= 30) { Class = "Bronze"; }
-	if (rankNBR >= 50) { Class = "Bronze"; }
+	if (rankNBR >= 0) { Class = "Bronze"; }
 	if (rankNBR >= 100) { Class = "Silver"; }
-	if (rankNBR >= 200) { Class = "Silver"; }
-	if (rankNBR >= 300) { Class = "Silver"; }
-	if (rankNBR >= 400) { Class = "Silver"; }
-	if (rankNBR >= 500) { Class = "Silver"; }
 	if (rankNBR >= 600) { Class = "Silver"; }
 	if (rankNBR >= 700) { Class = "Gold"; }
-	if (rankNBR >= 800) { Class = "Gold"; }
-	if (rankNBR >= 900) { Class = "Gold"; }
-	if (rankNBR >= 1000) { Class = "Gold"; }
-	if (rankNBR >= 1100) { Class = "Gold"; }
-	if (rankNBR >= 1200) { Class = "Gold"; }
-	if (rankNBR >= 1300) { Class = "Platinum"; }
-	if (rankNBR >= 2600) { Class = "Platinum"; }
-	if (rankNBR >= 3900) { Class = "Platinum"; }
-	if (rankNBR >= 5200) { Class = "Platinum"; }
-	if (rankNBR >= 6500) { Class = "Platinum"; }
-	if (rankNBR >= 7800) { Class = "Platinum"; }
-	if (rankNBR >= 9100) { Class = "Platinum"; }
-	if (rankNBR >= 10400) { Class = "Platinum"; }
-	if (rankNBR >= 11700) { Class = "Platinum"; }
-	if (rankNBR >= 13000) { Class = "Platinum"; }
+	if (rankNBR >= 1400) { Class = "Platinum"; }
 	result2 = "<font class='" + Class + "'> " + rankNBR + "</font>";
 	return result2;
 }
@@ -182,6 +163,7 @@ var buyV = function (id) {
 		if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
 		if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
 	}
+	SuccessCount();
 	UpdateUI();
 };
 
@@ -245,6 +227,7 @@ function buyG(id) {
 			genGun2(id);
 		}
 	}
+	SuccessCount();
 	UpdateUI();
 }
 
@@ -259,6 +242,7 @@ function BuyM(id, qty) {
 			p.productions[id] += qty;
 			p.rank += qty;
 		}
+		SuccessCount();
 		getCashPS();
 		UpdateUI();
 	}
@@ -275,6 +259,7 @@ function SellM(id, qty) {
 	} else {
 		p.productions[id] = null;
 	}
+	SuccessCount();
 	getCashPS();
 	UpdateUI();
 }

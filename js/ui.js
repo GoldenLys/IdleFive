@@ -1,10 +1,10 @@
 ﻿var UpdateUI = function () {
 	ClicCashText = fix((p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints), 2);
-	CashPSText = fix(p.cashps * p.bonuscash, 2);
+	CashPSText = fix(p.cashps, 2);
 	BonusCashText = fix(p.bonuscash, 2);
 	CashText = fix(p.cash, 2);
 	prestigeText = "";
-	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 400); }
+	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = "<br>" + texts.infos[2]; } }
 	points = "";
 	if (p.points > 0) { points = texts.infos[4] + " <font class='jaune'> " + p.points + " CP</font>."; }
@@ -13,6 +13,32 @@
 	$("#quality").html(texts.infos[0] + " | <strong>" + p.GunPower + p.Arme + "</strong> - <strong>" + p.Rarity + "<br><font class='blanc'></strong>" + texts.infos[1] + " |<strong> </font>" + ClicCashText + "</strong></font><br>" + points + prestigeText);
 	$("#rank").html(texts.infos[7] + " | <strong>" + getRank(p.rank) + "</strong><div class='level'></div>");
 	$('#imagecash').css("background-image", "url(http://aizen.hol.es/IdleFive/images/A/" + p.WeaponID + ".png)");
+	//CHARACTER STATS
+	$("#prestigecount").html(p.prestige);
+	$("#prestigepricecount").html(getRank(p.prestigeprice));
+	$("#prestigepricecount2").html("<font class='money'></font>" + fix(p.prestigeprice2, 2));
+	$("#character-text4").html(texts.character[5] + "<font class='jaune'> " + PrestigePoints + " </font> " + texts.character[6]);
+	$("#character-text5").html(texts.character[7] + "<font class='jaune'> " + BonusCashText + "</font> " + texts.character[8]);
+	//STATS
+	$("#cashcount").html("<font class='money'></font><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
+	$("#cashpscount").html("<font class='money'></font><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
+	$("#addcashcount").html("<font class='money'></font><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
+	$("#buyedV1").html(texts.vehicletype[1] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[0] + "/7</font>");
+	$("#buyedV2").html(texts.vehicletype[2] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[1] + "/46</font>");
+	$("#buyedV3").html(texts.vehicletype[3] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[2] + "/34</font>");
+	$("#buyedV4").html(texts.vehicletype[4] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[3] + "/56</font>");
+	$("#buyedV5").html(texts.vehicletype[5] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[4] + "/39</font>");
+	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br>" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
+	$("#version").html(texts.stats[12] + " " + version);
+	document.title = "idleFive " + version;
+	showTutorial(p.tutorial);
+	WeaponList();
+	MissionList();
+	VehicleList();
+	SuccessList();
+};
+
+function UpdateTexts() {
 	//MENUS TEXTS
 	$("#menu1").html(texts.menus[0] + "   ");
 	$("#menu2").html(texts.menus[1] + "   ");
@@ -21,17 +47,12 @@
 	$("#t1").html(texts.menus[5] + "   ");
 	$("#t2").html(texts.menus[6] + "   ");
 	$("#t3").html(texts.menus[7] + "   ");
-	//CHARACTER TEXTS
-	$("#prestigecount").html(p.prestige);
-	$("#prestigepricecount").html(getRank(p.prestigeprice));
-	$("#prestigepricecount2").html("<font class='money'></font>" + fix(p.prestigeprice2, 2));
+	//PRESTIGE TEXTS
 	$("#character-title").html(texts.menus[0]);
 	$("#character-number").html(texts.character[1]);
 	$("#character-text1").html(texts.character[2]);
 	$("#character-text2").html(texts.character[3]);
 	$("#character-text3").html(texts.character[4]);
-	$("#character-text4").html(texts.character[5] + "<font class='jaune'> " + PrestigePoints + " </font> " + texts.character[6]);
-	$("#character-text5").html(texts.character[7] + "<font class='jaune'> " + BonusCashText + "</font> " + texts.character[8]);
 	$("#btnPrestige").val(texts.character[0]);
 	//GUIDE TEXTS
 	$("#tuto-next").html(texts.guide[1]);
@@ -54,24 +75,8 @@
 	$("#Recommencer").val(texts.stats[4]);
 	$("#CloseStats").html(texts.stats[5]);
 	$("#statistics").html(texts.stats[1]);
-	$("#cashcount").html("<font class='money'></font><font class='desc vert'>" + CashText + "</font> "+ texts.stats[6]);
-	$("#cashpscount").html("<font class='money'></font><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
-	$("#addcashcount").html("<font class='money'></font><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
-	$("#buyedV1").html(texts.vehicletype[1] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[0] + "/7</font>");
-	$("#buyedV2").html(texts.vehicletype[2] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[1] + "/46</font>");
-	$("#buyedV3").html(texts.vehicletype[3] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[2] + "/34</font>");
-	$("#buyedV4").html(texts.vehicletype[4] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[3] + "/56</font>");
-	$("#buyedV5").html(texts.vehicletype[5] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[4] + "/39</font>");
-	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br>" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
-	$("#version").html(texts.stats[12] + " " + version);
-	document.title = "idleFive " + version;
-	showTutorial(p.tutorial);
-	ClickEvents();
-	WeaponList();
-	MissionList();
-	VehicleList();
-	SuccessList();
-};
+
+}
 
 //GENERATE MISSIONS TAB
 
@@ -213,24 +218,33 @@ function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide();
 
 function ClickEvents() {
 	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs(); $("#tab" + id).show(); $("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-" + id + ".jpg"); $("#t" + id).addClass("active"); });
-	$("#menu").on("click", "button", function () { var id = $(this).data('id'); hideMenus(); $("#menu-" + id).show(); });
+	$("#menu").on("click", "button", function () {
+		var id = $(this).data('id'); if (p.isInMenu == id) { p.isInMenu = 0; hideMenus(); } else { hideMenus(); p.isInMenu = id; $("#menu-" + id).show(); }
+	});
 }
 
-function SuccessList() {
-	for (var id = 0; id < 4; id++) { $('#Stab' + id).html(""); }
+function SuccessCount() {
 	var succeslevel = 0;
 
 	for (var i in success) {
 		var succes = success[i];
 		if (p.succes[i] > 0) { succeslevel++; }
 
-		if (succes.type == 0) { if (p.tutorial==6) { p.succes[0] = 1; } }
+		if (succes.type == 0) { if (p.tutorial == 6) { p.succes[0] = 1; } }
 		if (succes.type == 1) { if (p.cash >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 2) { if (p.productions[succes.value2] >= 100) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 3) { if (p.VBought[succes.value2] == succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 4) { if (p.rank >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 5) { if (p.prestige >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
+	}
+	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/54 " + texts.success[0]);
+ }
 
+function SuccessList() {
+	for (var id = 0; id < 4; id++) { $('#Stab' + id).html(""); }
+
+	for (var i in success) {
+		var succes = success[i];
 		var view = p.succes[i] > 0 ? '' : ' style="display:none;"';
 		var succesDIV = $(
 			"<div class='garage-div' " + view + " >" +
@@ -244,7 +258,6 @@ function SuccessList() {
 		if (succes.type == 4) { $('#Stab0').append(succesDIV); }
 		if (succes.type == 5) { $('#Stab0').append(succesDIV); }
 	}
-	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/54 " + texts.success[0]);
 }
 
 function showTutorial(id) {
@@ -307,7 +320,9 @@ function ChangeLang() {
 		texts = textsENG;
 		p.lang = "English";
 		$("#lang").css("background-image", "url('http://aizen.hol.es/IdleFive/images/eng.png')");
+
 	}
+	UpdateTexts();
 	UpdateUI();
 }
 

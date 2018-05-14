@@ -7,12 +7,12 @@ var productions = {
     5: { name: 'Weed Farm', price: 35000, pricemodifier: 1.15, value: 50, },
     6: { name: 'Counterfeit Cash', price: 50000, pricemodifier: 1.15, value: 100, },
     7: { name: 'Meth', price: 85000, pricemodifier: 1.15, value: 250, },
-    8: { name: 'Cocaine', price: 150000, pricemodifier: 1.10, value: 1000, },
-    9: { name: 'Hangar', price: 750000, pricemodifier: 1.10, value: 5000, },
-    10: { name: 'Bunker', price: 12500000, pricemodifier: 1.10, value: 10000, },
-    11: { name: 'Vehicle Trafficking', price: 25000000, pricemodifier: 1.10, value: 25000, },
-    12: { name: 'Union Depository Heist', price: 200000000, pricemodifier: 1.05, value: 200000, },
-    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.05, value: 15000000, },
+    8: { name: 'Cocaine', price: 150000, pricemodifier: 1.15, value: 1000, },
+    9: { name: 'Hangar', price: 750000, pricemodifier: 1.15, value: 5000, },
+    10: { name: 'Bunker', price: 12500000, pricemodifier: 1.15, value: 10000, },
+    11: { name: 'Vehicle Trafficking', price: 25000000, pricemodifier: 1.15, value: 25000, },
+    12: { name: 'Union Depository Heist', price: 200000000, pricemodifier: 1.15, value: 200000, },
+    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.15, value: 15000000, },
 };
 
 var weapons = {
@@ -43,15 +43,15 @@ var weapons = {
     25: { name: "Double Action Revolver", power: 20000000, price: 2500000000 },
     26: { name: "Heavy Revolver", power: 50000000, price: 5000000000 },
     27: { name: "Heavy Revolver MKII", power: 100000000, price: 100000000000 }, //END OF TYPE 2
-    28: { name: "Assault Shotgun", power: 1000000000, price: 1000000000000 },
-    29: { name: "Bullpup Shotgun", power: 1250000000, price: 1500000000000 },
-    30: { name: "Double Barrel Shotgun", power: 1500000000, price: 2000000000000 },
-    31: { name: "Heavy Shotgun", power: 2000000000, price: 3000000000000 },
-    32: { name: "Musket", power: 2500000000, price: 6000000000000 },
-    33: { name: "Sawed-Off Shotgun", power: 3000000000, price: 10000000000000 },
-    34: { name: "Sweeper Shotgun", power: 3500000000, price: 17500000000000 },
-    35: { name: "Pump Shotgun", power: 5000000000, price: 20000000000000 },
-    36: { name: "Pump Shotgun MKII", power: 10000000000, price: 40000000000000 }, //END OF TYPE 3
+    28: { name: "Assault Shotgun", power: 100000000, price: 100000000000 },
+    29: { name: "Bullpup Shotgun", power: 1250000000, price: 150000000000 },
+    30: { name: "Double Barrel Shotgun", power: 15000000, price: 200000000000 },
+    31: { name: "Heavy Shotgun", power: 20000000, price: 300000000000 },
+    32: { name: "Musket", power: 25000000, price: 60000000000 },
+    33: { name: "Sawed-Off Shotgun", power: 30000000, price: 1000000000000 },
+    34: { name: "Sweeper Shotgun", power: 3500000000, price: 1750000000000 },
+    35: { name: "Pump Shotgun", power: 50000000, price: 2000000000000 },
+    36: { name: "Pump Shotgun MKII", power: 100000000, price: 4000000000000 }, //END OF TYPE 3
 };
 
 var vehicules = {

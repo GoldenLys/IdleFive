@@ -69,6 +69,8 @@ function UpdateTexts() {
 	$("#S3").val(texts.success[4]);
 	$("#CloseSuccess").html(texts.success[5]);
 	//SAVE & STATS 
+	$("#options-title").html(texts.stats[13]);
+	$("#btnBackgrounds").val(texts.stats[14]);
 	$("#savemenu").html(texts.stats[0]);
 	$("#btnExport").val(texts.stats[2]);
 	$("#btnImport").val(texts.stats[3]);
@@ -217,7 +219,11 @@ function showSTab(id) { hideSTabs(); $('#Stab' + id).show(); $("#S" + id).addCla
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
 function ClickEvents() {
-	$("#game-menu").on("click", "button", function () { var id = $(this).data('id'); hideTabs(); $("#tab" + id).show(); $("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-" + id + ".jpg"); $("#t" + id).addClass("active"); });
+	$("#game-menu").on("click", "button", function () {
+		var id = $(this).data('id'); hideTabs();
+		$("#tab" + id).show(); if (p.BackgroundsToggle == 1) { $("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-" + id + ".jpg"); } else { $("#body").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )"); }
+		$("#t" + id).addClass("active");
+	});
 	$("#menu").on("click", "button", function () {
 		var id = $(this).data('id'); if (p.isInMenu == id) { p.isInMenu = 0; hideMenus(); } else { hideMenus(); p.isInMenu = id; $("#menu-" + id).show(); }
 	});
@@ -238,7 +244,7 @@ function SuccessCount() {
 		if (succes.type == 5) { if (p.prestige >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 	}
 	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/54 " + texts.success[0]);
- }
+}
 
 function SuccessList() {
 	for (var id = 0; id < 4; id++) { $('#Stab' + id).html(""); }
@@ -330,4 +336,23 @@ function showTutorialDIV() {
 	hideMenus();
 	$("#menu-4").show();
 	showTutorial(0);
+}
+
+function ToggleBackgrounds() {
+	if (p.BackgroundsToggle == 0) {
+		p.BackgroundsToggle=1;
+		$("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-2.jpg");
+		$("#menu-1").css("background", "");
+		$("#menu-2").css("background", "");
+		$("#menu-3").css("background", "");
+		$("#menu-4").css("background", "");
+	}
+	else {
+		p.BackgroundsToggle=0;
+		$("#body").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
+		$("#menu-1").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
+		$("#menu-2").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
+		$("#menu-3").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
+		$("#menu-4").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
+	}
 }

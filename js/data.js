@@ -307,7 +307,7 @@ var tutorialtexts = {
 };
 
 var textsENG = {
-    menus: ["Character", "Success", "Save & Stats", "Guide", "Chat", "Weapons", "Missions", "Vehicles"],
+    menus: ["Character", "Success", "Options & Stats", "Guide", "Chat", "Weapons", "Missions", "Vehicles"],
     weapons: ["Price", "Modification", "Damage", "Buy this weapon", "Try to modify this weapon", "Use this weapon (normal)"],
     missions: ["Buy", "Sell", "Level", "Value", "product" , "per level", "and currently", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase", "IN YOUR GARAGE"],
@@ -317,11 +317,11 @@ var textsENG = {
     weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Trown Weapons", "Special Weapons"],
     vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles", "Compacts", "Sedans", "Off-Road", "Coupes", "Emergency", "Boats", "SUV", "Helicopters", "Military", "Commercials"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
-    stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version"],
+    stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
 };
 
 var textsFRA = {
-    menus: ["Personnage", "Succès", "Sauvegarde & Stats", "Guide", "Chat", "Armes", "Missions", "Vehicules"],
+    menus: ["Personnage", "Succès", "Options & Stats", "Guide", "Chat", "Armes", "Missions", "Vehicules"],
     weapons: ["Prix", "Modification", "Dégats", "Acheter cette arme", "Essayer de modifier cette arme", "Utiliser cette arme (normal)"],
     missions: ["Acheter", "Vendre", "Niveau", "Valeur", "produit" , "par niveau", "et actuellement", "/s"],
     vehicles: ["Prix", "ajoute", "au multiplicateur de", "cash", "dégats", "", "Acheter", "DANS VOTRE GARAGE"],
@@ -331,5 +331,5 @@ var textsFRA = {
     weapontype: ["", "Corps à corps", "Pistolets", "Fusils à Pompes", "Mitraillettes", "Fusils d'Assaut", "Fusils de Précision", "Armes Lourdes", "Explosifs & Autres", "Armes Spéciales"],
     vehicletype: ["", "Vélos", "Motos", "Sportives Classiques", "Sportives", "Supersportives", "Grosses Cylindrées", "Compactes", "Berlines", "Tout-Terrain", "Coupés", "Véhicules de secours", "Bateaux", "SUV", "Hélicoptères", "Véhicules Militaires", "Véhicules Industriels"],
     success: ["succès obtenus.", "Joueur", "Argent", "Missions", "Vehicules", "Fermer"],
-    stats: ["Sauvegarde", "Statistiques", "Exporter", "Importer", "Nouveau Compte", "Fermer", "dans vos poches.", "par seconde.", "par clic.", "acheté(e)s", "Vous avez débuter le", "et joué pendant", "Version actuelle"],
+    stats: ["Sauvegarde", "Statistiques", "Exporter", "Importer", "Nouveau Compte", "Fermer", "dans vos poches.", "par seconde.", "par clic.", "acheté(e)s", "Vous avez débuter le", "et joué pendant", "Version actuelle", "Options", "Images de fond"],
 };

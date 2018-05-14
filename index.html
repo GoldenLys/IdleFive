@@ -8,15 +8,17 @@
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=286" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=286"></script>
-<script src="js/data.js?v=286"></script>
-<script src="js/core.js?v=286"></script>
-<script src="js/ui.js?v=286"></script>
+<link href="style.css?v=2862" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=2862"></script>
+<script src="js/data.js?v=2862"></script>
+<script src="js/core.js?v=2862"></script>
+<script src="js/ui.js?v=2862"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <nav id="menu" class="tab">
-        <p class="maintitle" style="line-height: 8vh;">idleFive<font id="lang" class='lang' onclick="ChangeLang();"></font></p>
+        <p class="maintitle" style="line-height: 8vh;">idleFive
+            <font id="lang" class='lang' onclick="ChangeLang();"></font>
+        </p>
         <button id="btnDiscord" onClick="toggleDiscord();" class="tablinks blanc">Chat
             <br>
             <font class="buttonText rougeb">(OFF)</font>
@@ -130,14 +132,14 @@
                 <br />
                 <div class="success3">
                     <p id="character-text1" class="texte"></p>
-                    <div class="texteg" id="prestigepricecount"></div><br />
+                    <div class="texteg" id="prestigepricecount"></div>
+                    <br />
                     <p id="character-text2" class="texte"></p>
                     <div class="texteg vert" id="prestigepricecount2"></div>
                     <p id="character-text3" class="texte"></p>
                     <br />
                     <br />
-                    <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" onClick="AddPrestige();"
-                    />
+                    <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" onClick="AddPrestige();" />
                     <br />
                     <br />
                     <p id="character-text4" class='texte'></p>
@@ -171,18 +173,20 @@
 
         <div class="menu" id="menu-3" style="display: none;">
             <div class="success2">
-                <p id="savemenu" class="title blanc"></p>
+                <p id="options-title" class="title blanc"></p>
                 <br />
+                <input type="button" id="btnBackgrounds" class="btn btn-blanc" onClick="ToggleBackgrounds();" />
+                <br /><br />
+                <div class="bar"></div>
+                <p id="savemenu" class="title blanc"></p>
                 <br />
                 <input type="button" id="btnExport" class="btn btn-blanc" onClick="exportSave();" />
                 <input type="button" id="btnImport" class="btn btn-blanc" onClick="importSave();" />
                 <input type="button" id="Recommencer" class="btn btn-blanc" onclick="confirmReset();">
                 <div id="exportBody"></div>
                 <p id='debugtext' class='copytext'></p>
-            </div>
-            <div class="success2" style="padding-bottom: 1%;">
+                <div class="bar"></div>
                 <p id="statistics" class="title blanc"></p>
-                <br />
                 <br />
                 <font class="stats" id="cashcount"></font>
                 <br />
@@ -225,4 +229,3 @@
 </body>
 
 </html>
-

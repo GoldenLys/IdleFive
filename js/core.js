@@ -1,4 +1,4 @@
-var version = "v2.8.6";
+var version = "v2.862";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -30,6 +30,7 @@ var p = {
 	tutorial: 0,
 	lang: "English",
 	isInMenu: 0,
+	BackgroundsToggle: 1,
 };
 
 
@@ -43,6 +44,7 @@ $(document).ready(function () {
 	UpdateTexts();
 	ClickEvents();
 	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
+	if(p.BackgroundsToggle==0) { p.BackgroundsToggle=1; ToggleBackgrounds(); }
 });
 
 

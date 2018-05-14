@@ -1072,9 +1072,9 @@ input:checked + .slider:before {
 #t1:after {
     content: "";
     display: inline;
-    padding: 0vh 3vh 0vh 0vh;
+    padding: 0vh 2.5vh 0vh 0vh;
     background-repeat: no-repeat;
-    background-size: 3vh;
+    background-size: 2.5vh;
     background-image: url(http://aizen.hol.es/IdleFive/images/weapon.png);
 }
 
@@ -1082,18 +1082,18 @@ input:checked + .slider:before {
     
     content: "";
     display: inline;
-    padding: 0vh 3vh 0vh 0vh;
+    padding: 0vh 2.5vh 0vh 0vh;
     background-repeat: no-repeat;
-    background-size: 3vh;
+    background-size: 2.5vh;
     background-image: url(http://aizen.hol.es/IdleFive/images/missions.png);
 }
 
 #t3:after {
     content: "";
     display: inline;
-    padding: 0vh 3vh 0vh 0vh;
+    padding: 0vh 2.5vh 0vh 0vh;
     background-repeat: no-repeat;
-    background-size: 3vh;
+    background-size: 2.5vh;
     background-image: url(http://aizen.hol.es/IdleFive/images/garage.png);
 }
 

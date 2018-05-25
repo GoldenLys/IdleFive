@@ -5,14 +5,15 @@
 	CashText = fix(p.cash, 2);
 	prestigeText = "";
 	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
-	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = "<br>" + texts.infos[2]; } }
-	points = "";
-	if (p.points > 0) { points = texts.infos[4] + " <font class='jaune'> " + p.points + " CP</font>."; }
+	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = texts.infos[2]; } }
 	//LEFT INFOS
-	$("#valeurclic").html("<font class='money'></font><strong><font class='vert'>" + CashText + "</font></strong> (+<font class='money'></font><font class='vert'>" + CashPSText + "</font>/s)");
-	$("#quality").html(texts.infos[0] + " | <strong>" + p.GunPower + p.Arme + "</strong> - <strong>" + p.Rarity + "<br><font class='blanc'></strong>" + texts.infos[1] + " |<strong> </font>" + ClicCashText + "</strong></font><br>" + points + prestigeText);
-	$("#rank").html(texts.infos[7] + " | <strong>" + getRank(p.rank) + "</strong><div class='level'></div>");
-	$('#imagecash').css("background-image", "url(http://aizen.hol.es/IdleFive/images/A/" + p.WeaponID + ".png)");
+	$('#imagecash').attr('src', "http://aizen.hol.es/IdleFive/images/A/" + p.WeaponID + ".png");
+	$("#cash").html("<font class='money'></font><font class='vert type1'>" + CashText + "</font> (<font class='vert'>" + CashPSText + "</font>/s)");
+	$("#level").html(getRank(p.rank) + "<div class='level'></div>");
+	$("#weapon").html(p.GunPower + p.Arme + " - " + p.Rarity); 
+	$("#damage").html(ClicCashText + "</font>");
+	$("#points").html("<font class='jaune'> " + p.points + " CP</font>");
+	$("#messages").html(prestigeText);
 	//CHARACTER STATS
 	$("#prestigecount").html(p.prestige);
 	$("#prestigepricecount").html(getRank(p.prestigeprice));
@@ -28,10 +29,9 @@
 	$("#buyedV3").html(texts.vehicletype[3] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[2] + "/34</font>");
 	$("#buyedV4").html(texts.vehicletype[4] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[3] + "/56</font>");
 	$("#buyedV5").html(texts.vehicletype[5] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[4] + "/39</font>");
-	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br>" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
+	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<tr>" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	$("#version").html(texts.stats[12] + " " + version);
 	document.title = "idleFive " + version;
-	showTutorial(p.tutorial);
 	WeaponList();
 	MissionList();
 	VehicleList();
@@ -39,14 +39,6 @@
 };
 
 function UpdateTexts() {
-	//MENUS TEXTS
-	$("#menu1").html(texts.menus[0] + "   ");
-	$("#menu2").html(texts.menus[1] + "   ");
-	$("#menu3").html(texts.menus[2] + "   ");
-	$("#menu4").html(texts.menus[3] + "   ");
-	$("#t1").html(texts.menus[5] + "   ");
-	$("#t2").html(texts.menus[6] + "   ");
-	$("#t3").html(texts.menus[7] + "   ");
 	//PRESTIGE TEXTS
 	$("#character-title").html(texts.menus[0]);
 	$("#character-number").html(texts.character[1]);
@@ -54,19 +46,15 @@ function UpdateTexts() {
 	$("#character-text2").html(texts.character[3]);
 	$("#character-text3").html(texts.character[4]);
 	$("#btnPrestige").val(texts.character[0]);
-	//GUIDE TEXTS
-	$("#tuto-next").html(texts.guide[1]);
-	$("#tuto-prev").html(texts.guide[2]);
-	$("#tuto-close").html(texts.guide[3]);
 	//WEAPONS TYPES BUTTONS
-	for (var weapon = 1; weapon < 10; weapon++) { $("#W" + weapon).val(texts.weapontype[weapon]); }
+	for (var weapon = 1; weapon < 10; weapon++) { $("#W" + weapon).html(texts.weapontype[weapon]); }
 	//VEHICLES TYPES BUTTONS
-	for (var vehicle = 1; vehicle < 17; vehicle++) { $("#V" + vehicle).val(texts.vehicletype[vehicle]); }
+	for (var vehicle = 1; vehicle < 17; vehicle++) { $("#V" + vehicle).html(texts.vehicletype[vehicle]); }
 	//SUCCESS
-	$("#S0").val(texts.success[1]);
-	$("#S1").val(texts.success[2]);
-	$("#S2").val(texts.success[3]);
-	$("#S3").val(texts.success[4]);
+	$("#S0").html(texts.success[1]);
+	$("#S1").html(texts.success[2]);
+	$("#S2").html(texts.success[3]);
+	$("#S3").html(texts.success[4]);
 	$("#CloseSuccess").html(texts.success[5]);
 	//SAVE & STATS 
 	$("#options-title").html(texts.stats[13]);
@@ -83,10 +71,10 @@ function UpdateTexts() {
 //GENERATE MISSIONS TAB
 
 var MissionList = function () {
-	$('#productions').html('');
+	$('#missions').html("<thead><tr><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Value</th><th class='ui center aligned'>Product</th><th class='ui center aligned'>Actions</th></tr></thead>");
 
-	var missions = $("<div class='garage-div' />");
-	$('#productions').append(missions);
+	var Missions = $("<tbody />");
+	$('#missions').append(Missions);
 
 	for (var i in productions) {
 		var production = productions[i];
@@ -101,107 +89,98 @@ var MissionList = function () {
 		var canBuy2 = cost2 > p.cash ? ' disabled' : '';
 		var canSell = owned < 1 ? ' disabled' : '';
 		var canSell2 = owned < 10 ? ' disabled' : '';
-		var colorTitle = owned < 1 ? 'gris' : 'vert';
+		var colorTitle = owned < 1 ? '' : 'vert';
 
 		var MissionDIV = $(
-
-			"<font class='title " + colorTitle + "'>" + production.name + "</font><br><br>" +
-			"<font class='jaune'>" + texts.missions[2] + " " + owned + "</font><br><br>" +
-			"<font class='valeur2'>" + texts.missions[3] + ": <font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font><br>" +
-			"<p class='production-desc'>" + texts.missions[4] + " <font class='money'></font><font class='gris'>" + fix(p.bonuscash * production.value, 2) + "</font> " + texts.missions[5] + "<br>" + texts.missions[6] + " <font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[7] + "</p>" +
-			"<a href='#' class='btn btn-buy" + canBuy + " gauche' onClick='BuyM(" + i + ", 1);''>" + texts.missions[0] + "</a>" +
-			"<a href='#' class='btn btn-buy2" + canBuy2 + " gauche' onClick='BuyM(" + i + ", 10);'>" + texts.missions[0] + " 10<br> <font class='buttonText'>$" + fix(GetMissionPrice(i, 10), 1) + "</font></a>" +
-			"<a href='#' class='btn btn-sell" + canSell + " droite' onClick='SellM(" + i + ", 1);'>" + texts.missions[1] + "</a>" +
-			"<a href='#' class='btn btn-sell2" + canSell2 + " droite' onClick='SellM(" + i + ", 10);'>" + texts.missions[1] + " 10<br> <font class='buttonText'>$" + fix(GetMissionSPrice(i, 10), 1) + "</font></a>" +
-			"<br /><br /><div class='bar'></div>"
+			"<tr><td class='single line sub header center aligned'><h2 class='type2 " + colorTitle + "'>" + production.name + "</h2></td>" +
+			"<td class='single line ui center aligned'>" + owned + "</td>" +
+			"<td class='single line ui center aligned'><font class='valeur2'><font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font></td>" +
+			"<td class='ui center aligned'><font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
+			"<td class='ui center aligned'><div class='ui center aligned buttons'><button class='ui positive button " + canBuy + "' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
+			"<button class='ui positive button " + canBuy2 + "' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
+			"<div class='ui buttons'><button class='ui negative button " + canSell + "' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
+			"<button class='ui negative button " + canSell2 + "' onClick='SellM(" + i + ", 10);'>10</button></div></td></tr>"
 		);
-		missions.append(MissionDIV);
+		Missions.append(MissionDIV);
 	}
 };
 
 //GENERATE WEAPONS TAB
 
 function WeaponList() {
-	for (var id = 1; id < 10; id++) { $('#Wtab' + id).html(""); }
+	for (var id = 1; id < 10; id++) { $('#Wtab' + id).html("<thead><tr><th class='ui center aligned'>Weapon</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Damage</th><th class='ui center aligned'>Actions</th></tr></thead>"); }
 
 	for (var i in weapons) {
 		var weapon = weapons[i];
+		canBBuy = weapon.price > p.cash ? ' basic red' : ' green';
+		canBBuy2 = weapon.price * 2 > p.cash ? ' basic red' : ' green';
+
 		if (p.GBought[i] == 1) {
-			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' vert';
+			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' blanc';
 			name = "<font class='vert'>" + weapon.name + "</font>";
-			cost = texts.weapons[1] + " : <font class='money'></font><font class='" + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
+			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
 			damage = "<font class='rougeb'>" + fix(weapon.power, 1) + "</font>";
+			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
 		} else {
-			canBuy = weapon.price > p.cash ? ' rougeb' : ' vert';
+			canBuy = weapon.price > p.cash ? ' rougeb' : ' blanc';
 			name = "<font class='gris'>" + weapon.name + "</font>";
-			cost = texts.weapons[0] + " : <font class='money'></font><font class='" + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
+			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
 			damage = "<font class='gris'>" + fix(weapon.power, 1) + "</font>";
+			buttons = "<div class='fluid ui vertical animated button" + canBBuy + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[3] + "</div></div>";
 		}
 
-		view = p.GBought[i] > 0 ? '' : ' style="display:none;"';
-		view2 = p.GBought[i] > 0 ? 'style="display:none;"' : '';
-		canBuy = weapon.price > p.cash ? ' disabled' : '';
-		canBuy2 = weapon.price * 2 > p.cash ? ' disabled' : '';
-		url = "url('http://aizen.hol.es/IdleFive/images/A/" + i + ".png')";
-
 		var weaponsDIV = $(
-			"<div class='arme-div arme' id='weap" + i + "'>" +
-			"<p class='title blanc wleft'>" + name + "</p><br><br><br>" +
-			"<p class='btexte wleft'>" + cost + "</font><br>" +
-			texts.weapons[2] + " : " + damage + "</font></p><br><br><br><br>" +
-			"<input type='button' class='btn btn-weapon" + canBuy + " gauche' " + view2 + " value='" + texts.weapons[3] + "' onClick='buyG(" + i + ");' /><br />" +
-			"<input type='button' class='btn btn-weapon" + canBuy2 + "' " + view + " value='" + texts.weapons[4] + "' onClick='buyG(" + i + ");' />" +
-			"<input type='button' class='btn btn-weapon2' " + view + " value='" + texts.weapons[5] + "' onClick='useW(" + i + ");' />" +
-			"<br><br><div class='bar'></div></div>"
+			"<tr class='ui center aligned' id='weap" + i + "'>" +
+			"<td class='center aligned ui header'><h2 class='content center aligned type2'>" + name + "</h2></td>" +
+			"<td class='center aligned'>" + cost + "</td>" +
+			"<td class='ui center aligned'>" + damage + "</td>" +
+			"<td class='ui center aligned'>" + buttons + "</td>" +
+			"</tr>"
 		);
 		if (i < 13) { $('#Wtab1').append(weaponsDIV); }
 		if (i > 12) { if (i < 28) { $('#Wtab2').append(weaponsDIV); } }
 		if (i > 27) { if (i < 37) { $('#Wtab3').append(weaponsDIV); } }
-		$('#weap' + i).css('background-image', url);
 	}
 }
 
 //GENERATE VEHICLES TAB
 
 function VehicleList() {
-	for (var id = 1; id < 17; id++) { $('#Vtab' + id).html(""); }
+	for (var id = 1; id < 17; id++) { $('#Vtab' + id).html("<thead><tr><th class='ui center aligned'>Vehicle</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>"); }
 
 	for (var i in vehicules) {
 		var vehicle = vehicules[i];
+		canBuy = vehicle.price > p.points ? ' basic disabled' : '';
+		type = "";
+		if (vehicle.type == 0) { type = " for the damage multiplier"; }
+		if (vehicle.type == 1) { type = " for the cash multiplier"; }
+
 		if (p.vehicules[i] > 0) {
 			bought = 'style="display:none;"';
-			canBuy = "";
-			name = "<font class='vert'>";
+			name = "<font class='type2 vert'>";
 			cost = "<font class='vert'>" + texts.vehicles[7] + "</font>";
-			multiplier = texts.vehicles[1] + " <font class='jaune'>" + fix(vehicle.value, 2) + "</font>";
+			multiplier = "+<font class='jaune'>" + fix(vehicle.value, 2) + "</font>";
 		} else {
 			bought = "";
 			color = vehicle.price > p.points ? ' rougeb bold' : ' jaune bold';
-			name = "<font class='gris'>";
-			cost = texts.vehicles[0] + " : <font class='" + color + "'>" + fix(vehicle.price, 3) + " CP</font>";
-			multiplier = texts.vehicles[1] + " <font class='gris'>" + fix(vehicle.value, 2) + "</font>";
+			name = "<font class='text type2'>";
+			cost = "<font class='" + color + "'>" + fix(vehicle.price, 3) + " CP</font>";
+			multiplier = "+" + fix(vehicle.value, 2);
 		}
-
-		url = "url('http://aizen.hol.es/IdleFive/images/V/" + i + ".jpg')";
-		canBuy = vehicle.price > p.points ? ' disabled' : '';
-		type = "";
-		if (vehicle.type == 0) { type = " <font class='rougeb bold'>" + texts.vehicles[4] + "</font> "; }
-		if (vehicle.type == 1) { type = " <font class='vert bold'>" + texts.vehicles[3] + "</font> "; }
-
+		
 		var vehiclesDIV = $(
-			"<div id='veh" + i + "' class='vehicleICON'>" +
-			"<p class='title blanc'>" + name + vehicle.name + "</font></p><br><br>" +
-			"<p class='btexte'>" + cost + "</font></p><br>" +
-			"<p class='btexte'> " + multiplier + "</font> " + texts.vehicles[2] + " " + type + texts.vehicles[5] + "</p><br><br>" +
-			"<input type='button' class='btn btn-veh" + canBuy + "' " + bought + " value='" + texts.vehicles[6] + "' onClick='buyV(" + i + ");' />" +
-			"<br /><br /><div class='bar'></div></div>"
+			"<tr id='veh" + i + "'>" +
+			"<td class='center aligned ui header'>" + name + vehicle.name + "</font></td>" +
+			"<td class='center aligned'>" + cost + "</font></td>" +
+			"<td class='center aligned'> " + multiplier + "</font> " + type + "</td>" +
+			"<td class='center aligned'><button class='fluid ui green button" + canBuy + "' " + bought + " onClick='buyV(" + i + ");'>Purchase</button></td>" +
+			"</tr>"
 		);
 		if (i < 7) { $('#Vtab1').append(vehiclesDIV); }
 		if (i > 6) { if (i < 53) { $('#Vtab2').append(vehiclesDIV); } }
 		if (i > 52) { if (i < 87) { $('#Vtab3').append(vehiclesDIV); } }
 		if (i > 86) { if (i < 143) { $('#Vtab4').append(vehiclesDIV); } }
 		if (i > 142) { if (i < 183) { $('#Vtab5').append(vehiclesDIV); } }
-		$('#veh' + i).css('background-image', url);
 	}
 }
 
@@ -209,23 +188,42 @@ function VehicleList() {
 
 function showVTab(id) { hideVTabs(); $('#Vtab' + id).show(); $("#V" + id).addClass('active'); }
 function hideVTabs() { for (var id = 1; id < 17; id++) { $("#Vtab" + id).hide(); $("#V" + id).removeClass("active"); } }
-function btnPrestigeD() { $("#btnPrestige").addClass("disabled"); }
-function btnPrestigeE() { $("#btnPrestige").removeClass("disabled"); }
+function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inverted"); }
+function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
 function hideTabs() { for (var id = 1; id < 4; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("active"); } }
-function hideMenus() { for (var id = 1; id < 5; id++) { $("#menu-" + id).hide(); } }
+function hideMenus() { for (var id = 1; id < 6; id++) { $('#menu-' + id).modal('hide'); } }
 function showWTab(id) { hideWTabs(); $('#Wtab' + id).show(); $("#W" + id).addClass("active"); }
 function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
-function showSTab(id) { hideSTabs(); $('#Stab' + id).show(); $("#S" + id).addClass("active"); }
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
 function ClickEvents() {
-	$("#game-menu").on("click", "button", function () {
+	$("#game-menu").on("click", "a", function () {
 		var id = $(this).data('id'); hideTabs();
-		$("#tab" + id).show(); if (p.BackgroundsToggle == 1) { $("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-" + id + ".jpg"); } else { $("#body").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )"); }
+		$("#tab" + id).show();
 		$("#t" + id).addClass("active");
 	});
-	$("#menu").on("click", "button", function () {
-		var id = $(this).data('id'); if (p.isInMenu == id) { p.isInMenu = 0; hideMenus(); } else { hideMenus(); p.isInMenu = id; $("#menu-" + id).show(); }
+	$("#sidebar").on("click", "a", function () {
+		var id = $(this).data('id'); $('#menu-' + id).modal('show');
+		$('.ui.sidebar').sidebar('toggle');
+	});
+	$('#select').dropdown();
+	$('.ui.dropdown').dropdown();
+	$("#weap-select").change(function () {
+		var id = $(this).val();
+		showWTab(id);
+	});
+	$("#veh-select").change(function () {
+		var id = $(this).val();
+		showVTab(id);
+	});
+	$("#top-menu").on("click", "#sidebar", function () {
+		$('.ui.sidebar').sidebar('toggle');
+	});
+	$("#successtype").on("click", "button", function () {
+		var id = $(this).data('id');
+		hideSTabs();
+		$('#Stab' + id).show();
+		$("#S" + id).addClass("active");
 	});
 }
 
@@ -268,7 +266,7 @@ function SuccessList() {
 
 function showTutorial(id) {
 	p.tutorial = id;
-	$("#tutorial-title").html(texts.guide[0] + " - " + tutorialtexts[id].title);
+	$("#tutorial-title").html("Guide - " + tutorialtexts[id].title);
 	$("#tutorial-text").html(tutorialtexts[id].text);
 }
 
@@ -317,42 +315,8 @@ function toggleDiscord() {
 	}
 }
 
-function ChangeLang() {
-	if (p.lang == "English") {
-		texts = textsFRA;
-		p.lang = "Français";
-		$("#lang").css("background-image", "url('http://aizen.hol.es/IdleFive/images/fra.png')");
-	} else {
-		texts = textsENG;
-		p.lang = "English";
-		$("#lang").css("background-image", "url('http://aizen.hol.es/IdleFive/images/eng.png')");
-
-	}
-	UpdateTexts();
-	UpdateUI();
-}
-
 function showTutorialDIV() {
 	hideMenus();
 	$("#menu-4").show();
 	showTutorial(0);
-}
-
-function ToggleBackgrounds() {
-	if (p.BackgroundsToggle == 0) {
-		p.BackgroundsToggle=1;
-		$("#body").css("background-image", "url(http://aizen.hol.es/IdleFive/images/bg-2.jpg");
-		$("#menu-1").css("background", "");
-		$("#menu-2").css("background", "");
-		$("#menu-3").css("background", "");
-		$("#menu-4").css("background", "");
-	}
-	else {
-		p.BackgroundsToggle=0;
-		$("#body").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
-		$("#menu-1").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
-		$("#menu-2").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
-		$("#menu-3").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
-		$("#menu-4").css("background", "linear-gradient(to bottom,#1b1b1b , #383838 , #000000 )");
-	}
 }

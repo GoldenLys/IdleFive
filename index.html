@@ -6,226 +6,297 @@
 </head>
 <link rel="shortcut icon" type="image/x-icon" href="http://aizen.hol.es/IdleFive/images/fav.ico" />
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/LoDash.js"></script>
-<link href="style.css?v=2862" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=2862"></script>
-<script src="js/data.js?v=2862"></script>
-<script src="js/core.js?v=2862"></script>
-<script src="js/ui.js?v=2862"></script>
+<link rel="stylesheet" type="text/css" href="semantic.min.css">
+<link rel="stylesheet" type="text/css" href="dropdown.min.css">
+<link rel="stylesheet" type="text/css" href="sidebar.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="semantic.min.js"></script>
+<script src="dropdown.min.js"></script>
+<script src="sidebar.min.js"></script>
+
+<link href="style.css?v=3" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=3"></script>
+<script src="js/data.js?v=3"></script>
+<script src="js/core.js?v=3"></script>
+<script src="js/ui.js?v=3"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
-    <nav id="menu" class="tab">
-        <p class="maintitle" style="line-height: 8vh;">idleFive
-            <font id="lang" class='lang' onclick="ChangeLang();"></font>
-        </p>
-        <button id="btnDiscord" onClick="toggleDiscord();" class="tablinks blanc">Chat
-            <br>
-            <font class="buttonText rougeb">(OFF)</font>
-        </button>
-        <button class="tablinks blanc" id="menu1" data-id="1"></button>
-        <button class="tablinks blanc" id="menu2" data-id="2"></button>
-        <button class="tablinks blanc" id="menu3" data-id="3"></button>
-        <button class="tablinks blanc" id="menu4" data-id="4"></button>
-    </nav>
-
-    <div id="colonne-m" value="Jeu">
-        <div id="game-menu" class="tab2">
-            <button class="tablinks blanc" id="t1" data-id="1"></button>
-            <br />
-            <button class="tablinks blanc active" id="t2" data-id="2"></button>
-            <br />
-            <button class="tablinks blanc" id="t3" data-id="3"></button>
-            <br />
-        </div>
-        <div class="cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash"></div>
-        <div class='left-s'>
-        </div>
-        <div id="game-info" class="alert-text">
-
-            <p class="btexte" id="valeurclic">Loading...</p>
-            <br />
-            <br />
-            <div class="btexte" id="rank"></div>
-            <div class="valeur2" id="quality">
-            </div>
-            <p id="alert" class="game-text"></p>
-        </div>
+    <!--SIDE BAR-->
+    <div id="sidebar" class="ui left demo vertical inverted sidebar labeled icon menu">
+        <a class="item" id="menu1" data-id="1">
+            <i class="user icon"></i>Character</a>
+        <a class="item" id="menu2" data-id="2">
+            <i class="star icon"></i>Success</a>
+        <a class="item" id="menu3" data-id="3">
+            <i class="id badge icon"></i>Statistics</a>
+        <a class="item" id="menu4" data-id="4">
+            <i class="info icon"></i>Guide</a>
+        <a class="item" id="menu5" data-id="5">
+            <i class="save icon"></i>Save</a>
+        <a class="item" target="_blank" href="https://discord.gg/5srpwap">
+            <i class="discord icon"></i>Discord</a>
+        <a class="item" target="_blank" href="https://github.com/Aizen45/IdleFive">
+            <i class="github icon"></i>Github</a>
+        <a class="item" target="_blank" href="https://www.reddit.com/r/IdleFive">
+            <i class="reddit alien icon"></i>Subreddit</a>
     </div>
-
-    <div id="colonne-d" value="tabs">
-        <div id="tab1" style="display: none; overflow: auto; height: 100%; width: 100%;">
-            <nav class="sous-menu">
-                <input type="button" id="W1" onclick="showWTab(1);" class="weap active"></input>
-                <input type="button" id="W2" onclick="showWTab(2);" class="weap"></input>
-                <input type="button" id="W3" onclick="showWTab(3);" class="weap"></input>
-                <input type="button" id="W4" onclick="showWTab(4);" class="weap"></input>
-                <input type="button" id="W5" onclick="showWTab(5);" class="weap"></input>
-                <input type="button" id="W6" onclick="showWTab(6);" class="weap"></input>
-                <input type="button" id="W7" onclick="showWTab(7);" class="weap"></input>
-                <input type="button" id="W8" onclick="showWTab(8);" class="weap"></input>
-                <input type="button" id="W9" onclick="showWTab(9);" class="weap"></input>
-            </nav>
-            <div class="Wtab" id="Wtab1"></div>
-            <div class="Wtab" id="Wtab2" style="display: none;"></div>
-            <div class="Wtab" id="Wtab3" style="display: none;"></div>
-            <div class="Wtab" id="Wtab4" style="display: none;"></div>
-            <div class="Wtab" id="Wtab5" style="display: none;"></div>
-            <div class="Wtab" id="Wtab6" style="display: none;"></div>
-            <div class="Wtab" id="Wtab7" style="display: none;"></div>
-            <div class="Wtab" id="Wtab8" style="display: none;"></div>
-            <div class="Wtab" id="Wtab9" style="display: none;"></div>
-        </div>
-
-        <div id="tab2" style="display: block; overflow: auto; height: 100%; width: 100%;">
-            <div id="productions"></div>
-        </div>
-
-
-        <div id="tab3" style="display: none; height: 100%; width: 100%; overflow: auto;">
-            <nav class="sous-menu">
-                <input type="button" id="V1" onclick="showVTab(1);" class="veh active"></input>
-                <input type="button" id="V2" onclick="showVTab(2);" class="veh"></input>
-                <input type="button" id="V3" onclick="showVTab(3);" class="veh"></input>
-                <input type="button" id="V4" onclick="showVTab(4);" class="veh"></input>
-                <input type="button" id="V5" onclick="showVTab(5);" class="veh"></input>
-                <input type="button" id="V6" onclick="showVTab(6);" class="veh"></input>
-                <input type="button" id="V7" onclick="showVTab(7);" class="veh"></input>
-                <input type="button" id="V8" onclick="showVTab(8);" class="veh"></input>
-                <input type="button" id="V9" onclick="showVTab(9);" class="veh"></input>
-                <input type="button" id="V10" onclick="showVTab(10);" class="veh"></input>
-                <input type="button" id="V11" onclick="showVTab(11);" class="veh"></input>
-                <input type="button" id="V12" onclick="showVTab(12);" class="veh"></input>
-                <input type="button" id="V13" onclick="showVTab(13);" class="veh"></input>
-                <input type="button" id="V14" onclick="showVTab(14);" class="veh"></input>
-                <input type="button" id="V15" onclick="showVTab(15);" class="veh"></input>
-                <input type="button" id="V16" onclick="showVTab(16);" class="veh"></input>
-            </nav>
-            <div class="Vtab" id="Vtab1" style="display: block;"></div>
-            <div class="Vtab" id="Vtab2" style="display: none;"></div>
-            <div class="Vtab" id="Vtab3" style="display: none;"></div>
-            <div class="Vtab" id="Vtab4" style="display: none;"></div>
-            <div class="Vtab" id="Vtab5" style="display: none;"></div>
-            <div class="Vtab" id="Vtab6" style="display: none;"></div>
-            <div class="Vtab" id="Vtab7" style="display: none;"></div>
-            <div class="Vtab" id="Vtab8" style="display: none;"></div>
-            <div class="Vtab" id="Vtab9" style="display: none;"></div>
-            <div class="Vtab" id="Vtab10" style="display: none;"></div>
-            <div class="Vtab" id="Vtab11" style="display: none;"></div>
-            <div class="Vtab" id="Vtab12" style="display: none;"></div>
-            <div class="Vtab" id="Vtab13" style="display: none;"></div>
-            <div class="Vtab" id="Vtab14" style="display: none;"></div>
-            <div class="Vtab" id="Vtab15" style="display: none;"></div>
-            <div class="Vtab" id="Vtab16" style="display: none;"></div>
-        </div>
-    </div>
-    <div id="menus">
-
-        <div class="menu" id="menu-1" style="display: none;">
-            <div class="success2">
-                <p id="character-title" class="title blanc"></p>
-                <br />
-                <br />
-                <p id="character-number" class="texte"></p>
-                <p class="texteg blanc" id="prestigecount"></p>
-                <br />
-                <br />
-                <div class="success3">
-                    <p id="character-text1" class="texte"></p>
-                    <div class="texteg" id="prestigepricecount"></div>
-                    <br />
-                    <p id="character-text2" class="texte"></p>
-                    <div class="texteg vert" id="prestigepricecount2"></div>
-                    <p id="character-text3" class="texte"></p>
-                    <br />
-                    <br />
-                    <input type="button" id="btnPrestige" class="btn btn-upgrade disabled" onClick="AddPrestige();" />
-                    <br />
-                    <br />
-                    <p id="character-text4" class='texte'></p>
+    <div class="pusher">
+        <!--TOP MENU-->
+        <div id="top-menu" class="ui green secondary inverted menu">
+            <div class="item">
+                <div class="ui logo shape">
+                    <div class="sides">
+                        <div class="active ui side">
+                            <img class="ui mini rounded image" src="images/logo.jpg">
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <br />
-                <p id="character-text5" class="texte"></p>
-                <br />
-                <br />
-                <br />
-                <span onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;">Close</span>
+            </div>
+            <div class="ui inverted secondary menu" id="game-menu">
+                <button id="sidebar" class="ui inverted basic button item">
+                    <i class="sidebar icon"></i>Menu</button>
+                <a class="item" id="t1" data-id="1">Weapons</a>
+                <a class="item active" id="t2" data-id="2">Missions</a>
+                <a class="item" id="t3" data-id="3">Vehicles</a>
             </div>
         </div>
+        <!--COLUMNS-->
+        <div class="ui two column very relaxed grid" style="height: 94%;">
+            <!--LEFT COLUMN-->
+            <div class="column" id="colonne-m">
+                <!--CURRENT WEAPON-->
+                <img class="ui fluid cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash">
+                <!--GAME INFOS-->
+                <table class="ui inverted table">
+                    <tr>
+                        <td class="right aligned">Cash
+                            <br />Level
+                            <br />Weapon
+                            <br />Damage
+                            <br />Points</td>
+                        <th width="55%">
+                            <font id="cash">Loading...</font>
+                            <br />
+                            <font id="level"></font>
+                            <br />
+                            <font id="weapon"></font>
+                            <br />
+                            <font id="damage"></font>
+                            <br />
+                            <font id="points"></font>
+                        </th>
+                    </tr>
+                </table>
+                <div class="ui black message">
+                    <p>
+                        <font id="alert"></font>
+                        <font id="messages"></font>
+                    </p>
+                </div>
+            </div>
+            <!--RIGHT COLUMN-->
+            <div class="column" id="colonne-d">
+                <!--WEAPONS-->
+                <div id="tab1" style="display: none; overflow: auto; height: -webkit-fill-available; width: 100%;">
 
-        <div class="menu" id="menu-2" style="display: none;">
-            <p class="title blanc" id="successcount"></p>
-            <nav class="sous-menu2">
-                <input type="button" id="S0" onclick="showSTab(0);" class="succes active" value="Player"></input>
-                <input type="button" id="S1" onclick="showSTab(1);" class="succes" value="Cash"></input>
-                <input type="button" id="S2" onclick="showSTab(2);" class="succes" value="Missions"></input>
-                <input type="button" id="S3" onclick="showSTab(3);" class="succes" value="Vehicles"></input>
-            </nav>
+                    <select name="weap-type" class="fluid ui selection dropdown" id="weap-select">
+                        <option id="W1" value="1"></option>
+                        <option id="W2" value="2"></option>
+                        <option id="W3" value="3"></option>
+                        <option id="W4" value="4"></option>
+                        <option id="W5" value="5"></option>
+                        <option id="W6" value="6"></option>
+                        <option id="W7" value="7"></option>
+                        <option id="W8" value="8"></option>
+                        <option id="W9" value="9"></option>
+                    </select>
+
+                    <table id="Wtab1" class="ui inverted table"></table>
+                    <table id="Wtab2" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab3" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab4" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab5" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab6" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab7" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab8" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab9" class="ui inverted table" style="display: none;"></table>
+                </div>
+                <!--MISSIONS-->
+                <div id="tab2" style="display: block; overflow: auto; height: -webkit-fill-available; width: 100%;">
+                    <table id="missions" class="ui inverted table"></table>
+                </div>
+
+                <!--VEHICLES-->
+                <div id="tab3" style="display: none; height: -webkit-fill-available; width: 100%; overflow: auto;">
+                    <select class="fluid ui selection dropdown" id="veh-select">
+                        <option id="V1" value="1"></option>
+                        <option id="V2" value="2"></option>
+                        <option id="V3" value="3"></option>
+                        <option id="V4" value="4"></option>
+                        <option id="V5" value="5"></option>
+                        <option id="V6" value="6"></option>
+                        <option id="V7" value="7"></option>
+                        <option id="V8" value="8"></option>
+                        <option id="V9" value="9"></option>
+                        <option id="V10" value="10"></option>
+                        <option id="V11" value="11"></option>
+                        <option id="V12" value="12"></option>
+                        <option id="V13" value="13"></option>
+                        <option id="V14" value="14"></option>
+                        <option id="V15" value="15"></option>
+                        <option id="V16" value="16"></option>
+                    </select>
+                    <table id="Vtab1" class="ui inverted table"></table>
+                    <table id="Vtab2" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab3" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab4" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab5" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab6" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab7" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab8" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab9" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab10" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab11" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab12" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab13" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab14" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab15" class="ui inverted table" style="display: none;"></table>
+                    <table id="Vtab16" class="ui inverted table" style="display: none;"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MENUS-->
+    <!--CHARACTER-->
+    <div class="ui basic modal" id="menu-1">
+
+        <div class="ui icon header">
+            <i class="user icon"></i>
+            <font id="character-title" class="title blanc"></font>
+        </div>
+        <div class="content center">
+            <p>
+                <font id="character-number"></font>
+                <font id="prestigecount"></font>
+            </p>
+            <p>
+                <font id="character-text1"></font>
+                <font id="prestigepricecount"></font>
+                <font id="character-text2"></font>
+                <font class="vert" id="prestigepricecount2"></font>
+                <font id="character-text3"></font>
+            </p>
+            <p>
+                <font id="character-text4"></font>
+            </p>
+            <p>
+                <font id="character-text5"></font>
+            </p>
+        </div>
+        <div class="actions">
+            <div id="btnPrestige" onClick="AddPrestige();" class="ui green inverted button">
+                <i class="checkmark icon"></i>Change Character </div>
+            <div onclick="hideMenus();" class="ui red basic inverted button">
+                <i class="remove icon"></i>Close </div>
+        </div>
+    </div>
+    <!--SUCCESS-->
+    <div class="ui basic modal" id="menu-2">
+        <div class="ui icon header">
+            <i class="star icon"></i>
+            <font id="success-title" class="title blanc">Success</font>
+            <p id="successcount"></p>
+        </div>
+
+        <div class="content center">
+            <div id="successtype" class="fluid ui inverted buttons">
+                <button data-id="0" class="ui green basic inverted button">Player</button>
+                <button data-id="1" class="ui green basic inverted button">Cash</button>
+                <button data-id="2" class="ui green basic inverted button">Missions</button>
+                <button data-id="3" class="ui green basic inverted button">Vehicles</button>
+            </div>
             <div class="surc">
                 <div id="Stab0" style="display: block;"></div>
                 <div id="Stab1" style="display: none;"></div>
                 <div id="Stab2" style="display: none;"></div>
                 <div id="Stab3" style="display: none;"></div>
             </div>
-            <span id="CloseSuccess" onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;"></span>
         </div>
-
-        <div class="menu" id="menu-3" style="display: none;">
-            <div class="success2">
-                <p id="options-title" class="title blanc"></p>
-                <br />
-                <input type="button" id="btnBackgrounds" class="btn btn-blanc" onClick="ToggleBackgrounds();" />
-                <br /><br />
-                <div class="bar"></div>
-                <p id="savemenu" class="title blanc"></p>
-                <br />
-                <input type="button" id="btnExport" class="btn btn-blanc" onClick="exportSave();" />
-                <input type="button" id="btnImport" class="btn btn-blanc" onClick="importSave();" />
-                <input type="button" id="Recommencer" class="btn btn-blanc" onclick="confirmReset();">
-                <div id="exportBody"></div>
-                <p id='debugtext' class='copytext'></p>
-                <div class="bar"></div>
-                <p id="statistics" class="title blanc"></p>
-                <br />
-                <font class="stats" id="cashcount"></font>
-                <br />
-                <font class="stats" id="cashpscount"></font>
-                <br />
-                <font class="stats" id="addcashcount"></font>
-                <br />
-                <font class="stats" id="buyedV1"></font>
-                <br />
-                <font class="stats" id="buyedV2"></font>
-                <br />
-                <font class="stats" id="buyedV3"></font>
-                <br />
-                <font class="stats" id="buyedV4"></font>
-                <br />
-                <font class="stats" id="buyedV5"></font>
-                <br />
-                <font class="stats" id="time"></font>
-                <br />
-                <font class="stats" id="version"></font>
-            </div>
-            <span id="CloseStats" onclick="hideMenus();" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;"></span>
-        </div>
-
-        <div class="menu" id="menu-4" style="display: none;">
-            <div id="tutorial" class="success2" style="height: 28vh;">
-                <p id="tutorial-title" class="title blanc"></p>
-                <br />
-                <br />
-                <p id="tutorial-text" class='desc'></p>
-                <span onClick="NextTuto();" id="tuto-next" style="position: absolute; left: 13%; right: 14%; top: 26%; bottom: 67%;" class="btn btn-blanc"></span>
-                <span onClick="PrevTuto();" id="tuto-prev" style="position: absolute; left: 87%; right: 1%; top: 26%; bottom: 67%;" class="btn btn-blanc"></span>
-            </div>
-            <span onclick="closeTutorial();" id="tuto-close" class="btn btn-blanc" style="position: absolute; top: 92%; bottom: 1%; left: 1%; right: 1%;"></span>
+        <div class="actions">
+            <div onclick="hideMenus();" class=" fluid ui red basic inverted button">
+                <i class="remove icon"></i>Close </div>
         </div>
     </div>
-    <div id="discord" style="display: none;">
-        <iframe src="https://titanembeds.com/embed/444253095182991360?css=225" height="100%" width="100%" frameborder="0"></iframe>
+    <!--STATS-->
+    <div class="ui basic modal" id="menu-3">
+        <div class="ui icon header">
+            <i class="id badge icon"></i>
+            <font id="statistics" class="title blanc"></font>
+        </div>
+
+        <div class="content center">
+            <p id="cashcount"></p>
+            <p id="cashpscount"></p>
+            <p id="addcashcount"></p>
+            <p id="buyedV1"></p>
+            <p id="buyedV2"></p>
+            <p id="buyedV3"></p>
+            <p id="buyedV4"></p>
+            <p id="buyedV5"></p>
+            <p id="time"></p>
+            <p id="version"></p>
+        </div>
+        <div class="actions">
+            <div onclick="hideMenus();" class="ui red basic inverted button">
+                <i class="remove icon"></i>Close </div>
+        </div>
     </div>
+    <!--TUTORIAL-->
+    <div class="ui basic modal" id="menu-4">
+
+        <div class="ui icon header">
+            <i class="info icon"></i>
+            <font id="tutorial-title" class="title blanc"></font>
+        </div>
+        <div class="content center">
+            <p id="tutorial-text"></p>
+        </div>
+        <div class="actions">
+            <div class="large three ui buttons">
+                <button onClick="NextTuto();" id="tuto-next" class="ui green inverted basic button">Next</button>
+                <button onClick="PrevTuto();" id="tuto-prev" class="ui green inverted basic button">Previous</button>
+                <div onclick="closeTutorial();" class="ui red basic inverted button">
+                    <i class="remove icon"></i>Close </div>
+            </div>
+        </div>
+    </div>
+    <!--SAVE-->
+    <div class="ui basic modal" id="menu-5">
+        <div class="ui icon header">
+            <i class="save icon"></i>
+            <font id="savemenu" class="title blanc"></font>
+        </div>
+        <div class="content center">
+            <p>Here you can export your save to another naviator or computer.</p>
+            <p>You can also reset your save to to start a new game.</p>
+            <div id="exportBody"></div>
+            <p id='debugtext' class='copytext'></p>
+        </div>
+        <div class="actions">
+            <div class="three ui buttons">
+                <button onClick="exportSave();" id="btnExport" class="ui green inverted button">Export</button>
+                <button onClick="importSave();" id="btnExport" class="ui green inverted button">Import</button>
+                <button onClick="confirmReset();" id="Recommencer" class="ui red button">Reset</button>
+            </div>
+            <br />
+            <br />
+            <div class="fluid ui buttons">
+                <div onclick="hideMenus();" class="ui red basic inverted button">
+                    <i class="remove icon"></i>Close </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

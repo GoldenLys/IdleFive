@@ -1,4 +1,4 @@
-var version = "v2.862";
+var version = "v3.0";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -28,8 +28,6 @@ var p = {
 	bonuspoints: 0,
 	playTime: 0,
 	tutorial: 0,
-	lang: "English",
-	isInMenu: 0,
 	BackgroundsToggle: 0,
 };
 
@@ -39,12 +37,14 @@ $(document).ready(function () {
 	setInterval(function () { idleFiveLoop(); }, 1000);
 	setInterval(function () { checkalerts(1, 30); }, 60000);
 	setInterval(function () { clearalerts(); }, 20000);
-	if (p.lang != "English") { p.lang="English"; ChangeLang(); }
 	save();
 	UpdateTexts();
 	ClickEvents();
-	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
-	if(p.BackgroundsToggle==0) { p.BackgroundsToggle=1; ToggleBackgrounds(); }
+	SuccessCount();
+	showTutorial(p.tutorial);
+	$("#alert").html(texts.infos[3]);
+	$(".pusher").css("background-image", "url(images/bg.jpg)");
+	if (p.BackgroundsToggle == 0) { p.BackgroundsToggle = 1; ToggleBackgrounds(); }
 });
 
 
@@ -55,7 +55,7 @@ function idleFiveLoop() {
 	for (var mission = 0; mission < 14; mission++) { if (p.productions[mission] == null) { p.productions[mission] = 0; } }
 	for (var gun = 0; gun < 37; gun++) { if (p.GBought[gun] == null) { p.GBought[gun] = 0; } }
 	for (var vehicle = 0; vehicle < 182; vehicle++) { if (p.VBought[vehicle] == null) { p.VBought[vehicle] = 0; } }
-	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } }
+	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } } else { btnPrestigeD(); }
 	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
 	var rank = 0;
 	for (var id = 0; id < 12; id++) { if (p.productions[id] == null) { p.productions[id] = 0; } rank += p.productions[id]; }
@@ -143,28 +143,36 @@ function checkalerts(num, num2) {
 			p.cash -= tax;
 			$("#alert").html("<p class='game-text rougeb'>" + texts.infos[5] + " <font class='money'></font>" + fix(tax, 3) + " " + texts.infos[6]);
 		} else {
-			$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
+			$("#alert").html(texts.infos[3]);
 		}
 	}
 }
 
 function clearalerts() {
-	$("#alert").html("<p class='game-text'>" + texts.infos[3] + "</p>");
+	$("#alert").html(texts.infos[3]);
 }
 
 var buyV = function (id) {
-	if (vehicules[id].price <= p.points) {
-		if (p.vehicules[id] == null) {
-			p.vehicules[id] = 1; p.points -= vehicules[id].price;
-		} else { if (p.vehicules[id] != 1) p.vehicules[id] = 1; p.points -= vehicules[id].price; }
-		if (id < 7) { p.VBought[0]++; }
-		if (id > 6) { if (id < 53) { p.VBought[1]++; } }
-		if (id > 52) { if (id < 87) { p.VBought[2]++; } }
-		if (id > 86) { if (id < 143) { p.VBought[3]++; } }
-		if (id > 142) { if (id < 183) { p.VBought[4]++; } }
-		if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
-		if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
-	}
+	if (p.vehicules[id] != 1) {
+		if (vehicules[id].price <= p.points) {
+			if (p.vehicules[id] == null) {
+				p.vehicules[id] = 1;
+				p.points -= vehicules[id].price;
+			} else {
+				if (p.vehicules[id] != 0) {
+					p.vehicules[id] = 1;
+					p.points -= vehicules[id].price;
+				}
+			}
+			if (id < 7) { p.VBought[0]++; }
+			if (id > 6) { if (id < 53) { p.VBought[1]++; } }
+			if (id > 52) { if (id < 87) { p.VBought[2]++; } }
+			if (id > 86) { if (id < 143) { p.VBought[3]++; } }
+			if (id > 142) { if (id < 183) { p.VBought[4]++; } }
+			if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
+			if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
+		}
+	} else { console.log("YOU ALREADY OWN THIS"); }
 	SuccessCount();
 	UpdateUI();
 };
@@ -252,7 +260,6 @@ function BuyM(id, qty) {
 
 function SellM(id, qty) {
 	var price = GetMissionSPrice(id, qty);
-	console.log(price);
 	if (p.productions[id] == null) p.productions[id] = 0;
 	p.cash += price;
 	if (p.productions[id] >= qty) {

@@ -308,28 +308,13 @@ var tutorialtexts = {
 
 var textsENG = {
     menus: ["Character", "Success", "Options & Stats", "Guide", "Chat", "Weapons", "Missions", "Vehicles"],
-    weapons: ["Price", "Modification", "Damage", "Buy this weapon", "Try to modify this weapon", "Use this weapon (normal)"],
-    missions: ["Buy", "Sell", "Level", "Value", "product" , "per level", "and currently", "/s"],
+    weapons: ["Price", "Modification", "Damage", "Purchase", "Try to modify", "Use (normal)"],
+    missions: ["Buy", "Sell", "Level", "Value", "product", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase", "IN YOUR GARAGE"],
     infos: ["Weapon", "Damage", "A new character slot is available.", "Nothing to report at the moment.", "You have", "A player just killed you, he stole", "from your pockets !", "Level"],
     character: ["Change character", "You are actually using the character number", "You must reach the level", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
-    guide: ["Tutorial", "Next", "Previous", "Close tutorial"],
-    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Trown Weapons", "Special Weapons"],
-    vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles", "Compacts", "Sedans", "Off-Road", "Coupes", "Emergency", "Boats", "SUV", "Helicopters", "Military", "Commercials"],
+    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns (WIP)", "Assault Rifles (WIP)", "Sniper Rifles (WIP)", "Heavy Weapons (WIP)", "Trown Weapons (WIP)", "Special Weapons (WIP)"],
+    vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles (WIP)", "Compacts (WIP)", "Sedans (WIP)", "Off-Road (WIP)", "Coupes (WIP)", "Emergency (WIP)", "Boats (WIP)", "SUV (WIP)", "Helicopters (WIP)", "Military (WIP)", "Commercials (WIP)"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
     stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
-};
-
-var textsFRA = {
-    menus: ["Personnage", "Succès", "Options & Stats", "Guide", "Chat", "Armes", "Missions", "Vehicules"],
-    weapons: ["Prix", "Modification", "Dégats", "Acheter cette arme", "Essayer de modifier cette arme", "Utiliser cette arme (normal)"],
-    missions: ["Acheter", "Vendre", "Niveau", "Valeur", "produit" , "par niveau", "et actuellement", "/s"],
-    vehicles: ["Prix", "ajoute", "au multiplicateur de", "cash", "dégats", "", "Acheter", "DANS VOTRE GARAGE"],
-    infos: ["Arme", "Dégats", "Un emplacement pour un nouveau personnage est disponible.", "Rien à signaler pour le moment.", "Vous avez", "Un joueur viens de vous tuer, il a volé ", "dans vos poches !", "Niveau"],
-    character: ["Changer de personnage", "Vous utilisez actuellement le personnage numéro", "Vous devez atteindre le niveau", "et obtenir", "pour passer à un autre personnage.", "Vous pouvez actuellement obtenir", "points de personnage (CP).", "Votre bonus actuel est de", "sur l'argent gagné."],
-    guide: ["Tutoriel", "Suivant", "Précédent", "Fermer le tutoriel"],
-    weapontype: ["", "Corps à corps", "Pistolets", "Fusils à Pompes", "Mitraillettes", "Fusils d'Assaut", "Fusils de Précision", "Armes Lourdes", "Explosifs & Autres", "Armes Spéciales"],
-    vehicletype: ["", "Vélos", "Motos", "Sportives Classiques", "Sportives", "Supersportives", "Grosses Cylindrées", "Compactes", "Berlines", "Tout-Terrain", "Coupés", "Véhicules de secours", "Bateaux", "SUV", "Hélicoptères", "Véhicules Militaires", "Véhicules Industriels"],
-    success: ["succès obtenus.", "Joueur", "Argent", "Missions", "Vehicules", "Fermer"],
-    stats: ["Sauvegarde", "Statistiques", "Exporter", "Importer", "Nouveau Compte", "Fermer", "dans vos poches.", "par seconde.", "par clic.", "acheté(e)s", "Vous avez débuter le", "et joué pendant", "Version actuelle", "Options", "Images de fond"],
 };

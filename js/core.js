@@ -1,4 +1,4 @@
-var version = "v3.0";
+var version = "v3.1";
 var a1 = 0;
 var texts = textsENG;
 var p = {

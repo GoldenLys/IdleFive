@@ -302,7 +302,7 @@ var tutorialtexts = {
     2: { title: "How to play ?", text: "You can start by clicking on the fist to make some money.<br /> After you got some cash, you can buy a weapon or start a mission to gain a lot more <div class='money'></div>.<br /> Buying an Activity will increase your rank and you need that to change your character.", },
     3: { title: "Missions", text: "This is the main mechanic of the game, they are used to automate the game.<br /> The more you have the more you get <div class='money'></div> and <div class='level'></div> but it will become more expensive.", },
     4: { title: "Weapons", text: "Weapons are used to do more damage and get 'manually' an amount of <div class='money'></div>,<br /> there is also a random quality system applied to the weapons that can raise or lower the power of the weapon.", },
-    5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and <div class='level'></div>,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
+    5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and level,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
     6: { title: "Vehicles", text: "They are used to upgrades your cash or damage multiplier,<br /> to buy them you need Character Points (CP).", },
 };
 

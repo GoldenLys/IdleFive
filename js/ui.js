@@ -9,8 +9,8 @@
 	//LEFT INFOS
 	$('#imagecash').attr('src', "http://aizen.hol.es/IdleFive/images/A/" + p.WeaponID + ".png");
 	$("#cash").html("<font class='money'></font><font class='vert type1'>" + CashText + "</font> (<font class='vert'>" + CashPSText + "</font>/s)");
-	$("#level").html(getRank(p.rank) + "<div class='level'></div>");
-	$("#weapon").html(p.GunPower + p.Arme + " - " + p.Rarity); 
+	$("#level").html(getRank(p.rank));
+	$("#weapon").html(p.GunPower + p.Arme + " - " + p.Rarity);
 	$("#damage").html(ClicCashText + "</font>");
 	$("#points").html("<font class='jaune'> " + p.points + " CP</font>");
 	$("#messages").html(prestigeText);
@@ -30,8 +30,6 @@
 	$("#buyedV4").html(texts.vehicletype[4] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[3] + "/56</font>");
 	$("#buyedV5").html(texts.vehicletype[5] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[4] + "/39</font>");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<tr>" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
-	$("#version").html(texts.stats[12] + " " + version);
-	document.title = "idleFive " + version;
 	WeaponList();
 	MissionList();
 	VehicleList();
@@ -65,13 +63,15 @@ function UpdateTexts() {
 	$("#Recommencer").val(texts.stats[4]);
 	$("#CloseStats").html(texts.stats[5]);
 	$("#statistics").html(texts.stats[1]);
+	$("#version").html(texts.stats[12] + " " + version);
+	document.title = "idleFive " + version;
 
 }
 
 //GENERATE MISSIONS TAB
 
 var MissionList = function () {
-	$('#missions').html("<thead><tr><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Value</th><th class='ui center aligned'>Product</th><th class='ui center aligned'>Actions</th></tr></thead>");
+	$('#missions').html("<thead><tr class='shadow'><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Value</th><th class='ui center aligned'>Product</th><th class='ui center aligned'>Manage</th></tr></thead>");
 
 	var Missions = $("<tbody />");
 	$('#missions').append(Missions);
@@ -92,7 +92,7 @@ var MissionList = function () {
 		var colorTitle = owned < 1 ? 'text' : 'vert';
 
 		var MissionDIV = $(
-			"<tr><td class='single line ui header center aligned'><font class='type2 " + colorTitle + "'>" + production.name + "</font></td>" +
+			"<tr><td class='single line ui center aligned'><font class='type2 " + colorTitle + "'>" + production.name + "</font></td>" +
 			"<td class='single line ui center aligned'>" + owned + "</td>" +
 			"<td class='single line ui center aligned'><font class='valeur2'><font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font></td>" +
 			"<td class='ui center aligned'><font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
@@ -108,7 +108,7 @@ var MissionList = function () {
 //GENERATE WEAPONS TAB
 
 function WeaponList() {
-	for (var id = 1; id < 10; id++) { $('#Wtab' + id).html("<thead><tr><th class='ui center aligned'>Weapon</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Damage</th><th class='ui center aligned'>Actions</th></tr></thead>"); }
+	for (var id = 1; id < 10; id++) { $('#Wtab' + id).html("<thead><tr class='shadow'><th class='ui center aligned'>Weapon</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Damage</th><th class='ui center aligned'>Actions</th></tr></thead>"); }
 
 	for (var i in weapons) {
 		var weapon = weapons[i];
@@ -117,13 +117,13 @@ function WeaponList() {
 
 		if (p.GBought[i] == 1) {
 			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' blanc';
-			name = "<font class='vert'>" + weapon.name + "</font>";
+			name = "<font class='type2 vert'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
 			damage = "<font class='rougeb'>" + fix(weapon.power, 1) + "</font>";
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
 		} else {
 			canBuy = weapon.price > p.cash ? ' rougeb' : ' blanc';
-			name = "<font class='text'>" + weapon.name + "</font>";
+			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
 			damage = "<font class='text'>" + fix(weapon.power, 1) + "</font>";
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[3] + "</div></div>";
@@ -131,7 +131,7 @@ function WeaponList() {
 
 		var weaponsDIV = $(
 			"<tr class='ui center aligned' id='weap" + i + "'>" +
-			"<td class='center aligned ui header'><font class='type2'>" + name + "</font></td>" +
+			"<td class='center aligned ui'>" + name + "</td>" +
 			"<td class='center aligned'>" + cost + "</td>" +
 			"<td class='ui center aligned'>" + damage + "</td>" +
 			"<td class='ui center aligned'>" + buttons + "</td>" +
@@ -146,7 +146,7 @@ function WeaponList() {
 //GENERATE VEHICLES TAB
 
 function VehicleList() {
-	for (var id = 1; id < 17; id++) { $('#Vtab' + id).html("<thead><tr><th class='ui center aligned'>Vehicle</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>"); }
+	for (var id = 1; id < 17; id++) { $('#Vtab' + id).html("<thead><tr class='shadow'><th class='ui center aligned'>Vehicle</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>"); }
 
 	for (var i in vehicules) {
 		var vehicle = vehicules[i];
@@ -156,23 +156,25 @@ function VehicleList() {
 		if (vehicle.type == 1) { type = " for the cash multiplier"; }
 
 		if (p.vehicules[i] > 0) {
-			bought = 'style="display:none;"';
-			name = "<font class='type2 vert'>";
-			cost = "<font class='vert'>" + texts.vehicles[7] + "</font>";
+			bought = "style='display:none;'";
+			bought2 = "azn";
+			name = "<font class='text type2'>";
+			cost = "<font class='jaune'>Owned</font>";
 			multiplier = "+<font class='jaune'>" + fix(vehicle.value, 2) + "</font>";
 		} else {
 			bought = "";
+			bought2 = "";
 			color = vehicle.price > p.points ? ' rougeb bold' : ' jaune bold';
 			name = "<font class='text type2'>";
 			cost = "<font class='" + color + "'>" + fix(vehicle.price, 3) + " CP</font>";
 			multiplier = "+" + fix(vehicle.value, 2);
 		}
-		
+
 		var vehiclesDIV = $(
-			"<tr id='veh" + i + "'>" +
-			"<td class='center aligned ui header'>" + name + vehicle.name + "</font></td>" +
-			"<td class='center aligned'>" + cost + "</font></td>" +
-			"<td class='center aligned'> " + multiplier + "</font> " + type + "</td>" +
+			"<tr class='" + bought2 + "' id='veh" + i + "'>" +
+			"<td class='center aligned ui'>" + name + vehicle.name + "</font></td>" +
+			"<td class='center aligned'>" + cost + "</td>" +
+			"<td class='center aligned'>" + multiplier + "</font> " + type + "</td>" +
 			"<td class='center aligned'><button class='fluid ui green button" + canBuy + "' " + bought + " onClick='buyV(" + i + ");'>Purchase</button></td>" +
 			"</tr>"
 		);
@@ -186,13 +188,11 @@ function VehicleList() {
 
 //UI FUNCTIONS
 
-function showVTab(id) { hideVTabs(); $('#Vtab' + id).show(); $("#V" + id).addClass('active'); }
 function hideVTabs() { for (var id = 1; id < 17; id++) { $("#Vtab" + id).hide(); $("#V" + id).removeClass("active"); } }
 function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inverted"); }
 function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
 function hideTabs() { for (var id = 1; id < 4; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("active"); } }
 function hideMenus() { for (var id = 1; id < 6; id++) { $('#menu-' + id).modal('hide'); } }
-function showWTab(id) { hideWTabs(); $('#Wtab' + id).show(); $("#W" + id).addClass("active"); }
 function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
@@ -203,18 +203,23 @@ function ClickEvents() {
 		$("#t" + id).addClass("active");
 	});
 	$("#sidebar").on("click", "a", function () {
-		var id = $(this).data('id'); $('#menu-' + id).modal('show');
+		var id = $(this).data('id');
+		$('#menu-' + id).modal('show');
 		$('.ui.sidebar').sidebar('toggle');
 	});
 	$('#select').dropdown();
 	$('.ui.dropdown').dropdown();
 	$("#weap-select").change(function () {
 		var id = $(this).val();
-		showWTab(id);
+		hideWTabs();
+		$('#Wtab' + id).show();
+		$("#W" + id).addClass("active");
 	});
 	$("#veh-select").change(function () {
 		var id = $(this).val();
-		showVTab(id);
+		hideVTabs();
+		$('#Vtab' + id).show();
+		$("#V" + id).addClass('active');
 	});
 	$("#top-menu").on("click", "#sidebar", function () {
 		$('.ui.sidebar').sidebar('toggle');
@@ -226,6 +231,8 @@ function ClickEvents() {
 		$("#S" + id).addClass("active");
 	});
 }
+
+//SUCCESS MENU
 
 function SuccessCount() {
 	var succeslevel = 0;
@@ -250,10 +257,12 @@ function SuccessList() {
 	for (var i in success) {
 		var succes = success[i];
 		var view = p.succes[i] > 0 ? '' : ' style="display:none;"';
+
 		var succesDIV = $(
-			"<div class='garage-div' " + view + " >" +
-			"<p class='title vert'>" + succes.name + "</p><br>" +
-			"<p class='btexte'>" + succes.desc + "</font></p>"
+			"<div class='ui black icon message'" + view + " >" +
+			"<i class='vert check icon'></i>" +
+			"<div class='content'><p class='text type2'>" + succes.name + "</p>" +
+			"<p>" + succes.desc + "</p></div></div>"
 		);
 		if (succes.type == 0) { $('#Stab0').append(succesDIV); }
 		if (succes.type == 1) { $('#Stab1').append(succesDIV); }
@@ -263,6 +272,8 @@ function SuccessList() {
 		if (succes.type == 5) { $('#Stab0').append(succesDIV); }
 	}
 }
+
+//TUTORIAL FUNCTIONS
 
 function showTutorial(id) {
 	p.tutorial = id;
@@ -292,26 +303,6 @@ function PrevTuto() {
 	}
 	if (p.tutorial == 6) { $("#tuto-next").addClass("disabled"); } else {
 		$("#tuto-next").removeClass("disabled");
-	}
-}
-
-function toggleDiscord() {
-	if ($('#menu-1').css('right') == '27%') {
-		//HIDE DISCORD
-		for (var menulist = 1; menulist < 5; menulist++) { $('#menu-' + menulist).removeClass('menu-discord').addClass('menu'); }
-		$("#discord").hide();
-		$("#colonne-m").css("right", "59.6%");
-		$("#menu").css("right", "0%");
-		$("#colonne-d").css("right", "0%").css("left", "40%");
-		$("#btnDiscord").html(texts.menus[4] + "<br><font class='buttonText rougeb'>(OFF)</font>");
-	} else {
-		//SHOW DISCORD
-		for (var menulist2 = 1; menulist2 < 5; menulist2++) { $('#menu-' + menulist2).removeClass('menu').addClass('menu-discord'); }
-		$("#discord").show();
-		$("#menu").css("right", "27%");
-		$("#colonne-m").css("right", "72.7%");
-		$("#colonne-d").css("right", "27%").css("left", "27%");
-		$("#btnDiscord").html(texts.menus[4] + "<br><font class='buttonText vert'>(ON)</font>");
 	}
 }
 

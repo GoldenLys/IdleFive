@@ -6,6 +6,7 @@
 </head>
 <link rel="shortcut icon" type="image/x-icon" href="http://aizen.hol.es/IdleFive/images/fav.ico" />
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="semantic.min.css">
 <link rel="stylesheet" type="text/css" href="dropdown.min.css">
 <link rel="stylesheet" type="text/css" href="sidebar.min.css">
@@ -14,11 +15,11 @@
 <script src="dropdown.min.js"></script>
 <script src="sidebar.min.js"></script>
 
-<link href="style.css?v=3" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=3"></script>
-<script src="js/data.js?v=3"></script>
-<script src="js/core.js?v=3"></script>
-<script src="js/ui.js?v=3"></script>
+<link href="style.css?v=31" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=31"></script>
+<script src="js/data.js?v=31"></script>
+<script src="js/core.js?v=31"></script>
+<script src="js/ui.js?v=31"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <!--SIDE BAR-->
@@ -53,11 +54,11 @@
                 </div>
             </div>
             <div class="ui inverted secondary menu" id="game-menu">
-                <button id="sidebar" class="ui inverted basic button item">
+                <button id="sidebar" class="ui inverted basic button item type2">
                     <i class="sidebar icon"></i>Menu</button>
-                <a class="item" id="t1" data-id="1">Weapons</a>
-                <a class="item active" id="t2" data-id="2">Missions</a>
-                <a class="item" id="t3" data-id="3">Vehicles</a>
+                <a class="item type2" id="t1" data-id="1">Weapons</a>
+                <a class="item type2 active" id="t2" data-id="2">Missions</a>
+                <a class="item type2" id="t3" data-id="3">Vehicles</a>
             </div>
         </div>
         <!--COLUMNS-->
@@ -70,7 +71,7 @@
                 <table class="ui inverted table">
                     <tr>
                         <td class="right aligned">Cash
-                            <br />Level
+                            <br />Rank
                             <br />Weapon
                             <br />Damage
                             <br />Points</td>
@@ -174,7 +175,7 @@
             <i class="user icon"></i>
             <font id="character-title" class="title blanc"></font>
         </div>
-        <div class="content center">
+        <div class="centrer content">
             <p>
                 <font id="character-number"></font>
                 <font id="prestigecount"></font>
@@ -208,7 +209,7 @@
             <p id="successcount"></p>
         </div>
 
-        <div class="content center">
+        <div class="centrer content">
             <div id="successtype" class="fluid ui inverted buttons">
                 <button data-id="0" class="ui green basic inverted button">Player</button>
                 <button data-id="1" class="ui green basic inverted button">Cash</button>
@@ -234,7 +235,7 @@
             <font id="statistics" class="title blanc"></font>
         </div>
 
-        <div class="content center">
+        <div class="centrer content">
             <p id="cashcount"></p>
             <p id="cashpscount"></p>
             <p id="addcashcount"></p>
@@ -247,7 +248,7 @@
             <p id="version"></p>
         </div>
         <div class="actions">
-            <div onclick="hideMenus();" class="ui red basic inverted button">
+            <div onclick="hideMenus();" class="fluid ui red basic inverted button">
                 <i class="remove icon"></i>Close </div>
         </div>
     </div>
@@ -258,7 +259,7 @@
             <i class="info icon"></i>
             <font id="tutorial-title" class="title blanc"></font>
         </div>
-        <div class="content center">
+        <div class="centrer content">
             <p id="tutorial-text"></p>
         </div>
         <div class="actions">
@@ -276,7 +277,7 @@
             <i class="save icon"></i>
             <font id="savemenu" class="title blanc"></font>
         </div>
-        <div class="content center">
+        <div class="centrer content">
             <p>Here you can export your save to another naviator or computer.</p>
             <p>You can also reset your save to to start a new game.</p>
             <div id="exportBody"></div>

@@ -126,7 +126,7 @@ var restoreSave = function(save){
 		var decoded = atob(save);
 		JSON.parse(decoded);
 		if (decoded) {
-			localStorage.setItem("IdleFive", decoded);
+			localStorage.setItem("idleFive", decoded);
 			canSave = 0;
 			location.reload();
 		} else {

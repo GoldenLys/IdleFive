@@ -89,10 +89,10 @@ var MissionList = function () {
 		var canBuy2 = cost2 > p.cash ? ' disabled' : '';
 		var canSell = owned < 1 ? ' disabled' : '';
 		var canSell2 = owned < 10 ? ' disabled' : '';
-		var colorTitle = owned < 1 ? '' : 'vert';
+		var colorTitle = owned < 1 ? 'text' : 'vert';
 
 		var MissionDIV = $(
-			"<tr><td class='single line sub header center aligned'><h2 class='type2 " + colorTitle + "'>" + production.name + "</h2></td>" +
+			"<tr><td class='single line ui header center aligned'><font class='type2 " + colorTitle + "'>" + production.name + "</font></td>" +
 			"<td class='single line ui center aligned'>" + owned + "</td>" +
 			"<td class='single line ui center aligned'><font class='valeur2'><font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font></td>" +
 			"<td class='ui center aligned'><font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
@@ -123,15 +123,15 @@ function WeaponList() {
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
 		} else {
 			canBuy = weapon.price > p.cash ? ' rougeb' : ' blanc';
-			name = "<font class='gris'>" + weapon.name + "</font>";
+			name = "<font class='text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
-			damage = "<font class='gris'>" + fix(weapon.power, 1) + "</font>";
+			damage = "<font class='text'>" + fix(weapon.power, 1) + "</font>";
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[3] + "</div></div>";
 		}
 
 		var weaponsDIV = $(
 			"<tr class='ui center aligned' id='weap" + i + "'>" +
-			"<td class='center aligned ui header'><h2 class='content center aligned type2'>" + name + "</h2></td>" +
+			"<td class='center aligned ui header'><font class='type2'>" + name + "</font></td>" +
 			"<td class='center aligned'>" + cost + "</td>" +
 			"<td class='ui center aligned'>" + damage + "</td>" +
 			"<td class='ui center aligned'>" + buttons + "</td>" +

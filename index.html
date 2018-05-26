@@ -15,11 +15,11 @@
 <script src="dropdown.min.js"></script>
 <script src="sidebar.min.js"></script>
 
-<link href="style.css?v=32" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=32"></script>
-<script src="js/data.js?v=32"></script>
-<script src="js/core.js?v=32"></script>
-<script src="js/ui.js?v=32"></script>
+<link href="style.css?v=33" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=33"></script>
+<script src="js/data.js?v=33"></script>
+<script src="js/core.js?v=33"></script>
+<script src="js/ui.js?v=33"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <!--SIDE BAR-->
@@ -66,21 +66,24 @@
             <!--LEFT COLUMN-->
             <div class="column" id="colonne-m">
                 <!--CURRENT WEAPON-->
-                <img class="ui fluid cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash">
+                <img class="fluid ui rounded image cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash">
                 <!--GAME INFOS-->
                 <table class="ui inverted table">
                     <tr>
                         <td class="right aligned">Cash
                             <br />Rank
                             <br />Weapon
+                            <br />Quality
                             <br />Damage
                             <br />Points</td>
-                        <th width="55%">
-                            <font id="cash">Loading...</font>
+                            <th width="55%" style="font-weight: normal;">
+                            <font id="cash"></font>
                             <br />
                             <font id="level"></font>
                             <br />
                             <font id="weapon"></font>
+                            <br />
+                            <font id="quality"></font>
                             <br />
                             <font id="damage"></font>
                             <br />

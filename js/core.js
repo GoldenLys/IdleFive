@@ -1,4 +1,4 @@
-var version = "v3.2";
+var version = "v3.3";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -7,28 +7,27 @@ var p = {
 	rank: 0,
 	cash: 0,
 	cashps: 0,
-	bonuscash: 1,
-	VehMult: 0,
+	PrestigeMult: 1,
+	CashMult: 0,
 	prestige: 1,
 	quality: 0,
 	prestigeprice: 400,
 	prestigeprice2: 10000000,
 	productions: [],
 	succes: [],
-	WeaponID: 0,
-	GunMult: 1,
-	GunPower: "<font class='normal'>",
+	ArmeID: 0,
+	QualityMult: 1,
+	ArmeClass: "<font class='normal'>",
 	Arme: "Fist",
 	ArmePower: 0.1,
-	Rarity: "Normal",
+	Quality: "Normal",
 	GBought: [],
 	VBought: [],
 	vehicules: [],
 	points: 0,
-	bonuspoints: 0,
+	DamageMult: 0,
 	playTime: 0,
 	tutorial: 0,
-	BackgroundsToggle: 0,
 };
 
 
@@ -51,14 +50,14 @@ $(document).ready(function () {
 function idleFiveLoop() {
 	if (p.cash !== p.cash) { p.cash = 0; }
 	p.playTime++;
-	if (p.prestige > 1) p.bonuscash = 1 + (p.prestige * 0.15);
+	if (p.prestige > 1) p.PrestigeMult = 1 + (p.prestige * 0.15);
 	for (var mission = 0; mission < 14; mission++) { if (p.productions[mission] == null) { p.productions[mission] = 0; } }
 	for (var gun = 0; gun < 37; gun++) { if (p.GBought[gun] == null) { p.GBought[gun] = 0; } }
 	for (var vehicle = 0; vehicle < 182; vehicle++) { if (p.VBought[vehicle] == null) { p.VBought[vehicle] = 0; } }
 	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } } else { btnPrestigeD(); }
-	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
+	//p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
 	var rank = 0;
-	for (var id = 0; id < 12; id++) { if (p.productions[id] == null) { p.productions[id] = 0; } rank += p.productions[id]; }
+	for (var id = 0; id < 14; id++) { if (p.productions[id] == null) { p.productions[id] = 0; } rank += p.productions[id]; } // CALCULATE THE RANK
 	p.rank = rank;
 	if (p.fl == 1) { p.fl = 0; showTutorialDIV(); }
 	getPrestigePrice();
@@ -71,14 +70,14 @@ function getCashPS() {
 	p.cashps = 0;
 	for (var id = 0; id < 14; id++) {
 		if (p.productions[id] > 0) {
-			p.cashps += (productions[id].value * p.productions[id]) * (p.bonuscash + p.bonuscash + p.VehMult);
+			p.cashps += (productions[id].value * p.productions[id]) * (p.PrestigeMult + p.CashMult);
 			p.cash += p.cashps;
 		}
 	}
 }
 
 function ClickWeapon() {
-	p.cash += (p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints + p.VehMult);
+	p.cash += (p.ArmePower * p.QualityMult) * (p.PrestigeMult + p.DamageMult + p.CashMult);
 	UpdateUI();
 }
 
@@ -89,11 +88,11 @@ function AddPrestige() {
 			if (r == true) {
 				p.points = Math.trunc(p.rank / 200);
 				p.ArmePower = 0.1;
-				p.WeaponID = 0;
-				p.GunMult = 1;
-				p.GunPower = "<font class='normal'>";
+				p.ArmeID = 0;
+				p.QualityMult = 1;
+				p.ArmeClass = "<font class='normal'>";
 				p.Arme = "Fist";
-				p.Rarity = "Normal";
+				p.Quality = "Normal";
 				p.GBought = [];
 				p.rank = 0;
 				p.cash = 0;
@@ -116,8 +115,7 @@ function ForcePrestige() {
 
 function getPrestigePrice() {
 	p.prestigeprice = p.prestige * 50 + 400;
-	p.bonuscash = 1;
-	p.prestigeprice2 = (p.prestige * 1e7) + 1e7;
+	p.prestigeprice2 = (p.prestige * 1e9) + 1e10;
 	if (p.prestige == 0) {
 		p.prestigeprice = 400;
 		p.prestigeprice2 = 10000000;
@@ -169,8 +167,8 @@ var buyV = function (id) {
 			if (id > 52) { if (id < 87) { p.VBought[2]++; } }
 			if (id > 86) { if (id < 143) { p.VBought[3]++; } }
 			if (id > 142) { if (id < 183) { p.VBought[4]++; } }
-			if (vehicules[id].type == 0) { p.bonuspoints += vehicules[id].value; }
-			if (vehicules[id].type == 1) { p.VehMult += vehicules[id].value; }
+			if (vehicules[id].type == 0) { p.DamageMult += vehicules[id].value; }
+			if (vehicules[id].type == 1) { p.CashMult += vehicules[id].value; }
 		}
 	} else { console.log("YOU ALREADY OWN THIS"); }
 	SuccessCount();
@@ -179,36 +177,36 @@ var buyV = function (id) {
 
 function genGun(id) {
 	quality = random(1, 200);
-	if (quality >= 1) { setRarity("Very used", "gris", 0.5); }
-	if (quality >= 50) { setRarity("Used", "gris", 0.75); }
-	if (quality >= 150) { setRarity("Normal", "normal", 1); }
+	if (quality >= 1) { setQuality("Very used", "gris", 0.5); }
+	if (quality >= 50) { setQuality("Used", "gris", 0.75); }
+	if (quality >= 150) { setQuality("Normal", "normal", 1); }
 }
 
 function genGun2(id) {
 	quality = random(1, 204);
-	if (quality >= 1) { setRarity("Normal", "normal", 1); }
-	if (quality >= 80) { setRarity("Good condition", "rare", 1.25); }
-	if (quality >= 150) { setRarity("Very good state", "or", 1.5); }
-	if (quality >= 180) { setRarity("Factory new", "rougeb", 1.75); }
-	if (quality >= 190) { setRarity("Military grade", "mythic", 2); }
-	if (quality >= 200) { setRarity("Special forces", "tactical", 3); }
+	if (quality >= 1) { setQuality("Normal", "normal", 1); }
+	if (quality >= 80) { setQuality("Good condition", "rare", 1.25); }
+	if (quality >= 150) { setQuality("Very good state", "or", 1.5); }
+	if (quality >= 180) { setQuality("Factory new", "rougeb", 1.75); }
+	if (quality >= 190) { setQuality("Military grade", "mythic", 2); }
+	if (quality >= 200) { setQuality("Special forces", "tactical", 3); }
 }
 
-function setRarity(Type, Class, Mult) {
-	p.Rarity = Type;
-	p.GunPower = "<font class='" + Class + "'>";
-	p.GunMult = Mult;
+function setQuality(Type, Class, Mult) {
+	p.Quality = Type;
+	p.ArmeClass = "<font class='" + Class + "'>";
+	p.QualityMult = Mult;
 }
 
 function useW(id) {
 	var weapon = weapons[id];
 	if (p.GBought[id] == 1) {
-		if (p.WeaponID != id) {
-			p.Rarity = "Normal";
-			p.GunPower = "<font class='normal'>";
-			p.GunMult = 1;
+		if (p.ArmeID != id) {
+			p.Quality = "Normal";
+			p.ArmeClass = "<font class='normal'>";
+			p.QualityMult = 1;
 			p.Arme = weapon.name;
-			p.WeaponID = id;
+			p.ArmeID = id;
 			p.ArmePower = weapon.power;
 		}
 	}
@@ -224,7 +222,7 @@ function buyG(id) {
 			p.cash -= pricebuy;
 			p.Arme = arme;
 			p.ArmePower = damage;
-			p.WeaponID = id;
+			p.ArmeID = id;
 			p.GBought[id] = 1;
 			genGun(id);
 		}
@@ -232,7 +230,7 @@ function buyG(id) {
 		if (p.cash >= pricebuy * 2) {
 			p.cash -= pricebuy * 2;
 			p.Arme = arme;
-			p.WeaponID = id;
+			p.ArmeID = id;
 			p.ArmePower = damage;
 			genGun2(id);
 		}

@@ -87,8 +87,8 @@
 }
 
 .rare {
-	color: #192cbb;
-	text-shadow: 0px 0px 3vh #0f1753;
+	color: #027ce0;
+	text-shadow: 0px 0px 3vh #192cbb;
 }
 
 .mythic {
@@ -97,13 +97,12 @@
 }
 
 .tactical {
-    color: rgb(66, 0, 141);
-    text-shadow: 0 0 0.5vh rgb(91, 65, 116);
+    color: rgb(137, 47, 255);
+    text-shadow: 0 0 3vh rgb(37, 0, 80);
 }
 
 .vert {
-    color: rgb(56, 163, 56);
-    text-shadow: 0 0 0vh rgb(0, 130, 0);
+    color: #21ba45;
 }
 
 .gris {
@@ -165,8 +164,8 @@
 }
 
 .Gold {
-	color: rgb(255, 190, 0);
-	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+	color: rgb(212,175,55);
+	text-shadow: 0.1vh 0px 0px rgb(202,155,55);
 }
 
 .Platinum {
@@ -177,7 +176,7 @@
 #t1:after {
     content: "";
     display: inline;
-    padding: 25% 25% 0% 0%;
+    padding: 15% 14% 15% 13%;
     margin: 0% 2% 0% 2%;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -187,7 +186,7 @@
 #t2:after {
     content: "";
     display: inline;
-    padding: 25% 25% 0% 0%;
+    padding: 15% 14% 15% 13%;
     margin: 0% 2% 0% 2%;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -197,7 +196,7 @@
 #t3:after {
     content: "";
     display: inline;
-    padding: 25% 25% 0% 0%;
+    padding: 15% 14% 15% 13%;
     margin: 0% 2% 0% 2%;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -207,12 +206,18 @@
 .money {
     background-image: url(http://aizen.hol.es/IdleFive/images/cash.png);
     background-repeat: no-repeat;
-    display: inline-block;
     background-position: left center;
-    background-size: 2vh;
-    width: 2vh;
-    margin-bottom: -0.35vh;
-    padding: 1vh 0vh 1vh 0.1vh;
+    background-size: 1em;
+    display: inline-block;
+    opacity: 1;
+    margin: 0 0 -.2rem 0;
+    width: 1.15em;
+    height: 1.15em;
+    text-decoration: inherit;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .ui.inverted.table {
@@ -232,7 +237,7 @@
 }
 
 .ui.selection.dropdown {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     color: rgba(255, 255, 255, 1);
     cursor: url("http://aizen.hol.es/IdleFive/images/hand.cur"), pointer;
 }
@@ -291,7 +296,7 @@ body ::-webkit-scrollbar-track {
 }
 
 .azn {
-    background-color: rgba(0, 190, 0, 0.15);
+    background-color: rgba(0, 190, 0, 0.10);
 }
 
 .azn-active {
@@ -300,4 +305,8 @@ body ::-webkit-scrollbar-track {
 
 .pushable>.pusher {
     overflow-y: auto;
+}
+
+.bold {
+    font-weight: bold;
 }

@@ -1,4 +1,4 @@
-var version = "v3.1";
+var version = "v3.2";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -178,7 +178,7 @@ var buyV = function (id) {
 };
 
 function genGun(id) {
-	quality = random(1, 500);
+	quality = random(1, 200);
 	if (quality >= 1) { setRarity("Very used", "gris", 0.5); }
 	if (quality >= 50) { setRarity("Used", "gris", 0.75); }
 	if (quality >= 150) { setRarity("Normal", "normal", 1); }

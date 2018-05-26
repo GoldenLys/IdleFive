@@ -1,5 +1,5 @@
 ﻿var UpdateUI = function () {
-	ClicCashText = fix((p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints), 2);
+	ClicCashText = fix((p.ArmePower * p.GunMult) * (p.bonuscash + p.bonuspoints + p.VehMult), 2);
 	CashPSText = fix(p.cashps, 2);
 	BonusCashText = fix(p.bonuscash, 2);
 	CashText = fix(p.cash, 2);
@@ -8,22 +8,22 @@
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = texts.infos[2]; } }
 	//LEFT INFOS
 	$('#imagecash').attr('src', "http://aizen.hol.es/IdleFive/images/A/" + p.WeaponID + ".png");
-	$("#cash").html("<font class='money'></font><font class='vert type1'>" + CashText + "</font> (<font class='vert'>" + CashPSText + "</font>/s)");
+	$("#cash").html("<i class='money'></i><font class='vert'>" + CashText + "</font> (<font class='vert'>" + CashPSText + "</font>/s)");
 	$("#level").html(getRank(p.rank));
 	$("#weapon").html(p.GunPower + p.Arme + " - " + p.Rarity);
-	$("#damage").html(ClicCashText + "</font>");
+	$("#damage").html(ClicCashText);
 	$("#points").html("<font class='jaune'> " + p.points + " CP</font>");
 	$("#messages").html(prestigeText);
 	//CHARACTER STATS
 	$("#prestigecount").html(p.prestige);
 	$("#prestigepricecount").html(getRank(p.prestigeprice));
-	$("#prestigepricecount2").html("<font class='money'></font>" + fix(p.prestigeprice2, 2));
+	$("#prestigepricecount2").html("<i class='money'></i>" + fix(p.prestigeprice2, 2));
 	$("#character-text4").html(texts.character[5] + "<font class='jaune'> " + PrestigePoints + " </font> " + texts.character[6]);
 	$("#character-text5").html(texts.character[7] + "<font class='jaune'> " + BonusCashText + "</font> " + texts.character[8]);
 	//STATS
-	$("#cashcount").html("<font class='money'></font><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
-	$("#cashpscount").html("<font class='money'></font><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
-	$("#addcashcount").html("<font class='money'></font><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
+	$("#cashcount").html("<i class='money'></i><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
+	$("#cashpscount").html("<i class='money'></i><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
+	$("#addcashcount").html("<i class='money'></i><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
 	$("#buyedV1").html(texts.vehicletype[1] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[0] + "/7</font>");
 	$("#buyedV2").html(texts.vehicletype[2] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[1] + "/46</font>");
 	$("#buyedV3").html(texts.vehicletype[3] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[2] + "/34</font>");
@@ -87,15 +87,17 @@ var MissionList = function () {
 
 		var canBuy = cost > p.cash ? ' disabled' : '';
 		var canBuy2 = cost2 > p.cash ? ' disabled' : '';
+		var canBuyColor = cost > p.cash ? ' rougeb' : ' text';
 		var canSell = owned < 1 ? ' disabled' : '';
 		var canSell2 = owned < 10 ? ' disabled' : '';
-		var colorTitle = owned < 1 ? 'text' : 'vert';
+		var color = owned < 1 ? '' : 'azn';
+		var cashColor = owned < 1 ? 'blanc' : 'vert';
 
 		var MissionDIV = $(
-			"<tr><td class='single line ui center aligned'><font class='type2 " + colorTitle + "'>" + production.name + "</font></td>" +
+			"<tr class='" + color + "'><td class='single line ui center aligned'><font class='type2'>" + production.name + "</font></td>" +
 			"<td class='single line ui center aligned'>" + owned + "</td>" +
-			"<td class='single line ui center aligned'><font class='valeur2'><font class='money'></font><font class='valeur vert'>" + fix(cost, 1) + "</font></font></td>" +
-			"<td class='ui center aligned'><font class='money'></font><font class='vert'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
+			"<td class='single line ui center aligned'><font class='valeur2'><font class='money'></font><font class='valeur " + canBuyColor + "'>" + fix(cost, 1) + "</font></font></td>" +
+			"<td class='ui center aligned'><font class='money'></font><font class='" + cashColor + "'>" + fix(p.bonuscash * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
 			"<td class='ui center aligned'><div class='ui center aligned buttons'><button class='ui positive button " + canBuy + "' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
 			"<button class='ui positive button " + canBuy2 + "' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
 			"<div class='ui buttons'><button class='ui negative button " + canSell + "' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
@@ -112,16 +114,20 @@ function WeaponList() {
 
 	for (var i in weapons) {
 		var weapon = weapons[i];
-		canBBuy = weapon.price > p.cash ? ' basic red' : ' green';
-		canBBuy2 = weapon.price * 2 > p.cash ? ' basic red' : ' green';
+		canBBuy = weapon.price > p.cash ? ' basic red disabled' : ' green';
+		canBBuy2 = weapon.price * 2 > p.cash ? ' basic red disabled' : ' green';
 
 		if (p.GBought[i] == 1) {
+			if(p.WeaponID == i) { equipment='azn-active'; } else { equipment=''; }
+			bought = 'azn ';
 			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' blanc';
-			name = "<font class='type2 vert'>" + weapon.name + "</font>";
+			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
-			damage = "<font class='rougeb'>" + fix(weapon.power, 1) + "</font>";
+			damage = "<font class='jaune'>" + fix(weapon.power, 1) + "</font>";
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
 		} else {
+			bought = '';
+			equipment = '';
 			canBuy = weapon.price > p.cash ? ' rougeb' : ' blanc';
 			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
@@ -130,7 +136,7 @@ function WeaponList() {
 		}
 
 		var weaponsDIV = $(
-			"<tr class='ui center aligned' id='weap" + i + "'>" +
+			"<tr class='" + bought + equipment + " ui center aligned' id='weap" + i + "'>" +
 			"<td class='center aligned ui'>" + name + "</td>" +
 			"<td class='center aligned'>" + cost + "</td>" +
 			"<td class='ui center aligned'>" + damage + "</td>" +
@@ -150,7 +156,7 @@ function VehicleList() {
 
 	for (var i in vehicules) {
 		var vehicle = vehicules[i];
-		canBuy = vehicle.price > p.points ? ' basic disabled' : '';
+		canBuy = vehicle.price > p.points ? ' basic red disabled' : '';
 		type = "";
 		if (vehicle.type == 0) { type = " for the damage multiplier"; }
 		if (vehicle.type == 1) { type = " for the cash multiplier"; }

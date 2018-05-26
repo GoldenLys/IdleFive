@@ -27,18 +27,25 @@
     cursor: url("http://aizen.hol.es/IdleFive/images/hand.cur"), pointer;
 }
 
+.button:hover {
+    cursor: url("http://aizen.hol.es/IdleFive/images/hand.cur"), pointer;
+}
+
 #colonne-m {
     text-align: center;
-    padding-left: 4rem;
+    padding-left: 4.5rem;
     padding-right: 0rem;
     width: 40%;
+    position: fixed;
+    z-index: 999;
 }
 
 #colonne-d {
     text-align: center;
     padding-left: 1.5rem;
     padding-right: 0rem;
-    width: 57.4%;
+    width: 57%;
+    left: 38.5%;
 }
 
 .surc {
@@ -227,6 +234,7 @@
 .ui.selection.dropdown {
     background: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 1);
+    cursor: url("http://aizen.hol.es/IdleFive/images/hand.cur"), pointer;
 }
 
 .ui.selection.active.dropdown .menu {
@@ -241,11 +249,11 @@
     color: rgba(255, 255, 255, 1);
 }
 .ui.dropdown .menu>.item:hover {
-    color: rgba(33, 186, 69, 1);
+    color: rgba(0, 184, 67, 1);
 }
 
 .ui.dropdown .menu>.item.active {
-    color: rgba(33, 186, 69, 1);
+    color: rgba(0, 184, 67, 1);
 }
 
 .ui.dropdown .menu>.item {
@@ -258,11 +266,11 @@
 }
 
 body ::-webkit-scrollbar-thumb {
-    background: #1c6a46;
+    background: rgba(0, 184, 67, 0.7);
 }
 
 body ::-webkit-scrollbar-thumb:hover {
-    background: rgba(33, 186, 69, 0.7);
+    background: rgba(0, 184, 67, 1);
 }
 
 body ::-webkit-scrollbar-track {
@@ -283,7 +291,11 @@ body ::-webkit-scrollbar-track {
 }
 
 .azn {
-    background-color: rgba(0, 190, 0, 0.3);
+    background-color: rgba(0, 190, 0, 0.15);
+}
+
+.azn-active {
+    background-color: rgba(0, 190, 0, 0.25);
 }
 
 .pushable>.pusher {

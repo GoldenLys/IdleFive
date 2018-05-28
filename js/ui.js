@@ -4,6 +4,9 @@
 	PrestigeMultText = fix(p.PrestigeMult, 2);
 	CashText = fix(p.cash, 2);
 	prestigeText = "";
+	WeaponsNBR = 0;
+	AllWeaponsNBR = 0;
+	for (var i in weapons) { AllWeaponsNBR+=1; WeaponsNBR+=p.Armes[i]; }
 	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = texts.infos[2]; } }
 	//LEFT INFOS
@@ -15,26 +18,45 @@
 	$("#damage").html(p.ArmeClass + "<font class='bold'>" + ClicCashText + "</font></font>");
 	$("#points").html("<font class='jaune'> " + p.points + " CP</font>");
 	$("#messages").html(prestigeText);
-	//CHARACTER STATS
+	//CHARACTER
 	$("#prestigecount").html(p.prestige);
 	$("#prestigepricecount").html(getRank(p.prestigeprice));
 	$("#prestigepricecount2").html("<i class='money'></i>" + fix(p.prestigeprice2, 2));
 	$("#character-text4").html(texts.character[5] + "<font class='jaune'> " + PrestigePoints + " </font> " + texts.character[6]);
 	$("#character-text5").html(texts.character[7] + "<font class='jaune'> " + PrestigeMultText + "</font> " + texts.character[8]);
-	//STATS
+	//CASH - STATS
 	$("#cashcount").html("<i class='money'></i><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
 	$("#cashpscount").html("<i class='money'></i><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
 	$("#addcashcount").html("<i class='money'></i><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
-	$("#buyedV1").html(texts.vehicletype[1] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[0] + "/7</font>");
-	$("#buyedV2").html(texts.vehicletype[2] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[1] + "/46</font>");
-	$("#buyedV3").html(texts.vehicletype[3] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[2] + "/34</font>");
-	$("#buyedV4").html(texts.vehicletype[4] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[3] + "/56</font>");
-	$("#buyedV5").html(texts.vehicletype[5] + " " + texts.stats[9] + " <font class='desc'>" + p.VBought[4] + "/39</font>");
+	//VEHICLES - STATS
+	$("#boughtvehicles1").html(texts.vehicletype[1] + " bought <font class='bold jaune'>" + p.VBought[0] + "</font>/7.");
+	$("#boughtvehicles2").html(texts.vehicletype[2] + " bought <font class='bold jaune'>" + p.VBought[1] + "</font>/46.");
+	$("#boughtvehicles3").html(texts.vehicletype[3] + " bought <font class='bold jaune'>" + p.VBought[2] + "</font>/34.");
+	$("#boughtvehicles4").html(texts.vehicletype[4] + " bought <font class='bold jaune'>" + p.VBought[3] + "</font>/56.");
+	$("#boughtvehicles5").html(texts.vehicletype[5] + " bought <font class='bold jaune'>" + p.VBought[4] + "</font>/39.");
+	//WEAPONS - STATS
+	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons bought.");
+	$("#weaponsT1").html(p.GBought[0] + " " + texts.weapontype[1] + " bought.");
+	$("#weaponsT2").html(p.GBought[1] + " " + texts.weapontype[2] + " bought.");
+	$("#weaponsT3").html(p.GBought[2] + " " + texts.weapontype[3] + " bought.");
+	$("#weaponsT4").html(p.GBought[3] + " " + texts.weapontype[4] + " bought.");
+	$("#weaponsT5").html(p.GBought[4] + " " + texts.weapontype[5] + " bought.");
+	$("#weaponsT6").html(p.GBought[5] + " " + texts.weapontype[6] + " bought.");
+	$("#weaponsT7").html(p.GBought[6] + " " + texts.weapontype[7] + " bought.");
+	$("#weaponsT8").html(p.GBought[7] + " " + texts.weapontype[8] + " bought.");
+	$("#weaponsT9").html(p.GBought[8] + " " + texts.weapontype[9] + " bought.");
+	//MULTIPLIERS - STATS
+	$("#cashmult").html("Cash multiplier at <font class='jaune bold'>" + fix(p.CashMult + p.PrestigeMult, 1) + "</font>");
+	$("#damagemult").html("Damage multiplier at <font class='jaune bold'>" + fix(p.DamageMult + p.PrestigeMult, 1)+ "</font>");
+	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.PrestigeMult, 1)+ "</font>");
+	//OTHERS - STATS
+	$("#spcount").html("Prestige number<font class='jaune'>" + p.prestige + "</font>.");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	WeaponList();
 	MissionList();
 	VehicleList();
 	SuccessList();
+	SuccessCount();
 };
 
 function UpdateTexts() {
@@ -77,18 +99,18 @@ var MissionList = function () {
 	var Missions = $("<tbody />");
 	$('#missions').append(Missions);
 
-	for (var i in productions) {
-		var production = productions[i];
+	for (var i in missions) {
+		var production = missions[i];
 
 		var owned = 0;
-		if (p.productions[i] != null)
-			owned = p.productions[i];
+		if (p.missions[i] != null)
+			owned = p.missions[i];
 		var cost = GetMissionPrice(i, 1);
 		var cost2 = GetMissionPrice(i, 10);
 
 		var canBuy = cost > p.cash ? ' disabled' : '';
 		var canBuy2 = cost2 > p.cash ? ' disabled' : '';
-		var canBuyColor = cost > p.cash ? ' rougeb' : ' text';
+		var canBuyColor = cost > p.cash ? ' rouge' : ' text';
 		var canSell = owned < 1 ? ' disabled' : '';
 		var canSell2 = owned < 10 ? ' disabled' : '';
 		var color = owned < 1 ? '' : 'azn';
@@ -115,14 +137,14 @@ function WeaponList() {
 
 	for (var i in weapons) {
 		var weapon = weapons[i];
-		canBBuy = weapon.price > p.cash ? ' basic red disabled' : ' green';
-		canBBuy2 = weapon.price * 2 > p.cash ? ' basic red disabled' : ' green';
+		canBBuy = weapon.price > p.cash ? ' basic red' : ' green';
+		canBBuy2 = weapon.price * 1.25 > p.cash ? ' basic red' : ' green';
 		Damage = fix(weapon.power * (p.PrestigeMult + p.DamageMult + p.CashMult), 2);
 
-		if (p.GBought[i] == 1) {
-			if(p.ArmeID == i) { equipment='azn-active'; } else { equipment=''; }
+		if (p.Armes[i] == 1) {
+			if (p.ArmeID == i) { equipment = 'azn-active'; } else { equipment = ''; }
 			bought = 'azn ';
-			canBuy = weapon.price * 2 > p.cash ? ' rougeb' : ' blanc';
+			canBuy = weapon.price * 2 > p.cash ? ' rouge' : ' blanc';
 			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
 			damage = "<font class='jaune'>" + Damage + "</font>";
@@ -130,7 +152,7 @@ function WeaponList() {
 		} else {
 			bought = '';
 			equipment = '';
-			canBuy = weapon.price > p.cash ? ' rougeb' : ' blanc';
+			canBuy = weapon.price > p.cash ? ' rouge' : ' blanc';
 			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price, 2) + "</font>";
 			damage = "<font class='text'>" + Damage + "</font>";
@@ -158,7 +180,7 @@ function VehicleList() {
 
 	for (var i in vehicules) {
 		var vehicle = vehicules[i];
-		canBuy = vehicle.price > p.points ? ' basic red disabled' : '';
+		canBuy = vehicle.price > p.points ? ' basic red' : '';
 		type = "";
 		if (vehicle.type == 0) { type = " for the damage multiplier"; }
 		if (vehicle.type == 1) { type = " for the cash multiplier"; }
@@ -172,7 +194,7 @@ function VehicleList() {
 		} else {
 			bought = "";
 			bought2 = "";
-			color = vehicle.price > p.points ? ' rougeb bold' : ' jaune bold';
+			color = vehicle.price > p.points ? ' rouge bold' : ' jaune bold';
 			name = "<font class='text type2'>";
 			cost = "<font class='" + color + "'>" + fix(vehicle.price, 3) + " CP</font>";
 			multiplier = "+" + fix(vehicle.value, 1);
@@ -251,7 +273,7 @@ function SuccessCount() {
 
 		if (succes.type == 0) { if (p.tutorial == 6) { p.succes[0] = 1; } }
 		if (succes.type == 1) { if (p.cash >= succes.value) { p.succes[i] = 1; } }
-		if (succes.type == 2) { if (p.productions[succes.value2] >= 100) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
+		if (succes.type == 2) { if (p.missions[succes.value2] >= 100) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 3) { if (p.VBought[succes.value2] == succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 		if (succes.type == 4) { if (p.rank >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 5) { if (p.prestige >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
@@ -315,7 +337,7 @@ function PrevTuto() {
 }
 
 function showTutorialDIV() {
-	hideMenus();
-	$("#menu-4").show();
+	p.fl = 0;
+	$("#menu-4").modal('show');
 	showTutorial(0);
 }

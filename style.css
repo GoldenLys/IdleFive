@@ -109,8 +109,8 @@
 	color: rgb(150, 150, 150);
 }
 
-.rougeb {
-    color: rgb(180, 10, 10);
+.rouge {
+    color: rgb(229, 46, 35);
 }
 
 .jaune {
@@ -154,23 +154,28 @@
 }
 
 .Bronze {
-	color: rgb(148, 124, 52);
-	text-shadow: 0.1vh 0px 0px rgb(120, 100, 0);
+    color: #B87833;
+    text-shadow: 0 0 3vh rgb(119, 69, 4);
 }
 
 .Silver {
-	color: rgb(148, 148, 148);
-	text-shadow: 0.1vh 0px 0px rgb(148, 148, 148);
+    color: rgb(94, 94, 94);
+    text-shadow: 0 0 3vh rgb(80, 80, 80);
 }
 
 .Gold {
-	color: rgb(212,175,55);
-	text-shadow: 0.1vh 0px 0px rgb(202,155,55);
+    color: #FDD017;
+    text-shadow: 0 0 3vh rgb(219, 255, 14);
+}
+
+.Palladium {
+    color: #B6AFA9;
+    text-shadow: 0 0 3vh rgb(255, 255, 255);
 }
 
 .Platinum {
-	color: rgb(139, 212, 255);
-	text-shadow: 0px 0px 3vh rgb(1, 73, 110);
+    color: rgba(206, 208, 221, 1);
+    text-shadow: 0 0 3vh rgb(13, 220, 235);
 }
 
 #t1:after {
@@ -271,11 +276,11 @@
 }
 
 body ::-webkit-scrollbar-thumb {
-    background: rgba(0, 184, 67, 0.7);
+    background: rgba(0, 184, 67, 1);
 }
 
 body ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 184, 67, 1);
+    background: rgba(0, 154, 67, 1);
 }
 
 body ::-webkit-scrollbar-track {
@@ -296,11 +301,11 @@ body ::-webkit-scrollbar-track {
 }
 
 .azn {
-    background-color: rgba(0, 190, 0, 0.10);
+    background-color: rgba(70, 255, 70, 0.10);
 }
 
 .azn-active {
-    background-color: rgba(0, 190, 0, 0.25);
+    background-color: rgba(70, 255, 70, 0.25);
 }
 
 .pushable>.pusher {

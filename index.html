@@ -2,7 +2,8 @@
 
 <head>
     <title>idleFive</title>
-    <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+    />
 </head>
 <link rel="shortcut icon" type="image/x-icon" href="http://aizen.hol.es/IdleFive/images/fav.ico" />
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
@@ -15,11 +16,11 @@
 <script src="dropdown.min.js"></script>
 <script src="sidebar.min.js"></script>
 
-<link href="style.css?v=33" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=33"></script>
-<script src="js/data.js?v=33"></script>
-<script src="js/core.js?v=33"></script>
-<script src="js/ui.js?v=33"></script>
+<link href="style.css?v=34" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=34"></script>
+<script src="js/data.js?v=34"></script>
+<script src="js/core.js?v=34"></script>
+<script src="js/ui.js?v=34"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <!--SIDE BAR-->
@@ -76,7 +77,7 @@
                             <br />Quality
                             <br />Damage
                             <br />Points</td>
-                            <th width="55%" style="font-weight: normal;">
+                        <th width="55%" style="font-weight: normal;">
                             <font id="cash"></font>
                             <br />
                             <font id="level"></font>
@@ -239,16 +240,41 @@
         </div>
 
         <div class="centrer content">
-            <p id="cashcount"></p>
-            <p id="cashpscount"></p>
-            <p id="addcashcount"></p>
-            <p id="buyedV1"></p>
-            <p id="buyedV2"></p>
-            <p id="buyedV3"></p>
-            <p id="buyedV4"></p>
-            <p id="buyedV5"></p>
-            <p id="time"></p>
-            <p id="version"></p>
+            <p>
+                <div class='type2 text'>Cash</div>
+                <div id="cashcount"></div>
+                <div id="cashpscount"></div>
+                <div id="addcashcount"></div>
+                <br />
+                <div class='type2 text'>Vehicles</div>
+                <div id="boughtvehicles1"></div>
+                <div id="boughtvehicles2"></div>
+                <div id="boughtvehicles3"></div>
+                <div id="boughtvehicles4"></div>
+                <div id="boughtvehicles5"></div>
+                <br />
+                <div class='type2 text'>Weapons</div>
+                <div id="weaponsT1"></div>
+                <div id="weaponsT2"></div>
+                <div id="weaponsT3"></div>
+                <div id="weaponsT4"></div>
+                <div id="weaponsT5"></div>
+                <div id="weaponsT6"></div>
+                <div id="weaponsT7"></div>
+                <div id="weaponsT8"></div>
+                <div id="weaponsT9"></div>
+                <div id="weapons-bought"></div>
+                <br />
+                <div class='type2 text'>Multipliers</div>
+                <div id="cashmult"></div>
+                <div id="damagemult"></div>
+                <div id="prestigemult"></div>
+                <br />
+                <div class='type2 text'>Others</div>
+                <div id="spcount"></div>
+                <div id="time"></div>
+                <div id="version"></div>
+            </p>
         </div>
         <div class="actions">
             <div onclick="hideMenus();" class="fluid ui red basic inverted button">
@@ -267,8 +293,8 @@
         </div>
         <div class="actions">
             <div class="large three ui buttons">
+                <button onClick="PrevTuto();" id="tuto-prev" class="ui inverted basic button">Previous</button>
                 <button onClick="NextTuto();" id="tuto-next" class="ui green inverted basic button">Next</button>
-                <button onClick="PrevTuto();" id="tuto-prev" class="ui green inverted basic button">Previous</button>
                 <div onclick="closeTutorial();" class="ui red basic inverted button">
                     <i class="remove icon"></i>Close </div>
             </div>

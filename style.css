@@ -31,7 +31,15 @@
     cursor: url("http://aizen.hol.es/IdleFive/images/hand.cur"), pointer;
 }
 
+#top-menu {
+    width: 105%;
+    height: 5%;
+    position: fixed;
+    z-index: 998;
+}
+
 #colonne-m {
+    margin-top: 5%;
     text-align: center;
     padding-left: 4.5rem;
     padding-right: 0rem;
@@ -45,7 +53,7 @@
     padding-left: 1.5rem;
     padding-right: 0rem;
     width: 57%;
-    left: 38.5%;
+    left: 39%;
 }
 
 .surc {

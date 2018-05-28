@@ -50,7 +50,7 @@
 	$("#damagemult").html("Damage multiplier at <font class='jaune bold'>" + fix(p.DamageMult + p.PrestigeMult, 1)+ "</font>");
 	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.PrestigeMult, 1)+ "</font>");
 	//OTHERS - STATS
-	$("#spcount").html("Prestige number<font class='jaune'>" + p.prestige + "</font>.");
+	$("#spcount").html("Character number <font class='jaune'>" + p.prestige + "</font>.");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	WeaponList();
 	MissionList();

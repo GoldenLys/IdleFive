@@ -44,6 +44,7 @@ $(document).ready(function () {
 	showTutorial(p.tutorial);
 	$("#alert").html(texts.infos[3]);
 	$(".pusher").css("background-image", "url(images/bg.jpg)");
+	$('.ui.sidebar').sidebar('hide');
 });
 
 
@@ -56,7 +57,7 @@ function idleFiveLoop() {
 	for (var type = 0; type < 10; type++) { if (p.GBought[type] == null) { p.GBought[type] = 0; } }
 	//UPDATE VARS
 	p.playTime++;
-	if (p.prestige > 1) p.PrestigeMult = 1 + (p.prestige * 0.15);
+	if (p.prestige > 1) p.PrestigeMult = 1 + (p.prestige * 0.1) - 0.1;
 	rank = 0;
 	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
 	p.rank = rank;
@@ -97,7 +98,7 @@ function AddPrestige() {
 				p.Arme = "Fist";
 				p.Quality = "Normal";
 				p.Armes = [];
-				p.GBought[];
+				p.GBought = [];
 				p.rank = 0;
 				p.cash = 0;
 				p.cashps = 0;

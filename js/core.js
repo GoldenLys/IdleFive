@@ -10,7 +10,6 @@ var p = {
 	PrestigeMult: 1,
 	CashMult: 0,
 	prestige: 1,
-	quality: 0,
 	prestigeprice: 400,
 	prestigeprice2: 10000000,
 	missions: [],
@@ -305,7 +304,7 @@ var buyV = function (id) {
 			if (vehicules[id].type == 0) { p.DamageMult += vehicules[id].value; }
 			if (vehicules[id].type == 1) { p.CashMult += vehicules[id].value; }
 		}
-	} else { console.log("YOU ALREADY OWN THIS"); }
+	}
 	SuccessCount();
 	UpdateUI();
 };

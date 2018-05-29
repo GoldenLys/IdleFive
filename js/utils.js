@@ -114,7 +114,6 @@ var exportSave = function () {
 
 var importSave = function () {
 	var save = prompt("Paste the code previously obtained here");
-	console.log(save);
 	if (save) {
 		restoreSave(save);
 	}

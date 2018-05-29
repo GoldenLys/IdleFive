@@ -32,14 +32,12 @@
 }
 
 #top-menu {
-    width: 105%;
-    height: 5%;
+    width: 101%;
     position: fixed;
     z-index: 998;
 }
 
 #colonne-m {
-    margin-top: 5%;
     text-align: center;
     padding-left: 4.5rem;
     padding-right: 0rem;

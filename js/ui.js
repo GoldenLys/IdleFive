@@ -144,9 +144,9 @@ function WeaponList() {
 		if (p.Armes[i] == 1) {
 			if (p.ArmeID == i) { equipment = 'azn-active'; } else { equipment = ''; }
 			bought = 'azn ';
-			canBuy = weapon.price * 2 > p.cash ? ' rouge' : ' blanc';
+			canBuy = weapon.price * 1.25 > p.cash ? ' rouge' : ' blanc';
 			name = "<font class='type2 text'>" + weapon.name + "</font>";
-			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 2, 2) + "</font>";
+			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 1.25, 2) + "</font>";
 			damage = "<font class='jaune'>" + Damage + "</font>";
 			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
 		} else {
@@ -201,7 +201,7 @@ function VehicleList() {
 		}
 
 		var vehiclesDIV = $(
-			"<tr class='" + bought2 + "' id='veh" + i + "'>" +
+			"<tr class='" + bought2 + "'>" +
 			"<td class='center aligned ui'>" + name + vehicle.name + "</font></td>" +
 			"<td class='center aligned'>" + cost + "</td>" +
 			"<td class='center aligned'>" + multiplier + "</font> " + type + "</td>" +
@@ -309,6 +309,12 @@ function showTutorial(id) {
 	p.tutorial = id;
 	$("#tutorial-title").html("Guide - " + tutorialtexts[id].title);
 	$("#tutorial-text").html(tutorialtexts[id].text);
+	if (p.tutorial == 0) { $("#tuto-prev").addClass("disabled"); } else {
+		$("#tuto-prev").removeClass("disabled");
+	}
+	if (p.tutorial == 6) { $("#tuto-next").addClass("disabled"); } else {
+		$("#tuto-next").removeClass("disabled");
+	}
 }
 
 function closeTutorial() {
@@ -318,22 +324,10 @@ function closeTutorial() {
 
 function NextTuto() {
 	if (p.tutorial < 6) { p.tutorial++; showTutorial(p.tutorial); }
-	if (p.tutorial == 0) { $("#tuto-prev").addClass("disabled"); } else {
-		$("#tuto-prev").removeClass("disabled");
-	}
-	if (p.tutorial == 6) { $("#tuto-next").addClass("disabled"); } else {
-		$("#tuto-next").removeClass("disabled");
-	}
 }
 
 function PrevTuto() {
 	if (p.tutorial >= 1) { p.tutorial--; showTutorial(p.tutorial); }
-	if (p.tutorial == 0) { $("#tuto-prev").addClass("disabled"); } else {
-		$("#tuto-prev").removeClass("disabled");
-	}
-	if (p.tutorial == 6) { $("#tuto-next").addClass("disabled"); } else {
-		$("#tuto-next").removeClass("disabled");
-	}
 }
 
 function showTutorialDIV() {

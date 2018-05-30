@@ -10,9 +10,10 @@ var missions = {
     8: { name: 'Cocaine', price: 150000, pricemodifier: 1.10, value: 1000, },
     9: { name: 'Hangar', price: 750000, pricemodifier: 1.10, value: 5000, },
     10: { name: 'Bunker', price: 12500000, pricemodifier: 1.10, value: 10000, },
-    11: { name: 'Vehicle Trafficking', price: 25000000, pricemodifier: 1.10, value: 25000, },
-    12: { name: 'Union Depository Heist', price: 200000000, pricemodifier: 1.10, value: 200000, },
-    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.10, value: 15000000, },
+    11: { name: 'Vehicle Trafficking', price: 250000000, pricemodifier: 1.10, value: 250000, },
+    12: { name: 'Union Depository Heist', price: 2000000000, pricemodifier: 1.05, value: 2000000, },
+    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.05, value: 15000000, },
+    14: { name: 'Pacific Standard Heist', price: 125000000000, pricemodifier: 1.05, value: 100000000, },
 };
 
 var weapons = {
@@ -32,9 +33,9 @@ var weapons = {
     14: { name: "Flare Gun", power: 2500, price: 250000 },
     15: { name: "SNS Pistol", power: 50000, price: 5000000 },
     16: { name: "SNS Pistol Mk II", power: 100000, price: 10000000 },
-    17: { name: "Vintage Pistol", power: 150000, price:   15000000 },
-    18: { name: "Combat Pistol", power: 200000, price:    20000000 },
-    19: { name: "Pistol", power: 250000, price:           25000000 },
+    17: { name: "Vintage Pistol", power: 150000, price: 15000000 },
+    18: { name: "Combat Pistol", power: 200000, price: 20000000 },
+    19: { name: "Pistol", power: 250000, price: 25000000 },
     20: { name: "Pistol Mk II", power: 500000, price: 50000000 },
     21: { name: "AP Pistol", power: 750000, price: 75000000 },
     22: { name: "Heavy Pistol", power: 1000000, price: 100000000 },

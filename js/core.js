@@ -10,8 +10,8 @@ var p = {
 	PrestigeMult: 1,
 	CashMult: 0,
 	prestige: 1,
-	prestigeprice: 400,
-	prestigeprice2: 10000000,
+	prestigeprice: 0,
+	prestigeprice2: 0,
 	missions: [],
 	succes: [],
 	ArmeID: 0,
@@ -72,7 +72,7 @@ function idleFiveLoop() {
 
 function getCashPS() {
 	p.cashps = 0;
-	for (var id = 0; id < 14; id++) {
+	for (var id = 0; id < 15; id++) {
 		if (p.missions[id] > 0) {
 			p.cashps += (missions[id].value * p.missions[id]) * (p.PrestigeMult + p.CashMult);
 		}

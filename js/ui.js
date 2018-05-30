@@ -170,6 +170,12 @@ function WeaponList() {
 		if (i < 13) { $('#Wtab1').append(weaponsDIV); }
 		if (i > 12) { if (i < 28) { $('#Wtab2').append(weaponsDIV); } }
 		if (i > 27) { if (i < 37) { $('#Wtab3').append(weaponsDIV); } }
+		if (i > 36) { if (i < 48) { $('#Wtab4').append(weaponsDIV); } }
+		if (i > 47) { if (i < 58) { $('#Wtab5').append(weaponsDIV); } }
+		if (i > 57) { if (i < 63) { $('#Wtab6').append(weaponsDIV); } }
+		if (i > 62) { if (i < 70) { $('#Wtab7').append(weaponsDIV); } }
+		if (i > 69) { if (i < 81) { $('#Wtab8').append(weaponsDIV); } }
+		if (i > 80) { if (i < 82) { $('#Wtab9').append(weaponsDIV); } }
 	}
 }
 
@@ -212,7 +218,8 @@ function VehicleList() {
 		if (i > 6) { if (i < 53) { $('#Vtab2').append(vehiclesDIV); } }
 		if (i > 52) { if (i < 87) { $('#Vtab3').append(vehiclesDIV); } }
 		if (i > 86) { if (i < 143) { $('#Vtab4').append(vehiclesDIV); } }
-		if (i > 142) { if (i < 183) { $('#Vtab5').append(vehiclesDIV); } }
+		if (i > 142) { if (i < 182) { $('#Vtab5').append(vehiclesDIV); } }
+		if (i > 181) { if (i < 220) { $('#Vtab6').append(vehiclesDIV); } }
 	}
 }
 

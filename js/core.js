@@ -1,4 +1,4 @@
-var version = "v3.4";
+var version = "v35";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -185,6 +185,12 @@ function buyG(id) {
 			if (id < 13) { p.GBought[0]++; }
 			if (id > 12) { if (id < 28) { p.GBought[1]++; } }
 			if (id > 27) { if (id < 37) { p.GBought[2]++; } }
+			if (id > 36) { if (id < 48) { p.GBought[3]++; } }
+			if (id > 47) { if (id < 58) { p.GBought[4]++; } }
+			if (id > 57) { if (id < 63) { p.GBought[5]++; } }
+			if (id > 62) { if (id < 70) { p.GBought[6]++; } }
+			if (id > 69) { if (id < 81) { p.GBought[7]++; } }
+			if (id > 80) { if (id < 82) { p.GBought[8]++; } }
 		}
 	} else {
 		if (p.cash >= pricebuy * 1.25) {
@@ -300,7 +306,8 @@ var buyV = function (id) {
 			if (id > 6) { if (id < 53) { p.VBought[1]++; } }
 			if (id > 52) { if (id < 87) { p.VBought[2]++; } }
 			if (id > 86) { if (id < 143) { p.VBought[3]++; } }
-			if (id > 142) { if (id < 183) { p.VBought[4]++; } }
+			if (id > 142) { if (id < 182) { p.VBought[4]++; } }
+			if (id > 181) { if (id < 220) { p.VBought[5]++; } }
 			if (vehicules[id].type == 0) { p.DamageMult += vehicules[id].value; }
 			if (vehicules[id].type == 1) { p.CashMult += vehicules[id].value; }
 		}

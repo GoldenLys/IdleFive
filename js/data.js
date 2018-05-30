@@ -1,19 +1,25 @@
 var missions = {
-    0: { name: 'Pickpocketing', price: 1, pricemodifier: 1.10, value: 0.1, },
-    1: { name: 'Rob A Grocery Store', price: 15, pricemodifier: 1.10, value: 0.5, },
-    2: { name: 'Security Van Heist', price: 250, pricemodifier: 1.10, value: 1, },
-    3: { name: 'Street Race', price: 1500, pricemodifier: 1.10, value: 5, },
-    4: { name: 'Document Forgery', price: 10000, pricemodifier: 1.10, value: 10, },
-    5: { name: 'Weed Farm', price: 35000, pricemodifier: 1.10, value: 50, },
-    6: { name: 'Counterfeit Cash', price: 50000, pricemodifier: 1.10, value: 100, },
-    7: { name: 'Meth', price: 85000, pricemodifier: 1.10, value: 250, },
-    8: { name: 'Cocaine', price: 150000, pricemodifier: 1.10, value: 1000, },
-    9: { name: 'Hangar', price: 750000, pricemodifier: 1.10, value: 5000, },
-    10: { name: 'Bunker', price: 12500000, pricemodifier: 1.10, value: 10000, },
-    11: { name: 'Vehicle Trafficking', price: 250000000, pricemodifier: 1.10, value: 250000, },
-    12: { name: 'Union Depository Heist', price: 2000000000, pricemodifier: 1.05, value: 2000000, },
-    13: { name: 'The Doomsday Heist', price: 10000000000, pricemodifier: 1.05, value: 15000000, },
-    14: { name: 'Pacific Standard Heist', price: 125000000000, pricemodifier: 1.05, value: 100000000, },
+    0: { name: 'Pickpocketing', price: 10, modifier: 1.10, value: 0.1, },
+    1: { name: 'Rob A Grocery Store', price: 50, modifier: 1.10, value: 0.5, },
+    2: { name: 'The Fleeca Job', price: 100, modifier: 1.10, value: 1, },
+    3: { name: 'Security Van Heist', price: 500, modifier: 1.10, value: 5, },
+    4: { name: 'Street Race', price: 1000, modifier: 1.10, value: 10, },
+    5: { name: 'Gang Attack', price: 5000, modifier: 1.10, value: 50, },
+    6: { name: 'Document Forgery', price: 25000, modifier: 1.10, value: 250, },
+    7: { name: 'Weed Farm', price: 100000, modifier: 1.10, value: 1000, },
+    8: { name: 'Time Trial', price: 500000, modifier: 1.10, value: 5000, },
+    9: { name: 'Counterfeit Cash', price: 750000, modifier: 1.10, value: 7500, },
+    10: { name: 'The Prison Break', price: 1250000, modifier: 1.10, value: 12500, },
+    11: { name: 'Meth', price: 3500000, modifier: 1.10, value: 35000, },
+    12: { name: 'Cocaine', price: 5000000, modifier: 1.10, value: 50000, },
+    13: { name: 'Hangar', price: 10000000, modifier: 1.10, value: 100000, },
+    14: { name: 'The Human Labs Raid', price: 25000000, modifier: 1.10, value: 250000, },
+    15: { name: 'Series A Funding', price: 75000000, modifier: 1.10, value: 750000, },
+    16: { name: 'Bunker', price: 150000000, modifier: 1.10, value: 1500000, },
+    17: { name: 'Vehicle Trafficking', price: 500000000, modifier: 1.10, value: 5000000, },
+    18: { name: 'The Pacific Standard Job', price: 1000000000, modifier: 1.10, value: 10000000, },
+    19: { name: 'The Doomsday Heist', price: 2500000000, modifier: 1.10, value: 25000000, },
+    20: { name: 'Union Depository Heist', price: 10000000000, modifier: 1.10, value: 100000000, },
 };
 
 var weapons = {
@@ -27,7 +33,7 @@ var weapons = {
     8: { name: "Cue Stick", power: 1000, price: 100000 },
     9: { name: "Golf Club", power: 2000, price: 200000 },
     10: { name: "Hatchet", power: 25000, price: 2500000 },
-    11: { name: "Machete", power: 50000, price: 5000000 }, //END OF TYPE 1
+    11: { name: "Machete", power: 50000, price: 5000000 }, //END OF MELEE WEAPONS
     12: { name: "Wrench", power: 100000, price: 10000000 },
     13: { name: "Stun Gun", power: 100, price: 10000 },
     14: { name: "Flare Gun", power: 2500, price: 250000 },
@@ -43,7 +49,7 @@ var weapons = {
     24: { name: "Marksman Pistol", power: 10000000, price: 1000000000 },
     25: { name: "Double Action Revolver", power: 20000000, price: 2000000000 },
     26: { name: "Heavy Revolver", power: 50000000, price: 5000000000 },
-    27: { name: "Heavy Revolver Mk II", power: 100000000, price: 10000000000 }, //END OF TYPE 2
+    27: { name: "Heavy Revolver Mk II", power: 100000000, price: 10000000000 }, //END OF PISTOLS
     28: { name: "Sweeper Shotgun", power: 100000000, price: 10000000000 },
     29: { name: "Bullpup Shotgun", power: 125000000, price: 75000000000 },
     30: { name: "Double Barrel Shotgun", power: 150000000, price: 100000000000 },
@@ -52,7 +58,7 @@ var weapons = {
     33: { name: "Sawed-Off Shotgun", power: 300000000, price: 300000000000 },
     34: { name: "Assault Shotgun", power: 500000000, price: 500000000000 },
     35: { name: "Pump Shotgun", power: 1000000000, price: 1000000000000 },
-    36: { name: "Pump Shotgun Mk II", power: 2000000000, price: 2000000000000 }, //END OF TYPE 3
+    36: { name: "Pump Shotgun Mk II", power: 2000000000, price: 2000000000000 }, //END OF SHOTGUNS
     37: { name: "Assault SMG", power: 100000000, price: 100000000000 },
     38: { name: "Combat MG", power: 150000000, price: 150000000000 },
     39: { name: "Combat MG Mk II", power: 300000000, price: 300000000000 },
@@ -63,7 +69,7 @@ var weapons = {
     44: { name: "Micro SMG", power: 800000000, price: 800000000000 },
     45: { name: "Mini SMG", power: 900000000, price: 900000000000 },
     46: { name: "SMG", power: 1000000000, price: 1000000000000 },
-    47: { name: "SMG Mk II", power: 2500000000, price: 2500000000000 }, //END OF TYPE 4
+    47: { name: "SMG Mk II", power: 2500000000, price: 2500000000000 }, //END OF LG & SMG
     48: { name: "Advanced Rifle", power: 500000000, price: 500000000000 },
     49: { name: "Assault Riffle", power: 600000000, price: 600000000000 },
     50: { name: "Assault Riffle Mk II", power: 700000000, price: 700000000000 },
@@ -73,19 +79,19 @@ var weapons = {
     54: { name: "Carbine Rifle Mk II", power: 6000000000, price: 6000000000000 },
     55: { name: "Compact Rifle", power: 4000000000, price: 4000000000000 },
     56: { name: "Special Carbine", power: 5000000000, price: 5000000000000 },
-    57: { name: "Special Carbine Mk II", power: 10000000000, price: 10000000000000 }, //END OF TYPE 5
+    57: { name: "Special Carbine Mk II", power: 10000000000, price: 10000000000000 }, //END ASSAULT RIFLES
     58: { name: "Sniper Rifle", power: 20000000000, price: 20000000000000 },
     59: { name: "Marksman Rifle", power: 30000000000, price: 30000000000000 },
     60: { name: "Marksman Rifle Mk II", power: 60000000000, price: 60000000000000 },
     61: { name: "Heavy Sniper", power: 50000000000, price: 50000000000000 },
-    62: { name: "Heavy Sniper Mk II", power: 100000000000, price: 100000000000000 }, //END OF TYPE 6
+    62: { name: "Heavy Sniper Mk II", power: 100000000000, price: 100000000000000 }, //END OF SNIPERS
     63: { name: "Compact Grenade Launcher", power: 25000000000, price: 250000000000000 },
     64: { name: "Firework Launcher", power: 2000000000, price: 20000000000000 },
     65: { name: "Grenade Launcher", power: 50000000000, price: 50000000000000 },
     66: { name: "Homing Launcher", power: 150000000000, price: 150000000000000 },
     67: { name: "Minigun", power: 10000000000, price: 10000000000000 },
     68: { name: "Railgun", power: 1000000000000, price: 1000000000000000 },
-    69: { name: "Rocket Launcher", power: 200000000000, price: 200000000000000 }, //END OF TYPE 7
+    69: { name: "Rocket Launcher", power: 200000000000, price: 200000000000000 }, //END OF HEAVY WEAPONS
     70: { name: "Ball", power: 1, price: 100 },
     71: { name: "BZ Gas", power: 100000, price: 10000000 },
     72: { name: "Flare", power: 2500, price: 250000 },
@@ -96,8 +102,8 @@ var weapons = {
     77: { name: "Pipe Bomb", power: 100000, price: 10000000 },
     78: { name: "Snowball", power: 1, price: 0 },
     79: { name: "Sticky Bomb", power: 20000000, price: 2000000000 },
-    80: { name: "Tear Gas", power: 200000, price: 20000000 }, //END OF TYPE 8 
-    81: { name: "Digiscanner", power: 5000, price: 2100000 }, //END OF TYPE 9
+    80: { name: "Tear Gas", power: 200000, price: 20000000 }, //END OF TROWN WEAPONS
+    81: { name: "Digiscanner", power: 5000, price: 2100000 }, //END OF SPECIAL WEAPONS
 };
 
 var vehicules = {
@@ -334,51 +340,72 @@ var success = {
     6: { name: "The beginning of wealth", desc: "obtained $100,000.", type: 1, value: 100000, },
     7: { name: "The millionaire", desc: "obtained $1M.", type: 1, value: 1000000, },
     8: { name: "Prestige", desc: "obtained $10M.", type: 1, value: 10000000, },
-    9: { name: "The billionaire", desc: "obtained $1b.", type: 1, value: 1000000000, },
+    9: { name: "The billionaire", desc: "obtained $1B.", type: 1, value: 1000000000, },
     10: { name: "The billiardaire", desc: "obtained $1t.", type: 1, value: 1000000000000, },
-    11: { name: "The trilliard", desc: "obtained $1q.", type: 1, value: 1000000000000000, },
+    11: { name: "The trilliard", desc: "obtained $1q.", type: 1, value: 1000000000000000, }, //END OF TYPE 1
     12: { name: "Pickpocket", desc: "hired 100 pickpockets.", type: 2, value: 100, value2: 0, },
-    13: { name: "Grocery stalker", desc: "rob 100 grocery stores.", type: 2, value: 100, value2: 1, }, //END OF TYPE 1
-    14: { name: "Armored van stalker", desc: "rob 100 armored vans.", type: 2, value: 100, value2: 2, },
-    15: { name: "Street boss", desc: "win 100 street races.", type: 2, value: 100, value2: 3, },
-    16: { name: "Manufacturer of false papers", desc: "buy 100 false papers factories.", type: 2, value: 100, value2: 4, },
-    17: { name: "Weed dealer", desc: "buy 100 weed farms.", type: 2, value: 100, value2: 5, },
-    18: { name: "Manufacturer of false money", desc: "buy 100 false money factories.", type: 2, value: 100, value2: 6, },
-    19: { name: "Breaking five", desc: "buy a total of 100 meth workshops.", type: 2, value: 100, value2: 7, },
-    20: { name: "cocaine manufacturer", desc: "buy a total of 100 cocaine workshops.", type: 2, value: 100, value2: 8, },
-    21: { name: "the eagle nest", desc: "buy a total of 100 hangars.", type: 2, value: 100, value2: 9, },
-    22: { name: "Zombie apocalypse", desc: "buy a total of 100 bunkers.", type: 2, value: 100, value2: 10, },
-    23: { name: "Professionnal car dealer", desc: "Steal 100 vehicles.", type: 2, value: 100, value2: 11, },
-    24: { name: "The big score", desc: "rob the union depository a hundred times.", type: 2, value: 100, value2: 12, }, //END OF TYPE 2
-    25: { name: "All bikes bought", desc: "bought all vehicles of this category.", type: 3, value: 7, value2: 0, },
-    26: { name: "All motorcycles bought", desc: "bought all vehicles of this category.", type: 3, value: 46, value2: 1, },
-    27: { name: "All classics sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 34, value2: 2, },
-    28: { name: "All sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 56, value2: 3, },
-    29: { name: "All super cars bought", desc: "bought all vehicles of this category.", type: 3, value: 39, value2: 4, },
-    30: { name: "All muscles cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 5, },
-    31: { name: "All compacts cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 6, },
-    32: { name: "All sedans cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 7, },
-    33: { name: "All off-road cars boughts", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 8, },
-    34: { name: "All coupes cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 9, },
-    35: { name: "All emergencies vehicles bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 10, },
-    36: { name: "All boats bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 11, },
-    37: { name: "All SUVs bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 12, },
-    38: { name: "All helicopters bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 13, },
-    39: { name: "All military vehicles bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 14, },
-    40: { name: "All commercial cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 15, }, //END OF TYPE 3
-    41: { name: "<font class='Bronze'>1</font>", desc: "reached this level.", type: 4, value: 1, },
-    42: { name: "<font class='Silver'>100</font>", desc: "reached this level.", type: 4, value: 100, },
-    43: { name: "<font class='Gold'>700</font>", desc: "reached this level.", type: 4, value: 700, },
-    44: { name: "<font class='Platinum'>1300</font>", desc: "reached this level.", type: 4, value: 1300, }, //END OF TYPE 4
-    45: { name: "Character 2", desc: "You have unlocked the character number 2.", type: 5, value: 2, },
-    46: { name: "Character 3", desc: "You have unlocked the character number 3.", type: 5, value: 3, },
-    47: { name: "Character 4", desc: "You have unlocked the character number 4.", type: 5, value: 4, },
-    48: { name: "Character 5", desc: "You have unlocked the character number 5.", type: 5, value: 5, },
-    49: { name: "Character 6", desc: "You have unlocked the character number 6.", type: 5, value: 6, },
-    50: { name: "Character 7", desc: "You have unlocked the character number 7.", type: 5, value: 7, },
-    51: { name: "Character 8", desc: "You have unlocked the character number 8.", type: 5, value: 8, },
-    52: { name: "Character 9", desc: "You have unlocked the character number 9.", type: 5, value: 9, },
-    53: { name: "Character 10", desc: "You have unlocked the character number 10.", type: 5, value: 10, }, //END OF TYPE 5
+    13: { name: "Grocery stalker", desc: "rob 100 grocery stores.", type: 2, value: 100, value2: 1, }, 
+    14: { name: "The fleeca Bank", desc: "rob the fleeca bank a hundred times..", type: 2, value: 100, value2: 2, }, 
+    15: { name: "Armored van stalker", desc: "rob 100 armored vans.", type: 2, value: 100, value2: 3, },
+    16: { name: "Street boss", desc: "win 100 street races.", type: 2, value: 100, value2: 4, },
+    17: { name: "The punisher", desc: "Attack 100 gangs.", type: 2, value: 100, value2: 5, }, 
+    18: { name: "Manufacturer of false papers", desc: "buy 100 false papers factories.", type: 2, value: 100, value2: 6, },
+    19: { name: "Weed dealer", desc: "buy 100 weed farms.", type: 2, value: 100, value2: 7, },
+    20: { name: "Fast & Furious", desc: "Complete 100 time trials.", type: 2, value: 100, value2: 8, },
+    21: { name: "Manufacturer of false money", desc: "buy 100 false money factories.", type: 2, value: 100, value2: 9, },
+    22: { name: "Prison Break", desc: "Evade the prison a hundred times.", type: 2, value: 100, value2: 10, },
+    23: { name: "Breaking five", desc: "buy a total of 100 meth workshops.", type: 2, value: 100, value2: 11, },
+    24: { name: "Cocaine manufacturer", desc: "buy a total of 100 cocaine workshops.", type: 2, value: 100, value2: 12, },
+    25: { name: "The eagle nest", desc: "buy a total of 100 hangars.", type: 2, value: 100, value2: 13, },
+    26: { name: "Human Labs", desc: "rob a hundred times human labs.", type: 2, value: 100, value2: 14, },
+    27: { name: "Series A Funding", desc: "Do series a funding a hundred times.", type: 2, value: 100, value2: 15, },
+    28: { name: "Zombie apocalypse", desc: "buy a total of 100 bunkers.", type: 2, value: 100, value2: 16, },
+    29: { name: "Professionnal car dealer", desc: "Steal 100 vehicles.", type: 2, value: 100, value2: 17, },
+    30: { name: "Pacific Standard", desc: "De the pacific standard heist a hundred times.", type: 2, value: 100, value2: 18, },
+    31: { name: "Doomsday Heist", desc: "Do the doomsday heist a hundred times.", type: 2, value: 100, value2: 19, },
+    32: { name: "The big score", desc: "rob the union depository a hundred times.", type: 2, value: 100, value2: 20, }, //END OF TYPE 2
+    33: { name: "All bikes bought", desc: "bought all vehicles of this category.", type: 3, value: 7, value2: 0, },
+    34: { name: "All motorcycles bought", desc: "bought all vehicles of this category.", type: 3, value: 46, value2: 1, },
+    35: { name: "All classics sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 34, value2: 2, },
+    36: { name: "All sports cars bought", desc: "bought all vehicles of this category.", type: 3, value: 56, value2: 3, },
+    37: { name: "All super cars bought", desc: "bought all vehicles of this category.", type: 3, value: 39, value2: 4, },
+    38: { name: "All muscles cars bought", desc: "bought all vehicles of this category.", type: 3, value: 38, value2: 5, },
+    39: { name: "All compacts cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 6, },
+    40: { name: "All sedans cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 7, },
+    41: { name: "All off-road cars boughts", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 8, },
+    42: { name: "All coupes cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 9, },
+    43: { name: "All emergencies vehicles bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 10, },
+    44: { name: "All boats bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 11, },
+    45: { name: "All SUVs bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 12, },
+    46: { name: "All helicopters bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 13, },
+    47: { name: "All military vehicles bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 14, },
+    48: { name: "All commercial cars bought", desc: "bought all vehicles of this category.", type: 3, value: 1, value2: 15, }, //END OF TYPE 3
+    49: { name: "Rank 1", desc: "reached this rank.", type: 4, value: 1, },
+    50: { name: "Rank 10", desc: "reached this rank.", type: 4, value: 10, },
+    51: { name: "Rank 25", desc: "reached this rank.", type: 4, value: 25, },
+    52: { name: "Rank 50", desc: "reached this rank.", type: 4, value: 50, },
+    53: { name: "Rank 75", desc: "reached this rank.", type: 4, value: 75, },
+    54: { name: "Rank 100", desc: "reached this rank.", type: 4, value: 100, },
+    55: { name: "Rank 200", desc: "reached this rank.", type: 4, value: 200, },
+    56: { name: "Rank 300", desc: "reached this rank.", type: 4, value: 300, },
+    57: { name: "Rank 400", desc: "reached this rank.", type: 4, value: 400, },
+    58: { name: "Rank 500", desc: "reached this rank.", type: 4, value: 500, },
+    59: { name: "Rank 600", desc: "reached this rank.", type: 4, value: 600, },
+    60: { name: "Rank 700", desc: "reached this rank.", type: 4, value: 700, },
+    61: { name: "Rank 800", desc: "reached this rank.", type: 4, value: 800, },
+    62: { name: "Rank 900", desc: "reached this rank.", type: 4, value: 900, },
+    63: { name: "Rank 1000", desc: "reached this rank.", type: 4, value: 1000, },
+    64: { name: "Rank 5000", desc: "reached this rank.", type: 4, value: 5000, },
+    65: { name: "Rank 10000", desc: "reached this rank.", type: 4, value: 10000, }, //END OF TYPE 4
+    66: { name: "Character 2", desc: "You have unlocked the character number 2.", type: 5, value: 2, },
+    67: { name: "Character 3", desc: "You have unlocked the character number 3.", type: 5, value: 3, },
+    68: { name: "Character 4", desc: "You have unlocked the character number 4.", type: 5, value: 4, },
+    69: { name: "Character 5", desc: "You have unlocked the character number 5.", type: 5, value: 5, },
+    70: { name: "Character 6", desc: "You have unlocked the character number 6.", type: 5, value: 6, },
+    71: { name: "Character 7", desc: "You have unlocked the character number 7.", type: 5, value: 7, },
+    72: { name: "Character 8", desc: "You have unlocked the character number 8.", type: 5, value: 8, },
+    73: { name: "Character 9", desc: "You have unlocked the character number 9.", type: 5, value: 9, },
+    74: { name: "Character 10", desc: "You have unlocked the character number 10.", type: 5, value: 10, }, //END OF TYPE 5
 };
 
 var tutorialtexts = {
@@ -387,7 +414,7 @@ var tutorialtexts = {
     2: { title: "How to play ?", text: "You can start by clicking on the fist to make some money.<br /> After you got some cash, you can buy a weapon or start a mission to gain a lot more <div class='money'></div>.<br /> Buying an Activity will increase your rank and you need that to change your character.", },
     3: { title: "Missions", text: "This is the main mechanic of the game, they are used to automate the game.<br /> The more you have the more you get <div class='money'></div> and <div class='level'></div> but it will become more expensive.", },
     4: { title: "Weapons", text: "Weapons are used to do more damage and get 'manually' an amount of <div class='money'></div>,<br /> there is also a random quality system applied to the weapons that can raise or lower the power of the weapon.", },
-    5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and level,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
+    5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and rank,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
     6: { title: "Vehicles", text: "They are used to upgrades your cash or damage multiplier,<br /> to buy them you need Character Points (CP).", },
 };
 
@@ -397,7 +424,7 @@ var textsENG = {
     missions: ["Buy", "Sell", "Level", "Value", "product", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase", "IN YOUR GARAGE"],
     infos: ["Weapon", "Damage", "<br />A new character slot is available.", "Nothing to report at the moment.", "You have", "A player just killed you, he stole", "from your pockets !", "Level"],
-    character: ["Change character", "You are actually using the character number", "You must reach the level", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
+    character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
     weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Trown Weapons", "Special Weapons"],
     vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles", "Compacts (WIP)", "Sedans (WIP)", "Off-Road (WIP)", "Coupes (WIP)", "Emergency (WIP)", "Boats (WIP)", "SUV (WIP)", "Helicopters (WIP)", "Military (WIP)", "Commercials (WIP)"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],

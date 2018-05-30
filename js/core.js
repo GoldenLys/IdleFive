@@ -1,4 +1,11 @@
-var version = "v35";
+////////////////////////////////////
+//TODO LIST                       //
+////////////////////////////////////
+// Add all missing vehicles
+// Add Daily (hourly) objectives
+////////////////////////////////////
+
+var version = "v36";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -18,7 +25,7 @@ var p = {
 	QualityMult: 1,
 	ArmeClass: "<font class='normal'>",
 	Arme: "Fist",
-	ArmePower: 0.1,
+	ArmePower: 0.5,
 	Quality: "Normal",
 	Armes: [],
 	GBought: [],
@@ -72,9 +79,9 @@ function idleFiveLoop() {
 
 function getCashPS() {
 	p.cashps = 0;
-	for (var id = 0; id < 15; id++) {
-		if (p.missions[id] > 0) {
-			p.cashps += (missions[id].value * p.missions[id]) * (p.PrestigeMult + p.CashMult);
+	for (var m in missions) {
+		if (p.missions[m] > 0) {
+			p.cashps += (missions[m].value * p.missions[m]) * (p.PrestigeMult + p.CashMult);
 		}
 	}
 }
@@ -90,7 +97,7 @@ function AddPrestige() {
 			var r = confirm("Would you like to reset your character to get some bonuses ?");
 			if (r == true) {
 				p.points = Math.trunc(p.rank / 200);
-				p.ArmePower = 0.1;
+				p.ArmePower = 0.5;
 				p.ArmeID = 0;
 				p.QualityMult = 1;
 				p.ArmeClass = "<font class='normal'>";
@@ -128,12 +135,12 @@ function getPrestigePrice() {
 
 function getRank(rankNBR) {
 	var Class = "";
-	if (rankNBR >= 0) { Class = "Bronze"; }
-	if (rankNBR >= 100) { Class = "Silver"; }
-	if (rankNBR >= 600) { Class = "Silver"; }
-	if (rankNBR >= 700) { Class = "Gold"; }
-	if (rankNBR >= 1400) { Class = "Palladium"; }
-	if (rankNBR >= 14000) { Class = "Platinum"; }
+	if (rankNBR >= 0) { Class = "Bronze"; } 
+	if (rankNBR >= 210) { Class = "Silver"; } //x10
+	if (rankNBR >= 525) { Class = "Silver"; } //x25
+	if (rankNBR >= 1050) { Class = "Gold"; } //x50
+	if (rankNBR >= 2100) { Class = "Palladium"; } //x100
+	if (rankNBR >= 210000) { Class = "Platinum"; } //x1000
 	result2 = "<font class='" + Class + "'> " + rankNBR + "</font>";
 	return result2;
 }
@@ -266,9 +273,9 @@ var GetMissionPrice = function (id, qty) {
 	var owned = 0;
 	if (p.missions[id] != null) owned = p.missions[id];
 	var total = 0;
-	CurPrice = (missions[id].price * Math.pow(missions[id].pricemodifier, owned));
+	CurPrice = (missions[id].price * Math.pow(missions[id].modifier, owned));
 	for (var value = 0; value < qty; value++) {
-		Newprice = (missions[id].price * Math.pow(missions[id].pricemodifier, owned + value));
+		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned + value));
 		total += Newprice;
 	}
 	price = Math.round(total * 100) / 100;
@@ -279,9 +286,9 @@ var GetMissionSPrice = function (id, qty) {
 	var owned = 0;
 	if (p.missions[id] != null) owned = p.missions[id];
 	var total = 0;
-	CurPrice = (missions[id].price * Math.pow(missions[id].pricemodifier, owned));
+	CurPrice = (missions[id].price * Math.pow(missions[id].modifier, owned));
 	for (var value = 0; value < qty; value++) {
-		Newprice = (missions[id].price * Math.pow(missions[id].pricemodifier, owned - value));
+		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned - value));
 		total += Newprice;
 	}
 	price = total / 2;

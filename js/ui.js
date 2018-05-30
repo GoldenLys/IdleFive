@@ -34,6 +34,7 @@
 	$("#boughtvehicles3").html(texts.vehicletype[3] + " bought <font class='bold jaune'>" + p.VBought[2] + "</font>/34.");
 	$("#boughtvehicles4").html(texts.vehicletype[4] + " bought <font class='bold jaune'>" + p.VBought[3] + "</font>/56.");
 	$("#boughtvehicles5").html(texts.vehicletype[5] + " bought <font class='bold jaune'>" + p.VBought[4] + "</font>/39.");
+	$("#boughtvehicles6").html(texts.vehicletype[6] + " bought <font class='bold jaune'>" + p.VBought[5] + "</font>/38.");
 	//WEAPONS - STATS
 	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons bought.");
 	$("#weaponsT1").html(p.GBought[0] + " " + texts.weapontype[1] + " bought.");
@@ -285,7 +286,7 @@ function SuccessCount() {
 		if (succes.type == 4) { if (p.rank >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 5) { if (p.prestige >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 	}
-	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/54 " + texts.success[0]);
+	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/75 " + texts.success[0]);
 }
 
 function SuccessList() {

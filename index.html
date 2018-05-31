@@ -28,7 +28,7 @@
         <a class="item" id="menu1" data-id="1">
             <i class="user icon"></i>Character</a>
         <a class="item" id="menu2" data-id="2">
-            <i class="star icon"></i>Success</a>
+            <i class="trophy icon"></i>Success</a>
         <a class="item" id="menu3" data-id="3">
             <i class="id badge icon"></i>Statistics</a>
         <a class="item" id="menu4" data-id="4">
@@ -59,9 +59,14 @@
             <div class="ui inverted secondary menu" id="game-menu">
                 <button id="sidebar" class="ui inverted basic button item type2">
                     <i class="sidebar icon"></i>Menu</button>
-                <a class="item type2" id="t1" data-id="1">Weapons</a>
-                <a class="item type2 active" id="t2" data-id="2">Missions</a>
-                <a class="item type2" id="t3" data-id="3">Vehicles</a>
+                <a class="item type2" id="t1" data-id="1">
+                    <i class="crosshairs icon"></i>Weapons</a>
+                <a class="item type2 active" id="t2" data-id="2">
+                    <i class="dollar sign icon"></i>Missions</a>
+                <a class="item type2" id="t3" data-id="3">
+                    <i class="car icon"></i>Vehicles</a>
+                <a class="item type2" id="t4" data-id="4">
+                    <i class="clipboard icon"></i>Objectives</a>
             </div>
         </div>
         <div class="topmenu-space"></div>
@@ -129,6 +134,7 @@
                     <table id="Wtab8" class="ui inverted table" style="display: none;"></table>
                     <table id="Wtab9" class="ui inverted table" style="display: none;"></table>
                 </div>
+
                 <!--MISSIONS-->
                 <div id="tab2" style="display: block; width: 100%;">
                     <table id="missions" class="ui inverted table"></table>
@@ -170,6 +176,16 @@
                     <table id="Vtab14" class="ui inverted table" style="display: none;"></table>
                     <table id="Vtab15" class="ui inverted table" style="display: none;"></table>
                     <table id="Vtab16" class="ui inverted table" style="display: none;"></table>
+                </div>
+
+                <!--OBJECTIVES-->
+                <div id="tab4" style="display: none; width: 100%;">
+                    <div class="ui black message">
+                        <p class="type2 title text" id="OTitle"></p>
+                        <p class="description" id="ORequired"></p>
+                        <p class="description" id="OReward"></p>
+                        <button onClick="NewObjective();" class="fluid ui button">Find a new objective</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -275,6 +291,7 @@
                 <div id="prestigemult"></div>
                 <br />
                 <div class='type2 text'>Others</div>
+                <div id="totalclicks"></div>
                 <div id="spcount"></div>
                 <div id="time"></div>
                 <div id="version"></div>

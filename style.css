@@ -39,7 +39,7 @@
 
 #colonne-m {
     text-align: center;
-    padding-left: 4.5rem;
+    padding-left: 4rem;
     padding-right: 0rem;
     width: 40%;
     position: fixed;
@@ -48,7 +48,7 @@
 
 #colonne-d {
     text-align: center;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
     padding-right: 0rem;
     width: 57%;
     left: 39%;
@@ -182,36 +182,6 @@
 .Platinum {
     color: rgba(206, 208, 221, 1);
     text-shadow: 0 0 3vh rgb(13, 220, 235);
-}
-
-#t1:after {
-    content: "";
-    display: inline;
-    padding: 15% 14% 15% 13%;
-    margin: 0% 2% 0% 2%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url(http://aizen.hol.es/IdleFive/images/weapon.png);
-}
-
-#t2:after {
-    content: "";
-    display: inline;
-    padding: 15% 14% 15% 13%;
-    margin: 0% 2% 0% 2%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url(http://aizen.hol.es/IdleFive/images/missions.png);
-}
-
-#t3:after {
-    content: "";
-    display: inline;
-    padding: 15% 14% 15% 13%;
-    margin: 0% 2% 0% 2%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url(http://aizen.hol.es/IdleFive/images/garage.png);
 }
 
 .money {

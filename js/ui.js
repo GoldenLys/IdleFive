@@ -6,7 +6,7 @@
 	prestigeText = "";
 	WeaponsNBR = 0;
 	AllWeaponsNBR = 0;
-	for (var i in weapons) { AllWeaponsNBR+=1; WeaponsNBR+=p.Armes[i]; }
+	for (var i in weapons) { AllWeaponsNBR += 1; WeaponsNBR += p.Armes[i]; }
 	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
 	if (p.prestigeprice <= p.rank) { if (p.prestigeprice2 <= p.cash) { prestigeText = texts.infos[2]; } }
 	//LEFT INFOS
@@ -16,7 +16,7 @@
 	$("#weapon").html(p.Arme);
 	$("#quality").html(p.ArmeClass + p.Quality + "</font>");
 	$("#damage").html(p.ArmeClass + "<font class='bold'>" + ClicCashText + "</font></font>");
-	$("#points").html("<font class='jaune'> " + p.points + " CP</font>");
+	$("#points").html("<font class='jaune'> " + fix(p.points, 2) + " CP</font>");
 	$("#messages").html(prestigeText);
 	//CHARACTER
 	$("#prestigecount").html(p.prestige);
@@ -48,11 +48,19 @@
 	$("#weaponsT9").html(p.GBought[8] + " " + texts.weapontype[9] + " bought.");
 	//MULTIPLIERS - STATS
 	$("#cashmult").html("Cash multiplier at <font class='jaune bold'>" + fix(p.CashMult + p.PrestigeMult, 1) + "</font>");
-	$("#damagemult").html("Damage multiplier at <font class='jaune bold'>" + fix(p.DamageMult + p.PrestigeMult, 1)+ "</font>");
-	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.PrestigeMult, 1)+ "</font>");
+	$("#damagemult").html("Damage multiplier at <font class='jaune bold'>" + fix(p.DamageMult + p.PrestigeMult, 1) + "</font>");
+	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.PrestigeMult, 1) + "</font>");
 	//OTHERS - STATS
+	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige + "</font>.");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
+	//OBJECTIVES
+	$("#OTitle").html(p.OTitle);
+	$("#OReward").html("You can get <font class='jaune'>" + p.OReward + " CP</font> with this objective.");
+	if (p.OType == 0) { $("#ORequired").html(p.ORequired + " remaining uses."); }
+	if (p.OType == 1) { $("#ORequired").html(p.ORequired - p.OBase + " remaining."); }
+	if (p.OType == 2) { $("#ORequired").html("Currently at the rank <font class='jaune'>" + getRank(p.rank) + "</font>/" + getRank(p.ORequired) + "."); }
+	if (p.OType == 3) { $("#ORequired").html("Currently with a " + p.ArmeClass + p.OBase + "</font> weapon."); }
 	WeaponList();
 	MissionList();
 	VehicleList();
@@ -121,7 +129,7 @@ var MissionList = function () {
 			"<tr class='" + color + "'><td class='single line ui center aligned'><font class='type2'>" + production.name + "</font></td>" +
 			"<td class='single line ui center aligned'>" + owned + "</td>" +
 			"<td class='single line ui center aligned'><font class='valeur2'><i class='money'></i><font class='valeur " + canBuyColor + "'>" + fix(cost, 1) + "</font></font></td>" +
-			"<td class='ui center aligned'><i class='money'></i><font class='" + cashColor + "'>" + fix(p.PrestigeMult * production.value * owned, 2) + "</font>" + texts.missions[5] + "</td>" +
+			"<td class='ui center aligned'><i class='money'></i><font class='" + cashColor + "'>" + fix((production.value * owned) * (p.PrestigeMult + p.CashMult), 2) + "</font>" + texts.missions[5] + "</td>" +
 			"<td class='ui center aligned'><div class='ui center aligned buttons'><button class='ui positive button " + canBuy + "' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
 			"<button class='ui positive button " + canBuy2 + "' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
 			"<div class='ui buttons'><button class='ui negative button " + canSell + "' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
@@ -192,7 +200,7 @@ function VehicleList() {
 		if (vehicle.type == 0) { type = " for the damage multiplier"; }
 		if (vehicle.type == 1) { type = " for the cash multiplier"; }
 
-		if (p.vehicules[i] > 0) {
+		if (p.Vehicules[i] > 0) {
 			bought = "style='display:none;'";
 			bought2 = "azn";
 			name = "<font class='text type2'>";
@@ -229,7 +237,7 @@ function VehicleList() {
 function hideVTabs() { for (var id = 1; id < 17; id++) { $("#Vtab" + id).hide(); $("#V" + id).removeClass("active"); } }
 function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inverted"); }
 function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
-function hideTabs() { for (var id = 1; id < 4; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("active"); } }
+function hideTabs() { for (var id = 1; id < 5; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("active"); } }
 function hideMenus() { for (var id = 1; id < 6; id++) { $('#menu-' + id).modal('hide'); } }
 function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
@@ -268,6 +276,10 @@ function ClickEvents() {
 		$('#Stab' + id).show();
 		$("#S" + id).addClass("active");
 	});
+	$('#colonne-m').on('click', '#close', function () {
+		$(this).closest('#objective').transition('fade');
+	});
+
 }
 
 //SUCCESS MENU

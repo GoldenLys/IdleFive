@@ -1,11 +1,4 @@
-////////////////////////////////////
-//TODO LIST                       //
-////////////////////////////////////
-// Add all missing vehicles
-// Add Daily (hourly) objectives
-////////////////////////////////////
-
-var version = "v36";
+var version = "v37";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -16,6 +9,7 @@ var p = {
 	cashps: 0,
 	PrestigeMult: 1,
 	CashMult: 0,
+	DamageMult: 0,
 	prestige: 1,
 	prestigeprice: 0,
 	prestigeprice2: 0,
@@ -29,12 +23,19 @@ var p = {
 	Quality: "Normal",
 	Armes: [],
 	GBought: [],
+	Vehicules: [],
 	VBought: [],
-	vehicules: [],
 	points: 0,
-	DamageMult: 0,
 	playTime: 0,
+	TotalClicks: 0,
 	tutorial: 0,
+	OTitle: "Use your weapon 10 times.",
+	OType: 0,
+	OReward: 1,
+	OBase: 0,
+	ORequired: 0,
+	ORequired2: 0,
+	CompletedQuests: 0,
 };
 
 
@@ -57,20 +58,24 @@ $(document).ready(function () {
 function idleFiveLoop() {
 	//DEBUG
 	if (p.cash !== p.cash) { p.cash = 0; }
+	p.cash = Math.round(p.cash * 100) / 100; //FIX A BUG that can make the cash var at 0.9999999999 for example
 	for (var m in missions) { if (p.missions[m] == null) { p.missions[m] = 0; } }
 	for (var w in weapons) { if (p.Armes[w] == null) { p.Armes[w] = 0; } }
-	for (var v in vehicules) { if (p.VBought[v] == null) { p.VBought[v] = 0; } }
-	for (var type = 0; type < 10; type++) { if (p.GBought[type] == null) { p.GBought[type] = 0; } }
+	for (var v in vehicules) { if (p.Vehicules[v] == null) { p.Vehicules[v] = 0; } }
+	for (var vtype = 0; vtype < 10; vtype++) { if (p.VBought[vtype] == null) { p.VBought[vtype] = 0; } }
+	for (var wtype = 0; wtype < 10; wtype++) { if (p.GBought[wtype] == null) { p.GBought[wtype] = 0; } }
 	//UPDATE VARS
 	p.playTime++;
 	if (p.prestige > 1) p.PrestigeMult = 1 + (p.prestige * 0.1) - 0.1;
 	rank = 0;
 	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
 	p.rank = rank;
-	p.cash = Math.round(p.cash * 100) / 100; //FIX A JS BUG that can make the cash var at 15.9999999999 for example
+	if (p.OType == 2) { if (p.rank >= p.ORequired) { getRewards(); } }
+	if (p.OType == 1) { if(p.OBase >= p.ORequired) { getRewards(); } }
 	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } } else { btnPrestigeD(); }
 	p.cash += p.cashps;
 	if (p.fl == 1) { showTutorialDIV(); }
+	if (p.OType == 3) { p.OBase=p.Quality; }
 	getPrestigePrice();
 	getCashPS();
 	UpdateUI();
@@ -88,6 +93,8 @@ function getCashPS() {
 
 function ClickWeapon() {
 	p.cash += (p.ArmePower * p.QualityMult) * (p.PrestigeMult + p.DamageMult + p.CashMult);
+	p.TotalClicks++;
+	if (p.OType == 0) { p.ORequired--; if (p.ORequired <= 0) { getRewards(); } }
 	UpdateUI();
 }
 
@@ -124,6 +131,14 @@ function ForcePrestige() {
 	AddPrestige();
 }
 
+function Soleil_Rouge() {
+	p.rank = p.prestigeprice;
+	p.cash = p.prestigeprice2;
+	p.Armes[68] = 1;
+	useW(38);
+	setQuality("Special forces", "tactical", 3);
+}
+
 function getPrestigePrice() {
 	p.prestigeprice = p.prestige * 50 + 400;
 	p.prestigeprice2 = (p.prestige * 1e9) + 1e10;
@@ -135,12 +150,12 @@ function getPrestigePrice() {
 
 function getRank(rankNBR) {
 	var Class = "";
-	if (rankNBR >= 0) { Class = "Bronze"; } 
-	if (rankNBR >= 210) { Class = "Silver"; } //x10
-	if (rankNBR >= 525) { Class = "Silver"; } //x25
-	if (rankNBR >= 1050) { Class = "Gold"; } //x50
-	if (rankNBR >= 2100) { Class = "Palladium"; } //x100
-	if (rankNBR >= 210000) { Class = "Platinum"; } //x1000
+	if (rankNBR >= 0) { Class = "Bronze"; }
+	if (rankNBR >= 210) { Class = "Silver"; } // x10 each
+	if (rankNBR >= 525) { Class = "Silver"; } // x25 each
+	if (rankNBR >= 1050) { Class = "Gold"; } // x50 each
+	if (rankNBR >= 2100) { Class = "Palladium"; } // x100 each
+	if (rankNBR >= 210000) { Class = "Platinum"; } // x1000 each
 	result2 = "<font class='" + Class + "'> " + rankNBR + "</font>";
 	return result2;
 }
@@ -206,6 +221,7 @@ function buyG(id) {
 			p.ArmeID = id;
 			p.ArmePower = damage;
 			genGun2(id);
+			if (p.OType == 3) { if(p.QualityMult == p.ORequired) { getRewards(); } }
 		}
 	}
 	SuccessCount();
@@ -248,6 +264,7 @@ function BuyM(id, qty) {
 			p.missions[id] += qty;
 			p.rank += qty;
 		}
+		if (p.OType == 1) { if (id == p.ORequired2) { if(p.OBase >= p.ORequired) { getRewards(); } else { p.OBase+=qty; } } }
 		SuccessCount();
 		getCashPS();
 		UpdateUI();
@@ -269,7 +286,7 @@ function SellM(id, qty) {
 	UpdateUI();
 }
 
-var GetMissionPrice = function (id, qty) {
+function GetMissionPrice(id, qty) {
 	var owned = 0;
 	if (p.missions[id] != null) owned = p.missions[id];
 	var total = 0;
@@ -280,9 +297,9 @@ var GetMissionPrice = function (id, qty) {
 	}
 	price = Math.round(total * 100) / 100;
 	return price;
-};
+}
 
-var GetMissionSPrice = function (id, qty) {
+function GetMissionSPrice(id, qty) {
 	var owned = 0;
 	if (p.missions[id] != null) owned = p.missions[id];
 	var total = 0;
@@ -293,20 +310,19 @@ var GetMissionSPrice = function (id, qty) {
 	}
 	price = total / 2;
 	return price;
-};
+}
 
 //VEHICLES
 
-var buyV = function (id) {
-	if (p.vehicules[id] != 1) {
+function buyV(id) {
+	if (p.Vehicules[id] < 1) {
 		if (vehicules[id].price <= p.points) {
-			if (p.vehicules[id] == null) {
-				p.vehicules[id] = 1;
+			if (p.Vehicules[id] == 0) {
+				p.Vehicules[id] = 1;
 				p.points -= vehicules[id].price;
 			} else {
-				if (p.vehicules[id] != 0) {
-					p.vehicules[id] = 1;
-					p.points -= vehicules[id].price;
+				if (p.Vehicules[id] > 1) {
+					p.Vehicules[id] = 1;
 				}
 			}
 			if (id < 7) { p.VBought[0]++; }
@@ -321,4 +337,104 @@ var buyV = function (id) {
 	}
 	SuccessCount();
 	UpdateUI();
-};
+}
+
+function NewObjective() {
+	var type = random(0, 3);
+	var chance = random(0, 100);
+	if (type == 0) {
+		p.ORequired2 = null;
+		if (chance < 30) {
+			p.ORequired = random(10, 30);
+			p.OReward = 0.1;
+		}
+		if (chance >= 30) {
+			p.ORequired = random(30, 50);
+			p.OReward = 0.2;
+		}
+		if (chance >= 80) {
+			p.ORequired = random(50, 100);
+			p.OReward = 0.3;
+		}
+		p.OTitle = "Use your weapon <font class='jaune'>" + p.ORequired + "</font> times.";
+		p.OType = type;
+		p.OBase = p.ORequired;
+	}
+	if (type == 1) {
+		for (var m in missions) { p.ORequired2 = random(0, m); }
+		if (chance < 30) {
+			p.ORequired = random(1, 10);
+			p.OReward = 0.1;
+		}
+		if (chance >= 30) {
+			p.ORequired = random(10, 20);
+			p.OReward = 0.2;
+		}
+		if (chance >= 80) {
+			p.ORequired = random(20, 50);
+			p.OReward = 0.3;
+		}
+		p.OTitle = "Increase <font class='jaune'>" + missions[p.ORequired2].name + " " + p.ORequired + "</font> times.";
+		p.OType = type;
+		p.OBase = 0;
+	}
+	if (type == 2) {
+		if (chance < 30) {
+			p.ORequired = p.rank + random(10, 30);
+			p.OReward = 0.1;
+		}
+		if (chance >= 30) {
+			p.ORequired = p.rank + random(30, 50);
+			p.OReward = 0.2;
+		}
+		if (chance >= 80) {
+			p.ORequired = p.rank + random(50, 100);
+			p.OReward = 0.3;
+		}
+		p.OTitle = "Reach the rank" + getRank(p.ORequired) + ".";
+		p.OType = type;
+		p.ORequired2 = null;
+		p.OBase = p.rank;
+	}
+	if (type == 3) {
+		if (chance >= 0) {
+			p.ORequired = 1;
+			p.ORequired2 = "<font class='normal'>Normal</font>";
+			p.OReward = 0.1;
+		}
+		if (chance >= 20) {
+			p.ORequired = 1.25;
+			p.ORequired2 = "<font class='rare'>Rare</font>";
+			p.OReward = 0.1;
+		}
+		if (chance >= 40) {
+			p.ORequired = 1.5;
+			p.ORequired2 = "<font class='or'>Very good state</font>";
+			p.OReward = 0.2;
+		}
+		if (chance >= 60) {
+			p.ORequired = 1;
+			p.ORequired2 = "<font class='rouge'>Factory new</font>";
+			p.OReward = 0.2;
+		}
+		if (chance >= 80) {
+			p.ORequired = 1;
+			p.ORequired2 = "<font class='mythic'>Military grade</font>";
+			p.OReward = 0.3;
+		}
+		if (chance >= 98) {
+			p.ORequired = 1;
+			p.ORequired2 = "<font class='tactical'>Special forces</font>";
+			p.OReward = 0.3;
+		}
+		p.OTitle = "Obtain a new weapon with a " + p.ORequired2 + " quality.";
+		p.OType = type;
+	}
+}
+
+function getRewards() {
+	p.points += p.OReward;
+	p.CompletedQuests++;
+	NewObjective();
+	$("#colonne-m").append("<div id='objective' class='ui black message'><i id='close' class='close icon'></i><div class='header vert'>You have completed your current objective !</div>You now have a new objective :<br /> " + p.OTitle + "</div>")
+}

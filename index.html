@@ -16,11 +16,11 @@
 <script src="dropdown.min.js"></script>
 <script src="sidebar.min.js"></script>
 
-<link href="style.css?v=37" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=37"></script>
-<script src="js/data.js?v=37"></script>
-<script src="js/core.js?v=37"></script>
-<script src="js/ui.js?v=37"></script>
+<link href="style.css?v=38" rel="stylesheet" type="text/css"></link>
+<script src="js/utils.js?v=38"></script>
+<script src="js/data.js?v=38"></script>
+<script src="js/core.js?v=38"></script>
+<script src="js/ui.js?v=38"></script>
 
 <body id="body" class="noselect" oncontextmenu="return false;">
     <!--SIDE BAR-->
@@ -57,15 +57,15 @@
                 </div>
             </div>
             <div class="ui inverted secondary menu" id="game-menu">
-                <button id="sidebar" class="ui inverted basic button item type2">
+                <button id="sidebar" class="ui button item type2">
                     <i class="sidebar icon"></i>Menu</button>
-                <a class="item type2" id="t1" data-id="1">
+                <a class="ui button item type2" id="t1" data-id="1">
                     <i class="crosshairs icon"></i>Weapons</a>
-                <a class="item type2 active" id="t2" data-id="2">
+                <a class="ui button item type2 inverted basic" id="t2" data-id="2">
                     <i class="dollar sign icon"></i>Missions</a>
-                <a class="item type2" id="t3" data-id="3">
+                <a class="ui button item type2" id="t3" data-id="3">
                     <i class="car icon"></i>Vehicles</a>
-                <a class="item type2" id="t4" data-id="4">
+                <a class="ui button item type2" id="t4" data-id="4">
                     <i class="clipboard icon"></i>Objectives</a>
             </div>
         </div>
@@ -103,7 +103,8 @@
                 <div class="ui black message">
                     <p>
                         <font id="alert"></font>
-                        <font id="messages"></font>
+                        <font id="messages"></font><br />
+                       <strong>Objective :</strong> <font id="objective"></font>
                     </p>
                 </div>
             </div>
@@ -184,7 +185,7 @@
                         <p class="type2 title text" id="OTitle"></p>
                         <p class="description" id="ORequired"></p>
                         <p class="description" id="OReward"></p>
-                        <button onClick="NewObjective();" class="fluid ui button">Find a new objective</button>
+                        <button onClick="ChangeObjective();" class="fluid ui inverted violet basic button">New objective (<font class="jaune">0.5 CP</font>)</button>
                     </div>
                 </div>
             </div>
@@ -272,6 +273,12 @@
                 <div id="boughtvehicles4"></div>
                 <div id="boughtvehicles5"></div>
                 <div id="boughtvehicles6"></div>
+                <div id="boughtvehicles7"></div>
+                <div id="boughtvehicles8"></div>
+                <div id="boughtvehicles9"></div>
+                <div id="boughtvehicles10"></div>
+                <div id="boughtvehicles11"></div>
+                <div id="boughtvehicles12"></div>
                 <br />
                 <div class='type2 text'>Weapons</div>
                 <div id="weaponsT1"></div>

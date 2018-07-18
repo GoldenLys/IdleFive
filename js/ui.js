@@ -34,7 +34,13 @@
 	$("#boughtvehicles3").html(texts.vehicletype[3] + " bought <font class='bold jaune'>" + p.VBought[2] + "</font>/34.");
 	$("#boughtvehicles4").html(texts.vehicletype[4] + " bought <font class='bold jaune'>" + p.VBought[3] + "</font>/56.");
 	$("#boughtvehicles5").html(texts.vehicletype[5] + " bought <font class='bold jaune'>" + p.VBought[4] + "</font>/39.");
-	$("#boughtvehicles6").html(texts.vehicletype[6] + " bought <font class='bold jaune'>" + p.VBought[5] + "</font>/38.");
+	$("#boughtvehicles6").html(texts.vehicletype[6] + " bought <font class='bold jaune'>" + p.VBought[5] + "</font>/43.");
+	$("#boughtvehicles7").html(texts.vehicletype[7] + " bought <font class='bold jaune'>" + p.VBought[6] + "</font>/9.");
+	$("#boughtvehicles8").html(texts.vehicletype[8] + " bought <font class='bold jaune'>" + p.VBought[7] + "</font>/31.");
+	$("#boughtvehicles9").html(texts.vehicletype[9] + " bought <font class='bold jaune'>" + p.VBought[8] + "</font>/38.");
+	$("#boughtvehicles10").html(texts.vehicletype[10] + " bought <font class='bold jaune'>" + p.VBought[9] + "</font>/14.");
+	$("#boughtvehicles11").html(texts.vehicletype[11] + " bought <font class='bold jaune'>" + p.VBought[10] + "</font>/19.");
+	$("#boughtvehicles12").html(texts.vehicletype[12] + " bought <font class='bold jaune'>" + p.VBought[11] + "</font>/19.");
 	//WEAPONS - STATS
 	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons bought.");
 	$("#weaponsT1").html(p.GBought[0] + " " + texts.weapontype[1] + " bought.");
@@ -56,6 +62,7 @@
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige + "</font>.");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	//OBJECTIVES
+	$("#objective").html(p.OTitle);
 	$("#OTitle").html(p.OTitle);
 	$("#OReward").html("You can get <font class='jaune'>" + p.OReward + " CP</font> with this objective.");
 	if (p.OType == 0) { $("#ORequired").html(p.ORequired + " remaining uses."); }
@@ -229,7 +236,13 @@ function VehicleList() {
 		if (i > 52) { if (i < 87) { $('#Vtab3').append(vehiclesDIV); } }
 		if (i > 86) { if (i < 143) { $('#Vtab4').append(vehiclesDIV); } }
 		if (i > 142) { if (i < 182) { $('#Vtab5').append(vehiclesDIV); } }
-		if (i > 181) { if (i < 220) { $('#Vtab6').append(vehiclesDIV); } }
+		if (i > 181) { if (i < 225) { $('#Vtab6').append(vehiclesDIV); } }
+		if (i > 224) { if (i < 234) { $('#Vtab7').append(vehiclesDIV); } }
+		if (i > 233) { if (i < 265) { $('#Vtab8').append(vehiclesDIV); } }
+		if (i > 264) { if (i < 303) { $('#Vtab9').append(vehiclesDIV); } }
+		if (i > 302) { if (i < 317) { $('#Vtab10').append(vehiclesDIV); } }
+		if (i > 316) { if (i < 337) { $('#Vtab11').append(vehiclesDIV); } }
+		if (i > 336) { if (i < 356) { $('#Vtab12').append(vehiclesDIV); } }
 	}
 }
 
@@ -238,7 +251,7 @@ function VehicleList() {
 function hideVTabs() { for (var id = 1; id < 17; id++) { $("#Vtab" + id).hide(); $("#V" + id).removeClass("active"); } }
 function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inverted"); }
 function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
-function hideTabs() { for (var id = 1; id < 5; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("active"); } }
+function hideTabs() { for (var id = 1; id < 5; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("inverted basic"); } }
 function hideMenus() { for (var id = 1; id < 6; id++) { $('#menu-' + id).modal('hide'); } }
 function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
@@ -247,7 +260,7 @@ function ClickEvents() {
 	$("#game-menu").on("click", "a", function () {
 		var id = $(this).data('id'); hideTabs();
 		$("#tab" + id).show();
-		$("#t" + id).addClass("active");
+		$("#t" + id).addClass("inverted basic");
 	});
 	$("#sidebar").on("click", "a", function () {
 		var id = $(this).data('id');

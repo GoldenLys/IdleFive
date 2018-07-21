@@ -13,8 +13,7 @@
 	$('#imagecash').attr('src', "http://aizen.hol.es/IdleFive/images/A/" + p.ArmeID + ".png");
 	$("#cash").html("<i class='money'></i><font class='vert bold'>" + CashText + "</font> (<font class='vert'>" + CashPSText + "</font>/s)");
 	$("#level").html(getRank(p.rank));
-	$("#weapon").html(p.Arme);
-	$("#quality").html(p.ArmeClass + p.Quality + "</font>");
+	$("#weapon").html(p.ArmeClass + p.Arme + " - " + p.Quality + "</font>");
 	$("#damage").html(p.ArmeClass + "<font class='bold'>" + ClicCashText + "</font></font>");
 	$("#points").html("<font class='jaune'> " + fix(p.points, 2) + " CP</font>");
 	$("#messages").html(prestigeText);
@@ -59,6 +58,7 @@
 	//OTHERS - STATS
 	$("#ObjectivesCompleted").html(p.CompletedQuests + " Objectives completed.");
 	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
+	$("#pointsspent").html(p.spentpoints + " points spent.");
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige + "</font>.");
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	//OBJECTIVES
@@ -159,13 +159,13 @@ function WeaponList() {
 		Damage = fix(weapon.power * (p.PrestigeMult + p.DamageMult + p.CashMult), 2);
 
 		if (p.Armes[i] == 1) {
-			if (p.ArmeID == i) { equipment = 'azn-active'; } else { equipment = ''; }
+			if (p.ArmeID == i) { equipment = 'azn-active'; equipit = texts.weapons[6]; equippedclass="inverted basic"; } else { equipment = ''; equipit = texts.weapons[5]; equippedclass=""; }
 			bought = 'azn ';
 			canBuy = weapon.price * 1.25 > p.cash ? ' rouge' : ' blanc';
 			name = "<font class='type2 text'>" + weapon.name + "</font>";
 			cost = "<i class='money'></i><font class='type1 " + canBuy + "'>" + fix(weapon.price * 1.25, 2) + "</font>";
 			damage = "<font class='jaune'>" + Damage + "</font>";
-			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui button' onClick='useW(" + i + ");'>" + texts.weapons[5] + "</button>";
+			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui " + equippedclass + " button' onClick='useW(" + i + ");'>" + equipit + "</button>";
 		} else {
 			bought = '';
 			equipment = '';

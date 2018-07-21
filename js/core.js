@@ -1,4 +1,4 @@
-var version = "v38";
+var version = "v39";
 var a1 = 0;
 var texts = textsENG;
 var p = {
@@ -36,6 +36,7 @@ var p = {
 	ORequired: 0,
 	ORequired2: 0,
 	CompletedQuests: 0,
+	spentpoints: 0,
 };
 
 
@@ -49,7 +50,7 @@ $(document).ready(function () {
 	ClickEvents();
 	SuccessCount();
 	showTutorial(p.tutorial);
-	$("#alert").html(texts.infos[3]);
+	$("#alert").html("");
 	$(".pusher").css("background-image", "url(images/bg.jpg)");
 	$('.ui.sidebar').sidebar('hide');
 });
@@ -63,7 +64,7 @@ function idleFiveLoop() {
 	for (var w in weapons) { if (p.Armes[w] == null) { p.Armes[w] = 0; } }
 	for (var v in vehicules) { if (p.Vehicules[v] == null) { p.Vehicules[v] = 0; } }
 	for (var s in success) { if (p.succes[s] == null) { p.succes[s] = 0; } }
-	for (var vtype = 0; vtype < 10; vtype++) { if (p.VBought[vtype] == null) { p.VBought[vtype] = 0; } }
+	for (var vtype = 0; vtype < 17; vtype++) { if (p.VBought[vtype] == null) { p.VBought[vtype] = 0; } }
 	for (var wtype = 0; wtype < 10; wtype++) { if (p.GBought[wtype] == null) { p.GBought[wtype] = 0; } }
 	//UPDATE VARS
 	p.playTime++;
@@ -72,11 +73,11 @@ function idleFiveLoop() {
 	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
 	p.rank = rank;
 	if (p.OType == 2) { if (p.rank >= p.ORequired) { getRewards(); } }
-	if (p.OType == 1) { if(p.OBase >= p.ORequired) { getRewards(); } }
+	if (p.OType == 1) { if (p.OBase >= p.ORequired) { getRewards(); } }
 	if (p.rank >= p.prestigeprice) { if (p.cash >= p.prestigeprice2) { btnPrestigeE(); } else { btnPrestigeD(); } } else { btnPrestigeD(); }
 	p.cash += p.cashps;
 	if (p.fl == 1) { showTutorialDIV(); }
-	if (p.OType == 3) { p.OBase=p.Quality; }
+	if (p.OType == 3) { p.OBase = p.Quality; }
 	getPrestigePrice();
 	getCashPS();
 	UpdateUI();
@@ -110,7 +111,7 @@ function AddPrestige() {
 				p.QualityMult = 1;
 				p.ArmeClass = "<font class='normal'>";
 				p.Arme = "Fist";
-				p.Quality = "1 <i class='small star icon'></i>";
+				p.Quality = "3 <i class='small star icon'></i>";
 				p.Armes = [];
 				p.GBought = [];
 				p.rank = 0;
@@ -173,7 +174,7 @@ function checkalerts(num, num2) {
 }
 
 function clearalerts() {
-	$("#alert").html(texts.infos[3]);
+	$("#alert").html("");
 }
 
 //WEAPONS
@@ -182,7 +183,7 @@ function useW(id) {
 	var weapon = weapons[id];
 	if (p.Armes[id] == 1) {
 		if (p.ArmeID != id) {
-			p.Quality = "1 <i class='small star icon'></i>";
+			p.Quality = "3 <i class='small star icon'></i>";
 			p.ArmeClass = "<font class='normal'>";
 			p.QualityMult = 1;
 			p.Arme = weapon.name;
@@ -214,7 +215,7 @@ function buyG(id) {
 			if (id > 62) { if (id < 70) { p.GBought[6]++; } }
 			if (id > 69) { if (id < 81) { p.GBought[7]++; } }
 			if (id > 80) { if (id < 82) { p.GBought[8]++; } }
-			if (p.OType == 3) { if(p.QualityMult == p.ORequired) { getRewards(); } }
+			if (p.OType == 3) { if (p.QualityMult == p.ORequired) { getRewards(); } }
 		}
 	} else {
 		if (p.cash >= pricebuy * 1.25) {
@@ -223,7 +224,7 @@ function buyG(id) {
 			p.ArmeID = id;
 			p.ArmePower = damage;
 			genGun2(id);
-			if (p.OType == 3) { if(p.QualityMult == p.ORequired) { getRewards(); } }
+			if (p.OType == 3) { if (p.QualityMult == p.ORequired) { getRewards(); } }
 		}
 	}
 	SuccessCount();
@@ -266,7 +267,7 @@ function BuyM(id, qty) {
 			p.missions[id] += qty;
 			p.rank += qty;
 		}
-		if (p.OType == 1) { if (id == p.ORequired2) { if(p.OBase >= p.ORequired) { getRewards(); } else { p.OBase+=qty; } } }
+		if (p.OType == 1) { if (id == p.ORequired2) { if (p.OBase >= p.ORequired) { getRewards(); } else { p.OBase += qty; } } }
 		SuccessCount();
 		getCashPS();
 		UpdateUI();
@@ -322,6 +323,7 @@ function buyV(id) {
 			if (p.Vehicules[id] == 0) {
 				p.Vehicules[id] = 1;
 				p.points -= vehicules[id].price;
+				p.spentpoints += vehicules[id].price;
 			} else {
 				if (p.Vehicules[id] > 1) {
 					p.Vehicules[id] = 1;
@@ -348,8 +350,8 @@ function buyV(id) {
 }
 
 function ChangeObjective() {
-	if(p.points >= 0.5 ) {
-		p.points--;
+	if (p.points >= 0.5) {
+		p.points -= 0.5;
 		NewObjective();
 	}
 }
@@ -452,4 +454,12 @@ function getRewards() {
 	p.CompletedQuests++;
 	NewObjective();
 	$("#colonne-m").append("<div id='objective' class='ui black message'><i id='close' class='close icon'></i><div class='header vert'>Objective completed !</div>New objective :<br /> " + p.OTitle + "</div>")
+}
+function ReasignPoints() {
+	p.points += p.spentpoints;
+	p.spentpoints = 0;
+	for (var v in vehicules) { if (p.Vehicules[v] == 1) { p.Vehicules[v] = 0; } }
+	for (var vtype = 0; vtype < 17; vtype++) { if (p.VBought[vtype] > 0) { p.VBought[vtype] = 0; } }
+	p.DamageMult=0;
+	p.CashMult=0;
 }

@@ -136,7 +136,7 @@ var restoreSave = function (save) {
 };
 
 var confirmReset = function () {
-	var r = confirm("Do you really want to reset all of your stats ?");
+	var r = confirm("Do you really want to reset all your stats ?");
 	if (r == true) {
 		canSave = 0;
 		localStorage.clear();

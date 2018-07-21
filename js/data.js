@@ -289,7 +289,6 @@ var vehicules = {
     179: { name: 'XA-21', price: 3, value: 1.5, type: 1 },
     180: { name: 'X80 Proto', price: 3, value: 1.5, type: 0 },
     181: { name: 'Zentorno', price: 3, value: 1.5, type: 1 }, //END OF TYPE 5
-
     182: { name: 'Blade', price: 1, value: 0.25, type: 0 },
     183: { name: 'Buccaneer', price: 1, value: 0.25, type: 1 },
     184: { name: 'Burger Shot Stallion', price: 3, value: 1.5, type: 1 },
@@ -555,10 +554,10 @@ var tutorialtexts = {
 
 var textsENG = {
     menus: ["Character", "Success", "Options & Stats", "Guide", "Chat", "Weapons", "Missions", "Vehicles"],
-    weapons: ["Price", "Modification", "Damage", "Purchase", "Try to modify", "Use (normal)"],
+    weapons: ["Price", "Modification", "Damage", "Purchase", "Modify", "Equip", "Equipped"],
     missions: ["Buy", "Sell", "Level", "Value", "product", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase", "IN YOUR GARAGE"],
-    infos: ["Weapon", "Damage", "<br />A new character slot is available.", "Nothing to report at the moment.", "You have", "A player just killed you, he stole", "from your pockets !", "Level"],
+    infos: ["Weapon", "Damage", "<br />A new character slot is available.", "", "You have", "A player just killed you, he stole", "from your pockets !", "Level"],
     character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP).", "Your actual multiplier is at", "on the money earned."],
     weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Trown Weapons", "Special Weapons"],
     vehicletype: ["", "Bikes", "Motorcycles", "Sports Classics", "Sports", "Super", "Muscles", "Compacts", "Sedans", "Off-Road", "Coupes", "Emergency", "Boats", "SUV (WIP)", "Helicopters (WIP)", "Military (WIP)", "Commercials (WIP)"],

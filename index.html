@@ -2,31 +2,23 @@
 
 <head>
     <title>idleFive is loading..</title>
-    <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-    />
+    <meta charset="UTF-8" name='viewport'
+        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://semantic-ui.com/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="DATA/dropdown.min.css">
+    <link rel="stylesheet" type="text/css" href="DATA/sidebar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css" />
+    <link href="style.css?v=40" rel="stylesheet" type="text/css">
+    </link>
 </head>
-<link rel="shortcut icon" type="image/x-icon" href="http://aizen.hol.es/IdleFive/images/fav.ico" />
-<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="semantic.min.css">
-<link rel="stylesheet" type="text/css" href="dropdown.min.css">
-<link rel="stylesheet" type="text/css" href="sidebar.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="semantic.min.js"></script>
-<script src="dropdown.min.js"></script>
-<script src="sidebar.min.js"></script>
 
-<link href="style.css?v=39" rel="stylesheet" type="text/css"></link>
-<script src="js/utils.js?v=39"></script>
-<script src="js/data.js?v=39"></script>
-<script src="js/core.js?v=39"></script>
-<script src="js/ui.js?v=39"></script>
-
-<body id="body" class="noselect" oncontextmenu="return false;">
+<body id="body" class="noselect" oncontextmenu="return true;">
     <!--SIDE BAR-->
     <div id="sidebar" class="ui left demo vertical visible inverted sidebar labeled icon menu">
-        <a class="item" id="menu1" data-id="1">
-            <i class="user icon"></i>Character</a>
         <a class="item" id="menu2" data-id="2">
             <i class="trophy icon"></i>Success</a>
         <a class="item" id="menu3" data-id="3">
@@ -35,12 +27,10 @@
             <i class="info icon"></i>Guide</a>
         <a class="item" id="menu5" data-id="5">
             <i class="save icon"></i>Save</a>
-        <a class="item" target="_blank" href="https://discord.gg/5srpwap">
+        <a class="item" target="_blank" href="https://discord.gg/SBuYeHh">
             <i class="discord icon"></i>Discord</a>
-        <a class="item" target="_blank" href="https://github.com/Aizen45/IdleFive">
+        <a class="item" target="_blank" href="https://github.com/GoldenLys/IdleFive">
             <i class="github icon"></i>Github</a>
-        <a class="item" target="_blank" href="https://www.reddit.com/r/IdleFive">
-            <i class="reddit alien icon"></i>Subreddit</a>
         <a class="item" target="_blank" href="https://www.paypal.me/Aizen45/5">
             <i class="paypal icon"></i>Donate</a>
     </div>
@@ -57,15 +47,15 @@
                 </div>
             </div>
             <div class="ui inverted secondary menu" id="game-menu">
-                <button id="sidebar" class="ui button item type2">
+                <button id="sidebar" id="t0" class="ui button item">
                     <i class="sidebar icon"></i>Menu</button>
-                <a class="ui button item type2" id="t1" data-id="1">
+                <a class="ui button item" id="t1" data-id="1">
                     <i class="crosshairs icon"></i>Weapons</a>
-                <a class="ui button item type2 inverted basic" id="t2" data-id="2">
+                <a class="ui button item green basic" id="t2" data-id="2">
                     <i class="dollar sign icon"></i>Missions</a>
-                <a class="ui button item type2" id="t3" data-id="3">
-                    <i class="car icon"></i>Vehicles</a>
-                <a class="ui button item type2" id="t4" data-id="4">
+                <a class="ui button item" id="t3" data-id="3">
+                    <i class="user icon"></i>Character</a>
+                <a class="ui button item" id="t4" data-id="4">
                     <i class="clipboard icon"></i>Objectives</a>
             </div>
         </div>
@@ -75,34 +65,28 @@
             <!--LEFT COLUMN-->
             <div class="column" id="colonne-m">
                 <!--CURRENT WEAPON-->
-                <img class="ui centered large rounded image cash" oncontextmenu="ClickWeapon();" onclick="ClickWeapon();" id="imagecash">
+                <div id="imagecontainer">
+                    <h3 class="ui blanc header" id="cash">
+                        <div class='sub header'></div>
+                    </h3>
+                    <div id="imagecash"></div>
+                </div>
                 <!--GAME INFOS-->
-                <table class="ui inverted table">
-                    <tr>
-                        <td class="right aligned">Cash
-                            <br />Rank
-                            <br />Weapon
-                            <br />Damage
-                            <br />Points</td>
-                        <th width="55%" style="font-weight: normal;">
-                            <font id="cash"></font>
-                            <br />
-                            <font id="level"></font>
-                            <br />
-                            <font id="weapon"></font>
-                            <br />
-                            <font id="damage"></font>
-                            <br />
-                            <font id="points"></font>
-                        </th>
-                    </tr>
-                </table>
                 <div class="ui black message">
-                    <p>
-                        <font id="alert"></font>
-                        <font id="messages"></font>
-                        <strong>Current objective :</strong>
-                        <font id="objective"></font>
+                    Rank <font id="level"></font>
+                    <br />
+                    <font id="weapon"></font>
+                    <br />
+                    <font id="damage"></font>
+                    <div class="ui divider"></div>
+                    <div id="alert"></div>
+                    <div id="messages"></div>
+                    <div class="ui divided selection list">
+                        <a class="item">
+                            <div class="ui green horizontal label">Objective</div>
+                            <span id="objective"></span>
+                        </a>
+                    </div>
                     </p>
                 </div>
             </div>
@@ -119,8 +103,6 @@
                         <option id="W5" value="5"></option>
                         <option id="W6" value="6"></option>
                         <option id="W7" value="7"></option>
-                        <option id="W8" value="8"></option>
-                        <option id="W9" value="9"></option>
                     </select>
 
                     <table id="Wtab1" class="ui inverted table"></table>
@@ -130,8 +112,6 @@
                     <table id="Wtab5" class="ui inverted table" style="display: none;"></table>
                     <table id="Wtab6" class="ui inverted table" style="display: none;"></table>
                     <table id="Wtab7" class="ui inverted table" style="display: none;"></table>
-                    <table id="Wtab8" class="ui inverted table" style="display: none;"></table>
-                    <table id="Wtab9" class="ui inverted table" style="display: none;"></table>
                 </div>
 
                 <!--MISSIONS-->
@@ -141,40 +121,35 @@
 
                 <!--VEHICLES-->
                 <div id="tab3" style="display: none; width: 100%;">
-                    <select class="fluid ui selection dropdown" id="veh-select">
-                        <option id="V1" value="1"></option>
-                        <option id="V2" value="2"></option>
-                        <option id="V3" value="3"></option>
-                        <option id="V4" value="4"></option>
-                        <option id="V5" value="5"></option>
-                        <option id="V6" value="6"></option>
-                        <option id="V7" value="7"></option>
-                        <option id="V8" value="8"></option>
-                        <option id="V9" value="9"></option>
-                        <option id="V10" value="10"></option>
-                        <option id="V11" value="11"></option>
-                        <option id="V12" value="12"></option>
-                        <option id="V13" value="13"></option>
-                        <option id="V14" value="14"></option>
-                        <option id="V15" value="15"></option>
-                        <option id="V16" value="16"></option>
-                    </select>
-                    <table id="Vtab1" class="ui inverted table"></table>
-                    <table id="Vtab2" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab3" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab4" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab5" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab6" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab7" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab8" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab9" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab10" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab11" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab12" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab13" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab14" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab15" class="ui inverted table" style="display: none;"></table>
-                    <table id="Vtab16" class="ui inverted table" style="display: none;"></table>
+
+                    <div class="ui black message">
+                        <p>
+                            <font id="character-number"></font>
+                            <font id="prestigecount"></font>
+                        </p>
+                        <p>
+                            <font id="character-text1"></font>
+                            <font id="prestigepricecount"></font>
+                            <font id="character-text2"></font>
+                            <font class="vert" id="prestigepricecount2"></font>
+                            <font id="character-text3"></font>
+                        </p>
+                        <p>
+                            <font id="character-text4"></font>
+                        </p>
+                        <p>
+                            <font id="character-text5"></font>
+                        </p>
+                    </div>
+                    <div class="ui black message">
+                        <div id="btnReasign" onClick="ReasignPoints();" class="ui blue button">Reasign Points </div>
+                        <div id="btnPrestige" onClick="AddPrestige();" class="ui green inverted button">
+                            <i class="checkmark icon"></i>Change Character </div>
+                        <p>Points <font id="points"></font>
+                        </p>
+                    </div>
+
+                    <table id="Vtab" class="ui inverted table"></table>
                 </div>
 
                 <!--OBJECTIVES-->
@@ -183,7 +158,8 @@
                         <p class="type2 title text" id="OTitle"></p>
                         <p class="description" id="ORequired"></p>
                         <p class="description" id="OReward"></p>
-                        <button onClick="ChangeObjective();" class="fluid ui inverted violet basic button">New objective (
+                        <button id="ChangeObjective" class="fluid ui inverted green basic button">New objective
+                            (
                             <font class="jaune">0.5 CP</font>)</button>
                     </div>
                 </div>
@@ -191,42 +167,26 @@
         </div>
     </div>
     <!--MENUS-->
-    <!--CHARACTER-->
-    <div class="ui basic modal" id="menu-1">
-
+    <div class="ui basic modal" id="modal-1">
         <div class="ui icon header">
-            <i class="user icon"></i>
-            <font id="character-title" class="title blanc"></font>
+            <i class="icon fas fa-comment-alt-exclamation"></i>
+            <font id="message-title" class="title">Message</font>
         </div>
         <div class="centrer content">
-            <p>
-                <font id="character-number"></font>
-                <font id="prestigecount"></font>
-            </p>
-            <p>
-                <font id="character-text1"></font>
-                <font id="prestigepricecount"></font>
-                <font id="character-text2"></font>
-                <font class="vert" id="prestigepricecount2"></font>
-                <font id="character-text3"></font>
-            </p>
-            <p>
-                <font id="character-text4"></font>
-            </p>
-            <p>
-                <font id="character-text5"></font>
-            </p>
-        </div>
-        <div class="actions">
-            <div id="btnReasign" onClick="ReasignPoints();" class="ui blue button">Reasign Points </div>
-            <div id="btnPrestige" onClick="AddPrestige();" class="ui green inverted button">
-                <i class="checkmark icon"></i>Change Character </div>
-            <div onclick="hideMenus();" class="ui red basic inverted button">
-                <i class="remove icon"></i>Close </div>
+            <div class="ui black message">
+                <div class="content">
+                    <p id="message-text">
+                    </p>
+                </div>
+            </div>
+            <div class="actions">
+                <div id="closeMSG" class="ui cu button">
+                    <i class="remove icon"></i>Close </div>
+            </div>
         </div>
     </div>
     <!--SUCCESS-->
-    <div class="ui basic modal" id="menu-2">
+    <div class="ui basic modal" id="modal-2">
         <div class="ui icon header">
             <i class="star icon"></i>
             <font id="success-title" class="title blanc">Success</font>
@@ -253,7 +213,7 @@
         </div>
     </div>
     <!--STATS-->
-    <div class="ui basic modal" id="menu-3">
+    <div class="ui basic modal" id="modal-3">
         <div class="ui icon header">
             <i class="id badge icon"></i>
             <font id="statistics" class="title blanc"></font>
@@ -285,7 +245,6 @@
                 <div id="weaponsT6"></div>
                 <div id="weaponsT7"></div>
                 <div id="weaponsT8"></div>
-                <div id="weaponsT9"></div>
                 <div id="weapons-bought"></div>
             </div>
             <div class="column">
@@ -316,7 +275,7 @@
         </div>
     </div>
     <!--TUTORIAL-->
-    <div class="ui basic modal" id="menu-4">
+    <div class="ui basic modal" id="modal-4">
 
         <div class="ui icon header">
             <i class="info icon"></i>
@@ -335,7 +294,7 @@
         </div>
     </div>
     <!--SAVE-->
-    <div class="ui basic modal" id="menu-5">
+    <div class="ui basic modal" id="modal-5">
         <div class="ui icon header">
             <i class="save icon"></i>
             <font id="savemenu" class="title blanc"></font>
@@ -361,6 +320,15 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://semantic-ui.com/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="DATA/numeral.min.js"></script>
+    <script type="text/javascript" src="DATA/dropdown.min.js"></script>
+    <script type="text/javascript" src="DATA/sidebar.min.js"></script>
+    <script type="text/javascript" src="js/utils.js?v=40"></script>
+    <script type="text/javascript" src="js/data.js?v=40"></script>
+    <script type="text/javascript" src="js/core.js?v=40"></script>
+    <script type="text/javascript" src="js/ui.js?v=40"></script>
 </body>
 
 </html>

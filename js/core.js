@@ -448,9 +448,9 @@ function NewObjective() {
 }
 
 function getRewards() {
-	//p.points += p.quest.reward;
-	//p.CompletedQuests++;
-	//NewObjective();
+	p.points += p.quest.reward;
+	p.CompletedQuests++;
+	NewObjective();
 	$("#colonne-m").append("<div id='objective' class='ui black message'><i id='close' class='close icon'></i><div class='header vert'>Objective completed !</div>New objective :<br /> " + GetQuestTitle() + "</div>");
 }
 

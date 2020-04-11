@@ -1,6 +1,6 @@
 ﻿function UpdateUI() {
-	let ClicCashText = fix(p.Weapon.Power * p.Weapon.Mult * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
-	let CashPSText = fix(p.cashps, 2);
+	let ClicCashText = fix(p.Weapon.Power * WEAPON_MULTIPLIER * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
+	let CashPSText = fix(CASHPS, 2);
 	let PrestigeMultText = fix(p.prestige.bonus, 9);
 	let CashText = fix(p.cash, 2);
 	let prestigeText = "";

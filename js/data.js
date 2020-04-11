@@ -152,7 +152,7 @@ var tutorialtexts = {
     6: { title: "Character Skills", text: "They are used to increase your cash and damage multipliers,<br /> you need Character Points (CP) to upgrade them.", },
 };
 
-var textsEN = {
+var texts = {
     sidebar: ["Success", "Statistics", "Guide", "Save", "Donate"],
     menu: ["Menu", "Weapons", "Missions", "Character", "Objectives"],
     weapons: ["Weapon", "Price", "Base Damage", "Purchase", "Roll stats", "Equip", "Equipped", "Actions"],
@@ -160,7 +160,7 @@ var textsEN = {
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase"],
     infos: ["New character slot available."],
     character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP) for your new character.", "Current prestige multiplier at", "for earnt cash & damages."],
-    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons", "Thrown Weapons"],
+    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
     stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
 };

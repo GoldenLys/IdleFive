@@ -1,5 +1,5 @@
 ﻿function UpdateUI() {
-	let ClicCashText = fix(p.Weapon.Power * p.Weapon.Mult * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 2);
+	let ClicCashText = fix(p.Weapon.Power * p.Weapon.Mult * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
 	let CashPSText = fix(p.cashps, 2);
 	let PrestigeMultText = fix(p.prestige.bonus, 9);
 	let CashText = fix(p.cash, 2);
@@ -152,7 +152,7 @@ function WeaponList() {
 		var weapon = weapons[i];
 		canBBuy = weapon.price > p.cash ? ' basic red' : ' green';
 		canBBuy2 = weapon.price * 1.25 > p.cash ? ' basic red' : ' green';
-		Damage = fix(weapon.power * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1);
+		Damage = fix(weapon.power * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
 		bought = '';
 		equipment = '';
 		equippedclass = '';
@@ -236,11 +236,13 @@ function ClickEvents() {
 		var id = $(this).data('id'); hideTabs();
 		$("#tab" + id).show();
 		$("#t" + id).addClass("green basic");
+		UpdateUI();
 	});
 	$("#sidebar").on("click", "a", function () {
 		var id = $(this).data('id');
 		$('#modal-' + id).modal('show');
 		$('.ui.sidebar').sidebar('toggle');
+		UpdateUI();
 	});
 	$('#select').dropdown();
 	$('.ui.dropdown').dropdown();

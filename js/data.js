@@ -1,6 +1,6 @@
 var missions = {
     0: { name: 'Pickpocketing', price: 10, modifier: 1.05, value: 0.1, level: 0 },
-    1: { name: 'Rob A Grocery Store', price: 50, modifier: 1.05, value: 0.5, level: 5 },
+    1: { name: 'Grocery Store Robbery', price: 50, modifier: 1.05, value: 0.5, level: 5 },
     2: { name: 'Fleeca Heist', price: 100, modifier: 1.05, value: 1, level: 20 },
     3: { name: 'Security Van Heist', price: 500, modifier: 1.05, value: 5, level: 50 },
 
@@ -16,7 +16,7 @@ var missions = {
     12: { name: 'Cocaine', price: 5000000, modifier: 1.05, value: 50000, level: 900 },
     13: { name: 'Hangar', price: 10000000, modifier: 1.05, value: 100000, level: 1000 },
 
-    14: { name: 'Human Labs Raid', price: 25000000, modifier: 1.05, value: 250000, level: 1100 },
+    14: { name: 'Humane Labs Raid', price: 25000000, modifier: 1.05, value: 250000, level: 1100 },
     15: { name: 'Series A Funding Heist', price: 75000000, modifier: 1.05, value: 750000, level: 1200 },
     16: { name: 'Bunker', price: 150000000, modifier: 1.05, value: 1500000, level: 1300 },
     17: { name: 'Vehicle Trafficking', price: 500000000, modifier: 1.05, value: 5000000, level: 1400 },

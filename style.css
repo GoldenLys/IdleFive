@@ -412,6 +412,10 @@ body ::-webkit-scrollbar-track {
     color: rgb(255, 255, 255);
 }
 
+.ui.buttons .or {
+    z-index: 1;
+}
+
 #imagecontainer {
     position: relative;
     min-height: 150px;

@@ -372,15 +372,19 @@ function NewObjective() {
 		let objective = filter[Math.floor(Math.random() * filter.length)];
 		p.quest.objective = [p.missions[objective], 0];
 		if (chance < 30) {
-			p.quest.objective[0] = random(1, 10);
+			p.quest.objective[0] += random(1, 10);
 			p.quest.reward = 0.1;
 		}
 		if (chance >= 30) {
-			p.quest.objective[0] = random(20, 30);
+			p.quest.objective[0] += random(20, 30);
 			p.quest.reward = 0.2;
 		}
+		if (chance >= 60) {
+			p.quest.objective[0] += random(25, 50);
+			p.quest.reward = 0.4;
+		}
 		if (chance >= 80) {
-			p.quest.objective[0] = random(50, 80);
+			p.quest.objective[0] += random(50, 80);
 			p.quest.reward = 0.5;
 		}
 		p.quest.objective[0] += p.quest.objective[0];
@@ -398,7 +402,7 @@ function NewObjective() {
 		}
 		if (chance >= 50) {
 			p.quest.objective[0] = p.rank + random(50, 100);
-			p.quest.reward = 0.2;
+			p.quest.reward = 0.4;
 		}
 		if (chance >= 80) {
 			p.quest.objective[0] = p.rank + random(200, 500);
@@ -417,17 +421,17 @@ function NewObjective() {
 		if (chance >= 20) {
 			p.quest.objective[0] = 1.25;
 			p.quest.objective[1] = GenStarLabel(4);
-			p.quest.reward = 0.1;
+			p.quest.reward = 0.2;
 		}
 		if (chance >= 40) {
 			p.quest.objective[0] = 1.5;
 			p.quest.objective[1] = GenStarLabel(5);
-			p.quest.reward = 0.2;
+			p.quest.reward = 0.3;
 		}
 		if (chance >= 60) {
 			p.quest.objective[0] = 1.75;
 			p.quest.objective[1] = GenStarLabel(6);
-			p.quest.reward = 0.2;
+			p.quest.reward = 0.4;
 		}
 		if (chance >= 80) {
 			p.quest.objective[0] = 2;
@@ -444,9 +448,9 @@ function NewObjective() {
 }
 
 function getRewards() {
-	p.points += p.quest.reward;
-	p.CompletedQuests++;
-	NewObjective();
+	//p.points += p.quest.reward;
+	//p.CompletedQuests++;
+	//NewObjective();
 	$("#colonne-m").append("<div id='objective' class='ui black message'><i id='close' class='close icon'></i><div class='header vert'>Objective completed !</div>New objective :<br /> " + GetQuestTitle() + "</div>");
 }
 

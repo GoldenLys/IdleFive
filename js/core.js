@@ -1,5 +1,6 @@
-const version = "v4.0";
+const version = "v4.1";
 var texts = textsEN;
+var alert = 0;
 var p = {
 	//DEFAULT VARS
 	DateStarted: getDate(),
@@ -77,6 +78,8 @@ function idleFiveLoop() {
 	p.cash += p.cashps;
 	if (p.fl == 1) showTutorialDIV();
 	if (p.quest.type == 3) p.quest.progression = p.Stars[p.Weapon.Id];
+	if (alert > 0 || $("#announce").is("visible")) alert--;
+	else $("#announce").hide();
 	UpdateUI();
 	save();
 }
@@ -191,19 +194,31 @@ function buyG(id) {
 
 function genGun() {
 	quality = random(1, 250);
-	if (quality >= 1) { setQuality(1); }
-	if (quality >= 50) { setQuality(2); }
-	if (quality >= 150) { setQuality(3); }
+	if (quality >= 1) { setQuality(1); ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 5);}
+	if (quality >= 50) { setQuality(2); ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 5);}
+	if (quality >= 150) { setQuality(3); ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 5);}
 }
 
 function genGun2() {
-	quality = random(1, 204);
-	if (quality >= 1) { setQuality(3); }
-	if (quality >= 80) { setQuality(4); }
-	if (quality >= 150) { setQuality(5); }
-	if (quality >= 180) { setQuality(6); }
-	if (quality >= 190) { setQuality(7); }
-	if (quality >= 200) { setQuality(8); }
+	let luck = random(1, 20);
+	let quality = random(1, 100); // 3 Stars
+	if (luck > 10) quality = random(1, 100); //4 Stars
+	if (luck > 12) quality = random(1, 125); //5 Stars
+	if (luck > 14) quality = random(1, 150); //6 Stars
+	if (luck > 16) quality = random(1, 175); //6 Stars
+	if (luck > 18) quality = random(1, 200); //8 Stars
+	if (quality >= 1) { setQuality(3); ALERT("Rolled a " + GenStarLabel(3) + weapons[p.Weapon.Id].name, 5); }
+	if (quality > 100) { setQuality(4); ALERT("Rolled a " + GenStarLabel(4) + weapons[p.Weapon.Id].name, 5); }
+	if (quality > 125) { setQuality(5); ALERT("Rolled a " + GenStarLabel(5) + weapons[p.Weapon.Id].name, 5); }
+	if (quality > 150) { setQuality(6); ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 5);}
+	if (quality > 175) { setQuality(7); ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 5);}
+	if (quality > 200) { setQuality(8); ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 5);}
+}
+
+function ALERT(text, seconds) {
+	$("#announce-text").html(text);
+	$("#announce").show();
+	alert = seconds;
 }
 
 function setQuality(Stars) {
@@ -316,8 +331,13 @@ function ListMissionsBought() {
 
 function NewObjective() {
 	let filter = ListMissionsBought();
-	let type = random(0, 3);
 	let chance = random(0, 30);
+	let maxStars = 0;
+	for (let star in p.Stars) {
+		if (p.Stars[star] < 8) maxStars = 1;
+	}
+	let type = random(0, 3);
+	if (maxStars === 1) type = random(0, 2);
 
 	if (rank >= 50) {
 		chance = chance = random(0, 50);
@@ -355,8 +375,9 @@ function NewObjective() {
 			p.quest.objective[0] = random(50, 80);
 			p.quest.reward = 0.5;
 		}
+		p.quest.objective[0] += p.quest.objective[0];
 		p.quest.type = type;
-		p.quest.progression = 0;
+		p.quest.progression = p.missions[objective];
 	}
 	if (type == 2) {
 		if (chance < 30) {

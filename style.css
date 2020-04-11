@@ -153,7 +153,8 @@ i.green.icon {
 #top-menu {
     width: 101%;
     position: fixed;
-    z-index: 998;
+    margin-top: 0;
+    z-index: 2;
 }
 
 #colonne-m {
@@ -162,7 +163,6 @@ i.green.icon {
     padding-right: 0rem;
     width: 40%;
     position: fixed;
-    z-index: 999;
 }
 
 #colonne-d {
@@ -200,7 +200,8 @@ i.green.icon {
 #objective .ui.label,
 #OTitle .ui.label,
 #ORequired .ui.label,
-#weapon .ui.label {
+#weapon .ui.label,
+#announce .ui.label {
     background-color: rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 0px 10px 0px currentColor;
     -moz-box-shadow: 0px 0px 10px 0px currentColor;
@@ -438,4 +439,14 @@ body ::-webkit-scrollbar-track {
 
 .type2 .Silver {
     text-shadow: none!important;
+}
+
+.alert {
+    background: rgba(0,0,0, 0.5) !important;
+    color: white !important;
+    position: fixed !important;
+    top: 5px;
+    right: 5px;
+    min-width: 100px;
+    z-index: 2;
 }

@@ -12,11 +12,11 @@
     <link rel="stylesheet" type="text/css" href="DATA/dropdown.min.css">
     <link rel="stylesheet" type="text/css" href="DATA/sidebar.min.css">
     <link rel="stylesheet" type="text/css" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css" />
-    <link href="style.css?v=40" rel="stylesheet" type="text/css">
+    <link href="style.css?v=41" rel="stylesheet" type="text/css">
     </link>
 </head>
 
-<body id="body" class="noselect" oncontextmenu="return true;">
+<body id="body" class="noselect" oncontextmenu="return false;">
     <!--SIDE BAR-->
     <div id="sidebar" class="ui left demo vertical visible inverted sidebar labeled icon menu">
         <a class="item" id="menu2" data-id="2">
@@ -61,7 +61,7 @@
         </div>
         <div class="topmenu-space"></div>
         <!--COLUMNS-->
-        <div class="ui two column very relaxed grid" style="height: 94%; position: relative; z-index: 99;">
+        <div class="ui two column very relaxed grid" style="height: 94%; position: relative;">
             <!--LEFT COLUMN-->
             <div class="column" id="colonne-m">
                 <!--CURRENT WEAPON-->
@@ -158,13 +158,16 @@
                         <p class="type2 title text" id="OTitle"></p>
                         <p class="description" id="ORequired"></p>
                         <p class="description" id="OReward"></p>
-                        <button id="ChangeObjective" class="fluid ui inverted green basic button">New objective
-                            (
-                            <font class="jaune">0.5 CP</font>)</button>
+                        <button id="ChangeObjective" class="fluid ui inverted green basic button">New objective for
+                            <font class="jaune">0.5 CP</font></button>
                     </div>
                 </div>
             </div>
         </div>
+        <div  id="announce" class="big ui image label alert" style="display: none;">
+            Announce
+            <div class="detail" id="announce-text"></div>
+          </div>
     </div>
     <!--MENUS-->
     <div class="ui basic modal" id="modal-1">
@@ -325,10 +328,10 @@
     <script type="text/javascript" src="DATA/numeral.min.js"></script>
     <script type="text/javascript" src="DATA/dropdown.min.js"></script>
     <script type="text/javascript" src="DATA/sidebar.min.js"></script>
-    <script type="text/javascript" src="js/utils.js?v=40"></script>
-    <script type="text/javascript" src="js/data.js?v=40"></script>
-    <script type="text/javascript" src="js/core.js?v=40"></script>
-    <script type="text/javascript" src="js/ui.js?v=40"></script>
+    <script type="text/javascript" src="js/utils.js?v=41"></script>
+    <script type="text/javascript" src="js/data.js?v=41"></script>
+    <script type="text/javascript" src="js/core.js?v=41"></script>
+    <script type="text/javascript" src="js/ui.js?v=41"></script>
 </body>
 
 </html>

@@ -56,6 +56,10 @@
 	if (p.quest.type == 1) { $("#ORequired").html(p.quest.objective[0] - p.quest.progression + " remaining upgrades required."); }
 	if (p.quest.type == 2) { $("#ORequired").html("Currently at the rank <font class='jaune'>" + getRank(p.rank) + "</font>/" + getRank(p.quest.objective[0]) + "."); }
 	if (p.quest.type == 3) { $("#ORequired").html("Currently with a " + GenStarLabel(p.Stars[p.Weapon.Id]) + " weapon."); }
+
+	if (p.points >= 0.5) $("#ChangeObjective").attr("class", "fluid ui inverted green button");
+	else $("#ChangeObjective").attr("class", "fluid ui inverted basic red button");
+
 	if ($('#tab1').is(":visible")) WeaponList();
 	if ($('#tab2').is(":visible")) MissionList();
 	if ($('#tab3').is(":visible")) VehicleList();

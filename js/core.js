@@ -269,6 +269,7 @@ function SellM(id, qty) {
 	} else {
 		p.missions[id] = null;
 	}
+	if (p.quest.type == 1 && id == p.quest.objective[1]) p.quest.progression -= qty;
 	SuccessCount();
 	getCashPS();
 	UpdateUI();

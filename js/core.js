@@ -131,12 +131,14 @@ function AddPrestige() {
 }
 
 function getPrestigePrice() {
-	p.prestige.price[0] = p.prestige.level * 50 + 400;
-	p.prestige.price[1] = (p.prestige.level * 1e9) + 1e10;
-	if (p.prestige.level == 0) {
-		p.prestige.price[0] = 400;
-		p.prestige.price[1] = 10000000;
+	p.prestige.price[0] = p.prestige.level * 50 + 750;
+	let price = 1e9;
+
+	for (var Plevel=1; Plevel < p.prestige.level; Plevel++) {
+		price += (p.prestige.level * 1e9) * 0.3;
 	}
+
+	p.prestige.price[1] = price;
 }
 
 function getRank(rankNBR) {
@@ -194,9 +196,9 @@ function buyG(id) {
 
 function genGun() {
 	quality = random(1, 250);
-	if (quality >= 1) { setQuality(1); ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 5);}
-	if (quality >= 50) { setQuality(2); ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 5);}
-	if (quality >= 150) { setQuality(3); ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 5);}
+	if (quality >= 1) { setQuality(1); ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 5); }
+	if (quality >= 50) { setQuality(2); ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 5); }
+	if (quality >= 150) { setQuality(3); ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 5); }
 }
 
 function genGun2() {
@@ -210,9 +212,9 @@ function genGun2() {
 	if (quality >= 1) { setQuality(3); ALERT("Rolled a " + GenStarLabel(3) + weapons[p.Weapon.Id].name, 5); }
 	if (quality > 100) { setQuality(4); ALERT("Rolled a " + GenStarLabel(4) + weapons[p.Weapon.Id].name, 5); }
 	if (quality > 125) { setQuality(5); ALERT("Rolled a " + GenStarLabel(5) + weapons[p.Weapon.Id].name, 5); }
-	if (quality > 150) { setQuality(6); ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 5);}
-	if (quality > 175) { setQuality(7); ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 5);}
-	if (quality > 200) { setQuality(8); ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 5);}
+	if (quality > 150) { setQuality(6); ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 5); }
+	if (quality > 175) { setQuality(7); ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 5); }
+	if (quality > 200) { setQuality(8); ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 5); }
 }
 
 function ALERT(text, seconds) {

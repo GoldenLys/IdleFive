@@ -79,6 +79,7 @@ function idleFiveLoop() {
 	if (p.fl == 1) showTutorialDIV();
 	if (p.quest.type == 3) p.quest.progression = p.Stars[p.Weapon.Id];
 	if (alert > 0 || $("#announce").is("visible")) alert--;
+	if (p.quest.progression == undefined) p.quest.progression = 0;
 	else $("#announce").hide();
 	UpdateUI();
 	save();
@@ -285,7 +286,7 @@ function GetMissionPrice(id, qty) {
 		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned + value));
 		total += Newprice;
 	}
-	return Math.round(total * 100) / 100;
+	return Math.round((total * 100) / 100);
 }
 
 function GetMissionSPrice(id, qty) {
@@ -297,7 +298,7 @@ function GetMissionSPrice(id, qty) {
 		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned - value));
 		total += Newprice;
 	}
-	return (total / 2);
+	return Math.round(total / 2);
 }
 
 function buyV(id) {
@@ -384,11 +385,15 @@ function NewObjective() {
 	}
 	if (type == 2) {
 		if (chance < 30) {
-			p.quest.objective[0] = p.rank + random(10, 30);
+			p.quest.objective[0] = p.rank + random(5, 10);
 			p.quest.reward = 0.1;
 		}
 		if (chance >= 30) {
-			p.quest.objective[0] = p.rank + random(30, 100);
+			p.quest.objective[0] = p.rank + random(10, 30);
+			p.quest.reward = 0.2;
+		}
+		if (chance >= 50) {
+			p.quest.objective[0] = p.rank + random(50, 100);
 			p.quest.reward = 0.2;
 		}
 		if (chance >= 80) {

@@ -1,7 +1,7 @@
 var missions = {
     0: { name: 'Pickpocketing', price: 10, modifier: 1.10, value: 0.1, level: 0 },
     1: { name: 'Rob A Grocery Store', price: 50, modifier: 1.10, value: 0.5, level: 5 },
-    2: { name: 'Fleeca Heist', price: 100, modifier: 1.10, value: 1, level: 10 },
+    2: { name: 'Fleeca Heist', price: 100, modifier: 1.10, value: 1, level: 20 },
     3: { name: 'Security Van Heist', price: 500, modifier: 1.10, value: 5, level: 50 },
 
     4: { name: 'Street Race', price: 1000, modifier: 1.10, value: 10, level: 100 },

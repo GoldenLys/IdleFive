@@ -22,13 +22,13 @@
 	//CHARACTER
 	$("#prestigecount").html(p.prestige.level);
 	$("#prestigepricecount").html(getRank(p.prestige.price[0]));
-	$("#prestigepricecount2").html("<i class='money'></i>" + fix(p.prestige.price[1], 2));
+	$("#prestigepricecount2").html("<i class='fas fa-usd-square'></i>" + fix(p.prestige.price[1], 2));
 	$("#character-text4").html(texts.character[5] + "<font class='jaune'> " + PrestigePoints + " </font> " + texts.character[6]);
 	$("#character-text5").html(texts.character[7] + "<font class='jaune'> " + PrestigeMultText + "</font> " + texts.character[8]);
 	//CASH - STATS
-	$("#cashcount").html("<i class='money'></i><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
-	$("#cashpscount").html("<i class='money'></i><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
-	$("#addcashcount").html("<i class='money'></i><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
+	$("#cashcount").html("<i class='fas fa-usd-square'></i><font class='desc vert'>" + CashText + "</font> " + texts.stats[6]);
+	$("#cashpscount").html("<i class='fas fa-usd-square'></i><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
+	$("#addcashcount").html("<i class='fas fa-usd-square'></i><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
 	//VEHICLES - STATS
 	$("#boughtvehicles1").html("Damages upgrades bought <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/150.");
 	$("#boughtvehicles2").html("Cash multiplier upgrades bought <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/150.");
@@ -126,13 +126,13 @@ var MissionList = function () {
 		var canSell = owned < 1 ? ' disabled' : '';
 		var canSell2 = owned < 10 ? ' disabled' : '';
 		var color = owned < 1 ? '' : 'azn';
-		var cashColor = owned < 1 ? 'blanc' : 'vert';
+		var cashColor = owned < 1 ? '' : 'bold';
 
 		var MissionDIV = $(
 			"<tr class='" + color + "'><td class='single line ui center aligned'><font class='type2'>" + production.name + "</font></td>" +
 			"<td class='single line ui center aligned'>" + owned + "</td>" +
-			"<td class='single line ui center aligned'><font class='valeur2'><i class='money'></i><font class='valeur " + canBuyColor + "'>" + fix(cost, 1) + "</font></font></td>" +
-			"<td class='ui center aligned'><i class='money'></i><font class='" + cashColor + "'>" + fix((production.value * owned) * (p.prestige.bonus + (p.prestige.multipliers[1] * 0.1)), 1) + "</font>" + texts.missions[5] + "</td>" +
+			"<td class='single line ui center aligned'><font class='valeur " + canBuyColor + "'><i class='fas fa-usd-square'></i>" + fix(cost, 1) + "</font></td>" +
+			"<td class='ui center aligned'><font class='" + cashColor + "'><i class='fas fa-usd-square'></i>" + fix((production.value * owned) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + "</font>" + texts.missions[5] + "</td>" +
 			"<td class='ui center aligned'><div class='ui center aligned buttons'><button class='ui positive button " + canBuy + "' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
 			"<button class='ui positive button " + canBuy2 + "' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
 			"<div class='ui buttons'><button class='ui negative button " + canSell + "' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
@@ -188,13 +188,13 @@ function WeaponList() {
 //GENERATE VEHICLES TAB
 
 function VehicleList() {
-	$('#Vtab').html("<thead><tr class='shadow'><th class='ui center aligned'>Name</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>");
+	$('#Vtab').html("<thead><tr class='shadow'><th class='ui center aligned'>Skill</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>");
 
 	for (var i in vehicules) {
 		let vehicle = vehicules[i];
 		let PRICE = GetMultPrice(i);
 		let canBuy = PRICE > p.points ? ' basic red' : ' green';
-		let BUTTON = "<button class='fluid ui button" + canBuy + "' onClick='buyV(" + i + ");'>Purchase</button>";
+		let BUTTON = "<button class='fluid ui button" + canBuy + "' onClick='buyV(" + i + ");'>Upgrade</button>";
 		let type = "";
 		let level = 0;
 		let name = "<font class='text type2'>";

@@ -1,30 +1,30 @@
 var missions = {
-    0: { name: 'Pickpocketing', price: 10, modifier: 1.10, value: 0.1, level: 0 },
-    1: { name: 'Rob A Grocery Store', price: 50, modifier: 1.10, value: 0.5, level: 5 },
-    2: { name: 'Fleeca Heist', price: 100, modifier: 1.10, value: 1, level: 20 },
-    3: { name: 'Security Van Heist', price: 500, modifier: 1.10, value: 5, level: 50 },
+    0: { name: 'Pickpocketing', price: 10, modifier: 1.05, value: 0.1, level: 0 },
+    1: { name: 'Rob A Grocery Store', price: 50, modifier: 1.05, value: 0.5, level: 5 },
+    2: { name: 'Fleeca Heist', price: 100, modifier: 1.05, value: 1, level: 20 },
+    3: { name: 'Security Van Heist', price: 500, modifier: 1.05, value: 5, level: 50 },
 
-    4: { name: 'Street Race', price: 1000, modifier: 1.10, value: 10, level: 100 },
-    5: { name: 'Gang Attack', price: 5000, modifier: 1.10, value: 50, level: 200 },
-    6: { name: 'Document Forgery', price: 25000, modifier: 1.10, value: 250, level: 300 },
-    7: { name: 'Weed Farm', price: 100000, modifier: 1.10, value: 1000, level: 400 },
-    8: { name: 'Time Trial', price: 500000, modifier: 1.10, value: 5000, level: 500 },
+    4: { name: 'Street Race', price: 1000, modifier: 1.05, value: 10, level: 100 },
+    5: { name: 'Gang Attack', price: 5000, modifier: 1.05, value: 50, level: 200 },
+    6: { name: 'Document Forgery', price: 25000, modifier: 1.05, value: 250, level: 300 },
+    7: { name: 'Weed Farm', price: 100000, modifier: 1.05, value: 1000, level: 400 },
+    8: { name: 'Time Trial', price: 500000, modifier: 1.05, value: 5000, level: 500 },
 
-    9: { name: 'Counterfeit Cash', price: 750000, modifier: 1.10, value: 7500, level: 600 },
-    10: { name: 'Prison Break Heist', price: 1250000, modifier: 1.10, value: 12500, level: 700 },
-    11: { name: 'Meth', price: 3500000, modifier: 1.10, value: 35000, level: 800 },
-    12: { name: 'Cocaine', price: 5000000, modifier: 1.10, value: 50000, level: 900 },
-    13: { name: 'Hangar', price: 10000000, modifier: 1.10, value: 100000, level: 1000 },
+    9: { name: 'Counterfeit Cash', price: 750000, modifier: 1.05, value: 7500, level: 600 },
+    10: { name: 'Prison Break Heist', price: 1250000, modifier: 1.05, value: 12500, level: 700 },
+    11: { name: 'Meth', price: 3500000, modifier: 1.05, value: 35000, level: 800 },
+    12: { name: 'Cocaine', price: 5000000, modifier: 1.05, value: 50000, level: 900 },
+    13: { name: 'Hangar', price: 10000000, modifier: 1.05, value: 100000, level: 1000 },
 
-    14: { name: 'Human Labs Raid', price: 25000000, modifier: 1.10, value: 250000, level: 1100 },
-    15: { name: 'Series A Funding Heist', price: 75000000, modifier: 1.10, value: 750000, level: 1200 },
-    16: { name: 'Bunker', price: 150000000, modifier: 1.10, value: 1500000, level: 1300 },
-    17: { name: 'Vehicle Trafficking', price: 500000000, modifier: 1.10, value: 5000000, level: 1400 },
+    14: { name: 'Human Labs Raid', price: 25000000, modifier: 1.05, value: 250000, level: 1100 },
+    15: { name: 'Series A Funding Heist', price: 75000000, modifier: 1.05, value: 750000, level: 1200 },
+    16: { name: 'Bunker', price: 150000000, modifier: 1.05, value: 1500000, level: 1300 },
+    17: { name: 'Vehicle Trafficking', price: 500000000, modifier: 1.05, value: 5000000, level: 1400 },
 
-    18: { name: 'Pacific Standard Heist', price: 1000000000, modifier: 1.10, value: 10000000, level: 1500 },
-    19: { name: 'Doomsday Heist', price: 2500000000, modifier: 1.10, value: 25000000, level: 1600 },
-    20: { name: 'Union Depository Heist', price: 10000000000, modifier: 1.10, value: 100000000, level: 1700 },
-    21: { name: 'Casino Heist', price: 15000000000, modifier: 1.10, value: 150000000, level: 2000 },
+    18: { name: 'Pacific Standard Heist', price: 1000000000, modifier: 1.05, value: 10000000, level: 1500 },
+    19: { name: 'Doomsday Heist', price: 2500000000, modifier: 1.05, value: 25000000, level: 1600 },
+    20: { name: 'Union Depository Heist', price: 10000000000, modifier: 1.05, value: 100000000, level: 1700 },
+    21: { name: 'Casino Heist', price: 15000000000, modifier: 1.05, value: 150000000, level: 2000 },
 };
 
 var weapons = {
@@ -143,13 +143,13 @@ var success = {
 };
 
 var tutorialtexts = {
-    0: { title: "Presentation", text: "First of all, hello to you.<br /> I want to thank you for playing this little game that i created.<br /> IdleFive is a GTA-Like game that aims to look like Grand Theft Auto V.<br /> But, with a different vision and a different gameplay of the original game.", },
+    0: { title: "Presentation", text: "First of all, welcome to idleFive.<br /> I want to thank you for playing this little game that i created.<br /> IdleFive is a GTA-Like game but inside an idle game environnement.<br /> But, with a different vision and a different gameplay of the original game.", },
     1: { title: "Objective", text: "The main goal of the game is to buy every cars and weapons in the game.<br /> To do that, you have to get <div class='money'></div> by using your weapons or by doing missions.", },
     2: { title: "How to play ?", text: "You can start by clicking on the fist to make some money.<br /> After you got some cash, you can buy a weapon or start a mission to gain a lot more <div class='money'></div>.<br /> Buying an Activity will increase your rank and you need that to change your character.", },
     3: { title: "Missions", text: "This is the main mechanic of the game, they are used to automate the game.<br /> The more you have the more you get <div class='money'></div> and <div class='level'></div> but it will become more expensive.", },
     4: { title: "Weapons", text: "Weapons are used to do more damage and get 'manually' an amount of <div class='money'></div>,<br /> there is also a random quality system applied to the weapons that can raise or lower the power of the weapon.", },
     5: { title: "Character", text: "This is the prestige system of the game.<br /> Once you have the required <div class='money'></div> and rank,<br /> you can change your character and get Character Points (CP)<br /> It will cost all your Weapons, Money and Missions but you keep all your Vehicles.", },
-    6: { title: "Vehicles", text: "They are used to upgrades your cash or damage multiplier,<br /> to buy them you need Character Points (CP).", },
+    6: { title: "Character Skills", text: "They are used to increase your cash and damage multipliers,<br /> you need Character Points (CP) to upgrade them.", },
 };
 
 var textsEN = {

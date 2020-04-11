@@ -349,11 +349,13 @@ body ::-webkit-scrollbar-track {
 }
 
 .azn {
-    background-color: rgba(0, 150, 14, 0.2);
-}
+    background-color: rgba(0, 105, 0, .5);
+    box-shadow: inset 0 0 15px 15px rgba(0, 105, 0, .5);
 
+}
 .azn-active {
-    background-color: rgba(70, 255, 70, 0.25);
+    background-color: rgba(52, 180, 52, .5);
+    box-shadow: inset 0 0 15px 15px rgba(52, 180, 52, .5);
 }
 
 .pushable>.pusher {
@@ -368,7 +370,7 @@ body ::-webkit-scrollbar-track {
     padding: 4vh;
 }
 
-#missions tr, .ui.message {
+.ui.message {
     -webkit-box-shadow: none;
     box-shadow: none;
     border: none;

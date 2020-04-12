@@ -1,5 +1,5 @@
 ﻿function UpdateUI() {
-	let ClicCashText = fix(p.Weapon.Power * WEAPON_MULTIPLIER * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
+	let ClicCashText = fix(p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1);
 	let CashPSText = fix(CASHPS, 2);
 	let PrestigeMultText = fix(p.prestige.bonus, 9);
 	let CashText = fix(p.cash, 2);
@@ -60,22 +60,20 @@
 	if (p.points >= 0.5) $("#ChangeObjective").attr("class", "fluid ui inverted green button");
 	else $("#ChangeObjective").attr("class", "fluid ui inverted basic red button");
 
-	if ($('#tab1').is(":visible")) WeaponList();
-	if ($('#tab2').is(":visible")) MissionList();
+	if ($('#tab1').is(":visible")) UpdateWeapons();
+	if ($('#tab2').is(":visible")) UpdateMissions();
 	if ($('#tab3').is(":visible")) VehicleList();
 	SuccessList();
 	SuccessCount();
 }
 
 function UpdateTexts() {
-
 	//MENU 
 	$("#t0").html("<i class='sidebar icon'></i>" + texts.menu[0]);
 	$("#t1").html("<i class='crosshairs icon'></i>" + texts.menu[1]);
 	$("#t2").html("<i class='dollar sign icon'></i>" + texts.menu[2]);
 	$("#t3").html("<i class='user icon'></i>" + texts.menu[3]);
 	$("#t4").html("<i class='clipboard icon'></i>" + texts.menu[4]);
-
 	//PRESTIGE TEXTS
 	$("#character-number").html(texts.character[1]);
 	$("#character-text1").html(texts.character[2]);
@@ -103,90 +101,90 @@ function UpdateTexts() {
 	document.title = "idleFive " + version;
 }
 
-//GENERATE MISSIONS TAB
-
-var MissionList = function () {
+//MISSIONS TABLE
+function MissionList() {
 	$('#missions').html("<thead><tr class='shadow'><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Value</th><th class='ui center aligned'>Produce</th><th class='ui center aligned'>Manage</th></tr></thead>");
-
-	var Missions = $("<tbody />");
-	$('#missions').append(Missions);
-
+	$('#missions').append("<tbody />");
 	for (var i in missions) {
-		var production = missions[i];
-
-		var owned = 0;
-		if (p.missions[i] != null)
-			owned = p.missions[i];
-		var cost = GetMissionPrice(i, 1);
-		var cost2 = GetMissionPrice(i, 10);
-
-		var canBuy = cost > p.cash ? ' disabled' : '';
-		var canBuy2 = cost2 > p.cash ? ' disabled' : '';
-		var canBuyColor = cost > p.cash ? ' rouge' : ' text';
-		var canSell = owned < 1 ? ' disabled' : '';
-		var canSell2 = owned < 10 ? ' disabled' : '';
-		var color = owned < 1 ? '' : 'azn';
-		var cashColor = owned < 1 ? '' : 'bold';
-
-		var MissionDIV = $(
-			"<tr class='" + color + "'><td class='single line ui center aligned'><font class='type2'>" + production.name + "</font></td>" +
-			"<td class='single line ui center aligned'>" + owned + "</td>" +
-			"<td class='single line ui center aligned'><font class='valeur " + canBuyColor + "'><i class='fas fa-usd-square'></i>" + fix(cost, 1) + "</font></td>" +
-			"<td class='ui center aligned'><font class='" + cashColor + "'><i class='fas fa-usd-square'></i>" + fix((production.value * owned) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + "</font>" + texts.missions[5] + "</td>" +
-			"<td class='ui center aligned'><div class='ui center aligned buttons'><button class='ui positive button " + canBuy + "' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
-			"<button class='ui positive button " + canBuy2 + "' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
-			"<div class='ui buttons'><button class='ui negative button " + canSell + "' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
-			"<button class='ui negative button " + canSell2 + "' onClick='SellM(" + i + ", 10);'>10</button></div></td></tr>"
+		let CONTENT = $(
+			"<tr id='mission-" + i + "'><td class='single line ui center aligned type2'>" + missions[i].name + "</td>" +
+			"<td id='mission-" + i + "-level' class='single line ui center aligned'>0</td>" +
+			"<td id='mission-" + i + "-value' class='single line ui center aligned'>0</td>" +
+			"<td id='mission-" + i + "-cost' class='ui center aligned'>0</td>" +
+			"<td class='ui center aligned'><div class='ui center aligned buttons'><button id='mission-" + i + "-btnB1' class='ui positive button' onClick='BuyM(" + i + ", 1);'>Buy 1</button><div class='or'></div>" +
+			"<button id='mission-" + i + "-btnB10' class='ui positive button' onClick='BuyM(" + i + ", 10);'>10</button></div><br />" +
+			"<div class='ui buttons'><button id='mission-" + i + "-btnS1' class='ui negative button' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
+			"<button id='mission-" + i + "-btnS10' class='ui negative button' onClick='SellM(" + i + ", 10);'>10</button></div></td></tr>"
 		);
-
-		if (p.rank >= missions[i].level) Missions.append(MissionDIV);
+		if (p.rank >= missions[i].level) $('#missions tbody').append(CONTENT);
 	}
-};
+}
 
-//GENERATE WEAPONS TAB
+function UpdateMissions() {
+	for (var i in missions) {
+		let cost = GetMissionPrice(i, 1);
+		let cost2 = GetMissionPrice(i, 10);
+		let CANBUY1 = cost > p.cash ? ' disabled' : '';
+		let CANBUY10 = cost2 > p.cash ? ' disabled' : '';
+		let CANSELL1 = p.missions[i] < 1 ? 'disabled' : '';
+		let CANSELL10 = p.missions[i] < 10 ? 'disabled' : '';
+		let ENABLED = p.missions[i] < 1 ? '' : 'azn';
+		let ENABLED_COLOR = p.missions[i] < 1 ? '' : 'bold';
+		$("#mission-" + i).attr("class", ENABLED);
+		$("#mission-" + i + "-level").html(p.missions[i]);
+		$("#mission-" + i + "-value").html("<i class='fas fa-usd-square'></i>" + fix(GetMissionPrice(i, 1), 1));
+		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + ENABLED_COLOR);
+		$("#mission-" + i + "-cost").html("<i class='fas fa-usd-square'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
+		$("#mission-" + i + "-btnB1").attr("class", "ui positive button " + CANBUY1);
+		$("#mission-" + i + "-btnB10").attr("class", "ui positive button " + CANBUY10);
+		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + CANSELL1);
+		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + CANSELL10);
+	}
+}
 
+//WEAPONS TABLE
 function WeaponList() {
 	for (var id = 1; id < 8; id++) { $('#Wtab' + id).html("<thead><tr class='shadow'><th class='ui center aligned'>" + texts.weapons[0] + "</th><th class='ui center aligned'>" + texts.weapons[1] + "</th><th class='ui center aligned'>" + texts.weapons[2] + "</th><th class='ui center aligned'>" + texts.weapons[7] + "</th></tr></thead>"); }
 
 	for (var i in weapons) {
-		var weapon = weapons[i];
-		canBBuy = weapon.price > p.cash ? ' basic red' : ' green';
-		canBBuy2 = weapon.price * 1.25 > p.cash ? ' basic red' : ' green';
-		Damage = fix(weapon.power * p.prestige.bonus + p.prestige.multipliers[1] * 0.1, 1);
-		bought = '';
-		equipment = '';
-		equippedclass = '';
-
-		if (p.WeaponBought[i] === 1) {
-			if (p.Weapon.Id == i) { equipment = 'azn-active'; equipit = texts.weapons[6]; equippedclass = "inverted basic"; } else { equipit = texts.weapons[5]; }
-			bought = 'azn ';
-			canBuy = weapon.price * 1.25 > p.cash ? ' rouge' : ' blanc';
-			name = "<font class='type2 text'>" + weapon.name + "</font>";
-			cost = "<font class='type1 " + canBuy + "'><i class='fas fa-usd-square'></i> " + fix(weapon.price * 1.25, 1) + "</font>";
-			damage = "<font class='jaune'>" + Damage + "</font>";
-			buttons = "<div class='fluid ui vertical animated button" + canBBuy2 + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div><button class='fluid ui " + equippedclass + " button' onClick='useW(" + i + ");'>" + equipit + "</button>";
-		} else {
-			canBuy = weapon.price > p.cash ? ' rouge' : ' blanc';
-			name = "<font class='type2 text'>" + weapon.name + "</font>";
-			cost = "<font class='type1 " + canBuy + "'><i class='fas fa-usd-square'></i> " + fix(weapon.price, 1) + "</font>";
-			damage = "<font class='text'>" + Damage + "</font>";
-			buttons = "<div class='fluid ui vertical animated button" + canBBuy + "' onClick='buyG(" + i + ");' tabindex='0'><div class='hidden content'>" + cost + "</div><div class='visible content'>" + texts.weapons[3] + "</div></div>";
-		}
-
-		var weaponsDIV = $(
-			"<tr class='" + bought + equipment + " ui center aligned' id='weap" + i + "'>" +
-			"<td class='center aligned ui'>" + name + "</td>" +
-			"<td class='center aligned'>" + cost + "</td>" +
-			"<td class='ui center aligned'>" + damage + "</td>" +
-			"<td class='ui center aligned'>" + buttons + "</td>" +
+		let CONTENT = $(
+			"<tr id='weapon-" + i + "' class='ui center aligned'>" +
+			"<td class='ui center aligned type2'>" + weapons[i].name + "</td>" +
+			"<td id='weapon-" + i + "-price' class='ui center aligned'>0" + "</td>" +
+			"<td id='weapon-" + i + "-damage' class='ui center aligned jaune'>0</td>" +
+			"<td class='ui center aligned'><div id='weapon-" + i + "-purchase' class='fluid ui button' onClick='buyG(" + i + ");'><div class='hidden content'>" + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div>" +
+			"<button id='weapon-" + i + "-equip' class='fluid ui button' onClick='useW(" + i + ");'></button></td>" +
 			"</tr>"
 		);
-		$('#Wtab' + weapon.type).append(weaponsDIV);
+		$('#Wtab' + weapons[i].type).append(CONTENT);
 	}
 }
 
-//GENERATE VEHICLES TAB
+function UpdateWeapons() {
+	for (var i in weapons) {
+		let ENABLED = p.WeaponBought[i] < 1 ? '' : 'azn';
+		let CANBUY = weapons[i].price * 1.25 > p.cash ? 'rouge' : 'blanc';
+		let COST = p.WeaponBought[i] < 1 ? fix(weapons[i].price, 1) : fix(weapons[i].price * 1.25, 1);
+		let ENABLE_BTN = weapons[i].price > p.cash ? 'basic red' : 'green';
+		let PURCHASE_TEXT = p.WeaponBought[i] > 0 ? "<div class='hidden content'><i class='fas fa-usd-square'></i>" + COST + "</div><div class='visible content'>Roll stats</div>" : "Purchase";
+		let PURCHASE_BTN = p.WeaponBought[i] > 0 ? "fluid ui vertical animated button" : "fluid ui button";
+		let EQUIP_BTN = p.WeaponBought[i] < 1 ? " disabled" : "";
+		let EQUIP_TEXT = "Equip";
+		if (ENABLED === 'azn' && p.Weapon.Id == i) { ENABLED = 'azn-active'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
+        if (ENABLED === 'azn' && p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green"; }
 
+		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
+		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
+		$("#weapon-" + i + "-price").html("<i class='fas fa-usd-square'></i>" + COST);
+		$("#weapon-" + i + "-damage").html(fix(weapons[i].power * (1 + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1));
+		$("#weapon-" + i + "-purchase").html(PURCHASE_TEXT);
+		$("#weapon-" + i + "-purchase").attr("class", PURCHASE_BTN + " " + ENABLE_BTN);
+		$("#weapon-" + i + "-equip").html(EQUIP_TEXT);
+		$("#weapon-" + i + "-equip").attr("class", "fluid ui button" + EQUIP_BTN);
+	}
+}
+
+//CHARACTER SKILLS TABLE
 function VehicleList() {
 	$('#Vtab').html("<thead><tr class='shadow'><th class='ui center aligned'>Skill</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Bonus</th><th class='ui center aligned'>Action</th></tr></thead>");
 

@@ -1,4 +1,4 @@
-const version = "v4.3";
+const version = "v4.32";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -11,7 +11,7 @@ var p = {
 	cash: 0,
 	Weapon: {
 		Id: 0,
-		Class: "Normal",
+		Class: "Common",
 		Power: 0.5,
 	},
 	Stars: [3],
@@ -49,6 +49,8 @@ $(document).ready(function () {
 	SuccessCount();
 	getCashPS();
 	getPrestigePrice();
+	MissionList();
+	WeaponList();
 	showTutorial(p.tutorial);
 	WEAPON_MULTIPLIER = GetWeaponMult();
 	$('.ui.sidebar').sidebar('hide');
@@ -56,11 +58,11 @@ $(document).ready(function () {
 
 function idleFiveLoop() {
 	//DEBUG
-	if (p.cash !== p.cash) { p.cash = 0; }
+	if (p.cash !== p.cash) p.cash = 0;
 	p.cash = Math.round(p.cash * 100) / 100;
-	for (var m in missions) { if (p.missions[m] == null) { p.missions[m] = 0; } }
+	for (var m in missions) { if (p.missions[m] == null) p.missions[m] = 0; }
 	for (var w in weapons) {
-		if (p.WeaponBought[w] == null) { p.WeaponBought[w] = 0; }
+		if (p.WeaponBought[w] == null) p.WeaponBought[w] = 0; 
 		if (p.Stars[w] == null) p.Stars[w] = 0;
 	}
 	for (var s in success) { if (p.succes[s] == null) p.succes[s] = 0; }
@@ -94,7 +96,7 @@ function getCashPS() {
 }
 
 function ClickWeapon() {
-	p.cash += p.Weapon.Power * WEAPON_MULTIPLIER * p.prestige.bonus + p.prestige.multipliers[1] * 0.1;
+	p.cash += p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
 	p.TotalClicks++;
 	if (p.quest.type == 0) {
 		if (p.quest.progression == undefined) p.quest.progression = 0;
@@ -378,16 +380,16 @@ function NewObjective() {
 	}
 	if (type == 1) {
 		let objective = filter[Math.floor(Math.random() * filter.length)];
-		p.quest.objective = [p.missions[objective], 0];
+		p.quest.objective = [p.missions[objective], objective];
 		if (chance < 30) {
 			p.quest.objective[0] += random(1, 10);
 			p.quest.reward = 0.1;
 		}
-		if (chance >= 30) {
+		if (chance >= 30 && chance < 60) {
 			p.quest.objective[0] += random(20, 30);
 			p.quest.reward = 0.2;
 		}
-		if (chance >= 60) {
+		if (chance >= 60 && chance < 80) {
 			p.quest.objective[0] += random(25, 50);
 			p.quest.reward = 0.4;
 		}
@@ -395,7 +397,6 @@ function NewObjective() {
 			p.quest.objective[0] += random(50, 80);
 			p.quest.reward = 0.5;
 		}
-		p.quest.objective[0] += p.quest.objective[0];
 		p.quest.progression = p.missions[objective];
 	}
 	if (type == 2) {
@@ -412,7 +413,7 @@ function NewObjective() {
 			p.quest.reward = 0.4;
 		}
 		if (chance >= 80) {
-			p.quest.objective[0] = p.rank + random(200, 500);
+			p.quest.objective[0] = p.rank + random(100, 300);
 			p.quest.reward = 0.5;
 		}
 		p.quest.objective[1] = null;

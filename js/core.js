@@ -240,8 +240,8 @@ function GetWeaponMult() {
 
 function useW(id) {
 	if (p.WeaponBought[id] == 1 && p.Weapon.Id != id) {
-		WEAPON_MULTIPLIER = GetWeaponMult();
 		p.Weapon.Id = id;
+		WEAPON_MULTIPLIER = GetWeaponMult();
 		p.Weapon.Power = weapons[id].power;
 		setQuality(p.Stars[p.Weapon.Id]);
 	}

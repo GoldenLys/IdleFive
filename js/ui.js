@@ -116,7 +116,8 @@ function MissionList() {
 			"<div class='ui buttons'><button id='mission-" + i + "-btnS1' class='ui negative button' onClick='SellM(" + i + ", 1);'>Sell 1</button><div class='or'></div>" +
 			"<button id='mission-" + i + "-btnS10' class='ui negative button' onClick='SellM(" + i + ", 10);'>10</button></div></td></tr>"
 		);
-		if (p.rank >= missions[i].level) $('#missions tbody').append(CONTENT);
+		$('#missions tbody').append(CONTENT);
+		if (p.rank >= missions[i].level) $("#mission-" + i).show(); else $("#mission-" + i).hide();
 	}
 }
 
@@ -139,6 +140,8 @@ function UpdateMissions() {
 		$("#mission-" + i + "-btnB10").attr("class", "ui positive button " + CANBUY10);
 		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + CANSELL1);
 		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + CANSELL10);
+
+		if (p.rank >= missions[i].level) $("#mission-" + i).show();
 	}
 }
 

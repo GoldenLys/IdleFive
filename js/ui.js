@@ -33,10 +33,9 @@
 	$("#boughtvehicles1").html("Damages upgrades bought <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/150.");
 	$("#boughtvehicles2").html("Cash multiplier upgrades bought <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/150.");
 	//WEAPONS - STATS
-	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons bought.");
-	for (var WEAPONSTEXT = 0; WEAPONSTEXT < 9; WEAPONSTEXT++) {
-		let WET = WEAPONSTEXT + 1;
-		$("#weaponsT" + (WET)).html(p.WeaponType[WEAPONSTEXT] + " " + texts.weapontype[WET] + " bought.");
+	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons acquired.");
+	for (var TYPE = 1; TYPE < 8; TYPE++) {
+		$("#weaponsT" + TYPE).html(p.WeaponType[TYPE] + " " + texts.weapontype[TYPE] + " acquired.");
 	}
 	//MULTIPLIERS - STATS
 	$("#damagemult").html("Damage multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 9) + "</font>");

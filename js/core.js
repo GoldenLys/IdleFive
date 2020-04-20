@@ -65,14 +65,14 @@ function idleFiveLoop() {
 		if (p.WeaponBought[w] == null) p.WeaponBought[w] = 0;
 		if (p.Stars[w] == null) p.Stars[w] = 0;
 	}
-	for (var s in success) { if (p.succes[s] == null) p.succes[s] = 0; }
-	for (var wtype = 0; wtype < 10; wtype++) if (p.WeaponType[wtype] == null) { p.WeaponType[wtype] = 0; }
+	for (var s in success) if (p.succes[s] == null) p.succes[s] = 0;
+	for (var wtype = 0; wtype < 8; wtype++) if (p.WeaponType[wtype] == null) p.WeaponType[wtype] = 0;
 
 	//UPDATE VARS
 	p.playTime++;
 	if (p.prestige.level > 1) p.prestige.bonus = 1 + (p.prestige.level * 0.1) - 0.1;
 	rank = 0;
-	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
+	for (var i in p.missions) if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; // CALCULATE THE RANK
 	p.rank = rank;
 	if (p.quest.type == 2 && p.rank >= p.quest.objective[0]) getRewards();
 	if (p.quest.type == 1 && p.quest.progression >= p.quest.objective[0]) getRewards();
@@ -99,8 +99,9 @@ function ClickWeapon() {
 	p.cash += p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
 	p.TotalClicks++;
 	if (p.quest.type == 0) {
-		if (p.quest.progression == undefined) p.quest.progression = 0;
-		p.quest.objective[0]--; if (p.quest.objective[0] <= 0) { getRewards(); }
+		if (p.quest.progression == undefined || isNaN(p.quest.objective[0]) || isNaN(p.quest.objective[1])) { p.quest.progression = 0; p.quest.objective = [10, 0]; }
+		p.quest.objective[0]--;
+		if (p.quest.objective[0] <= 0) getRewards();
 	}
 	UpdateUI();
 }

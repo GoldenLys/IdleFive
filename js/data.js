@@ -62,9 +62,9 @@ var weapons = {
     31: { name: "Advanced Rifle", power: 750000, price: 37500000, type: 5 },
     32: { name: "Assault Riffle Mk II", power: 800000, price: 40000000, type: 5 },
     33: { name: "Bullpup Rifle Mk II", power: 850000, price: 42500000, type: 5 },
-    34: { name: "Carbine Rifle Mk II", power: 900000, price: 450000000, type: 5 },
+    34: { name: "Carbine Rifle Mk II", power: 900000, price: 45000000, type: 5 },
     35: { name: "Compact Rifle", power: 950000, price: 47500000, type: 5 },
-    36: { name: "Special Carbine Mk II", power: 1000000, price: 500000000, type: 5 }, //END ASSAULT RIFLES
+    36: { name: "Special Carbine Mk II", power: 1000000, price: 50000000, type: 5 }, //END ASSAULT RIFLES
     37: { name: "Sniper Rifle", power: 5000000, price: 250000000, type: 6 },
     38: { name: "Marksman Rifle Mk II", power: 10000000, price: 500000000, type: 6 },
     39: { name: "Heavy Sniper Mk II", power: 50000000, price: 2500000000, type: 6 }, //END OF SNIPERS
@@ -160,7 +160,7 @@ var texts = {
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase"],
     infos: ["New character slot available."],
     character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP) for your new character.", "Current prestige multiplier at", "for earnt cash & damages."],
-    weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons"],
+    weapontype: ["", "Melee Weapons", "Handguns","Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
     stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
 };

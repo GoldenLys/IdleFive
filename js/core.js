@@ -1,4 +1,4 @@
-const version = "v4.32";
+const version = "v4.33";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -62,7 +62,7 @@ function idleFiveLoop() {
 	p.cash = Math.round(p.cash * 100) / 100;
 	for (var m in missions) { if (p.missions[m] == null) p.missions[m] = 0; }
 	for (var w in weapons) {
-		if (p.WeaponBought[w] == null) p.WeaponBought[w] = 0; 
+		if (p.WeaponBought[w] == null) p.WeaponBought[w] = 0;
 		if (p.Stars[w] == null) p.Stars[w] = 0;
 	}
 	for (var s in success) { if (p.succes[s] == null) p.succes[s] = 0; }
@@ -76,7 +76,7 @@ function idleFiveLoop() {
 	p.rank = rank;
 	if (p.quest.type == 2 && p.rank >= p.quest.objective[0]) getRewards();
 	if (p.quest.type == 1 && p.quest.progression >= p.quest.objective[0]) getRewards();
-	if (p.rank >= p.prestige.price[0]) { if (p.cash >= p.prestige.price[1]) { btnPrestigeE(); } else { btnPrestigeD(); } } else { btnPrestigeD(); }
+	if (p.rank >= p.prestige.price[0]) { if (p.cash >= p.prestige.price[1]) btnPrestigeE(); else btnPrestigeD(); } else btnPrestigeD();
 	p.cash += CASHPS;
 	if (p.fl == 1) showTutorialDIV();
 	if (alert > 0) alert--; else $("#announce").hide();
@@ -146,47 +146,29 @@ function getPrestigePrice() {
 
 function getRank(rankNBR) {
 	let Class = "";
+
 	if (rankNBR >= 0) Class = "Bronze";
-	if (rankNBR >= 210) Class = "Silver";  // x10 each
-	if (rankNBR >= 525) Class = "Silver";  // x25 each
-	if (rankNBR >= 1050) Class = "Gold";  // x50 each
-	if (rankNBR >= 2100) Class = "Platinum";  // x100 each
-	if (rankNBR >= 210000) Class = "Heavenly";  // x1000 each
+	if (rankNBR >= 210) Class = "Silver"; // x10 each
+	if (rankNBR >= 525) Class = "Silver"; // x25 each
+	if (rankNBR >= 1050) Class = "Gold"; // x50 each
+	if (rankNBR >= 2100) Class = "Platinum"; // x100 each
+	if (rankNBR >= 210000) Class = "Heavenly"; // x1000 each
 	return "<font class='" + Class + "'>" + rankNBR + "</font>";
 }
 
-function useW(id) {
-	var weapon = weapons[id];
-	if (p.WeaponBought[id] == 1) {
-		if (p.Weapon.Id != id) {
-			p.Weapon.Class = "Common";
-			WEAPON_MULTIPLIER = 1;
-			p.Weapon.Id = id;
-			p.Weapon.Power = weapon.power;
-			setQuality(p.Stars[p.Weapon.Id]);
-		}
-	}
-	UpdateUI();
-}
-
 function buyG(id) {
-	var damage = weapons[id].power;
-	var pricebuy = weapons[id].price;
-	if (p.WeaponBought[id] == 0) {
-		if (p.cash >= pricebuy) {
-			p.cash -= pricebuy;
-			p.Weapon.Power = damage;
-			p.Weapon.Id = id;
+	let COST = weapons[id].price;
+
+	if (p.cash >= COST) {
+		p.Weapon.Id = id;
+		p.Weapon.Power = weapons[id].power;
+		if (p.WeaponBought[id] == 0) {
+			p.cash -= COST;
 			p.WeaponBought[id] = 1;
 			genGun(id);
-			if (id < 13) { p.WeaponType[0]++; }
 			p.WeaponType[weapons[id].type]++;
-		}
-	} else {
-		if (p.cash >= pricebuy * 1.25) {
-			p.cash -= pricebuy * 1.25;
-			p.Weapon.Id = id;
-			p.Weapon.Power = damage;
+		} else if (p.cash >= COST * 1.25) {
+			p.cash -= COST * 1.25;
 			genGun2(id);
 		}
 	}
@@ -197,7 +179,8 @@ function buyG(id) {
 }
 
 function genGun() {
-	quality = random(1, 250);
+	let quality = random(1, 250);
+
 	if (quality >= 1) { setQuality(1); ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 1; }
 	if (quality >= 50) { setQuality(2); ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 2; }
 	if (quality >= 150) { setQuality(3); ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 3; }
@@ -206,6 +189,7 @@ function genGun() {
 function genGun2() {
 	let luck = random(1, 20);
 	let quality = random(1, 100); // 3 Stars
+
 	if (luck > 10) quality = random(1, 100); //4 Stars
 	if (luck > 12) quality = random(1, 125); //5 Stars
 	if (luck > 14) quality = random(1, 150); //6 Stars
@@ -242,6 +226,7 @@ function setQuality(Stars) {
 
 function GetWeaponMult() {
 	let MULTIPLIER = 0;
+
 	if (p.Stars[p.Weapon.Id] == 1) MULTIPLIER = 0.5;
 	if (p.Stars[p.Weapon.Id] == 2) MULTIPLIER = 0.75;
 	if (p.Stars[p.Weapon.Id] == 3) MULTIPLIER = 1;
@@ -253,8 +238,19 @@ function GetWeaponMult() {
 	return MULTIPLIER;
 }
 
+function useW(id) {
+	if (p.WeaponBought[id] == 1 && p.Weapon.Id != id) {
+		WEAPON_MULTIPLIER = GetWeaponMult();
+		p.Weapon.Id = id;
+		p.Weapon.Power = weapons[id].power;
+		setQuality(p.Stars[p.Weapon.Id]);
+	}
+	UpdateUI();
+}
+
 function BuyM(id, qty) {
-	var price = GetMissionPrice(id, qty);
+	let price = GetMissionPrice(id, qty);
+
 	if (price <= p.cash) {
 		p.cash -= price;
 		if (p.missions[id] == null) {
@@ -275,7 +271,8 @@ function BuyM(id, qty) {
 }
 
 function SellM(id, qty) {
-	var price = GetMissionSPrice(id, qty);
+	let price = GetMissionSPrice(id, qty);
+
 	if (p.missions[id] == null) p.missions[id] = 0;
 	p.cash += price;
 	if (p.missions[id] >= qty) {
@@ -304,10 +301,10 @@ function GetMissionPrice(id, qty) {
 }
 
 function GetMissionSPrice(id, qty) {
-	var owned = 0;
+	let owned = 0;
+	let total = 0;
+
 	if (p.missions[id] != null) owned = p.missions[id];
-	var total = 0;
-	CurPrice = (missions[id].price * Math.pow(missions[id].modifier, owned));
 	for (var value = 0; value < qty; value++) {
 		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned - value));
 		total += Newprice;
@@ -316,9 +313,11 @@ function GetMissionSPrice(id, qty) {
 }
 
 function buyV(id) {
-	if (p.points >= GetMultPrice(id)) {
-		p.points -= GetMultPrice(id);
-		p.spentpoints += GetMultPrice(id);
+	let price = GetMultPrice(id);
+
+	if (p.points >= price) {
+		p.points -= price;
+		p.spentpoints += price;
 		p.prestige.multipliers[vehicules[id].type]++;
 	}
 	VehicleList();
@@ -333,7 +332,6 @@ function GetQuestTitle() {
 	if (TYPE === 1) MESSAGE = "Increase by <span class='jaune'>" + (p.quest.objective[0] - p.quest.progression) + "</span> levels <span class='jaune'>" + missions[p.quest.objective[1]].name + "</span>";
 	if (TYPE === 2) MESSAGE = "Reach the rank " + getRank(p.quest.objective[0]);
 	if (TYPE === 3) MESSAGE = "Obtain a new weapon with " + p.quest.objective[1] + "or more";
-
 	return MESSAGE;
 }
 
@@ -343,7 +341,6 @@ function ListMissionsBought() {
 	for (let M in missions) {
 		if (p.missions[M] > 0) filtered.push(Number(M));
 	}
-
 	return filtered;
 }
 
@@ -473,6 +470,7 @@ function ReasignPoints() {
 
 function GenStarLabel(Stars) {
 	let Class = "Normal";
+
 	if (Stars == 3) Class = "Common";
 	if (Stars == 4) Class = "Uncommon";
 	if (Stars == 5) Class = "Rare";

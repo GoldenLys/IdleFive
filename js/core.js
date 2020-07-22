@@ -71,8 +71,8 @@ function idleFiveLoop() {
 	//UPDATE VARS
 	p.playTime++;
 	if (p.prestige.level > 1) p.prestige.bonus = 1 + (p.prestige.level * 0.1) - 0.1;
-	rank = 0;
-	for (var i in p.missions) if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; // CALCULATE THE RANK
+	let rank = 0;
+	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
 	p.rank = rank;
 	if (p.quest.type == 2 && p.rank >= p.quest.objective[0]) getRewards();
 	if (p.quest.type == 1 && p.quest.progression >= p.quest.objective[0]) getRewards();
@@ -464,7 +464,6 @@ function ReasignPoints() {
 	p.points += p.spentpoints;
 	p.spentpoints = 0;
 	p.prestige.multipliers = [0, 0, 0];
-	for (var v in vehicules) { if (p.Vehicules[v] == 1) p.Vehicules[v] = 0; }
 	VehicleList();
 	UpdateUI();
 }

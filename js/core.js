@@ -1,4 +1,4 @@
-const version = "v4.34";
+const version = "v4.4";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -41,8 +41,12 @@ var p = {
 };
 
 $(document).ready(function () {
-	if (localStorage.getItem("idleFive4") != null) { load(); }
-	setInterval(function () { idleFiveLoop(); }, 1000);
+	if (localStorage.getItem("idleFive4") != null) {
+		load();
+	}
+	setInterval(function () {
+		idleFiveLoop();
+	}, 1000);
 	save();
 	UpdateTexts();
 	ClickEvents();
@@ -60,26 +64,39 @@ function idleFiveLoop() {
 	//DEBUG
 	if (p.cash !== p.cash) p.cash = 0;
 	p.cash = Math.round(p.cash * 100) / 100;
-	for (var m in missions) { if (p.missions[m] == null) p.missions[m] = 0; }
+	for (var m in missions) {
+		if (p.missions[m] == null) p.missions[m] = 0;
+	}
 	for (var w in weapons) {
 		if (p.WeaponBought[w] == null) p.WeaponBought[w] = 0;
 		if (p.Stars[w] == null) p.Stars[w] = 0;
 	}
-	for (var s in success) if (p.succes[s] == null) p.succes[s] = 0;
-	for (var wtype = 0; wtype < 8; wtype++) if (p.WeaponType[wtype] == null) p.WeaponType[wtype] = 0;
+	for (var s in success)
+		if (p.succes[s] == null) p.succes[s] = 0;
+	for (var wtype = 0; wtype < 8; wtype++)
+		if (p.WeaponType[wtype] == null) p.WeaponType[wtype] = 0;
 
 	//UPDATE VARS
 	p.playTime++;
 	if (p.prestige.level > 1) p.prestige.bonus = 1 + (p.prestige.level * 0.1) - 0.1;
 	let rank = 0;
-	for (var i in p.missions) { if (p.missions[i] == null) { p.missions[i] = 0; } rank += p.missions[i]; } // CALCULATE THE RANK
+	for (var i in p.missions) {
+		if (p.missions[i] == null) {
+			p.missions[i] = 0;
+		}
+		rank += p.missions[i];
+	} // CALCULATE THE RANK
 	p.rank = rank;
 	if (p.quest.type == 2 && p.rank >= p.quest.objective[0]) getRewards();
 	if (p.quest.type == 1 && p.quest.progression >= p.quest.objective[0]) getRewards();
-	if (p.rank >= p.prestige.price[0]) { if (p.cash >= p.prestige.price[1]) btnPrestigeE(); else btnPrestigeD(); } else btnPrestigeD();
+	if (p.rank >= p.prestige.price[0]) {
+		if (p.cash >= p.prestige.price[1]) btnPrestigeE();
+		else btnPrestigeD();
+	} else btnPrestigeD();
 	p.cash += CASHPS;
 	if (p.fl == 1) showTutorialDIV();
-	if (alert > 0) alert--; else $("#announce").hide();
+	if (alert > 0) alert--;
+	else $("#announce").hide();
 	if (p.quest.progression == undefined) p.quest.progression = 0;
 	p.points = Math.round(p.points * 100) / 100;
 	UpdateUI();
@@ -99,7 +116,10 @@ function ClickWeapon() {
 	p.cash += p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
 	p.TotalClicks++;
 	if (p.quest.type == 0) {
-		if (p.quest.progression == undefined || isNaN(p.quest.objective[0]) || isNaN(p.quest.objective[1])) { p.quest.progression = 0; p.quest.objective = [10, 0]; }
+		if (p.quest.progression == undefined || isNaN(p.quest.objective[0]) || isNaN(p.quest.objective[1])) {
+			p.quest.progression = 0;
+			p.quest.objective = [10, 0];
+		}
 		p.quest.objective[0]--;
 		if (p.quest.objective[0] <= 0) getRewards();
 	}
@@ -182,9 +202,21 @@ function buyG(id) {
 function genGun() {
 	let quality = random(1, 250);
 
-	if (quality >= 1) { setQuality(1); ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 1; }
-	if (quality >= 50) { setQuality(2); ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 2; }
-	if (quality >= 150) { setQuality(3); ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 3; }
+	if (quality >= 1) {
+		setQuality(1);
+		ALERT("Bought a " + GenStarLabel(1) + " " + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 1;
+	}
+	if (quality >= 50) {
+		setQuality(2);
+		ALERT("Bought a " + GenStarLabel(2) + " " + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 2;
+	}
+	if (quality >= 150) {
+		setQuality(3);
+		ALERT("Bought a " + GenStarLabel(3) + " " + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 3;
+	}
 }
 
 function genGun2() {
@@ -196,12 +228,36 @@ function genGun2() {
 	if (luck > 14) quality = random(1, 150); //6 Stars
 	if (luck > 16) quality = random(1, 175); //6 Stars
 	if (luck > 18) quality = random(1, 200); //8 Stars
-	if (quality >= 1) { setQuality(3); ALERT("Rolled a " + GenStarLabel(3) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 3; }
-	if (quality > 100) { setQuality(4); ALERT("Rolled a " + GenStarLabel(4) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 4; }
-	if (quality > 125) { setQuality(5); ALERT("Rolled a " + GenStarLabel(5) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 5; }
-	if (quality > 150) { setQuality(6); ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 6; }
-	if (quality > 175) { setQuality(7); ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 7; }
-	if (quality > 200) { setQuality(8); ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 3); if (p.quest.type === 3) p.quest.progression = 8; }
+	if (quality >= 1) {
+		setQuality(3);
+		ALERT("Rolled a " + GenStarLabel(3) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 3;
+	}
+	if (quality > 100) {
+		setQuality(4);
+		ALERT("Rolled a " + GenStarLabel(4) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 4;
+	}
+	if (quality > 125) {
+		setQuality(5);
+		ALERT("Rolled a " + GenStarLabel(5) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 5;
+	}
+	if (quality > 150) {
+		setQuality(6);
+		ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 6;
+	}
+	if (quality > 175) {
+		setQuality(7);
+		ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 7;
+	}
+	if (quality > 200) {
+		setQuality(8);
+		ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 3);
+		if (p.quest.type === 3) p.quest.progression = 8;
+	}
 }
 
 function ALERT(text, seconds) {
@@ -211,7 +267,8 @@ function ALERT(text, seconds) {
 }
 
 function setQuality(Stars) {
-	if (p.Stars[p.Weapon.Id] != 0) if (p.Stars[p.Weapon.Id] > Stars) Stars = p.Stars[p.Weapon.Id];
+	if (p.Stars[p.Weapon.Id] != 0)
+		if (p.Stars[p.Weapon.Id] > Stars) Stars = p.Stars[p.Weapon.Id];
 
 	if (Stars == 1) p.Weapon.Class = "Normal";
 	if (Stars == 2) p.Weapon.Class = "Normal";
@@ -477,5 +534,19 @@ function GenStarLabel(Stars) {
 	if (Stars == 6) Class = "Epic";
 	if (Stars == 7) Class = "Exotic";
 	if (Stars == 8) Class = "Divine";
-	return "<div class='ui horizontal label " + Class + "'> " + Stars + " <i class='fitted star icon'></i></div>";
+	if (Stars != 0) return "<div class='ui horizontal label " + Class + "'> " + Stars + " <i class='fitted star icon'></i></div>";
+	else return "";
+}
+
+function getQuality(Stars) {
+	let QUALITY = "Normal";
+	if (Stars <= 2) QUALITY = "Normal";
+	if (Stars == 3) QUALITY = "Common";
+	if (Stars == 4) QUALITY = "Uncommon";
+	if (Stars == 5) QUALITY = "Rare";
+	if (Stars == 6) QUALITY = "Epic";
+	if (Stars == 7) QUALITY = "Exotic";
+	if (Stars == 8) QUALITY = "Divine";
+	return QUALITY;
+
 }

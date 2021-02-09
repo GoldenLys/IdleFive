@@ -6,7 +6,6 @@
     --gold: rgb(255, 190, 0);
     --platinum: rgb(175, 225, 255);
     --heavenly: rgb(210, 142, 255);
-    
     --normal: #c5b5b5;
     --common: #37a915;
     --uncommon: #5580f3;
@@ -15,60 +14,64 @@
     --exotic: #ff6337;
     --divine: #f44336;
 }
-.ui.positive.button.disabled { background-image: linear-gradient(to right, var(--vert), var(--vertclair))!important; }
+
+.ui.positive.button.disabled {
+    background-image: linear-gradient(to right, var(--vert), var(--vertclair)) !important;
+}
+
 #tab1>table .ui.green.button, #tab3>table .ui.green.button,
 .ui.green.label, .ui.green.labels .label, .ui.positive.button, .ui.positive.buttons .button {
-    background: linear-gradient(to right, var(--vert), var(--vertclair))!important;
-    border-color: transparent!important;
+    background: linear-gradient(to right, var(--vert), var(--vertclair)) !important;
+    border-color: transparent !important;
 }
 
 .ui.inverted.green.button, .ui.inverted.green.buttons .button {
     background-color: transparent;
-    -webkit-box-shadow: 0 0 0 2px var(--vert) inset!important;
-    box-shadow: 0 0 0 2px var(--vert) inset!important;
+    -webkit-box-shadow: 0 0 0 2px var(--vert) inset !important;
+    box-shadow: 0 0 0 2px var(--vert) inset !important;
     color: var(--vert);
-    text-shadow: 0 0 13px var(--vertclair)!important;
+    text-shadow: 0 0 13px var(--vertclair) !important;
 }
 
 .ui.basic.green.button {
-    -webkit-box-shadow: 0 0 0 1px var(--vertclair) inset!important;
-    box-shadow: 0 0 0 1px var(--vertclair) inset!important;
+    -webkit-box-shadow: 0 0 0 1px var(--vertclair) inset !important;
+    box-shadow: 0 0 0 1px var(--vertclair) inset !important;
 }
 
 .Normal {
-    color: var(--normal)!important;
-    text-shadow: 0 0 13px!important; 
+    color: var(--normal) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Common {
-    color: var(--common)!important;
-    text-shadow: 0 0 13px!important; 
+    color: var(--common) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Uncommon {
-    color: var(--uncommon)!important;
-    text-shadow: 0 0 13px!important; 
+    color: var(--uncommon) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Rare {
-    color: var(--rare)!important;
-    text-shadow: 0 0 13px!important; 
+    color: var(--rare) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Epic {
-    color: var(--epic)!important;
-    text-shadow: 0 0 13px!important; 
+    color: var(--epic) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 
 .Exotic {
-    color: var(--exotic)!important;
-    text-shadow: 0 0 13px!important;
+    color: var(--exotic) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Divine {
-    color: var(--divine)!important;
-    text-shadow: 0 0 13px!important;
+    color: var(--divine) !important;
+    text-shadow: 0 0 13px !important;
 }
 
 .Bronze {
@@ -97,7 +100,7 @@
 }
 
 i.green.icon {
-    color: var(--vert)!important;
+    color: var(--vert) !important;
 }
 
 .icon.fa, .icon.fas {
@@ -115,7 +118,7 @@ i.green.icon {
     height: 250px;
 }
 
-#imagecash{
+#imagecash {
     background: center / contain no-repeat;
     height: 100%;
     width: 100%;
@@ -130,16 +133,18 @@ i.green.icon {
 
 #imagecontainer:active #imagecash,
 .USEFFECT {
-    animation: 0.25s UseEffect ease!important;
+    animation: 0.25s UseEffect ease !important;
 }
 
 @keyframes UseEffect {
     0% {
         transform: scale(1, 1);
     }
+
     50% {
         transform: scale(0.9, 0.9);
     }
+
     100% {
         transform: scale(1, 1);
     }
@@ -147,7 +152,7 @@ i.green.icon {
 
 .cash:hover, a,
 .button:hover {
-    cursor: url("images/hand.cur"), pointer!important;
+    cursor: url("images/hand.cur"), pointer !important;
 }
 
 #top-menu {
@@ -195,13 +200,16 @@ i.green.icon {
     background: linear-gradient(to right, var(--vert), var(--vertclair));
 }
 
-#OTitle .ui.label { font-size: 2.5vh; }
+#OTitle .ui.label {
+    font-size: 2.5vh;
+}
 
 #objective .ui.label,
 #OTitle .ui.label,
 #ORequired .ui.label,
 #weapon .ui.label,
-#announce .ui.label {
+#announce .ui.horizontal.label,
+#tab1 .ui.label {
     background-color: rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 0px 10px 0px currentColor;
     -moz-box-shadow: 0px 0px 10px 0px currentColor;
@@ -211,24 +219,24 @@ i.green.icon {
 }
 
 .vert {
-    color: var(--vert)!important;
-    text-shadow: 0 0 12px!important;
+    color: var(--vert) !important;
+    text-shadow: 0 0 12px !important;
 }
 
 .gris {
-    color: rgb(150, 150, 150)!important;
+    color: rgb(150, 150, 150) !important;
 }
 
 .rouge {
-    color: rgb(229, 46, 35)!important;
+    color: rgb(229, 46, 35) !important;
 }
 
 .jaune {
-    color: #FFF000!important;
+    color: #FFF000 !important;
 }
 
 .blanc {
-    color: #FFF!important;
+    color: #FFF !important;
 }
 
 .noselect {
@@ -252,7 +260,7 @@ i.green.icon {
 }
 
 .ui.list .list>a.item i.icon, .ui.list>a.item i.icon {
-    color: currentColor!important;
+    color: currentColor !important;
 }
 
 .ui.button, .type1, .ui.header {
@@ -349,13 +357,16 @@ body ::-webkit-scrollbar-track {
 }
 
 .azn {
-    background-color: rgba(0, 105, 0, .15);
-    box-shadow: inset 0 0 15px 15px rgba(0, 105, 0, .15);
+    background-color: rgba(0, 105, 0, .075);
 
 }
+
 .azn-active {
     background-color: rgba(52, 180, 52, .15);
-    box-shadow: inset 0 0 15px 15px rgba(52, 180, 52, .5);
+}
+
+.azn-active>td:first-child {
+    border-left: 2px solid green !important;
 }
 
 .pushable>.pusher {
@@ -375,41 +386,36 @@ body ::-webkit-scrollbar-track {
     box-shadow: none;
     border: none;
 }
+
 .ui.inverted.table tr td {
-    border-color: rgba(0, 0, 0, 0.1)!important;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .ui.divider:not(.vertical):not(.horizontal) {
-    border-color: rgba(255, 255, 255, 0.05)!important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 .ui.inverted.table {
-    background-color: rgba(0, 0, 0, 0.1)!important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 .trs {
-    background-color: transparent!important;
+    background-color: transparent !important;
 }
 
 .ui.buttons .or:before {
-    position: absolute;
-    text-align: center;
-    border-radius: .5em;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    border-radius: 0;
     content: 'or';
     top: 0%;
-    left: 0%;
     text-shadow: none;
     margin-top: 0px;
-    margin-left: -15px;
-    width: 30px;
     height: 100%;
-    line-height: 250%;
-    font-style: normal;
-    font-weight: normal;
-    -webkit-box-shadow: inset 0 0 15px 5px rgba(0,0,0, 0.75);
-    box-shadow: inset 0 0 15px 5px rgba(0,0,0, 0.75);
-    background-color: rgba(0, 0, 0, 0.35);
-    color: rgb(255, 255, 255);
+    background-color: rgb(6 6 6 / 30%);
+    backdrop-filter: blur(5px);
+    color: rgb(255 255 255);
 }
 
 .ui.buttons .or {
@@ -435,24 +441,28 @@ body ::-webkit-scrollbar-track {
     margin-left: 10%;
     padding: 5px 0px;
     border-radius: 0.25em;
-    box-shadow: 0 0 20px 15px rgba(0,0,0, 0.25);
+    box-shadow: 0 0 20px 15px rgba(0, 0, 0, 0.25);
     background: rgba(0, 0, 0, 0.25);
 }
 
 .ui.selection.list .list>.item, .ui.selection.list>.item {
-    color: white!important;
+    color: white !important;
 }
 
 .type2 .Silver {
-    text-shadow: none!important;
+    text-shadow: none !important;
 }
 
-.alert {
-    background: rgba(0,0,0, 0.5) !important;
-    color: white !important;
+.alert:not([style="display: none;"]) {
     position: fixed !important;
     top: 5px;
-    right: 5px;
-    min-width: 100px;
+    right: 0;
     z-index: 2;
+    border-radius: 5px 0 0 5px !important;
+    display: flex !important;
+    place-items: center;
+}
+
+.pw.title {
+    margin: 0 5px 0 0;
 }

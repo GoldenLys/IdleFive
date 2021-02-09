@@ -67,7 +67,7 @@
 }
 
 function UpdateTexts() {
-	//MENU 
+	//MENU
 	$("#t0").html("<i class='sidebar icon'></i>" + texts.menu[0]);
 	$("#t1").html("<i class='crosshairs icon'></i>" + texts.menu[1]);
 	$("#t2").html("<i class='dollar sign icon'></i>" + texts.menu[2]);
@@ -87,7 +87,7 @@ function UpdateTexts() {
 	$("#S2").html(texts.success[3]);
 	$("#S3").html(texts.success[4]);
 	$("#CloseSuccess").html(texts.success[5]);
-	//SAVE & STATS 
+	//SAVE & STATS
 	$("#options-title").html(texts.stats[13]);
 	$("#btnBackgrounds").val(texts.stats[14]);
 	$("#savemenu").html(texts.stats[0]);
@@ -151,11 +151,11 @@ function WeaponList() {
 	for (var i in weapons) {
 		let CONTENT = $(
 			"<tr id='weapon-" + i + "' class='ui center aligned'>" +
-			"<td class='ui center aligned type2'>" + weapons[i].name + "</td>" +
+			"<td id='weapon-" + i + "-name' class='ui center aligned type2'>" + GenStarLabel(p.Stars[i]) + "<font class='" + getQuality(p.Stars[i]) + "'>" + weapons[i].name + "</font></td>" +
 			"<td id='weapon-" + i + "-price' class='ui center aligned'>0" + "</td>" +
 			"<td id='weapon-" + i + "-damage' class='ui center aligned jaune'>0</td>" +
-			"<td class='ui center aligned'><div id='weapon-" + i + "-purchase' class='fluid ui button' onClick='buyG(" + i + ");'><div class='hidden content'>" + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div>" +
-			"<button id='weapon-" + i + "-equip' class='fluid ui button' onClick='useW(" + i + ");'></button></td>" +
+			"<td class='ui center aligned'><div class='fluid ui vertical buttons'><div id='weapon-" + i + "-purchase' class='fluid ui button' onClick='buyG(" + i + ");'><div class='hidden content'>" + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div>" +
+			"<button id='weapon-" + i + "-equip' class='fluid ui button' onClick='useW(" + i + ");'></button></div></td>" +
 			"</tr>"
 		);
 		$('#Wtab' + weapons[i].type).append(CONTENT);
@@ -176,6 +176,7 @@ function UpdateWeapons() {
         if (ENABLED === 'azn' && p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green"; }
 
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
+		$("#weapon-" + i + "-name").html(`${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font>`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
 		$("#weapon-" + i + "-price").html("<i class='fas fa-usd-square'></i>" + COST);
 		$("#weapon-" + i + "-damage").html(fix(weapons[i].power * (1 + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1));

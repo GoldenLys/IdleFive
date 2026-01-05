@@ -131,17 +131,18 @@ function UpdateMissions() {
 		let CANSELL1 = p.missions[i] < 1 ? 'disabled' : '';
 		let CANSELL10 = p.missions[i] < 10 ? 'disabled' : '';
 		let ENABLED = p.missions[i] < 1 ? '' : 'azn';
-		let ENABLED_COLOR = p.missions[i] < 1 ? '' : 'bold';
+		let ENABLED_WEIGHT = p.missions[i] < 1 ? '' : 'bold';
 		$("#mission-" + i).attr("class", ENABLED);
 		$("#mission-" + i + "-level").html(p.missions[i]);
 		$("#mission-" + i + "-value").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(GetMissionPrice(i, 1), 1));
-		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + ENABLED_COLOR);
+		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + ENABLED_WEIGHT);
 		$("#mission-" + i + "-cost").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
 		$("#mission-" + i + "-btnB1").attr("class", "ui positive button " + CANBUY1);
 		$("#mission-" + i + "-btnB10").attr("class", "ui positive button " + CANBUY10);
 		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + CANSELL1);
 		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + CANSELL10);
 
+		$("#NextMissionUnlock").html(`Next mission unlocks at rank ${missions[getLatestUnlockedMissionId()+1].level}`);
 		if (getLatestUnlockedMissionId() === "allUnlocked") $("#NextMissionUnlock").hide(); else $("#NextMissionUnlock").show();
 		if (p.rank >= missions[i].level) $("#mission-" + i).show();
 	}
@@ -173,6 +174,8 @@ function UpdateWeapons() {
 		let CANBUY = weapons[i].price * 1 > p.cash ? 'rouge' : 'blanc';
 		if (p.WeaponBought[i] > 0) { weapons[i].price * 1.25 > p.cash ? 'rouge' : 'blanc'; }
 		let COST = p.WeaponBought[i] < 1 ? fix(weapons[i].price, 1) : fix(weapons[i].price * 1.25, 1);
+		let PURCHASED = p.WeaponBought[i] > 0 ? 'blanc' : 'rouge';
+		let PURCHASED_TEXT = p.WeaponBought[i] > 0 ? "" : `<font class="${PURCHASED}"><i class="fa-solid fa-lock-keyhole"></i></font>`;
 		let ENABLE_BTN = weapons[i].price > p.cash ? 'basic red' : 'green';
 		let PURCHASE_TEXT = p.WeaponBought[i] > 0 ? "<div class='hidden content'><i class='fa-regular fa-dollar-sign'></i>" + COST + "</div><div class='visible content'>Roll stats</div>" : "Purchase";
 		let PURCHASE_BTN = p.WeaponBought[i] > 0 ? "fluid ui vertical animated button" : "fluid ui button";
@@ -182,7 +185,7 @@ function UpdateWeapons() {
 		if (ENABLED === 'azn' && p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green"; }
 
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
-		$("#weapon-" + i + "-name").html(`${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br>${fix(weapons[i].power * (1 + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
+		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br>${fix(weapons[i].power * (1 + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
 		$("#weapon-" + i + "-price").html("<i class='fa-regular fa-dollar-sign'></i>" + COST);
 		$("#weapon-" + i + "-purchase").html(PURCHASE_TEXT);

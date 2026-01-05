@@ -1,30 +1,63 @@
-function fix(x, type) {
-	if (type == 0) return numeral(x).format("0");
+const suffixes = [
+	{ value: "1e3", symbol: "k" },
+	{ value: "1e6", symbol: "m" },
+	{ value: "1e9", symbol: "b" },
+	{ value: "1e12", symbol: "t" },
+	{ value: "1e15", symbol: "q" },
+	{ value: "1e18", symbol: "Q" },
+	{ value: "1e21", symbol: "s" },
+	{ value: "1e24", symbol: "S" },
+	{ value: "1e27", symbol: "o" },
+	{ value: "1e30", symbol: "n" },
+	{ value: "1e33", symbol: "d" },
+	{ value: "1e36", symbol: "u" },
+	{ value: "1e39", symbol: "D" }
+];
+
+function formatBigNumberAbbrev(raw, decimals = 2) {
+	const bn = new BigNumber(raw);
+
+	const match = [...suffixes].reverse().find(s =>
+		bn.gte(new BigNumber(s.value))
+	);
+
+	if (!match) return bn.toFixed(decimals); // no abbreviation
+
+	const divided = bn.div(new BigNumber(match.value));
+	return `${divided.toFixed(decimals)}${match.symbol}`;
+}
+
+function fix(number_raw, type) {
+	const number = new BigNumber(number_raw);
+	const numStr = number.toString();
+
+	if (type == 0) return numeral(numStr).format("0");
+
 	if (type == 1)
-		if (x == 0.5) {
+		if (number.eq(0.5)) {
 			return "0.5";
-		} else return numeral(x).format("0.0a");
-	if (type == 2) return numeral(x).format("0.00a");
+		} else return formatBigNumberAbbrev(numStr, 1);
 
+	if (type == 2) return formatBigNumberAbbrev(numStr, 2);
 
-
-	if (type == 3) return numeral(x).format("0,0");
-	if (type == 4) return numeral(x).format("0a");
+	if (type == 3) return numeral(numStr).format("0,0");
+	if (type == 4) return formatBigNumberAbbrev(numStr, 0);
 
 	if (type == 5) {
-		if (x < 1000) return numeral(x).format("0a");
-		else
-			return numeral(x).format("0.0a");
+		if (number.lt(1000)) return formatBigNumberAbbrev(numStr, 0);
+		else return formatBigNumberAbbrev(numStr, 1);
 	}
+
 	if (type == 6) {
-		if (x <= 1000) return numeral(x).format("0a");
-		if (x > 1000) return numeral(x).format("0.0a");
-		if (x > 10000) return numeral(x).format("0.00a");
+		if (number.lte(1000)) return formatBigNumberAbbrev(numStr, 0);
+		if (number.gt(10000)) return formatBigNumberAbbrev(numStr, 2);
+		return formatBigNumberAbbrev(numStr, 1);
 	}
-	if (type == 7) return numeral(x).format("0.0a");
-	if (type == 8) return numeral(x).format("0.00%");
-	if (type == 9) return numeral(x).format("0%");
-	if (type == 10) return numeral(x).format("0.0%");
+
+	if (type == 7) return formatBigNumberAbbrev(numStr, 1);
+	if (type == 8) return numeral(numStr).format("0.00%");
+	if (type == 9) return numeral(numStr).format("0%");
+	if (type == 10) return numeral(numStr).format("0.0%");
 }
 
 function getDate() {
@@ -106,7 +139,7 @@ function exportSave() {
 	window.getSelection().removeAllRanges();
 	MESSAGE("Save Exported", "Your save has been copied into you clipboard.");
 	$("#exportBody").html("");
-  }
+}
 
 var importSave = function () {
 	var save = prompt("Paste the code previously obtained here");

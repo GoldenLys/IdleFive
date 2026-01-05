@@ -49,7 +49,7 @@
                 <button id="sidebar" id="t0" class="ui button item">
                     <i class="sidebar icon"></i>Menu</button>
                 <a class="ui button item" id="t1" data-id="1">
-                    <i class="crosshairs icon"></i>Weapons</a>
+                    <i class="fa-thin fa-crosshairs-simple icon"></i>Weapons</a>
                 <a class="ui button item green basic" id="t2" data-id="2">
                     <i class="dollar sign icon"></i>Missions</a>
                 <a class="ui button item" id="t3" data-id="3">
@@ -94,15 +94,15 @@
                 <!--WEAPONS-->
                 <div id="tab1" style="display: none; width: 100%;">
 
-                    <select name="weap-type" class="fluid ui selection dropdown" id="weap-select">
-                        <option id="W1" value="1"></option>
-                        <option id="W2" value="2"></option>
-                        <option id="W3" value="3"></option>
-                        <option id="W4" value="4"></option>
-                        <option id="W5" value="5"></option>
-                        <option id="W6" value="6"></option>
-                        <option id="W7" value="7"></option>
-                    </select>
+                    <div name="weap-type" class="ui inverted secondary menu" id="weap-select">
+                        <div id="W1" class="ui green button active" data-id="1"></div>
+                        <div id="W2" class="ui inverted green button" data-id="2"></div>
+                        <div id="W3" class="ui inverted green button" data-id="3"></div>
+                        <div id="W4" class="ui inverted green button" data-id="4"></div>
+                        <div id="W5" class="ui inverted green button" data-id="5"></div>
+                        <div id="W6" class="ui inverted green button" data-id="6"></div>
+                        <div id="W7" class="ui inverted green button" data-id="7"></div>
+                    </div>
 
                     <table id="Wtab1" class="ui inverted table"></table>
                     <table id="Wtab2" class="ui inverted table" style="display: none;"></table>
@@ -168,7 +168,6 @@
             </div>
         </div>
         <div id="announce" class="big ui black label alert" style="display: none;">
-            <div class="pw title">Announce</div>
             <div id="announce-text"></div>
         </div>
     </div>
@@ -327,6 +326,7 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="DATA/bignumber.js"></script>
     <script type="text/javascript" src="DATA/numeral.min.js"></script>
     <script type="text/javascript" src="DATA/dropdown.min.js"></script>
     <script type="text/javascript" src="DATA/sidebar.min.js"></script>

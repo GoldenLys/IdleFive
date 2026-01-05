@@ -1,4 +1,4 @@
-const version = "v4.7";
+const version = "v5.0";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -56,7 +56,7 @@ $(document).ready(function () {
 	MissionList();
 	WeaponList();
 	showTutorial(p.tutorial);
-	WEAPON_MULTIPLIER = GetWeaponMult();
+	WEAPON_MULTIPLIER = GetWeaponMult(p.Weapon.Id);
 	$('.ui.sidebar').sidebar('hide');
 });
 
@@ -194,9 +194,10 @@ function buyG(id) {
 		}
 	}
 	if (p.quest.type === 3 && p.quest.progression >= p.quest.objective[0]) getRewards();
-	WEAPON_MULTIPLIER = GetWeaponMult();
+	WEAPON_MULTIPLIER = GetWeaponMult(p.Weapon.Id);
 	SuccessCount();
 	UpdateUI();
+	UpdateTexts();
 }
 
 function genGun() {
@@ -282,17 +283,17 @@ function setQuality(Stars) {
 	if (Stars > p.Stars[p.Weapon.Id]) p.Stars[p.Weapon.Id] = Stars;
 }
 
-function GetWeaponMult() {
+function GetWeaponMult(weaponId) {
 	let MULTIPLIER = 0;
 
-	if (p.Stars[p.Weapon.Id] == 1) MULTIPLIER = 0.5;
-	if (p.Stars[p.Weapon.Id] == 2) MULTIPLIER = 0.75;
-	if (p.Stars[p.Weapon.Id] == 3) MULTIPLIER = 1;
-	if (p.Stars[p.Weapon.Id] == 4) MULTIPLIER = 1.25;
-	if (p.Stars[p.Weapon.Id] == 5) MULTIPLIER = 1.5;
-	if (p.Stars[p.Weapon.Id] == 6) MULTIPLIER = 1.75;
-	if (p.Stars[p.Weapon.Id] == 7) MULTIPLIER = 2;
-	if (p.Stars[p.Weapon.Id] == 8) MULTIPLIER = 3;
+	if (p.Stars[weaponId] == 1) MULTIPLIER = 0.5;
+	if (p.Stars[weaponId] == 2) MULTIPLIER = 0.75;
+	if (p.Stars[weaponId] == 3) MULTIPLIER = 1;
+	if (p.Stars[weaponId] == 4) MULTIPLIER = 1.25;
+	if (p.Stars[weaponId] == 5) MULTIPLIER = 1.5;
+	if (p.Stars[weaponId] == 6) MULTIPLIER = 1.75;
+	if (p.Stars[weaponId] == 7) MULTIPLIER = 2;
+	if (p.Stars[weaponId] == 8) MULTIPLIER = 3;
 	return MULTIPLIER;
 }
 

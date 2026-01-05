@@ -25,14 +25,6 @@
     border-color: transparent !important;
 }
 
-.ui.inverted.green.button, .ui.inverted.green.buttons .button {
-    background-color: transparent;
-    -webkit-box-shadow: 0 0 0 2px var(--vert) inset !important;
-    box-shadow: 0 0 0 2px var(--vert) inset !important;
-    color: var(--vert);
-    text-shadow: 0 0 13px var(--vertclair) !important;
-}
-
 .ui.basic.green.button {
     -webkit-box-shadow: 0 0 0 1px var(--vertclair) inset !important;
     box-shadow: 0 0 0 1px var(--vertclair) inset !important;
@@ -464,4 +456,9 @@ body ::-webkit-scrollbar-track {
 
 .pw.title {
     margin: 0 0px 10px 0;
+}
+
+.ui.menu i.fa-thin {
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 100;
 }

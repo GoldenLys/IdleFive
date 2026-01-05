@@ -1,5 +1,5 @@
 ﻿function UpdateUI() {
-	let ClicCashText = fix(p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1);
+	let ClicCashText = fix(p.Weapon.Power * (GetWeaponMult(p.Weapon.Id) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1);
 	let CashPSText = fix(CASHPS, 2);
 	let PrestigeMultText = fix(p.prestige.bonus, 9);
 	let CashText = fix(p.cash, 2);
@@ -10,13 +10,13 @@
 	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
 	if (p.prestige.price[0] <= p.rank) { if (p.prestige.price[1] <= p.cash) { prestigeText = texts.infos[0]; } }
 	//LEFT INFOS
-	$('#imagecash').attr('style', "background-image:url('images/A/" + p.Weapon.Id + ".jpg');");
+	$('#imagecash').attr('style', "background-image:url('" + weapons[p.Weapon.Id].img +"');");
 	$("#cash").html("<i class='money'></i><font class='vert bold'>" + CashText + "</font> <div class='sub header blanc'>" + CashPSText + "/s</div>");
 	$("#level").html(getRank(p.rank));
 	$("#weapon").html(weapons[p.Weapon.Id].name + " " + GenStarLabel(p.Stars[p.Weapon.Id]));
 	$("#weapon").attr("class", p.Weapon.Class);
 	$("#damage").attr("class", p.Weapon.Class);
-	$("#damage").html("<i class='crosshairs icon'></i>" + ClicCashText);
+	$("#damage").html("<i class='fa-thin fa-crosshairs-simple'></i>" + ClicCashText);
 	$("#points").html("<font class='jaune'> " + fix(p.points, 2) + " CP</font>");
 	$("#messages").html(prestigeText);
 	//CHARACTER
@@ -69,7 +69,7 @@
 function UpdateTexts() {
 	//MENU
 	$("#t0").html("<i class='sidebar icon'></i>" + texts.menu[0]);
-	$("#t1").html("<i class='crosshairs icon'></i>" + texts.menu[1]);
+	$("#t1").html("<i class='fa-thin fa-crosshairs-simple icon'></i>" + texts.menu[1]);
 	$("#t2").html("<i class='dollar sign icon'></i>" + texts.menu[2]);
 	$("#t3").html("<i class='user icon'></i>" + texts.menu[3]);
 	$("#t4").html("<i class='clipboard icon'></i>" + texts.menu[4]);
@@ -80,7 +80,7 @@ function UpdateTexts() {
 	$("#character-text3").html(texts.character[4]);
 	$("#btnPrestige").val(texts.character[0]);
 	//WEAPONS TYPES BUTTONS
-	for (var weapon = 1; weapon < 9; weapon++) { $("#W" + weapon).html(texts.weapontype[weapon]); }
+	for (var weapon = 1; weapon < 9; weapon++) { $("#W" + weapon).html(texts.weapontype[weapon] + " (" + p.WeaponType[weapon] + "/" + countWeaponsByType()[weapon] + ")"); }
 	//SUCCESS
 	$("#S0").html(texts.success[1]);
 	$("#S1").html(texts.success[2]);
@@ -118,8 +118,8 @@ function MissionList() {
 		$('#missions tbody').append(CONTENT);
 		if (p.rank >= missions[i].level) $("#mission-" + i).show(); else $("#mission-" + i).hide();
 	}
-	$("#tab2").append(`<div id='NextMissionUnlock' class='ui black message'>Next mission unlocks at rank ${missions[getLatestUnlockedMissionId()+1].level}</div>`);
-	if (getLatestUnlockedMissionId() === "allUnlocked") $("#NextMissionUnlock").hide(); else $("#NextMissionUnlock").show();
+	$("#tab2").append(`<div id='NextMissionUnlock' class='ui black message'>Next mission unlocks at rank 0</div>`);
+	if (getLatestUnlockedMissionId("latest") === "allUnlocked") $("#NextMissionUnlock").hide(); else $("#NextMissionUnlock").show();
 }
 
 function UpdateMissions() {
@@ -142,8 +142,13 @@ function UpdateMissions() {
 		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + CANSELL1);
 		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + CANSELL10);
 
-		$("#NextMissionUnlock").html(`Next mission unlocks at rank ${missions[getLatestUnlockedMissionId()+1].level}`);
-		if (getLatestUnlockedMissionId() === "allUnlocked") $("#NextMissionUnlock").hide(); else $("#NextMissionUnlock").show();
+		if (getLatestUnlockedMissionId("latest") === "allUnlocked") {
+			$("#NextMissionUnlock").hide();
+		}
+		else {
+			$("#NextMissionUnlock").html(`Next mission unlocks at rank ${missions[getLatestUnlockedMissionId("next")].level}`);
+			$("#NextMissionUnlock").show();
+		}
 		if (p.rank >= missions[i].level) $("#mission-" + i).show();
 	}
 }
@@ -183,9 +188,8 @@ function UpdateWeapons() {
 		let EQUIP_TEXT = "Equip";
 		if (ENABLED === 'azn' && p.Weapon.Id == i) { ENABLED = 'azn-active'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
 		if (ENABLED === 'azn' && p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green"; }
-
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
-		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br>${fix(weapons[i].power * (1 + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
+		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + (p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1, 1)}`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
 		$("#weapon-" + i + "-price").html("<i class='fa-regular fa-dollar-sign'></i>" + COST);
 		$("#weapon-" + i + "-purchase").html(PURCHASE_TEXT);
@@ -237,7 +241,7 @@ function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inver
 function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
 function hideTabs() { for (var id = 1; id < 5; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("inverted basic"); } }
 function hideMenus() { for (var id = 1; id < 6; id++) { $('#modal-' + id).modal('hide'); } }
-function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
+function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).attr('class', 'ui green button inverted'); } }
 function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
 
 function ClickEvents() {
@@ -255,11 +259,11 @@ function ClickEvents() {
 	});
 	$('#select').dropdown();
 	$('.ui.dropdown').dropdown();
-	$("#weap-select").change(function () {
-		var id = $(this).val();
+	$("#weap-select").on("click", "div", function () {
+		var id = $(this).data('id');
 		hideWTabs();
 		$('#Wtab' + id).show();
-		$("#W" + id).addClass("active");
+		$("#W" + id).removeClass("inverted");
 	});
 	$("#ChangeObjective").on("click", function () {
 		if (p.points >= 0.5) {
@@ -388,18 +392,58 @@ function GetMultPrice(id) {
 	return price;
 }
 
-function getLatestUnlockedMissionId() {
-    let latestId = -1;
-    for (let i in missions) {
-        if (p.rank >= missions[i].level) {
-            latestId = parseInt(i);
-        } else {
-            break;
-        }
+function getLatestUnlockedMissionId(type) {
+	if (type === undefined) type = "latest";
+	let latestId = -1;
+	let nextId = -1;
+
+	for (let i in missions) {
+		let id = parseInt(i);
+		if (p.rank >= missions[id].level) {
+			latestId = id;
+		} else {
+			nextId = id;
+			break; // stop at the first mission not unlocked
+		}
+	}
+
+	const maxId = Math.max(...Object.keys(missions).map(Number));
+
+	if (type === "latest") {
+		if (latestId === maxId) {
+			return "allUnlocked";
+		}
+		return latestId;
+	} else if (type === "next") {
+		if (latestId === maxId) {
+			return "none"; // or "allUnlocked" if you prefer
+		}
+		return nextId;
+	}
+}
+
+function countWeaponsByType() {
+  const typeCounts = {};
+
+  for (const weapon of Object.values(weapons)) {
+    if (!typeCounts[weapon.type]) {
+      typeCounts[weapon.type] = 0;
     }
-    // If latestId is the last mission in the list, return something else
-    if (latestId === Math.max(...Object.keys(missions).map(Number))) {
-        return "allUnlocked";
-    }
-    return latestId;
+    typeCounts[weapon.type]++;
+  }
+
+  return typeCounts;
+}
+
+function rebuildDropdown(id) {
+    const $dropdown = $('#' + id);
+    $dropdown.dropdown('destroy');
+    $dropdown.find('.menu').empty();
+    $dropdown.find('option').each(function () {
+        const value = $(this).attr('value');
+        const text = $(this).text();
+        const $item = $('<div>').addClass('item').attr('data-value', value).text(text);
+        $dropdown.find('.menu').append($item);
+    });
+    $dropdown.dropdown();
 }

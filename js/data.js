@@ -89,7 +89,7 @@ var weapons = {
     50: { name: "Homing Launcher", power: 2500000000, price: 100000000000, type: 7, img: "images/weapons/weapon_heavy_homing-launcher.webp" },
     51: { name: "Service Rifle", power: 1250000, price: 60000000, type: 5, img: "images/weapons/weapon_servicecarbine.webp" },
     52: { name: "Battle Rifle", power: 1500000, price: 75000000, type: 5, img: "images/weapons/weapon_battlerifle.png" },
-    53: { name: "Military Rifle", power: 95000000, price: 85000000, type: 5, img: "images/weapons/weapon_militaryrifle.webp" },
+    53: { name: "Military Rifle", power: 9500000, price: 85000000, type: 5, img: "images/weapons/weapon_militaryrifle.webp" },
     54: { name: "El Strickler Military Rifle", power: 10000000, price: 95000000, type: 5, img: "images/weapons/weapon_el-strickler.png" },
     55: { name: "Combat Shotgun", power: 17000, price: 850000, type: 3, img: "images/weapons/weapon_combatshotgun.webp" },
     56: { name: "Up-n-Atomizer", power: 7500, price: 375000, type: 2, img: "images/weapons/weapon_raypistol.png" },

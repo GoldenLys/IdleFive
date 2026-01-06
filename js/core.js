@@ -1,4 +1,4 @@
-const version = "v5.44";
+const version = "v5.45";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;

@@ -61,6 +61,7 @@
 	if ($('#tab3').is(":visible")) VehicleList();
 	SuccessList();
 	SuccessCount();
+	redrawTables();
 }
 
 function UpdateTexts() {
@@ -139,7 +140,6 @@ function UpdateMissions() {
 		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + (p.missions[i] < 1 ? 'disabled' : ''));
 		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + (p.missions[i] < 10 ? 'disabled' : ''));
 		$("#mission-" + i + "-btnS100").attr("class", "ui red button " + (p.missions[i] < 100 ? 'disabled' : ''));
-
 		if (getLatestUnlockedMissionId("latest") === "allUnlocked") {
 			$("#NextMissionUnlock").hide();
 		}
@@ -148,6 +148,7 @@ function UpdateMissions() {
 			$("#NextMissionUnlock").show();
 		}
 		if (p.rank >= missions[i].level) $("#mission-" + i).show();
+		redrawTables();
 	}
 }
 
@@ -194,6 +195,7 @@ function UpdateWeapons() {
 		$("#weapon-" + i + "-purchase").attr("class", PURCHASE_BTN + " " + ENABLE_BTN);
 		$("#weapon-" + i + "-equip").html(EQUIP_TEXT);
 		$("#weapon-" + i + "-equip").attr("class", "fluid ui button" + EQUIP_BTN);
+		redrawTables();
 	}
 }
 
@@ -446,4 +448,13 @@ function rebuildDropdown(id) {
         $dropdown.find('.menu').append($item);
     });
     $dropdown.dropdown();
+}
+
+function redrawTables() {
+    $("table").each(function () {
+        const parent = this.parentNode;
+        const next = this.nextSibling;
+        parent.removeChild(this);
+        parent.insertBefore(this, next);
+    });
 }

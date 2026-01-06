@@ -1,4 +1,4 @@
-const version = "v5.4";
+const version = "v5.42";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -55,6 +55,7 @@ $(document).ready(function () {
 	getPrestigePrice();
 	MissionList();
 	WeaponList();
+	idleFiveLoop();
 	showTutorial(p.tutorial);
 	WEAPON_MULTIPLIER = GetWeaponMult(p.Weapon.Id);
 	$('.ui.sidebar').sidebar('hide');

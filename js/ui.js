@@ -186,7 +186,7 @@ function UpdateWeapons() {
 		let EQUIP_BTN = p.WeaponBought[i] < 1 ? " disabled" : "";
 		let EQUIP_TEXT = "Equip";
 		if (ENABLED === 'item-active' && p.Weapon.Id == i) { ENABLED = 'item-equipped'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
-		if (p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
+		if (p.Stars[i] === 8 && p.WeaponBought[i] > 0) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
 		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
@@ -214,9 +214,9 @@ function VehicleList() {
 		let multiplier = "<font class='jaune'>" + fix((p.prestige.bonus + (p.prestige.multipliers[i] * vehicle.value)), 9) + "</font>";
 		let color = vehicle.price > p.points ? ' rouge bold' : ' jaune bold';
 		let cost = "<font class='" + color + "'>" + fix(PRICE, 3) + " CP</font>";
-		if (vehicle.type == 0) { type = "  cash multiplier"; }
-		if (vehicle.type == 1) { type = "  damage multiplier"; }
-		if (vehicle.type == 2) { type = " objectives reward multiplier"; }
+		if (vehicle.type == 0) { type = " cash (+10% per level)"; }
+		if (vehicle.type == 1) { type = " damage (+10% per level)"; }
+		if (vehicle.type == 2) { type = " objective reward (+10% per level)"; }
 
 		if (p.prestige.multipliers[i] > 0) level = fix(p.prestige.multipliers[i], 0);
 

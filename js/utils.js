@@ -44,7 +44,7 @@ function fix(number_raw, type) {
 	if (type == 1)
 		if (number.eq(0.5)) {
 			return "0.5";
-		} else return formatBigNumberAbbrev(numStr, 1);
+		} else return formatBigNumberAbbrev(numStr, 2);
 
 	if (type == 2) return formatBigNumberAbbrev(numStr, 2);
 

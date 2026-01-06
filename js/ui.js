@@ -133,7 +133,7 @@ function UpdateMissions() {
 		let CANBUY100 =  GetMissionPrice(i, 100) > p.cash ? ' disabled' : '';
 		let CANSELL1 = p.missions[i] < 1 ? 'disabled' : '';
 		let CANSELL10 = p.missions[i] < 10 ? 'disabled' : '';
-		let CANSELL100 = p.missions[i] < 10 ? 'disabled' : '';
+		let CANSELL100 = p.missions[i] < 100 ? 'disabled' : '';
 		let ENABLED = p.missions[i] < 1 ? '' : 'azn';
 		let ENABLED_WEIGHT = p.missions[i] < 1 ? '' : 'bold';
 		$("#mission-" + i).attr("class", ENABLED);
@@ -195,7 +195,7 @@ function UpdateWeapons() {
 		if (ENABLED === 'azn' && p.Weapon.Id == i) { ENABLED = 'azn-active'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
 		if (p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
-		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + (p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1, 1)}`);
+		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
 		$("#weapon-" + i + "-price").html("<i class='fa-regular fa-dollar-sign'></i>" + COST);
 		$("#weapon-" + i + "-purchase").html(PURCHASE_TEXT);

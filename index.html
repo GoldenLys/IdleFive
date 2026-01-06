@@ -2,8 +2,7 @@
 
 <head>
     <title>idleFive is loading..</title>
-    <meta charset="UTF-8" name='viewport'
-        content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
     <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico" />
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
@@ -40,7 +39,7 @@
                 <div class="ui logo shape">
                     <div class="sides">
                         <div class="active ui side">
-                            <img class="ui mini rounded image" src="images/logo.jpg">
+                            <i class="ui logo fa-duotone fa-solid fa-circle-dollar" style=></i>
                         </div>
                     </div>
                 </div>
@@ -50,12 +49,10 @@
                     <i class="sidebar icon"></i>Menu</button>
                 <a class="ui button item" id="t1" data-id="1">
                     <i class="fa-thin fa-crosshairs-simple icon"></i>Weapons</a>
-                <a class="ui button item green basic" id="t2" data-id="2">
+                <a class="ui button item green dollar basic" id="t2" data-id="2">
                     <i class="dollar sign icon"></i>Missions</a>
                 <a class="ui button item" id="t3" data-id="3">
                     <i class="user icon"></i>Character</a>
-                <a class="ui button item" id="t4" data-id="4">
-                    <i class="clipboard icon"></i>Objectives</a>
             </div>
         </div>
         <div class="topmenu-space"></div>
@@ -72,21 +69,85 @@
                 </div>
                 <!--GAME INFOS-->
                 <div class="ui black message">
-                    Rank <font id="level"></font>
-                    <br />
-                    <font id="weapon"></font>
-                    <br />
-                    <font id="damage"></font>
-                    <div class="ui divider"></div>
-                    <div id="alert"></div>
-                    <div id="messages"></div>
-                    <div class="ui divided selection list">
-                        <a class="item">
-                            <div class="ui green horizontal label">Objective</div>
-                            <span id="objective"></span>
-                        </a>
+                    <div class="ui sticky grid center aligned">
+                        <div class="row">
+                            <div class="four wide column">
+                                <div class="ui white horizontal label">Weapon</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <div id="weapon"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide column">
+                                <div class="ui red horizontal label">Damage</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <div id="damage"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="four wide column">
+                                <div class="ui blue horizontal label">Rank</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <div id="level"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide column">
+                                <div class="ui yellow horizontal label">CP</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <div id="points"></div>
+                            </div>
+                        </div>
                     </div>
-                    </p>
+                    <div class="ui section divider"></div>
+
+
+                    <div class="ui sticky grid center aligned">
+                        <div class="row">
+                            <div class="sixteen wide column">
+                                <h4 class="ui centered green header">Objective</h4>
+                            </div>
+
+                            <div class="four wide column">
+                                <div class="ui green horizontal label">Goal</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <span id="objective"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="four wide column">
+                                <div class="ui yellow horizontal label">Reward</div>
+                            </div>
+                            <div class="twelve wide column">
+                                <span id="quest_rewards"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="sixteen wide column">
+                                <button id="ChangeObjective" class="fluid ui inverted green dollar basic button">New objective for
+                                    <span class="jaune">0.5 CP</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui section divider"></div>
+                    <div class="ui sticky grid center aligned">
+                        <div class="row">
+                            <div id="alert"></div>
+                        </div>
+                        <div class="row">
+                            <div id="messages"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!--RIGHT COLUMN-->
@@ -95,13 +156,13 @@
                 <div id="tab1" style="display: none; width: 100%;">
 
                     <div name="weap-type" class="ui inverted secondary menu" id="weap-select">
-                        <div id="W1" class="ui green button active" data-id="1"></div>
-                        <div id="W2" class="ui inverted green button" data-id="2"></div>
-                        <div id="W3" class="ui inverted green button" data-id="3"></div>
-                        <div id="W4" class="ui inverted green button" data-id="4"></div>
-                        <div id="W5" class="ui inverted green button" data-id="5"></div>
-                        <div id="W6" class="ui inverted green button" data-id="6"></div>
-                        <div id="W7" class="ui inverted green button" data-id="7"></div>
+                        <div id="W1" class="ui green dollar button active" data-id="1"></div>
+                        <div id="W2" class="ui inverted green dollar button" data-id="2"></div>
+                        <div id="W3" class="ui inverted green dollar  button" data-id="3"></div>
+                        <div id="W4" class="ui inverted green dollar button" data-id="4"></div>
+                        <div id="W5" class="ui inverted green dollar button" data-id="5"></div>
+                        <div id="W6" class="ui inverted green dollar button" data-id="6"></div>
+                        <div id="W7" class="ui inverted green dollar button" data-id="7"></div>
                     </div>
 
                     <table id="Wtab1" class="ui inverted table"></table>
@@ -146,25 +207,14 @@
                     </div>
                     <div class="ui black message">
                         <div id="btnReasign" onClick="ReasignPoints();" class="ui blue button">Reasign Points </div>
-                        <div id="btnPrestige" onClick="AddPrestige();" class="ui green inverted button">
-                            <i class="checkmark icon"></i>Change Character </div>
-                        <p>Points <font id="points"></font>
-                        </p>
+                        <div id="btnPrestige" onClick="AddPrestige();" class="ui green dollar inverted button">
+                            <i class="checkmark icon"></i>Change Character
+                        </div>
                     </div>
 
                     <table id="Vtab" class="ui inverted table"></table>
                 </div>
 
-                <!--OBJECTIVES-->
-                <div id="tab4" style="display: none; width: 100%;">
-                    <div class="ui black message">
-                        <p class="type2 title text" id="OTitle"></p>
-                        <p class="description" id="ORequired"></p>
-                        <p class="description" id="OReward"></p>
-                        <button id="ChangeObjective" class="fluid ui inverted green basic button">New objective for
-                            <font class="jaune">0.5 CP</font></button>
-                    </div>
-                </div>
             </div>
         </div>
         <div id="announce" class="big ui black label alert" style="display: none;">
@@ -175,7 +225,7 @@
     <div class="ui basic modal" id="modal-1">
         <div class="ui icon header">
             <i class="icon fas fa-comment-alt-exclamation"></i>
-            <font id="message-title" class="title">Message</font>
+            <span id="message-title" class="title">Message</span>
         </div>
         <div class="centrer content">
             <div class="ui black message">
@@ -186,7 +236,8 @@
             </div>
             <div class="actions">
                 <div id="closeMSG" class="ui cu button">
-                    <i class="remove icon"></i>Close </div>
+                    <i class="remove icon"></i>Close
+                </div>
             </div>
         </div>
     </div>
@@ -200,10 +251,10 @@
 
         <div class="centrer content">
             <div id="successtype" class="fluid ui inverted buttons">
-                <button data-id="0" class="ui green basic inverted button">Player</button>
-                <button data-id="1" class="ui green basic inverted button">Cash</button>
-                <button data-id="2" class="ui green basic inverted button">Missions</button>
-                <button data-id="3" class="ui green basic inverted button">Vehicles</button>
+                <button data-id="0" class="ui green dollar basic inverted button">Player</button>
+                <button data-id="1" class="ui green dollar basic inverted button">Cash</button>
+                <button data-id="2" class="ui green dollar basic inverted button">Missions</button>
+                <button data-id="3" class="ui green dollar basic inverted button">Vehicles</button>
             </div>
             <div class="surc">
                 <div id="Stab0" style="display: block;"></div>
@@ -214,7 +265,8 @@
         </div>
         <div class="actions">
             <div onclick="hideMenus();" class=" fluid ui red basic inverted button">
-                <i class="remove icon"></i>Close </div>
+                <i class="remove icon"></i>Close
+            </div>
         </div>
     </div>
     <!--STATS-->
@@ -226,19 +278,10 @@
 
         <div class="ui three column centered grid">
             <div class="column">
-                <div class='type2 text'>Vehicles</div>
+                <div class='type2 text'>Character</div>
                 <div id="boughtvehicles1"></div>
                 <div id="boughtvehicles2"></div>
                 <div id="boughtvehicles3"></div>
-                <div id="boughtvehicles4"></div>
-                <div id="boughtvehicles5"></div>
-                <div id="boughtvehicles6"></div>
-                <div id="boughtvehicles7"></div>
-                <div id="boughtvehicles8"></div>
-                <div id="boughtvehicles9"></div>
-                <div id="boughtvehicles10"></div>
-                <div id="boughtvehicles11"></div>
-                <div id="boughtvehicles12"></div>
             </div>
             <div class="column">
                 <div class='type2 text'>Weapons</div>
@@ -270,12 +313,14 @@
                 <div class='type2 text'>Multipliers</div>
                 <div id="cashmult"></div>
                 <div id="damagemult"></div>
+                <div id="stealthmult"></div>
                 <div id="prestigemult"></div>
             </div>
         </div>
         <div class="actions">
             <div onclick="hideMenus();" class="fluid ui red basic inverted button">
-                <i class="remove icon"></i>Close </div>
+                <i class="remove icon"></i>Close
+            </div>
         </div>
     </div>
     <!--TUTORIAL-->
@@ -291,9 +336,10 @@
         <div class="actions">
             <div class="large three ui buttons">
                 <button onClick="PrevTuto();" id="tuto-prev" class="ui inverted basic button">Previous</button>
-                <button onClick="NextTuto();" id="tuto-next" class="ui green inverted basic button">Next</button>
+                <button onClick="NextTuto();" id="tuto-next" class="ui green dollar inverted basic button">Next</button>
                 <div onclick="closeTutorial();" class="ui red basic inverted button">
-                    <i class="remove icon"></i>Close </div>
+                    <i class="remove icon"></i>Close
+                </div>
             </div>
         </div>
     </div>
@@ -311,21 +357,23 @@
         </div>
         <div class="actions">
             <div class="three ui buttons">
-                <button onClick="exportSave();" id="btnExport" class="ui green inverted button">Export</button>
-                <button onClick="importSave();" id="btnExport" class="ui green inverted button">Import</button>
+                <button onClick="exportSave();" id="btnExport" class="ui green dollar inverted button">Export</button>
+                <button onClick="importSave();" id="btnExport" class="ui green dollar inverted button">Import</button>
                 <button onClick="confirmReset();" id="Recommencer" class="ui red button">Reset</button>
             </div>
             <br />
             <br />
             <div class="fluid ui buttons">
                 <div onclick="hideMenus();" class="ui red basic inverted button">
-                    <i class="remove icon"></i>Close </div>
+                    <i class="remove icon"></i>Close
+                </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+     <script type="text/javascript" src="DATA/lodash.min.js"></script>
     <script type="text/javascript" src="DATA/bignumber.js"></script>
     <script type="text/javascript" src="DATA/numeral.min.js"></script>
     <script type="text/javascript" src="DATA/dropdown.min.js"></script>

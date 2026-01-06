@@ -1,4 +1,4 @@
-const version = "v5.1";
+const version = "v5.2";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -19,7 +19,7 @@ var p = {
 		level: 1,
 		bonus: 1,
 		price: [0, 0],
-		multipliers: [0, 0], //Cash - Damage
+		multipliers: [0, 0, 0], //Cash - Damage - Stealth
 	},
 	points: 0,
 	quest: {
@@ -173,7 +173,7 @@ function getRank(rankNBR) {
 	if (rankNBR >= 525) Class = "Silver"; // x25 each
 	if (rankNBR >= 1050) Class = "Gold"; // x50 each
 	if (rankNBR >= 2100) Class = "Platinum"; // x100 each
-	if (rankNBR >= 210000) Class = "Heavenly"; // x1000 each
+	if (rankNBR >= 27000) Class = "Heavenly"; // x1000 each
 	return "<font class='" + Class + "'>" + rankNBR + "</font>";
 }
 
@@ -221,43 +221,30 @@ function genGun() {
 }
 
 function genGun2() {
-	let luck = random(1, 20);
-	let quality = random(1, 100); // 3 Stars
+	let quality = _.random(1, 1010); // 3-8 Stars
+// 3: 40% = 1–400
+// 4: 30% = 401–700
+// 5: 15% = 701–850
+// 6: 10% = 851–950
+// 7: 5%  = 951–1000
+// 8: 1%  = 1001–1010 
 
-	if (luck > 10) quality = random(1, 100); //4 Stars
-	if (luck > 12) quality = random(1, 125); //5 Stars
-	if (luck > 14) quality = random(1, 150); //6 Stars
-	if (luck > 16) quality = random(1, 175); //6 Stars
-	if (luck > 18) quality = random(1, 200); //8 Stars
-	if (quality >= 1) {
-		setQuality(3);
-		ALERT("Rolled a " + GenStarLabel(3) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 3;
-	}
-	if (quality > 100) {
-		setQuality(4);
-		ALERT("Rolled a " + GenStarLabel(4) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 4;
-	}
-	if (quality > 125) {
-		setQuality(5);
-		ALERT("Rolled a " + GenStarLabel(5) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 5;
-	}
-	if (quality > 150) {
-		setQuality(6);
-		ALERT("Rolled a " + GenStarLabel(6) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 6;
-	}
-	if (quality > 175) {
-		setQuality(7);
-		ALERT("Rolled a " + GenStarLabel(7) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 7;
-	}
-	if (quality > 200) {
-		setQuality(8);
-		ALERT("Rolled a " + GenStarLabel(8) + weapons[p.Weapon.Id].name, 3);
-		if (p.quest.type === 3) p.quest.progression = 8;
+	let qualityMap = [
+		{ min: 1, max: 400, quality: 3 },
+		{ min: 401, max: 700, quality: 4 },
+		{ min: 701, max: 850, quality: 5 },
+		{ min: 851, max: 950, quality: 6 },
+		{ min: 951, max: 1000, quality: 7 },
+		{ min: 1001, max: 1010, quality: 8 },
+	];
+
+	for (let i = 0; i < qualityMap.length; i++) {
+		if (quality >= qualityMap[i].min && quality <= qualityMap[i].max) {
+			setQuality(qualityMap[i].quality);
+			ALERT("Rolled a " + GenStarLabel(qualityMap[i].quality) + " " + weapons[p.Weapon.Id].name, 3);
+			if (p.quest.type === 3) p.quest.progression = qualityMap[i].quality;
+			break;
+		}
 	}
 }
 
@@ -351,12 +338,22 @@ function GetMissionPrice(id, qty) {
 	let total = 0;
 
 	if (p.missions[id] != null) owned = p.missions[id];
-	CurPrice = (missions[id].price * Math.pow(missions[id].modifier, owned));
+	CurPrice = (missions[id].price * Math.pow(GetModifierByAmount(owned), owned));
 	for (var value = 0; value < qty; value++) {
-		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned + value));
+		Newprice = (missions[id].price * Math.pow(GetModifierByAmount(owned), owned + value));
 		total += Newprice;
 	}
 	return Math.round((total * 100) / 100);
+}
+
+function GetModifierByAmount(amount) {
+	Mapping = {
+		1: 1.05,
+		100: 1.025,
+		1000: 1.01,
+		10000: 1.005
+	};
+	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.05;
 }
 
 function GetMissionSPrice(id, qty) {
@@ -387,11 +384,21 @@ function GetQuestTitle() {
 	let TYPE = p.quest.type;
 	let MESSAGE = "";
 
-	if (TYPE === 0) MESSAGE = "Use your weapon <span class='jaune'>" + p.quest.objective[0] + "</span> times more.";
-	if (TYPE === 1) MESSAGE = "Increase by <span class='jaune'>" + (p.quest.objective[0] - p.quest.progression) + "</span> levels <span class='jaune'>" + missions[p.quest.objective[1]].name + "</span>";
+	if (TYPE === 0) MESSAGE = "Use your weapon <span class='jaune'>" + p.quest.objective[0] + "</span> times";
+	if (TYPE === 1) MESSAGE = "Increase <span class='jaune'>" + missions[p.quest.objective[1]].name + "</span> by <span class='jaune'>" + (p.quest.objective[0] - p.quest.progression) + "</span> levels";
 	if (TYPE === 2) MESSAGE = "Reach the rank " + getRank(p.quest.objective[0]);
-	if (TYPE === 3) MESSAGE = "Obtain a new weapon with " + p.quest.objective[1] + "or more";
+	if (TYPE === 3) MESSAGE = "Obtain a new weapon with " + p.quest.objective[1] + " or more";
 	return MESSAGE;
+}
+
+function getQuestType(id) {
+	let map = {
+		0: "Use Weapon",
+		1: "Increase Mission",
+		2: "Reach Rank",
+		3: "New Weapon",
+	};
+	return map[id];
 }
 
 function ListMissionsBought() {
@@ -404,118 +411,117 @@ function ListMissionsBought() {
 }
 
 function NewObjective() {
+	let QUEST = {
+		type: 0,
+		reward: 1,
+		progression: 0,
+		objective: [0, 0],
+	};
 	let filter = ListMissionsBought();
-	let chance = random(0, 30);
+	let chance = _.random(0, 100);
 	let maxStars = 0;
-
+	QUEST.objective[1] = null;
 	for (let star in p.Stars) {
 		if (p.Stars[star] < 8) maxStars = 1;
 	}
-	let type = random(0, 3);
-	if (maxStars === 1) type = random(0, 2);
+	QUEST.type = _.random(0, 3);
+	if (maxStars === 0) type = _.random(0, 2);
 
-	if (p.rank >= 50) {
-		chance = chance = random(0, 50);
-		if (p.rank >= 250) chance = random(0, 80);
-		if (p.rank >= 1000) chance = random(0, 100);
+	const rewardMap = [
+		{ min: 0, max: 9, reward: 0.05 },
+		{ min: 10, max: 29, reward: 0.1 },
+		{ min: 30, max: 49, reward: 0.25 },
+		{ min: 50, max: 79, reward: 0.5 },
+		{ min: 80, max: 94, reward: 1.0 },
+		{ min: 95, max: 98, reward: 1.5 },
+		{ min: 99, max: 100, reward: 2.5 },
+	];
+
+	const goal_main_Map = [
+		{ chance: 10, objective: [1, 10] },
+		{ chance: 30, objective: [10, 30] },
+		{ chance: 60, objective: [50, 100] },
+		{ chance: 80, objective: [100, 300] },
+		{ chance: 95, objective: [300, 500] },
+		{ chance: 99, objective: [500, 1000] },
+	];
+
+	const goal_mission_Map = [
+		{ chance: 10, objective: [1, 5] },
+		{ chance: 30, objective: [5, 10] },
+		{ chance: 60, objective: [10, 25] },
+		{ chance: 80, objective: [25, 50] },
+		{ chance: 95, objective: [50, 80] },
+		{ chance: 99, objective: [80, 10] },
+	];
+
+	let selectedReward = rewardMap.find(r => chance >= r.min && chance <= r.max);
+
+	let selectedObjective = goal_main_Map.find(o => chance < o.chance);
+	// USE X TIMES WEAPON 
+	if (QUEST.type === 0) {
+		QUEST.progression = 0;
+		QUEST.objective[0] = _.random(selectedObjective.objective[0], selectedObjective.objective[1]);
+		QUEST.reward = selectedReward.reward;
 	}
-	if (type == 0) {
-		p.quest.progression = 0;
-		if (chance < 30) {
-			p.quest.objective[0] = random(10, 30);
-			p.quest.reward = 0.1;
-		}
-		if (chance >= 30) {
-			p.quest.objective[0] = random(50, 100);
-			p.quest.reward = 0.2;
-		}
-		if (chance >= 80) {
-			p.quest.objective[0] = random(100, 300);
-			p.quest.reward = 0.5;
-		}
-	}
-	if (type == 1) {
+
+	// INCREASE X TIMES MISSION
+	if (QUEST.type === 1) {
+		let selectedObjective2 = goal_mission_Map.find(o => chance < o.chance);
 		let objective = filter[Math.floor(Math.random() * filter.length)];
-		p.quest.objective = [p.missions[objective], objective];
-		if (chance < 30) {
-			p.quest.objective[0] += random(1, 10);
-			p.quest.reward = 0.1;
-		}
-		if (chance >= 30 && chance < 60) {
-			p.quest.objective[0] += random(20, 30);
-			p.quest.reward = 0.2;
-		}
-		if (chance >= 60 && chance < 80) {
-			p.quest.objective[0] += random(25, 50);
-			p.quest.reward = 0.4;
-		}
-		if (chance >= 80) {
-			p.quest.objective[0] += random(50, 80);
-			p.quest.reward = 0.5;
-		}
-		p.quest.progression = p.missions[objective];
+
+		QUEST.objective = [p.missions[objective], objective];
+		QUEST.objective[0] = _.random(selectedObjective2.objective[0], selectedObjective2.objective[1]);
+		QUEST.reward = selectedReward.reward;
 	}
-	if (type == 2) {
-		if (chance < 30) {
-			p.quest.objective[0] = p.rank + random(5, 10);
-			p.quest.reward = 0.1;
-		}
-		if (chance >= 30) {
-			p.quest.objective[0] = p.rank + random(10, 30);
-			p.quest.reward = 0.2;
-		}
-		if (chance >= 50) {
-			p.quest.objective[0] = p.rank + random(50, 100);
-			p.quest.reward = 0.4;
-		}
-		if (chance >= 80) {
-			p.quest.objective[0] = p.rank + random(100, 300);
-			p.quest.reward = 0.5;
-		}
-		p.quest.objective[1] = null;
-		p.quest.progression = p.rank;
+	// REACH RANK X
+	if (QUEST.type === 2) {
+		QUEST.objective[0] = p.rank + _.random(selectedObjective.objective[0], selectedObjective.objective[1]);
+		QUEST.progression = p.rank;
+		QUEST.reward = selectedReward.reward;
 	}
-	if (type == 3) {
-		if (chance >= 0) {
-			p.quest.objective[0] = 3;
-			p.quest.objective[1] = GenStarLabel(3);
-			p.quest.reward = 0.1;
+
+	// BUY WEAPON WITH X STARS
+	if (QUEST.type === 3) {
+		let lowest = _.min(p.Stars);
+
+		const minStarChanceMap = [
+			{ star: 1, minChance: 0 },
+			{ star: 2, minChance: 0 },
+			{ star: 3, minChance: 0 },
+			{ star: 4, minChance: 30 },
+			{ star: 5, minChance: 60 },
+			{ star: 6, minChance: 80 },
+			{ star: 7, minChance: 95 },
+			{ star: 8, minChance: 99 },
+		];
+		
+		if (lowest >= 4 && chance < 30) chance = 30;
+		if (lowest >= 5 && chance < 60) chance = 60;
+		if (lowest >= 6 && chance < 80) chance = 80;
+		if (lowest >= 7 && chance < 95) chance = 95;
+		if (lowest >= 8) chance = 100;
+
+		for (let i = minStarChanceMap.length - 1; i >= 0; i--) {
+			if (chance >= minStarChanceMap[i].minChance) {
+				QUEST.objective[0] = minStarChanceMap[i].star;
+				QUEST.objective[1] = GenStarLabel(minStarChanceMap[i].star);
+				break;
+			}
 		}
-		if (chance >= 20) {
-			p.quest.objective[0] = 4;
-			p.quest.objective[1] = GenStarLabel(4);
-			p.quest.reward = 0.2;
-		}
-		if (chance >= 40) {
-			p.quest.objective[0] = 5;
-			p.quest.objective[1] = GenStarLabel(5);
-			p.quest.reward = 0.3;
-		}
-		if (chance >= 60) {
-			p.quest.objective[0] = 6;
-			p.quest.objective[1] = GenStarLabel(6);
-			p.quest.reward = 0.4;
-		}
-		if (chance >= 85) {
-			p.quest.objective[0] = 7;
-			p.quest.objective[1] = GenStarLabel(7);
-			p.quest.reward = 0.5;
-		}
-		if (chance >= 95) {
-			p.quest.objective[0] = 8;
-			p.quest.objective[1] = GenStarLabel(8);
-			p.quest.reward = 1.0;
-		}
-		p.quest.progression = 0;
+
+		QUEST.reward = selectedReward.reward;
+		QUEST.progression = 0;
 	}
-	p.quest.type = type;
+	p.quest = QUEST;
+	//console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
+	//console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
 }
 
 function getRewards() {
-	p.points += p.quest.reward;
+	p.points += p.quest.reward + (p.quest.reward * (p.prestige.multipliers[2] * 0.1));
 	p.CompletedQuests++;
 	NewObjective();
-	$("#colonne-m").append("<div id='objective' class='ui black message'><i id='close' class='close icon'></i><div class='header vert'>Objective completed !</div>New objective :<br /> " + GetQuestTitle() + "</div>");
 }
 
 function ReasignPoints() {

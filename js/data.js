@@ -30,7 +30,7 @@ var missions = {
 };
 
 var weapons = {
-    0: { name: "Fist", power: 0.5, price: 0, type: 0 , img: "images/weapons/weapon_unarmed.png" }, 
+    0: { name: "Fist", power: 0.5, price: 0, type: 0 , img: "images/weapons/weapon_melee_unarmed.webp" }, 
     1: { name: "Brass Knuckles", power: 1, price: 10, type: 1, img: "images/weapons/weapon_knuckle.png" },
     2: { name: "Knife", power: 2, price: 150, type: 1, img: "images/weapons/weapon_knife.png" },
     3: { name: "Nightstick", power: 5, price: 450, type: 1, img: "images/weapons/weapon_nightstick.png" },
@@ -53,7 +53,7 @@ var weapons = {
     20: { name: "Double Barrel Shotgun", power: 7000, price: 350000, type: 3, img: "images/weapons/weapon_dbshotgun.png" },
     21: { name: "Heavy Shotgun", power: 8000, price: 400000, type: 3, img: "images/weapons/weapon_heavyshotgun.png" },
     22: { name: "Musket", power: 9000, price: 450000, type: 3, img: "images/weapons/weapon_musket.png" },
-    23: { name: "Sawed-Off Shotgun", power: 10000, price: 500000, type: 3, img: "images/weapons/weapon_.png" },
+    23: { name: "Sawed-Off Shotgun", power: 10000, price: 500000, type: 3, img: "images/weapons/weapon_sawnoffshotgun.png" },
     24: { name: "Assault Shotgun", power: 12500, price: 625000, type: 3, img: "images/weapons/weapon_assaultshotgun.png" },
     25: { name: "Pump Shotgun Mk II", power: 15000, price: 750000, type: 3, img: "images/weapons/weapon_pumpshotgun_mk2.png" },
     26: { name: "Assault SMG", power: 200000, price: 10000000, type: 4, img: "images/weapons/weapon_assaultsmg.png" },
@@ -75,12 +75,12 @@ var weapons = {
     42: { name: "Marksman Rifle Mk II", power: 10000000, price: 500000000, type: 6, img: "images/weapons/weapon_marksmanrifle-mk2.png" },
     43: { name: "Precision Rifle", power: 30000000, price: 1000000000, type: 6, img: "images/weapons/weapon_precisionrifle.webp" },
     44: { name: "Heavy Sniper Mk II", power: 50000000, price: 2500000000, type: 6, img: "images/weapons/weapon_heavy-sniper-mk2.webp" },
-    45: { name: "Widowmaker", power: 250000000, price: 12500000000, type: 7, img: "images/weapons/weapon_rayminigun.png" },
-    46: { name: "Grenade Launcher", power: 500000000, price: 25000000000, type: 7, img: "images/weapons/weapon_grenadelauncher.png" },
-    47: { name: "Minigun", power: 1050000000, price: 62500000000, type: 7, img: "images/weapons/weapon_minigun.png" },
-    48: { name: "RPG", power: 1250000000, price: 75000000000, type: 7, img: "images/weapons/weapon_rpg.png" },
-    49: { name: "Homing Launcher", power: 2500000000, price: 37500000000, type: 7, img: "images/weapons/weapon_hominglauncher.png" },
-    50: { name: "Railgun", power: 10000000000, price: 75000000000, type: 7, img: "images/weapons/weapon_railgun.png" }, 
+    45: { name: "Widowmaker", power: 250000000, price: 12500000000, type: 7, img: "images/weapons/weapon_heavy_widowmaker.webp" },
+    46: { name: "Heavy Compact Grenade Launcher", power: 450000000, price: 22500000000, type: 7, img: "images/weapons/weapon_heavy_compact-grenade-launcher.webp" },
+    47: { name: "Grenade Launcher", power: 500000000, price: 25000000000, type: 7, img: "images/weapons/weapon_heavy_grenade-launcher.webp" },
+    48: { name: "Minigun", power: 1050000000, price: 62500000000, type: 7, img: "images/weapons/weapon_heavy_minigun.webp" },
+    49: { name: "RPG", power: 1250000000, price: 75000000000, type: 7, img: "images/weapons/weapon_heavy_rpg.webp" },
+    50: { name: "Homing Launcher", power: 2500000000, price: 37500000000, type: 7, img: "images/weapons/weapon_heavy_homing-launcher.webp" },
     51: { name: "Service Rifle", power:  1250000, price: 60000000, type: 5, img: "images/weapons/weapon_servicecarbine.webp" },
     52: { name: "Battle Rifle", power:   1500000, price: 75000000, type: 5, img: "images/weapons/weapon_battlerifle.png" },
     53: { name: "Military Rifle", power: 95000000, price: 85000000, type: 5, img: "images/weapons/weapon_militaryrifle.webp" },
@@ -90,11 +90,16 @@ var weapons = {
     57: { name: "Combat MG Mk II", power: 700000, price: 45000000, type: 4, img: "images/weapons/weapon_combatmg_mk2.png" },
     58: { name: "Stone Hatchet", power: 50, price: 3000, type: 1, img: "images/weapons/weapon_stonehatchet.webp" },
     59: { name: "The Shocker", power: 60, price: 4500, type: 1, img: "images/weapons/weapon_the-shocker.png" },
+    60: { name: "Railgun", power: 10000000000, price: 75000000000, type: 7, img: "images/weapons/weapon_heavy_railgun.webp" }, 
 };
 
 var vehicules = {
     0: { name: 'Stamina', price: 1, value: 0.1, type: 0 },
     1: { name: 'Strength', price: 1, value: 0.1, type: 1 },
+    2: { name: 'Stealth', price: 1, value: 0.1, type: 2 },
+    //3: { name: 'Agility', price: 1, value: 0.1, type: 3 },
+    //4: { name: 'Intelligence', price: 1, value: 0.1, type: 4 },
+    //5: { name: 'Luck', price: 1, value: 0.1, type: 5 },
 };
 
 var success = {
@@ -175,8 +180,8 @@ var texts = {
     weapons: ["Weapon", "Price", "Base Damage", "Purchase", "Roll stats", "Equip", "Equipped", "Actions"],
     missions: ["Buy", "Sell", "Level", "Value", "produce", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase"],
-    infos: ["New character slot available."],
-    character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP) for your new character.", "Current prestige multiplier at", "for earnt cash & damages."],
+    infos: ["<i class='fa-sharp fa-light fa-user-unlock'></i> New character slot available."],
+    character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "Character Points (CP) for your new character.", "Current prestige multiplier at", "for earnt cash & damage."],
     weapontype: ["", "Melee Weapons", "Handguns","Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
     stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],

@@ -1,17 +1,25 @@
 const suffixes = [
-	{ value: "1e3", symbol: "k" },
-	{ value: "1e6", symbol: "m" },
-	{ value: "1e9", symbol: "b" },
-	{ value: "1e12", symbol: "t" },
-	{ value: "1e15", symbol: "q" },
-	{ value: "1e18", symbol: "Q" },
-	{ value: "1e21", symbol: "s" },
-	{ value: "1e24", symbol: "S" },
-	{ value: "1e27", symbol: "o" },
-	{ value: "1e30", symbol: "n" },
-	{ value: "1e33", symbol: "d" },
-	{ value: "1e36", symbol: "u" },
-	{ value: "1e39", symbol: "D" }
+	{ value: "1e3", symbol: "k" }, // thousand
+	{ value: "1e6", symbol: "m" }, // million
+	{ value: "1e9", symbol: "b" }, // billion
+	{ value: "1e12", symbol: "t" }, // trillion
+	{ value: "1e15", symbol: "q" }, // quadrillion
+	{ value: "1e18", symbol: "Q" }, // quintillion
+	{ value: "1e21", symbol: "s" }, // sextillion
+	{ value: "1e24", symbol: "S" }, // septillion
+	{ value: "1e27", symbol: "o" }, // octillion
+	{ value: "1e30", symbol: "n" }, // nonillion
+	{ value: "1e33", symbol: "d" }, // decillion
+	{ value: "1e36", symbol: "u" }, // undecillion
+	{ value: "1e39", symbol: "D" }, // duodecillion
+	{ value: "1e42", symbol: "tD" }, // tredecillion
+	{ value: "1e45", symbol: "qD" }, // quattuordecillion
+	{ value: "1e48", symbol: "Qd" }, // quindecillion
+	{ value: "1e51", symbol: "sD" }, // sexdecillion
+	{ value: "1e54", symbol: "SD" }, // septendecillion
+	{ value: "1e57", symbol: "oD" }, // octodecillion
+	{ value: "1e60", symbol: "nD" }, // novemdecillion
+	{ value: "1e63", symbol: "V" } // vigintillion
 ];
 
 function formatBigNumberAbbrev(raw, decimals = 2) {
@@ -58,6 +66,12 @@ function fix(number_raw, type) {
 	if (type == 8) return numeral(numStr).format("0.00%");
 	if (type == 9) return numeral(numStr).format("0%");
 	if (type == 10) return numeral(numStr).format("0.0%");
+
+	if (type == "dynamic") {
+		if (number_raw != Math.round(number_raw)) VALUE = numeral(number_raw).format("0,0.0");
+        else VALUE = numeral(number_raw).format("0,0");
+		return VALUE;
+	}
 }
 
 function getDate() {

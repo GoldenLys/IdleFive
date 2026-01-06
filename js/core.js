@@ -1,4 +1,4 @@
-const version = "v5.42";
+const version = "v5.43";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -378,6 +378,7 @@ function buyV(id) {
 		p.prestige.multipliers[vehicules[id].type]++;
 	}
 	VehicleList();
+	getCashPS();
 	UpdateUI();
 }
 
@@ -484,7 +485,7 @@ function NewObjective() {
 
 	// BUY WEAPON WITH X STARS
 	if (QUEST.type === 3) {
-		let lowest = _.min(p.Stars);
+		let lowest = _.min(p.Stars.slice(1));
 
 		const minStarChanceMap = [
 			{ star: 1, minChance: 0 },
@@ -530,6 +531,7 @@ function ReasignPoints() {
 	p.spentpoints = 0;
 	p.prestige.multipliers = [0, 0, 0];
 	VehicleList();
+	getCashPS();
 	UpdateUI();
 }
 

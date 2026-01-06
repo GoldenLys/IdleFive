@@ -128,25 +128,17 @@ function MissionList() {
 
 function UpdateMissions() {
 	for (var i in missions) {
-		let CANBUY1 =  GetMissionPrice(i, 1) > p.cash ? ' disabled' : '';
-		let CANBUY10 =  GetMissionPrice(i, 10) > p.cash ? ' disabled' : '';
-		let CANBUY100 =  GetMissionPrice(i, 100) > p.cash ? ' disabled' : '';
-		let CANSELL1 = p.missions[i] < 1 ? 'disabled' : '';
-		let CANSELL10 = p.missions[i] < 10 ? 'disabled' : '';
-		let CANSELL100 = p.missions[i] < 100 ? 'disabled' : '';
-		let ENABLED = p.missions[i] < 1 ? '' : 'azn';
-		let ENABLED_WEIGHT = p.missions[i] < 1 ? '' : 'bold';
-		$("#mission-" + i).attr("class", ENABLED);
+		$("#mission-" + i).attr("class", p.missions[i] < 1 ? '' : 'item-active');
 		$("#mission-" + i + "-level").html(p.missions[i]);
 		$("#mission-" + i + "-value").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(GetMissionPrice(i, 1), 1));
-		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + ENABLED_WEIGHT);
+		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + p.missions[i] < 1 ? '' : 'bold');
 		$("#mission-" + i + "-cost").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
-		$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button" + CANBUY1);
-		$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button" + CANBUY10);
-		$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button" + CANBUY100);
-		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + CANSELL1);
-		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + CANSELL10);
-		$("#mission-" + i + "-btnS100").attr("class", "ui red button " + CANSELL100);
+		$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button" + (GetMissionPrice(i, 1) > p.cash ? ' disabled' : ''));
+		$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button" + (GetMissionPrice(i, 10) > p.cash ? ' disabled' : ''));
+		$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button" + (GetMissionPrice(i, 100) > p.cash ? ' disabled' : ''));
+		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + (p.missions[i] < 1 ? 'disabled' : ''));
+		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + (p.missions[i] < 10 ? 'disabled' : ''));
+		$("#mission-" + i + "-btnS100").attr("class", "ui red button " + (p.missions[i] < 100 ? 'disabled' : ''));
 
 		if (getLatestUnlockedMissionId("latest") === "allUnlocked") {
 			$("#NextMissionUnlock").hide();
@@ -181,7 +173,7 @@ function WeaponList() {
 
 function UpdateWeapons() {
 	for (var i in weapons) {
-		let ENABLED = p.WeaponBought[i] < 1 ? '' : 'azn';
+		let ENABLED = p.WeaponBought[i] < 1 ? '' : 'item-active';
 		let CANBUY = weapons[i].price * 1 > p.cash ? 'rouge' : 'blanc';
 		if (p.WeaponBought[i] > 0) { weapons[i].price * 1.25 > p.cash ? 'rouge' : 'blanc'; }
 		let COST = p.WeaponBought[i] < 1 ? fix(weapons[i].price, 1) : fix(weapons[i].price * 1.25, 1);
@@ -192,7 +184,7 @@ function UpdateWeapons() {
 		let PURCHASE_BTN = p.WeaponBought[i] > 0 ? "fluid ui vertical animated button" : "fluid ui button";
 		let EQUIP_BTN = p.WeaponBought[i] < 1 ? " disabled" : "";
 		let EQUIP_TEXT = "Equip";
-		if (ENABLED === 'azn' && p.Weapon.Id == i) { ENABLED = 'azn-active'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
+		if (ENABLED === 'item-active' && p.Weapon.Id == i) { ENABLED = 'item-equipped'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
 		if (p.Stars[i] === 8) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
 		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);

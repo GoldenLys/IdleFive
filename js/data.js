@@ -80,7 +80,7 @@ var weapons = {
     47: { name: "Grenade Launcher", power: 500000000, price: 25000000000, type: 7, img: "images/weapons/weapon_heavy_grenade-launcher.webp" },
     48: { name: "Minigun", power: 1050000000, price: 62500000000, type: 7, img: "images/weapons/weapon_heavy_minigun.webp" },
     49: { name: "RPG", power: 1250000000, price: 75000000000, type: 7, img: "images/weapons/weapon_heavy_rpg.webp" },
-    50: { name: "Homing Launcher", power: 2500000000, price: 37500000000, type: 7, img: "images/weapons/weapon_heavy_homing-launcher.webp" },
+    50: { name: "Homing Launcher", power: 2500000000, price: 100000000000, type: 7, img: "images/weapons/weapon_heavy_homing-launcher.webp" },
     51: { name: "Service Rifle", power:  1250000, price: 60000000, type: 5, img: "images/weapons/weapon_servicecarbine.webp" },
     52: { name: "Battle Rifle", power:   1500000, price: 75000000, type: 5, img: "images/weapons/weapon_battlerifle.png" },
     53: { name: "Military Rifle", power: 95000000, price: 85000000, type: 5, img: "images/weapons/weapon_militaryrifle.webp" },
@@ -90,7 +90,7 @@ var weapons = {
     57: { name: "Combat MG Mk II", power: 700000, price: 45000000, type: 4, img: "images/weapons/weapon_combatmg_mk2.png" },
     58: { name: "Stone Hatchet", power: 50, price: 3000, type: 1, img: "images/weapons/weapon_stonehatchet.webp" },
     59: { name: "The Shocker", power: 60, price: 4500, type: 1, img: "images/weapons/weapon_the-shocker.png" },
-    60: { name: "Railgun", power: 10000000000, price: 75000000000, type: 7, img: "images/weapons/weapon_heavy_railgun.webp" }, 
+    60: { name: "Railgun", power: 10000000000, price: 750000000000, type: 7, img: "images/weapons/weapon_heavy_railgun.webp" }, 
 };
 
 var vehicules = {

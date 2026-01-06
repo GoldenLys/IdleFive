@@ -355,11 +355,11 @@ body ::-webkit-scrollbar-track {
 }
 
 .item-active {
-    background-color: rgb(55 77 65 / 50%);
+    background-color: rgb(55 77 65 / 50%) !important;
 }
 
 .item-equipped {
-    background-color: rgba(52 180 52 / 15%);
+    background-color: rgba(52 180 52 / 15%) !important;
 }
 
 .item-equipped>td:first-child {

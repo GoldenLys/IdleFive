@@ -48,8 +48,8 @@ var weapons = [
     { name: "Battle Axe", power: 20, price: 1950, type: 1, img: "images/weapons/weapon_melee_battle-axe.webp" },
     { name: "Machete", power: 25, price: 2500, type: 1, img: "images/weapons/weapon_melee_machete.webp" },
     { name: "Wrench", power: 30, price: 2750, type: 1, img: "images/weapons/weapon_melee_pipe-wrench.webp" },
-    { name: "Stone Hatchet", power: 50, price: 3000, type: 1, img: "images/weapons/weapon_stonehatchet.webp" },
-    { name: "The Shocker", power: 60, price: 4500, type: 1, img: "images/weapons/weapon_the-shocker.webp" },
+    { name: "Stone Hatchet", power: 50, price: 3000, type: 1, img: "images/weapons/weapon_melee-stonehatchet.webp" },
+    { name: "The Shocker", power: 60, price: 4500, type: 1, img: "images/weapons/weapon_melee-the-shocker.webp" },
 
     // Handguns
     { name: "Stun Gun", power: 400, price: 10000, type: 2, img: "images/weapons/weapon_handguns_stun-gun.webp" },
@@ -57,13 +57,13 @@ var weapons = [
     { name: "Combat Pistol", power: 500, price: 15000, type: 2, img: "images/weapons/weapon_handguns_combat-pistol.webp" },
     { name: "Double Action Revolver", power: 600, price: 20000, type: 2, img: "images/weapons/weapon_handguns_double-action-revolver.webp" },
     { name: "Marksman Pistol", power: 700, price: 22500, type: 2, img: "images/weapons/weapon_handguns_marksman.webp" },
-    { name: "Ceramic Pistol", power: 2500, price: 95000, type: 2, img: "images/weapons/weapon_ceramicpistol.webp" },
-    { name: "WM29 Pistol", power: 3000, price: 100000, type: 2, img: "images/weapons/weapon_wm29.webp" },
+    { name: "Ceramic Pistol", power: 2500, price: 95000, type: 2, img: "images/weapons/weapon_handguns-ceramicpistol.webp" },
+    { name: "WM29 Pistol", power: 3000, price: 100000, type: 2, img: "images/weapons/weapon_handguns-wm29.webp" },
     { name: "SNS Pistol Mk II", power: 750, price: 25000, type: 2, img: "images/weapons/weapon_handguns_sns-pistol-mk2.webp" },
     { name: "Pistol Mk II", power: 1000, price: 50000, type: 2, img: "images/weapons/weapon_handguns_pistol-mk2.webp" },
     { name: "AP Pistol", power: 1500, price: 75000, type: 2, img: "images/weapons/weapon_handguns_ap-pistol.webp" },
     { name: "Heavy Pistol", power: 2000, price: 85000, type: 2, img: "images/weapons/weapon_handguns_heavy-pistol.webp" },
-    { name: "Perico Pistol", power: 3500, price: 125000, type: 2, img: "images/weapons/weapon__pericopistol.webp" },
+    { name: "Perico Pistol", power: 3500, price: 125000, type: 2, img: "images/weapons/weapon_handguns-pericopistol.webp" },
     { name: "Pistol .50", power: 4500, price: 225000, type: 2, img: "images/weapons/weapon_handguns_pistol-50.webp" },
     { name: "Navy Revolver", power: 5000, price: 245000, type: 2, img: "images/weapons/weapon_handguns_navy-revolver.webp" },
     { name: "Heavy Revolver Mk II", power: 7500, price: 250000, type: 2, img: "images/weapons/weapon_handguns_heavy-revolver-mk2.webp" },
@@ -78,20 +78,20 @@ var weapons = [
     { name: "Sawed-Off Shotgun",     power: 60000, price: 500000, type: 3, img: "images/weapons/weapon_shotguns_sawed-off-shotgun.webp" },
     { name: "Assault Shotgun",       power: 70000, price: 625000, type: 3, img: "images/weapons/weapon_shotguns_assault-shotgun.webp" },
     { name: "Pump Shotgun Mk II",    power: 85000, price: 750000, type: 3, img: "images/weapons/weapon_shotguns_pump-shotgun-mk2.webp" },
-    { name: "Combat Shotgun",        power: 95000, price: 850000, type: 3, img: "images/weapons/weapon_combatshotgun.webp" },
+    { name: "Combat Shotgun",        power: 95000, price: 850000, type: 3, img: "images/weapons/weapon_shotguns-combatshotgun.webp" },
 
     // Submachine Guns
     { name: "Assault SMG",           power: 200000, price:  19500000, type: 4, img: "images/weapons/weapon_machine-guns_assault-smg.webp" },
     { name: "Gusenberg Sweeper",     power: 250000, price:  25000000, type: 4, img: "images/weapons/weapon_machine-guns_gusenberg-sweeper.webp" },
-    { name: "Machine Pistol",        power: 300000, price:  35000000, type: 4, img: "images/weapons/weapon_machine-guns_machine-pistol.webp" },
-    { name: "Unholy Hellbringer",    power: 500000, price:  75000000, type: 4, img: "images/weapons/weapon_machine-guns_unholy-hellbringer.webp" },
-    { name: "Micro SMG",             power: 600000, price:  20000000, type: 4, img: "images/weapons/weapon_machine-guns_micro-smg.webp" },
-    { name: "Mini SMG",              power: 750000, price:  22500000, type: 4, img: "images/weapons/weapon_machine-guns_mini-smg.webp" },
-    { name: "Combat PDW",            power: 900000, price:  25000000, type: 4, img: "images/weapons/weapon_combatpdw.webp" },
-    { name: "SMG Mk II",             power: 1000000, price: 30000000, type: 4, img: "images/weapons/weapon_machine-guns_smg-mk2.webp" },
-    { name: "Tactical SMG",          power: 1150000, price: 35000000, type: 4, img: "images/weapons/weapon_tacticalsmg.webp" },
-    { name: "MG",                    power: 1150000, price: 35000000, type: 4, img: "images/weapons/weapon_machine-guns_mg.webp" },
-    { name: "Combat MG Mk II",       power: 1500000, price: 45000000, type: 4, img: "images/weapons/weapon_machine-guns_combat-mg-mk2.webp" },
+    { name: "Machine Pistol",        power: 300000, price:  27500000, type: 4, img: "images/weapons/weapon_machine-guns_machine-pistol.webp" },
+    { name: "Unholy Hellbringer",    power: 500000, price:  29500000, type: 4, img: "images/weapons/weapon_machine-guns_unholy-hellbringer.webp" },
+    { name: "Micro SMG",             power: 600000, price:  30500000, type: 4, img: "images/weapons/weapon_machine-guns_micro-smg.webp" },
+    { name: "Mini SMG",              power: 750000, price:  32500000, type: 4, img: "images/weapons/weapon_machine-guns_mini-smg.webp" },
+    { name: "Combat PDW",            power: 900000, price:  35000000, type: 4, img: "images/weapons/weapon_machine-guns_combatpdw.webp" },
+    { name: "SMG Mk II",             power: 1000000, price: 40000000, type: 4, img: "images/weapons/weapon_machine-guns_smg-mk2.webp" },
+    { name: "Tactical SMG",          power: 1150000, price: 45000000, type: 4, img: "images/weapons/weapon_machine-guns_tacticalsmg.webp" },
+    { name: "MG",                    power: 1150000, price: 47500000, type: 4, img: "images/weapons/weapon_machine-guns_mg.webp" },
+    { name: "Combat MG Mk II",       power: 1500000, price: 50000000, type: 4, img: "images/weapons/weapon_machine-guns_combat-mg-mk2.webp" },
 
     // Assault Rifles
     { name: "Compact Rifle",         power: 1750000, price:   65000000, type: 5, img: "images/weapons/weapon_assault-rifles_compact-rifle.webp" },
@@ -108,7 +108,7 @@ var weapons = [
 
     // Sniper Rifles
     { name: "Sniper Rifle",          power: 500000000, price:  10000000000, type: 6, img: "images/weapons/weapon_sniper-sniperrifle.webp" },
-    { name: "Marksman Rifle Mk II",  power: 750000000, price:  15000000000, type: 6, img: "images/weapons/weapon_sniper-marksmanrifle-mk2.png" },
+    { name: "Marksman Rifle Mk II",  power: 750000000, price:  15000000000, type: 6, img: "images/weapons/weapon_sniper-marksmanrifle-mk2.webp" },
     { name: "Precision Rifle",       power: 850000000, price:  25000000000, type: 6, img: "images/weapons/weapon_sniper-precisionrifle.webp" },
     { name: "Heavy Sniper Mk II",    power: 1700000000, price: 75000000000, type: 6, img: "images/weapons/weapon_sniper-heavy-sniper-mk2.webp" },
     

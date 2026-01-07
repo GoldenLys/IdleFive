@@ -1,4 +1,4 @@
-const version = "v5.6";
+const version = "v5.62";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -449,13 +449,9 @@ function NewObjective() {
 	};
 	let filter = ListMissionsBought();
 	let chance = _.random(0, 100);
-	let maxStars = 0;
 	QUEST.objective[1] = null;
-	for (let star in p.Stars) {
-		if (p.Stars[star] < 8) maxStars = 1;
-	}
 	QUEST.type = _.random(0, 3);
-	if (maxStars === 0) type = _.random(0, 2);
+	if (QUEST.type === 1 && filter.length === 0) QUEST.type = 0;
 
 	const rewardMap = [
 		{ min: 0, max: 9, reward: 0.05 },
@@ -544,8 +540,8 @@ function NewObjective() {
 		QUEST.progression = 0;
 	}
 	p.quest = QUEST;
-	//console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
-	//console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
+	console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
+	console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
 }
 
 function getRewards() {

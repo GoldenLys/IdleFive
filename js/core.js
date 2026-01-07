@@ -1,4 +1,4 @@
-const version = "v5.62";
+const version = "v5.63";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -540,8 +540,8 @@ function NewObjective() {
 		QUEST.progression = 0;
 	}
 	p.quest = QUEST;
-	console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
-	console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
+	//console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
+	//console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
 }
 
 function getRewards() {

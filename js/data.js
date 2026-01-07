@@ -259,5 +259,5 @@ var texts = {
     character: ["Change character", "You are actually using the character number", "You must reach the rank", "and get", "to switch to another character.", "You can currently get", "<span class='jaune'><i class='fa-light fa-coin'></i> Chips</span> for your new character.", "Current prestige multiplier at", "(+10% per character) for earnt cash & damage."],
     weapontype: ["", "Melee Weapons", "Handguns", "Shotguns", "Machine Guns", "Assault Rifles", "Sniper Rifles", "Heavy Weapons"],
     success: ["success obtained.", "Player", "Cash", "Missions", "Vehicles", "Close"],
-    stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets.", "per second.", "per click.", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
+    stats: ["Save", "Statistics", "Export", "Import", "New Account", "Close", "in your pockets", "per second", "per click", "bought", "You started the", "and played for", "Current version", "Options", "Toggle backgrounds"],
 };

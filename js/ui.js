@@ -29,28 +29,26 @@
 	//GENERAL STATS
 	$("#ObjectivesCompleted").html(p.CompletedQuests + " Objectives completed.");
 	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
-	$("#highestrank").html("Highest rank achieved: <font class='jaune'>" + getRank(p.stats.highestrank) + "</font>.");
-	$("#totalweaponsbought").html("Total weapons bought: <font class='jaune'>" + p.stats.totalweaponsbought + "</font>.");
-	$("#totalweaponrerolled").html("Total weapon rerolled: <font class='jaune'>" + p.stats.totalweaponrerolled + "</font>.");
+	$("#highestrank").html("Highest rank achieved: <font class='jaune'>" + getRank(p.stats.highestrank) + "</font>");
+	$("#totalsuccess").html("Total successes unlocked: <font class='jaune'>" + SuccessCount() + "</font>/" + success.length);
 	// CHARACTER STATS
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>.");
-	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.points, 2) + "</font> points spent.");
+	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.points, 2) + "</font> points spent");
 	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/1000");
 	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/1000");
 	$("#boughtvehicles3").html("Stealth (rewards) multiplier <font class='bold jaune'>" + p.prestige.multipliers[2] + "</font>/1000");
 	//WEAPONS - STATS
 	$("#lowestweaponrank").html("Lowest weapon rank: " + GenStarLabel(_.min(p.Stars.slice(1))));
 	$("#highestweaponrank").html("Highest weapon rank: " + GenStarLabel(_.max(p.Stars.slice(1))));
-	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons acquired.");
-	for (var TYPE = 1; TYPE < 8; TYPE++) {
-		$("#weaponsT" + TYPE).html(p.WeaponType[TYPE] + " " + texts.weapontype[TYPE] + " acquired.");
-	}
+	$("#weapons-bought").html("Current weapons acquired: " + WeaponsNBR + "/" + AllWeaponsNBR);
+	$("#totalweaponsbought").html("Total weapons bought: <font class='jaune'>" + p.stats.totalweaponsbought + "</font>");
+	$("#totalweaponrerolled").html("Total weapon rerolled: <font class='jaune'>" + p.stats.totalweaponrerolled + "</font>");
 	//CASH STATS
 	$("#cashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + CashText + "</font> " + texts.stats[6]);
 	$("#cashpscount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + CashPSText + "</font> " + texts.stats[7]);
 	$("#addcashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + ClicCashText + "</font> " + texts.stats[8]);
-	$("#totalspentcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalspentcash, 2) + "</font> total cash spent.");
-	$("#totalcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalcash, 2) + "</font> total cash earned.");
+	$("#totalspentcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalspentcash, 2) + "</font> total cash spent");
+	$("#totalcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalcash, 2) + "</font> total cash earned");
 	//MULTIPLIERS - STATS
 	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.prestige.bonus, 9) + "</font>");
 	$("#cashmult").html("Cash (stamina) multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 9) + "</font>");
@@ -69,8 +67,8 @@
 	if ($('#tab1').is(":visible")) UpdateWeapons();
 	if ($('#tab2').is(":visible")) UpdateMissions();
 	if ($('#tab3').is(":visible")) VehicleList();
+	$("#successcount").html("<font class='SuccessText'>" + SuccessCount() + "</font>/"+ success.length + " " + texts.success[0]);
 	SuccessList();
-	SuccessCount();
 	redrawTables();
 }
 
@@ -321,7 +319,7 @@ function SuccessCount() {
 		if (succes.type == 4) { if (p.rank >= succes.value) { p.succes[i] = 1; } }
 		if (succes.type == 5) { if (p.prestige.level >= succes.value) { p.succes[i] = 1; } else { p.succes[i] = 0; } }
 	}
-	$("#successcount").html("<font class='SuccessText'>" + succeslevel + "</font>/"+ success.length + " " + texts.success[0]);
+	return succeslevel;
 }
 
 function SuccessList() {

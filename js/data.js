@@ -233,7 +233,7 @@ var success = [
     { name: "Rank 28000", desc: "Reached rank 28000.", type: 4, value: 28000, },
     { name: "Rank 29000", desc: "Reached rank 29000.", type: 4, value: 29000, },
     { name: "Rank 30000", desc: "Reached rank 30000.", type: 4, value: 30000, },
-    { name: "Rank 50000", desc: "Reached rank 20000.", type: 4, value: 50000, },
+    { name: "Rank 50000", desc: "Reached rank 50000.", type: 4, value: 50000, },
     { name: "Rank 100000", desc: "Reached rank 100000.", type: 4, value: 100000, },
     //END OF TYPE 4
 

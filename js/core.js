@@ -1,4 +1,4 @@
-const version = "v5.73";
+const version = "v5.74";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -191,6 +191,7 @@ function getRank(rankNBR) {
 function buyG(id) {
 	let COST = weapons[id].price;
 
+	if (p.WeaponBought[id] == 1 && p.stars[id] === 10) return;
 	if (p.cash >= COST) {
 		p.Weapon.Id = id;
 		p.Weapon.Power = weapons[id].power;
@@ -370,7 +371,7 @@ function GetMissionPrice(id, qty) {
 	powers.push(current);
 
 	for (let i = 1; i < qty; i++) {
-		current = current.times(modifier); // modifier^(owned + i) = modifier^(owned + i - 1) * modifier
+		current = current.times(modifier);
 		powers.push(current);
 	}
 
@@ -460,6 +461,7 @@ function NewObjective() {
 	QUEST.objective[1] = null;
 	QUEST.type = _.random(0, 3);
 	if (QUEST.type === 1 && filter.length === 0) QUEST.type = 0;
+	if (QUEST.type === 3 && _.min(p.Stars.slice(1) === 10)) QUEST.type = 0;
 
 	const rewardMap = [
 		{ min: 0, max: 9, reward: 0.05 },
@@ -506,6 +508,7 @@ function NewObjective() {
 
 		QUEST.objective = [p.missions[objective], objective];
 		QUEST.objective[0] = _.random(selectedObjective2.objective[0], selectedObjective2.objective[1]);
+		if (QUEST.objective[1] == null) QUEST.objective[1] = 0;
 		QUEST.reward = selectedReward.reward;
 	}
 	// REACH RANK X

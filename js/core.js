@@ -1,4 +1,4 @@
-const version = "v5.74";
+const version = "v5.75";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -365,7 +365,6 @@ function GetMissionPrice(id, qty) {
 	let total = new BigNumber(0);
 	let base = new BigNumber(missions[id].price);
 	let modifier = new BigNumber(GetModifierByAmount(owned));
-
 	let powers = [];
 	let current = modifier.pow(owned);
 	powers.push(current);
@@ -393,17 +392,19 @@ function GetModifierByAmount(amount) {
 }
 
 function GetMissionSPrice(id, qty) {
-	let owned = p.missions[id] || 0;
-	let total = new BigNumber(0);
-	let base = new BigNumber(missions[id].price);
-	let modifier = new BigNumber(missions[id].modifier);
+    let owned = p.missions[id] || 0;
+    let total = new BigNumber(0);
+    let base = new BigNumber(missions[id].price);
+    let modifier = new BigNumber(missions[id].modifier);
+    let current = modifier.pow(owned);
+    let inv = new BigNumber(1).div(modifier);
 
-	for (let i = 0; i < qty; i++) {
-		let price = base.times(modifier.pow(owned - i));
-		total = total.plus(price);
-	}
+    for (let i = 0; i < qty; i++) {
+        total = total.plus(base.times(current));
+        current = current.times(inv); // next power down
+    }
 
-	return total.div(2).toNumber();
+    return total.div(2).toNumber();
 }
 
 function buyV(id) {

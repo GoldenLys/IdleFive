@@ -29,7 +29,7 @@
 	//GENERAL STATS
 	$("#ObjectivesCompleted").html(p.CompletedQuests + " Objectives completed.");
 	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
-	$("#highestrank").html("Highest rank achieved: <font class='jaune'>" + getRank(p.stats.highestrank) + "</font>");
+	$("#highestrank").html("Highest rank achieved: " + getRank(p.stats.highestrank));
 	$("#totalsuccess").html("Total successes unlocked: <font class='jaune'>" + SuccessCount() + "</font>/" + success.length);
 	// CHARACTER STATS
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>");

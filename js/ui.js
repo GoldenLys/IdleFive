@@ -30,9 +30,9 @@
 	$("#cashpscount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc vert'>" + CashPSText + "</font> " + texts.stats[7]);
 	$("#addcashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc vert'>" + ClicCashText + "</font> " + texts.stats[8]);
 	//VEHICLES - STATS
-	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/150");
-	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/150");
-	$("#boughtvehicles3").html("Stealth (rewards) multiplier <font class='bold jaune'>" + p.prestige.multipliers[2] + "</font>/150");
+	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/1000");
+	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/1000");
+	$("#boughtvehicles3").html("Stealth (rewards) multiplier <font class='bold jaune'>" + p.prestige.multipliers[2] + "</font>/1000");
 	//WEAPONS - STATS
 	$("#weapons-bought").html(WeaponsNBR + "/" + AllWeaponsNBR + " weapons acquired.");
 	for (var TYPE = 1; TYPE < 8; TYPE++) {
@@ -186,7 +186,7 @@ function UpdateWeapons() {
 		let EQUIP_BTN = p.WeaponBought[i] < 1 ? " disabled" : "";
 		let EQUIP_TEXT = "Equip";
 		if (ENABLED === 'item-active' && p.Weapon.Id == i) { ENABLED = 'item-equipped'; EQUIP_BTN = " inverted basic"; EQUIP_TEXT = "Equipped"; }
-		if (p.Stars[i] === 8 && p.WeaponBought[i] > 0) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
+		if (p.Stars[i] === 10 && p.WeaponBought[i] > 0) { PURCHASE_TEXT = "Maxed"; PURCHASE_BTN = "fluid ui button disabled"; ENABLE_BTN = "basic green dollar"; }
 		$("#weapon-" + i).attr("class", "ui center aligned " + ENABLED);
 		$("#weapon-" + i + "-name").html(`${PURCHASED_TEXT}${GenStarLabel(p.Stars[i])} <font class="${getQuality(p.Stars[i])}">${weapons[i].name}</font> </br><i class="fa-thin fa-crosshairs-simple rouge"></i> ${fix(weapons[i].power * (GetWeaponMult(i) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1)}`);
 		$("#weapon-" + i + "-price").attr("class", "ui center aligned " + CANBUY);
@@ -220,7 +220,7 @@ function VehicleList() {
 
 		if (p.prestige.multipliers[i] > 0) level = fix(p.prestige.multipliers[i], 0);
 
-		if (p.prestige.multipliers[i] >= 150) BUTTON = "<button class='fluid ui button basic red'>Maxed</button>";
+		if (p.prestige.multipliers[i] >= 1000) BUTTON = "<button class='fluid ui button basic red'>Maxed</button>";
 
 		var vehiclesDIV = $(
 			"<tr>" +
@@ -378,19 +378,27 @@ function MESSAGE(title, message) {
 function GetMultPrice(id) {
 	if (p.prestige.multipliers[id] == null) p.prestige.multipliers[id] = 0;
 	var price = 1;
-	if (p.prestige.multipliers[id] >= 1) price = 2;
-	if (p.prestige.multipliers[id] >= 10) price = 3;
-	if (p.prestige.multipliers[id] >= 20) price = 4;
-	if (p.prestige.multipliers[id] >= 30) price = 5;
-	if (p.prestige.multipliers[id] >= 40) price = 6;
-	if (p.prestige.multipliers[id] >= 50) price = 8;
-	if (p.prestige.multipliers[id] >= 60) price = 10;
-	if (p.prestige.multipliers[id] >= 70) price = 12;
-	if (p.prestige.multipliers[id] >= 80) price = 15;
-	if (p.prestige.multipliers[id] >= 90) rice = 25;
-	if (id == 0 && p.prestige.multipliers[id] >= 150) price = 999999999;
-	if (id == 1 && p.prestige.multipliers[id] >= 150) price = 999999999;
-	if (id == 2 && p.prestige.multipliers[id] >= 150) price = 999999999
+	if (p.prestige.multipliers[id] >= 10) price = 1.25;
+	if (p.prestige.multipliers[id] >= 20) price = 1.5;
+	if (p.prestige.multipliers[id] >= 30) price = 2;
+	if (p.prestige.multipliers[id] >= 40) price = 2.5;
+	if (p.prestige.multipliers[id] >= 50) price = 4;
+	if (p.prestige.multipliers[id] >= 60) price = 5;
+	if (p.prestige.multipliers[id] >= 70) price = 5.5;
+	if (p.prestige.multipliers[id] >= 80) price = 6;
+	if (p.prestige.multipliers[id] >= 90) price = 6.5;
+	if (p.prestige.multipliers[id] >= 100) price = 7;
+	if (p.prestige.multipliers[id] >= 200) price = 8;
+	if (p.prestige.multipliers[id] >= 300) price = 9;
+	if (p.prestige.multipliers[id] >= 400) price = 10;
+	if (p.prestige.multipliers[id] >= 500) price = 11;
+	if (p.prestige.multipliers[id] >= 600) price = 12;
+	if (p.prestige.multipliers[id] >= 700) price = 13;
+	if (p.prestige.multipliers[id] >= 800) price = 14;
+	if (p.prestige.multipliers[id] >= 900) price = 15;
+	if (id == 0 && p.prestige.multipliers[id] >= 1000) price = 999999999;
+	if (id == 1 && p.prestige.multipliers[id] >= 1000) price = 999999999;
+	if (id == 2 && p.prestige.multipliers[id] >= 1000) price = 999999999
 	return price;
 }
 

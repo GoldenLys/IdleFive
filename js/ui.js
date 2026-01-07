@@ -33,7 +33,7 @@
 	$("#totalsuccess").html("Total successes unlocked: <font class='jaune'>" + SuccessCount() + "</font>/" + success.length);
 	// CHARACTER STATS
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>");
-	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.points, 2) + "</font> points spent");
+	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.spentpoints, 2) + "</font> points spent");
 	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/1000");
 	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/1000");
 	$("#boughtvehicles3").html("Stealth (rewards) multiplier <font class='bold jaune'>" + p.prestige.multipliers[2] + "</font>/1000");

@@ -110,7 +110,7 @@ var weapons = [
     { name: "Sniper Rifle",          power: 500000000, price:  10000000000, type: 6, img: "images/weapons/weapon_sniper-sniperrifle.webp" },
     { name: "Marksman Rifle Mk II",  power: 750000000, price:  15000000000, type: 6, img: "images/weapons/weapon_sniper-marksmanrifle-mk2.webp" },
     { name: "Precision Rifle",       power: 850000000, price:  25000000000, type: 6, img: "images/weapons/weapon_sniper-precisionrifle.webp" },
-    { name: "Heavy Sniper Mk II",    power: 1700000000, price: 75000000000, type: 6, img: "images/weapons/weapon_sniper-heavy-sniper-mk2.webp" },
+    { name: "Heavy Sniper Mk II",    power: 1700000000, price: 75000000000, type: 6, img: "images/weapons/weapon_sniper-sniper-mk2.webp" },
     
     // Thrown Weapons
     { name: "Tear Gas",              power: 2500000000, price:  12500000000, type: 7, img: "images/weapons/weapon_thrown_tear-gas.webp" },

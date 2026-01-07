@@ -1,4 +1,4 @@
-const version = "v5.52";
+const version = "v5.53";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -556,6 +556,8 @@ function GenStarLabel(Stars) {
 	if (Stars == 6) Class = "Epic";
 	if (Stars == 7) Class = "Exotic";
 	if (Stars == 8) Class = "Divine";
+	if (Stars == 9) Class = "Universal";
+	if (Stars == 10) Class = "Dimensional";
 	if (Stars != 0) return "<div class='ui horizontal label " + Class + "'> " + Stars + " <i class='fitted star icon'></i></div>";
 	else return "";
 }
@@ -569,6 +571,8 @@ function getQuality(Stars) {
 	if (Stars == 6) QUALITY = "Epic";
 	if (Stars == 7) QUALITY = "Exotic";
 	if (Stars == 8) QUALITY = "Divine";
+	if (Stars == 9) QUALITY = "Universal";
+	if (Stars == 10) QUALITY = "Dimensional";
 	return QUALITY;
 
 }

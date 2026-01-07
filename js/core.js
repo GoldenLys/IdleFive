@@ -1,4 +1,4 @@
-const version = "v5.53";
+const version = "v5.6";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -38,10 +38,17 @@ var p = {
 	tutorial: 0,
 	CompletedQuests: 0,
 	spentpoints: 0,
+	stats : {
+		totalweaponsbought: 0,
+		totalweaponrerolled: 0,
+		highestrank: 0,
+		totalspentcash: 0,
+		totalcash: 0
+	}
 };
 
 $(document).ready(function () {
-	if (localStorage.getItem("idleFive4") != null) {
+	if (localStorage.getItem("idleFive5") != null) {
 		load();
 	}
 	setInterval(function () {
@@ -95,6 +102,7 @@ function idleFiveLoop() {
 		else btnPrestigeD();
 	} else btnPrestigeD();
 	p.cash += CASHPS;
+	p.stats.totalcash += CASHPS;
 	if (p.fl == 1) showTutorialDIV();
 	if (alert > 0) alert--;
 	else $("#announce").hide();
@@ -114,7 +122,9 @@ function getCashPS() {
 }
 
 function ClickWeapon() {
-	p.cash += p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
+	let CASH_PER_CLICK = p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
+	p.cash += CASH_PER_CLICK;
+	p.stats.totalcash += CASH_PER_CLICK;
 	p.TotalClicks++;
 	if (p.quest.type == 0) {
 		if (p.quest.progression == undefined || isNaN(p.quest.objective[0]) || isNaN(p.quest.objective[1])) {
@@ -189,9 +199,13 @@ function buyG(id) {
 			p.WeaponBought[id] = 1;
 			genGun(id);
 			p.WeaponType[weapons[id].type]++;
+			p.stats.totalweaponsbought++;
+			p.stats.totalspentcash += COST;
 		} else if (p.cash >= COST * 1.25) {
 			p.cash -= COST * 1.25;
 			genGun2(id);
+			p.stats.totalweaponrerolled++;
+			p.stats.totalspentcash += COST * 1.25;
 		}
 	}
 	if (p.quest.type === 3 && p.quest.progression >= p.quest.objective[0]) getRewards();
@@ -222,7 +236,7 @@ function genGun() {
 }
 
 function genGun2() {
-	let quality = _.random(1, 1017); // 3-8 Stars
+	let quality = _.random(1, 1017); // 3-10 Stars
 // 3: 40%  = 1–400
 // 4: 30%  = 401–700
 // 5: 15%  = 701–850
@@ -323,6 +337,8 @@ function BuyM(id, qty) {
 			if (p.quest.progression >= p.quest.objective[0]) getRewards();
 			else p.quest.progression += qty;
 		}
+		if (p.rank > p.stats.highestrank) p.stats.highestrank = p.rank;
+		p.stats.totalspentcash += price;
 		SuccessCount();
 		getCashPS();
 		UpdateUI();
@@ -401,7 +417,7 @@ function GetQuestTitle() {
 	if (TYPE === 0) MESSAGE = "Use your weapon <span class='jaune'>" + p.quest.objective[0] + "</span> times";
 	if (TYPE === 1) MESSAGE = "Increase <span class='jaune'>" + missions[p.quest.objective[1]].name + "</span> by <span class='jaune'>" + (p.quest.objective[0] - p.quest.progression) + "</span> levels";
 	if (TYPE === 2) MESSAGE = "Reach the rank " + getRank(p.quest.objective[0]);
-	if (TYPE === 3) MESSAGE = "Obtain a new weapon with " + p.quest.objective[1] + " or more";
+	if (TYPE === 3) MESSAGE = "Buy a weapon with " + p.quest.objective[1] + " or more";
 	return MESSAGE;
 }
 

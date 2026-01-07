@@ -14,13 +14,11 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
-<body id="body" class="noselect" oncontextmenu="return false;">
+<body id="body" class="noselect">
     <!--SIDE BAR-->
     <div id="sidebar" class="ui left demo vertical visible inverted sidebar labeled icon menu">
         <a class="item" id="menu2" data-id="2">
             <i class="trophy icon"></i>Success</a>
-        <a class="item" id="menu3" data-id="3">
-            <i class="id badge icon"></i>Statistics</a>
         <a class="item" id="menu4" data-id="4">
             <i class="info icon"></i>Guide</a>
         <a class="item" id="menu5" data-id="5">
@@ -53,6 +51,8 @@
                     <i class="dollar sign icon"></i>Missions</a>
                 <a class="ui button item" id="t3" data-id="3">
                     <i class="user icon"></i>Character</a>
+                <a class="ui button item" id="t4" data-id="4">
+                    <i class="chart bar icon"></i>Stats</a>
             </div>
         </div>
         <div class="topmenu-space"></div>
@@ -62,70 +62,69 @@
             <div class="column" id="colonne-m">
                 <!--CURRENT WEAPON-->
                 <div id="imagecontainer">
-                    <h3 class="ui blanc header" id="cash">
+                    <h3 class="ui blanc header" id="status_cps">
                         <div class='sub header'></div>
                     </h3>
                     <div id="imagecash"></div>
                 </div>
                 <!--GAME INFOS-->
                 <div class="ui black message">
-                    <div class="ui sticky grid center aligned">
+                    <div id="status" class="ui sticky grid center aligned inverted internally celled">
                         <div class="row">
-                            <div class="four wide column">
-                                <div class="ui white horizontal label">Weapon</div>
+                            <div class="four wide green dollar column">
+                                Cash
                             </div>
                             <div class="twelve wide column">
-                                <div id="weapon"></div>
+                                <h3 class="ui inline header dollar" id="status_cash"></h3>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="four wide column">
-                                <div class="ui red horizontal label">Damage</div>
+                            <div class="four wide white column">
+                                Weapon
                             </div>
                             <div class="twelve wide column">
-                                <div id="damage"></div>
+                                <div class="ui middle aligned content" id="status_weapon"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide red column">
+                                Damage
+                            </div>
+                            <div class="twelve wide column">
+                                <div class="ui middle aligned content" id="status_damage"></div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="four wide column">
-                                <div class="ui blue horizontal label">Rank</div>
+                            <div class="four wide blue column">
+                                Rank
                             </div>
                             <div class="twelve wide column">
-                                <div id="level"></div>
+                                <div class="ui middle aligned content" id="status_level"></div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="four wide column">
-                                <div class="ui yellow horizontal label">CP</div>
+                            <div class="four wide yellow column">
+                                Chips
                             </div>
                             <div class="twelve wide column">
-                                <div id="points"></div>
+                                <div class="ui middle aligned content" id="status_points"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui section divider"></div>
 
+                    <h4 class="ui horizontal inverted divider section">
+                        <i class="clipboard icon"></i> Objective
+                    </h4>
 
-                    <div class="ui sticky grid center aligned">
+                    <div class="ui sticky grid center aligned inverted internally celled">
                         <div class="row">
                             <div class="sixteen wide column">
-                                <h4 class="ui centered green header">Objective</h4>
-                            </div>
-
-                            <div class="four wide column">
-                                <div class="ui green horizontal label">Goal</div>
-                            </div>
-                            <div class="twelve wide column">
                                 <span id="objective"></span>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="four wide column">
-                                <div class="ui yellow horizontal label">Reward</div>
-                            </div>
-                            <div class="twelve wide column">
+                            <div class="sixteen wide column">
                                 <span id="quest_rewards"></span>
                             </div>
                         </div>
@@ -133,16 +132,13 @@
                         <div class="row">
                             <div class="sixteen wide column">
                                 <button id="ChangeObjective" class="fluid ui inverted green dollar basic button">New objective for
-                                    <span class="jaune">0.5 CP</span>
+                                    <span class="jaune"><i class='fa-light fa-coin'></i> 0.5</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="ui section divider"></div>
                     <div class="ui sticky grid center aligned">
-                        <div class="row">
-                            <div id="alert"></div>
-                        </div>
                         <div class="row">
                             <div id="messages"></div>
                         </div>
@@ -193,7 +189,7 @@
                             <div id="character-text1"></div>
                             <div id="prestigepricecount"></div>
                             <div id="character-text2"></div>
-                            <div class="vert" id="prestigepricecount2"></div>
+                            <div class="tc-dollar" id="prestigepricecount2"></div>
                             <div id="character-text3"></div>
                         </div>
 
@@ -215,6 +211,64 @@
                     <table id="Vtab" class="ui inverted table"></table>
                 </div>
 
+                <!--STATS-->
+                <div id="tab4" style="display: none; width: 100%;">
+                    <div class="ui black message">
+                        <div class="ui two column centered grid">
+                            <div class="column">
+                                <div class='type2 text'>General</div>
+                                <div id="ObjectivesCompleted"></div>
+                                <div id="totalclicks"></div>
+                                <div id="highestrank"></div>
+                                <div id="totalweaponsbought"></div>
+                                <div id="totalweaponrerolled"></div>
+                            </div>
+                            <div class="column">
+                                <div class='type2 text'>Character</div>
+                                <div id="spcount"></div>
+                                <div id="pointsspent"></div>
+                                <div id="boughtvehicles1"></div>
+                                <div id="boughtvehicles2"></div>
+                                <div id="boughtvehicles3"></div>
+                            </div>
+                            <div class="column">
+                                <div class='type2 text'>Weapons</div>
+                                <div id="lowestweaponrank"></div>
+                                <div id="highestweaponrank"></div>
+                                <div id="weaponsT1"></div>
+                                <div id="weaponsT2"></div>
+                                <div id="weaponsT3"></div>
+                                <div id="weaponsT4"></div>
+                                <div id="weaponsT5"></div>
+                                <div id="weaponsT6"></div>
+                                <div id="weaponsT7"></div>
+                                <div id="weapons-bought"></div>
+                            </div>
+                            <div class="column">
+                                <div class='type2 text'>Cash</div>
+                                <div id="cashcount"></div>
+                                <div id="cashpscount"></div>
+                                <div id="addcashcount"></div>
+                                <div id="totalspentcash"></div>
+                                <div id="totalcash"></div>
+                            </div>
+                            <div class="column">
+                                <div class='type2 text'>Multipliers</div>
+                                <div id="cashmult"></div>
+                                <div id="damagemult"></div>
+                                <div id="stealthmult"></div>
+                                <div id="prestigemult"></div>
+                            </div>
+                            <div class="column">
+                                <div class='type2 text'>Others</div>
+                                
+                                
+                                <div id="time"></div>
+                                <div id="version"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="announce" class="big ui black label alert" style="display: none;">
@@ -245,7 +299,7 @@
     <div class="ui basic modal" id="modal-2">
         <div class="ui icon header">
             <i class="star icon"></i>
-            <font id="success-title" class="title blanc">Success</font>
+            <span id="success-title" class="title blanc">Success</span>
             <p id="successcount"></p>
         </div>
 
@@ -254,7 +308,7 @@
                 <button data-id="0" class="ui green dollar basic inverted button">Player</button>
                 <button data-id="1" class="ui green dollar basic inverted button">Cash</button>
                 <button data-id="2" class="ui green dollar basic inverted button">Missions</button>
-                <button data-id="3" class="ui green dollar basic inverted button">Vehicles</button>
+                <button data-id="3" class="ui green dollar basic inverted button">Characters</button>
             </div>
             <div class="surc">
                 <div id="Stab0" style="display: block;"></div>
@@ -269,54 +323,10 @@
             </div>
         </div>
     </div>
-    <!--STATS-->
+    <!--UNUSED-->
     <div class="ui basic modal" id="modal-3">
-        <div class="ui icon header">
-            <i class="id badge icon"></i>
-            <font id="statistics" class="title blanc"></font>
-        </div>
+        <div class="ui icon header"></div>
 
-        <div class="ui three column centered grid">
-            <div class="column">
-                <div class='type2 text'>Character</div>
-                <div id="boughtvehicles1"></div>
-                <div id="boughtvehicles2"></div>
-                <div id="boughtvehicles3"></div>
-            </div>
-            <div class="column">
-                <div class='type2 text'>Weapons</div>
-                <div id="weaponsT1"></div>
-                <div id="weaponsT2"></div>
-                <div id="weaponsT3"></div>
-                <div id="weaponsT4"></div>
-                <div id="weaponsT5"></div>
-                <div id="weaponsT6"></div>
-                <div id="weaponsT7"></div>
-                <div id="weapons-bought"></div>
-            </div>
-            <div class="column">
-                <div class='type2 text'>Others</div>
-                <div id="ObjectivesCompleted"></div>
-                <div id="totalclicks"></div>
-                <div id="pointsspent"></div>
-                <div id="spcount"></div>
-                <div id="time"></div>
-                <div id="version"></div>
-            </div>
-            <div class="column">
-                <div class='type2 text'>Cash</div>
-                <div id="cashcount"></div>
-                <div id="cashpscount"></div>
-                <div id="addcashcount"></div>
-            </div>
-            <div class="column">
-                <div class='type2 text'>Multipliers</div>
-                <div id="cashmult"></div>
-                <div id="damagemult"></div>
-                <div id="stealthmult"></div>
-                <div id="prestigemult"></div>
-            </div>
-        </div>
         <div class="actions">
             <div onclick="hideMenus();" class="fluid ui red basic inverted button">
                 <i class="remove icon"></i>Close
@@ -372,8 +382,8 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
-     <script type="text/javascript" src="DATA/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="DATA/lodash.min.js"></script>
     <script type="text/javascript" src="DATA/bignumber.js"></script>
     <script type="text/javascript" src="DATA/numeral.min.js"></script>
     <script type="text/javascript" src="DATA/dropdown.min.js"></script>

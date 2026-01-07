@@ -1,12 +1,12 @@
 const suffixes = [
-	{ value: "1e3", symbol: "k" }, // thousand
-	{ value: "1e6", symbol: "m" }, // million
-	{ value: "1e9", symbol: "b" }, // billion
-	{ value: "1e12", symbol: "t" }, // trillion
-	{ value: "1e15", symbol: "q" }, // quadrillion
-	{ value: "1e18", symbol: "Q" }, // quintillion
-	{ value: "1e21", symbol: "s" }, // sextillion
-	{ value: "1e24", symbol: "S" }, // septillion
+	{ value: "1e3", symbol: "K" }, // thousand
+	{ value: "1e6", symbol: "M" }, // million
+	{ value: "1e9", symbol: "B" }, // billion
+	{ value: "1e12", symbol: "T" }, // trillion
+	{ value: "1e15", symbol: "Qa" }, // quadrillion
+	{ value: "1e18", symbol: "Qi" }, // quintillion
+	{ value: "1e21", symbol: "Sx" }, // sextillion
+	{ value: "1e24", symbol: "Sp" }, // septillion
 	{ value: "1e27", symbol: "o" }, // octillion
 	{ value: "1e30", symbol: "n" }, // nonillion
 	{ value: "1e33", symbol: "d" }, // decillion
@@ -131,12 +131,12 @@ var canSave = 1;
 
 var save = function () {
 	if (canSave) {
-		localStorage.setItem("idleFive4", JSON.stringify(p));
+		localStorage.setItem("idleFive5", JSON.stringify(p));
 	}
 };
 
 var load = function () {
-	var savegame = JSON.parse(localStorage.getItem("idleFive4"));
+	var savegame = JSON.parse(localStorage.getItem("idleFive5"));
 
 	for (var property in savegame) {
 		if (typeof savegame[property] !== 'undefined') p[property] = savegame[property];
@@ -167,7 +167,7 @@ var restoreSave = function (save) {
 		var decoded = atob(save);
 		JSON.parse(decoded);
 		if (decoded) {
-			localStorage.setItem("idleFive4", decoded);
+			localStorage.setItem("idleFive5", decoded);
 			canSave = 0;
 			location.reload();
 		} else {

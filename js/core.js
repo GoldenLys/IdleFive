@@ -191,7 +191,7 @@ function getRank(rankNBR) {
 function buyG(id) {
 	let COST = weapons[id].price;
 
-	if (p.WeaponBought[id] == 1 && p.stars[id] === 10) return;
+	if (p.WeaponBought[id] == 1 && p.Stars[id] === 10) return;
 	if (p.cash >= COST) {
 		p.Weapon.Id = id;
 		p.Weapon.Power = weapons[id].power;

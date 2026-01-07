@@ -19,7 +19,12 @@ const suffixes = [
 	{ value: "1e54", symbol: "SD" }, // septendecillion
 	{ value: "1e57", symbol: "oD" }, // octodecillion
 	{ value: "1e60", symbol: "nD" }, // novemdecillion
-	{ value: "1e63", symbol: "V" } // vigintillion
+	{ value: "1e63", symbol: "V" }, // vigintillion
+	{ value: "1e66", symbol: "uV" }, // unvigintillion
+	{ value: "1e69", symbol: "DV" }, // duovigintillion
+	{ value: "1e72", symbol: "tV" }, // trivigintillion
+	{ value: "1e75", symbol: "qV" }, // quattuorvigintillion
+	{ value: "1e78", symbol: "QV" }, // quinvigintillion
 ];
 
 function formatBigNumberAbbrev(raw, decimals = 2) {

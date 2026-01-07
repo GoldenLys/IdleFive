@@ -10,7 +10,7 @@
 	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
 	if (p.prestige.price[0] <= p.rank) { if (p.prestige.price[1] <= p.cash) { prestigeText = texts.infos[0]; } }
 	//LEFT INFOS
-	$('#imagecash').attr('style', "background-image:url('" + weapons[p.Weapon.Id].img +"');");
+	$('#imagecash').attr('style', "background-image:url('" + weapons[p.Weapon.Id].img + "');");
 	//$("#status_cps").html(""); unused for now
 	$("#status_cash").html("<i class='fa-solid fa-dollar'></i>" + CashText + "<div class='sub header'>+ " + CashPSText + "/s</div>");
 	$("#status_level").html(getRank(p.rank));
@@ -32,7 +32,7 @@
 	$("#highestrank").html("Highest rank achieved: <font class='jaune'>" + getRank(p.stats.highestrank) + "</font>");
 	$("#totalsuccess").html("Total successes unlocked: <font class='jaune'>" + SuccessCount() + "</font>/" + success.length);
 	// CHARACTER STATS
-	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>.");
+	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>");
 	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.points, 2) + "</font> points spent");
 	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/1000");
 	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/1000");
@@ -55,7 +55,7 @@
 	$("#damagemult").html("Damage (strength) multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[1] * 0.1)), 9) + "</font>");
 	$("#stealthmult").html("Objective Rewards (stealth) multiplier at <font class='jaune bold'>" + fix(p.prestige.bonus + p.prestige.multipliers[2] * 0.1, 9) + "</font>");
 	//OTHERS - STATS
-	
+
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	//OBJECTIVES
 	$("#objective").html(GetQuestTitle());
@@ -67,7 +67,7 @@
 	if ($('#tab1').is(":visible")) UpdateWeapons();
 	if ($('#tab2').is(":visible")) UpdateMissions();
 	if ($('#tab3').is(":visible")) VehicleList();
-	$("#successcount").html("<font class='SuccessText'>" + SuccessCount() + "</font>/"+ success.length + " " + texts.success[0]);
+	$("#successcount").html("<font class='SuccessText'>" + SuccessCount() + "</font>/" + success.length + " " + texts.success[0]);
 	SuccessList();
 	redrawTables();
 }
@@ -135,34 +135,38 @@ function MissionList() {
 	if (getLatestUnlockedMissionId("latest") === "allUnlocked") $("#NextMissionUnlock").hide(); else $("#NextMissionUnlock").show();
 }
 
-function UpdateMissions() {
+function UpdateMissions(onlyId) {
+	if (onlyId !== undefined) { var i = onlyId; UpdateMissionsDiv(i); return; }
 	for (var i in missions) {
-		$("#mission-" + i).attr("class", p.missions[i] < 1 ? '' : 'item-active');
-		$("#mission-" + i + "-level").html(p.missions[i]);
-		$("#mission-" + i + "-value").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(GetMissionPrice(i, 1), 1));
-		$("#mission-" + i + "-cost").attr("class", "ui center aligned" + p.missions[i] < 1 ? '' : 'bold');
-		$("#mission-" + i + "-cost").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
-		$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button" + (GetMissionPrice(i, 1) > p.cash ? ' disabled' : ''));
-		$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button" + (GetMissionPrice(i, 10) > p.cash ? ' disabled' : ''));
-		$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button" + (GetMissionPrice(i, 100) > p.cash ? ' disabled' : ''));
-		$("#mission-" + i + "-btnS1").attr("class", "ui red button " + (p.missions[i] < 1 ? 'disabled' : ''));
-		$("#mission-" + i + "-btnS10").attr("class", "ui red button " + (p.missions[i] < 10 ? 'disabled' : ''));
-		$("#mission-" + i + "-btnS100").attr("class", "ui red button " + (p.missions[i] < 100 ? 'disabled' : ''));
-		if (getLatestUnlockedMissionId("latest") === "allUnlocked") {
-			$("#NextMissionUnlock").hide();
-		}
-		else {
-			$("#NextMissionUnlock").html(`Next mission unlocks at rank ${missions[getLatestUnlockedMissionId("next")].level}`);
-			$("#NextMissionUnlock").show();
-		}
-		if (p.rank >= missions[i].level) $("#mission-" + i).show();
-		redrawTables();
+		UpdateMissionsDiv(i);
 	}
+}
+
+function UpdateMissionsDiv(i) {
+	$("#mission-" + i).attr("class", p.missions[i] < 1 ? '' : 'item-active');
+	$("#mission-" + i + "-level").html(p.missions[i]);
+	$("#mission-" + i + "-value").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(GetMissionPrice(i, 1), 1));
+	$("#mission-" + i + "-cost").attr("class", "ui center aligned" + p.missions[i] < 1 ? '' : 'bold');
+	$("#mission-" + i + "-cost").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
+	$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button" + (GetMissionPrice(i, 1) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button" + (GetMissionPrice(i, 10) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button" + (GetMissionPrice(i, 100) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-btnS1").attr("class", "ui red button " + (p.missions[i] < 1 ? 'disabled' : ''));
+	$("#mission-" + i + "-btnS10").attr("class", "ui red button " + (p.missions[i] < 10 ? 'disabled' : ''));
+	$("#mission-" + i + "-btnS100").attr("class", "ui red button " + (p.missions[i] < 100 ? 'disabled' : ''));
+	if (getLatestUnlockedMissionId("latest") === "allUnlocked") {
+		$("#NextMissionUnlock").hide();
+	}
+	else {
+		$("#NextMissionUnlock").html(`Next mission unlocks at rank ${missions[getLatestUnlockedMissionId("next")].level}`);
+		$("#NextMissionUnlock").show();
+	}
+	if (p.rank >= missions[i].level) $("#mission-" + i).show();
 }
 
 //WEAPONS TABLE
 function WeaponList() {
-	for (var id = 1; id < 8; id++) {
+	for (var id = 1; id < 9; id++) {
 		$('#Wtab' + id).html("<thead><tr><th class='ui center aligned'>" + texts.weapons[0] +
 			"</th><th class='ui center aligned'>" + texts.weapons[1] + "</th><th class='ui center aligned'>" + texts.weapons[7] + "</th></tr></thead>");
 	}
@@ -441,36 +445,36 @@ function getLatestUnlockedMissionId(type) {
 }
 
 function countWeaponsByType() {
-  const typeCounts = {};
+	const typeCounts = {};
 
-  for (const weapon of Object.values(weapons)) {
-    if (!typeCounts[weapon.type]) {
-      typeCounts[weapon.type] = 0;
-    }
-    typeCounts[weapon.type]++;
-  }
+	for (const weapon of Object.values(weapons)) {
+		if (!typeCounts[weapon.type]) {
+			typeCounts[weapon.type] = 0;
+		}
+		typeCounts[weapon.type]++;
+	}
 
-  return typeCounts;
+	return typeCounts;
 }
 
 function rebuildDropdown(id) {
-    const $dropdown = $('#' + id);
-    $dropdown.dropdown('destroy');
-    $dropdown.find('.menu').empty();
-    $dropdown.find('option').each(function () {
-        const value = $(this).attr('value');
-        const text = $(this).text();
-        const $item = $('<div>').addClass('item').attr('data-value', value).text(text);
-        $dropdown.find('.menu').append($item);
-    });
-    $dropdown.dropdown();
+	const $dropdown = $('#' + id);
+	$dropdown.dropdown('destroy');
+	$dropdown.find('.menu').empty();
+	$dropdown.find('option').each(function () {
+		const value = $(this).attr('value');
+		const text = $(this).text();
+		const $item = $('<div>').addClass('item').attr('data-value', value).text(text);
+		$dropdown.find('.menu').append($item);
+	});
+	$dropdown.dropdown();
 }
 
 function redrawTables() {
-    $("table").each(function () {
-        const parent = this.parentNode;
-        const next = this.nextSibling;
-        parent.removeChild(this);
-        parent.insertBefore(this, next);
-    });
+	$("table").each(function () {
+		const parent = this.parentNode;
+		const next = this.nextSibling;
+		parent.removeChild(this);
+		parent.insertBefore(this, next);
+	});
 }

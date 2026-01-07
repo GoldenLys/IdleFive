@@ -3,14 +3,14 @@
 <head>
     <title>idleFive is loading..</title>
     <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-
     <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="DATA/dropdown.min.css">
-    <link rel="stylesheet" type="text/css" href="DATA/sidebar.min.css">
-    <link rel="stylesheet" type="text/css" href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/dropdown.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/sidebar.min.css">
+    <link rel="preconnect" href="https://site-assets.fontawesome.com" crossorigin>
+    <link rel="stylesheet" type="text/css" href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
@@ -24,13 +24,12 @@
         <a class="item" id="menu5" data-id="5">
             <i class="save icon"></i>Save</a>
         <a class="item" target="_blank" href="https://discord.gg/SBuYeHh">
-            <i class="discord icon"></i>Discord</a>
-        <a class="item" target="_blank" href="https://github.com/GoldenLys/IdleFive">
-            <i class="github icon"></i>Github</a>
-        <a class="item" target="_blank" href="https://www.paypal.me/Aizen45/5">
-            <i class="paypal icon"></i>Donate</a>
+            <a class="item" target="_blank" href="https://github.com/GoldenLys/IdleFive">
+                <i class="github icon"></i>Github</a>
+            <a class="item" target="_blank" href="https://www.paypal.me/Aizen45/5">
+                <i class="paypal icon"></i>Donate</a>
     </div>
-    <div class="pusher">
+    <div class="pusher" fetchpriority="high">
         <!--TOP MENU-->
         <div id="top-menu" class="ui green secondary inverted menu">
             <div class="item">
@@ -151,7 +150,7 @@
                 <!--WEAPONS-->
                 <div id="tab1" style="display: none; width: 100%;">
 
-                    <div name="weap-type" class="ui inverted secondary menu" id="weap-select">
+                    <div name="weap-type" class="ui inverted secondary wrapping menu" id="weap-select">
                         <div id="W1" class="ui green dollar button active" data-id="1"></div>
                         <div id="W2" class="ui inverted green dollar button" data-id="2"></div>
                         <div id="W3" class="ui inverted green dollar  button" data-id="3"></div>
@@ -159,6 +158,7 @@
                         <div id="W5" class="ui inverted green dollar button" data-id="5"></div>
                         <div id="W6" class="ui inverted green dollar button" data-id="6"></div>
                         <div id="W7" class="ui inverted green dollar button" data-id="7"></div>
+                        <div id="W8" class="ui inverted green dollar button" data-id="8"></div>
                     </div>
 
                     <table id="Wtab1" class="ui inverted table"></table>
@@ -168,6 +168,7 @@
                     <table id="Wtab5" class="ui inverted table" style="display: none;"></table>
                     <table id="Wtab6" class="ui inverted table" style="display: none;"></table>
                     <table id="Wtab7" class="ui inverted table" style="display: none;"></table>
+                    <table id="Wtab8" class="ui inverted table" style="display: none;"></table>
                 </div>
 
                 <!--MISSIONS-->
@@ -373,13 +374,13 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.js"></script>
     <script type="text/javascript" src="DATA/lodash.min.js"></script>
     <script type="text/javascript" src="DATA/bignumber.js"></script>
     <script type="text/javascript" src="DATA/numeral.min.js"></script>
-    <script type="text/javascript" src="DATA/dropdown.min.js"></script>
-    <script type="text/javascript" src="DATA/sidebar.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/dropdown.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/sidebar.min.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/core.js"></script>

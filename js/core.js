@@ -1,4 +1,4 @@
-const version = "v5.63";
+const version = "v5.7";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -38,7 +38,7 @@ var p = {
 	tutorial: 0,
 	CompletedQuests: 0,
 	spentpoints: 0,
-	stats : {
+	stats: {
 		totalweaponsbought: 0,
 		totalweaponrerolled: 0,
 		highestrank: 0,
@@ -81,7 +81,7 @@ function idleFiveLoop() {
 	}
 	for (var s in success)
 		if (p.succes[s] == null) p.succes[s] = 0;
-	for (var wtype = 0; wtype < 8; wtype++)
+	for (var wtype = 0; wtype < 9; wtype++)
 		if (p.WeaponType[wtype] == null) p.WeaponType[wtype] = 0;
 
 	//UPDATE VARS
@@ -237,14 +237,14 @@ function genGun() {
 
 function genGun2() {
 	let quality = _.random(1, 1017); // 3-10 Stars
-// 3: 40%  = 1–400
-// 4: 30%  = 401–700
-// 5: 15%  = 701–850
-// 6: 10%  = 851–950
-// 7: 5%   = 951–1000
-// 8: 1%   = 1001–1010 
-// 9: .5%% = 1011–1015
-// 10: .2% = 1016–1017
+	// 3: 40%  = 1–400
+	// 4: 30%  = 401–700
+	// 5: 15%  = 701–850
+	// 6: 10%  = 851–950
+	// 7: 5%   = 951–1000
+	// 8: 1%   = 1001–1010 
+	// 9: .5%% = 1011–1015
+	// 10: .2% = 1016–1017
 
 	let qualityMap = [
 		{ min: 1, max: 400, quality: 3 },
@@ -294,8 +294,7 @@ function setQuality(Stars) {
 }
 
 function GetWeaponMult(weaponId) {
-	let MULTIPLIER = 0;
-
+	let MULTIPLIER = 1;
 	if (p.Stars[weaponId] == 1) MULTIPLIER = 0.5;
 	if (p.Stars[weaponId] == 2) MULTIPLIER = 0.75;
 	if (p.Stars[weaponId] == 3) MULTIPLIER = 1;
@@ -340,8 +339,8 @@ function BuyM(id, qty) {
 		if (p.rank > p.stats.highestrank) p.stats.highestrank = p.rank;
 		p.stats.totalspentcash += price;
 		SuccessCount();
+		UpdateMissionsDiv(id);
 		getCashPS();
-		UpdateUI();
 	}
 }
 
@@ -353,8 +352,6 @@ function SellM(id, qty) {
 	if (p.missions[id] >= qty) {
 		p.missions[id] -= qty;
 		p.rank -= qty;
-	} else {
-		p.missions[id] = null;
 	}
 	if (p.quest.type == 1 && id == p.quest.objective[1]) p.quest.progression -= qty;
 	SuccessCount();
@@ -363,16 +360,25 @@ function SellM(id, qty) {
 }
 
 function GetMissionPrice(id, qty) {
-	let owned = 0;
-	let total = 0;
+	let owned = p.missions[id] || 0;
+	let total = new BigNumber(0);
+	let base = new BigNumber(missions[id].price);
+	let modifier = new BigNumber(GetModifierByAmount(owned));
 
-	if (p.missions[id] != null) owned = p.missions[id];
-	CurPrice = (missions[id].price * Math.pow(GetModifierByAmount(owned), owned));
-	for (var value = 0; value < qty; value++) {
-		Newprice = (missions[id].price * Math.pow(GetModifierByAmount(owned), owned + value));
-		total += Newprice;
+	let powers = [];
+	let current = modifier.pow(owned);
+	powers.push(current);
+
+	for (let i = 1; i < qty; i++) {
+		current = current.times(modifier); // modifier^(owned + i) = modifier^(owned + i - 1) * modifier
+		powers.push(current);
 	}
-	return Math.round((total * 100) / 100);
+
+	for (let i = 0; i < qty; i++) {
+		total = total.plus(base.times(powers[i]));
+	}
+
+	return total.toNumber();
 }
 
 function GetModifierByAmount(amount) {
@@ -386,15 +392,17 @@ function GetModifierByAmount(amount) {
 }
 
 function GetMissionSPrice(id, qty) {
-	let owned = 0;
-	let total = 0;
+	let owned = p.missions[id] || 0;
+	let total = new BigNumber(0);
+	let base = new BigNumber(missions[id].price);
+	let modifier = new BigNumber(missions[id].modifier);
 
-	if (p.missions[id] != null) owned = p.missions[id];
-	for (var value = 0; value < qty; value++) {
-		Newprice = (missions[id].price * Math.pow(missions[id].modifier, owned - value));
-		total += Newprice;
+	for (let i = 0; i < qty; i++) {
+		let price = base.times(modifier.pow(owned - i));
+		total = total.plus(price);
 	}
-	return Math.round(total / 2);
+
+	return total.div(2).toNumber();
 }
 
 function buyV(id) {
@@ -521,7 +529,7 @@ function NewObjective() {
 			{ star: 7, minChance: 95 },
 			{ star: 8, minChance: 99 },
 		];
-		
+
 		if (lowest >= 4 && chance < 30) chance = 30;
 		if (lowest >= 5 && chance < 60) chance = 60;
 		if (lowest >= 6 && chance < 80) chance = 80;

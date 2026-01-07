@@ -109,14 +109,22 @@ i.green.icon {
 .icon.fa,
 .icon.fas {
     font-family: "Font Awesome 7 Pro";
+    font-display: swap;
     font-weight: 900;
 }
 
 #body,
 .pusher {
-    font-family: 'Electrolize', sans-serif !important;
-    background: center / cover no-repeat url(images/bg.jpg) !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-display: swap;
+    background: center / cover no-repeat url(images/bg.webp) !important;
+    background-attachment: fixed;
+    cursor: url("images/normal.cur"), pointer;
     font-size: 17px;
+}
+
+.pushable>.pusher:not(.dimmed) {
+    overflow: inherit;
 }
 
 #imagecontainer {
@@ -127,13 +135,6 @@ i.green.icon {
     background: center / contain no-repeat;
     height: 100%;
     width: 100%;
-}
-
-.pusher {
-    background-image: url(images/bg.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-    cursor: url("images/normal.cur"), pointer;
 }
 
 #imagecontainer:active #imagecash,
@@ -197,7 +198,8 @@ a,
 .title {
     text-align: center;
     font-size: 24px;
-    font-family: Anton;
+    font-family: "Anton", sans-serif;
+    font-display: swap;
     margin: 2.5vh 0vh 0vh 0vh;
     color: rgb(108, 184, 124);
 }
@@ -256,10 +258,12 @@ a,
 .type2,
 .ui.message .header {
     font-family: 'Anton', sans-serif !important;
+    font-display: swap;
 }
 
 .ui.message .header>.sub.header {
-    font-family: 'Electrolize', sans-serif !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-display: swap;
 }
 
 .ui.list .list>a.item i.icon,
@@ -270,7 +274,8 @@ a,
 .ui.button,
 .type1,
 .ui.header {
-    font-family: 'Electrolize', sans-serif !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-display: swap;
     font-weight: unset;
 }
 
@@ -278,7 +283,8 @@ a,
     font-weight: bold;
     color: #FF0;
     font-size: 2.75vh;
-    font-family: 'Electrolize', sans-serif !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-display: swap;
 }
 
 .money {
@@ -476,6 +482,7 @@ body ::-webkit-scrollbar-track {
 
 .ui.menu i.fa-thin {
     font-family: "Font Awesome 7 Pro";
+    font-display: swap;
     font-weight: 100;
 }
 
@@ -685,7 +692,8 @@ h6.ui.inline.header .sub.header {
 .ui.horizontal.label, 
 .ui.horizontal.labels .label {
     vertical-align: middle;
-    font-family: 'Electrolize', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-display: swap;
 }
 
 .ui.move.left {

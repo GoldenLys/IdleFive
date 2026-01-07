@@ -13,6 +13,8 @@
     --epic: #ffb00f;
     --exotic: #ff6337;
     --divine: #f44336;
+    --universal: #fc2020;
+    --dimensional: #d086f0;
 }
 
 .ui.positive.button.disabled {
@@ -54,7 +56,6 @@
     text-shadow: 0 0 2px !important;
 }
 
-
 .Exotic {
     color: var(--exotic) !important;
     text-shadow: 0 0 2px !important;
@@ -62,6 +63,16 @@
 
 .Divine {
     color: var(--divine) !important;
+    text-shadow: 0 0 2px !important;
+}
+
+.Universal {
+    color: var(--universal) !important;
+    text-shadow: 0 0 2px !important;
+}
+
+.Dimensional {
+    color: var(--dimensional) !important;
     text-shadow: 0 0 2px !important;
 }
 

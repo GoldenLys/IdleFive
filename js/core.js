@@ -1,4 +1,4 @@
-const version = "v5.45";
+const version = "v5.5";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -222,13 +222,15 @@ function genGun() {
 }
 
 function genGun2() {
-	let quality = _.random(1, 1010); // 3-8 Stars
-// 3: 40% = 1–400
-// 4: 30% = 401–700
-// 5: 15% = 701–850
-// 6: 10% = 851–950
-// 7: 5%  = 951–1000
-// 8: 1%  = 1001–1010 
+	let quality = _.random(1, 1017); // 3-8 Stars
+// 3: 40%  = 1–400
+// 4: 30%  = 401–700
+// 5: 15%  = 701–850
+// 6: 10%  = 851–950
+// 7: 5%   = 951–1000
+// 8: 1%   = 1001–1010 
+// 9: .5%% = 1011–1015
+// 10: .2% = 1016–1017
 
 	let qualityMap = [
 		{ min: 1, max: 400, quality: 3 },
@@ -237,6 +239,8 @@ function genGun2() {
 		{ min: 851, max: 950, quality: 6 },
 		{ min: 951, max: 1000, quality: 7 },
 		{ min: 1001, max: 1010, quality: 8 },
+		{ min: 1011, max: 1015, quality: 9 },
+		{ min: 1016, max: 1017, quality: 10 },
 	];
 
 	for (let i = 0; i < qualityMap.length; i++) {
@@ -266,7 +270,11 @@ function setQuality(Stars) {
 	if (Stars == 5) p.Weapon.Class = "Rare";
 	if (Stars == 6) p.Weapon.Class = "Epic";
 	if (Stars == 7) p.Weapon.Class = "Exotic";
+
+	// REAL SHIT
 	if (Stars == 8) p.Weapon.Class = "Divine";
+	if (Stars == 9) p.Weapon.Class = "Universal";
+	if (Stars == 10) p.Weapon.Class = "Dimensional";
 
 	if (Stars > p.Stars[p.Weapon.Id]) p.Stars[p.Weapon.Id] = Stars;
 }
@@ -281,7 +289,11 @@ function GetWeaponMult(weaponId) {
 	if (p.Stars[weaponId] == 5) MULTIPLIER = 1.5;
 	if (p.Stars[weaponId] == 6) MULTIPLIER = 1.75;
 	if (p.Stars[weaponId] == 7) MULTIPLIER = 2;
+
+	// REAL SHIT
 	if (p.Stars[weaponId] == 8) MULTIPLIER = 3;
+	if (p.Stars[weaponId] == 9) MULTIPLIER = 5;
+	if (p.Stars[weaponId] == 10) MULTIPLIER = 10;
 	return MULTIPLIER;
 }
 

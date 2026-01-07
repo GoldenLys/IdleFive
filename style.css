@@ -730,3 +730,24 @@ h6.ui.inline.header .sub.header {
 .ui.divider:not(.vertical):not(.horizontal) {
     border-color: rgb(166 221 190 / 50%);
 }
+
+.ui.left.aligned.header {
+    overflow: hidden;
+}
+
+.ui.message .ui.horizontal.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui.full-width.segment {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ui.invisible.segment {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}

@@ -191,3 +191,17 @@ var confirmReset = function () {
 		location.reload();
 	}
 };
+
+function truncate2(num) {
+    let s = String(num);
+
+    // If scientific notation, convert to full string
+    if (s.includes("e") || s.includes("E")) {
+        s = Number(num).toFixed(20); // expand it
+    }
+
+    const dot = s.indexOf(".");
+    if (dot === -1) return num; // no decimals
+
+    return Number(s.slice(0, dot + 3)); // keep 2 decimals
+}

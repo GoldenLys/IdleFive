@@ -1,4 +1,4 @@
-const version = "v5.75";
+const version = "v5.76";
 var alert = 0;
 var CASHPS = 0;
 var WEAPON_MULTIPLIER = 0;
@@ -71,7 +71,7 @@ $(document).ready(function () {
 function idleFiveLoop() {
 	//DEBUG
 	if (p.cash !== p.cash) p.cash = 0;
-	p.cash = Math.round(p.cash * 100) / 100;
+	p.cash = truncate2(p.cash);
 	for (var m in missions) {
 		if (p.missions[m] == null) p.missions[m] = 0;
 	}
@@ -347,7 +347,6 @@ function BuyM(id, qty) {
 
 function SellM(id, qty) {
 	let price = GetMissionSPrice(id, qty);
-
 	if (p.missions[id] == null) p.missions[id] = 0;
 	p.cash += price;
 	if (p.missions[id] >= qty) {
@@ -384,27 +383,39 @@ function GetMissionPrice(id, qty) {
 function GetModifierByAmount(amount) {
 	Mapping = {
 		1: 1.05,
-		100: 1.025,
+		50: 1.04,
+		100: 1.03,
+		200: 1.025,
+		300: 1.023,
+		400: 1.0215,
+		500: 1.020,
+		600: 1.018,
+		700: 1.016,
+		800: 1.014,
+		900: 1.012,
 		1000: 1.01,
-		10000: 1.005
+		2000: 1.005,
+		10000: 1.001
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.05;
 }
 
 function GetMissionSPrice(id, qty) {
     let owned = p.missions[id] || 0;
-    let total = new BigNumber(0);
     let base = new BigNumber(missions[id].price);
-    let modifier = new BigNumber(missions[id].modifier);
+    let modifier = new BigNumber(GetModifierByAmount(owned));
     let current = modifier.pow(owned);
     let inv = new BigNumber(1).div(modifier);
+    let total = new BigNumber(0);
 
     for (let i = 0; i < qty; i++) {
-        total = total.plus(base.times(current));
-        current = current.times(inv); // next power down
+        let price = base.times(current);
+        total = total.plus(price);
+        current = current.times(inv);
     }
 
-    return total.div(2).toNumber();
+    let result = total.div(2);
+    return result.toNumber();
 }
 
 function buyV(id) {

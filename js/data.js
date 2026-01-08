@@ -18,14 +18,14 @@ var missions = {
     13: { name: 'Hangar', price: 2000000, value: 40000, level: 1000 },
 
     // Late-game
-    14: { name: 'Humane Labs Raid', price: 5000000, value: 100000, level: 1100 },
-    15: { name: 'Series A Funding Heist', price: 12500000, value: 250000, level: 1200 },
-    16: { name: 'Bunker', price: 30000000, value: 600000, level: 1300 },
-    17: { name: 'Vehicle Trafficking', price: 75000000, value: 1500000, level: 1400 },
-    18: { name: 'Acid Lab', price: 200000000, value: 4000000, level: 1500 },
-    19: { name: 'Garment Factory', price: 500000000, value: 10000000, level: 1600 },
-    20: { name: 'Bail Enforcement Office', price: 1250000000, value: 25000000, level: 1700 },
-    21: { name: 'Agency', price: 3000000000, value: 60000000, level: 1800 },
+    14: { name: 'Humane Labs Raid',        price: 5000000, value:     100000, level: 1100 },
+    15: { name: 'Series A Funding Heist',  price: 12500000, value:    250000, level: 1200 },
+    16: { name: 'Bunker',                  price: 30000000, value:    600000, level: 1300 },
+    17: { name: 'Vehicle Trafficking',     price: 75000000, value:    1500000, level: 1400 },
+    18: { name: 'Acid Lab',                price: 200000000, value:   4000000, level: 1500 },
+    19: { name: 'Garment Factory',         price: 500000000, value:   10000000, level: 1600 },
+    20: { name: 'Bail Enforcement Office', price: 1250000000, value:  25000000, level: 1700 },
+    21: { name: 'Agency',                  price: 3000000000, value:  60000000, level: 1800 },
 
     // End-game
     22: { name: 'Pacific Standard Heist', price: 7500000000, modifier: 1.05, value: 150000000, level: 2000 },

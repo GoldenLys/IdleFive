@@ -1,31 +1,27 @@
 ﻿function UpdateUI() {
-	let ClicCashText = fix(p.Weapon.Power * (GetWeaponMult(p.Weapon.Id) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), 1);
-	let CashPSText = fix(CASHPS, 2);
-	let PrestigeMultText = fix(p.prestige.bonus, 9);
-	let CashText = fix(p.cash, 2);
-	let prestigeText = "";
+	let ClicCashText = fix(p.Weapon.Power * (GetWeaponMult(p.Weapon.Id) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1), "full");
 	let WeaponsNBR = 0;
 	let AllWeaponsNBR = -1;
 	for (var i in weapons) { AllWeaponsNBR += 1; WeaponsNBR += p.WeaponBought[i]; }
-	if (p.rank < 400) { PrestigePoints = 0; } else { PrestigePoints = Math.trunc(p.rank / 200); }
-	if (p.prestige.price[0] <= p.rank) { if (p.prestige.price[1] <= p.cash) { prestigeText = texts.infos[0]; } }
+	let PrestigePoints = p.rank < 400 ? 0 : Math.trunc(p.rank / 200);
+	let prestigeText = p.prestige.price[0] <= p.rank && p.prestige.price[1] <= p.cash ? texts.infos[0] : "";
 	//LEFT INFOS
 	$('#imagecash').attr('style', "background-image:url('" + weapons[p.Weapon.Id].img + "');");
 	//$("#status_cps").html(""); unused for now
-	$("#status_cash").html("<i class='fa-solid fa-dollar'></i>" + CashText + "<div class='sub header'>+ " + CashPSText + "/s</div>");
+	$("#status_cash").html("<i class='fa-solid fa-dollar'></i>" + fix(p.cash, "full") + "<div class='sub header'>+ " + fix(getCashPS(), "full") + " per second</div>");
 	$("#status_level").html(getRank(p.rank));
 	$("#status_weapon").html(weapons[p.Weapon.Id].name + " " + GenStarLabel(p.Stars[p.Weapon.Id]));
-	$("#status_weapon").attr("class", 'ui middle aligned content ' + p.Weapon.Class);
-	$("#status_damage").attr("class", 'ui middle aligned content ' + p.Weapon.Class);
+	$("#status_weapon").attr("class", 'ui middle aligned bold content ' + p.Weapon.Class);
+	$("#status_damage").attr("class", 'ui middle aligned bold content ' + p.Weapon.Class);
 	$("#status_damage").html("<i class='ui red fa-thin fa-crosshairs-simple'></i>" + ClicCashText);
 	$("#status_points").html("<span class='jaune'><i class='fa-light fa-coin'></i> " + fix(p.points, 2) + "</span>");
 	$("#messages").html(prestigeText);
 	//CHARACTER
 	$("#prestigecount").html(p.prestige.level);
 	$("#prestigepricecount").html(getRank(p.prestige.price[0]));
-	$("#prestigepricecount2").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(p.prestige.price[1], 2));
+	$("#prestigepricecount2").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(p.prestige.price[1], "full"));
 	$("#character-text4").html(texts.character[5] + "<span class='jaune'> " + PrestigePoints + " </span> " + texts.character[6]);
-	$("#character-text5").html(texts.character[7] + "<span class='jaune'> " + PrestigeMultText + "</span> " + texts.character[8]);
+	$("#character-text5").html(texts.character[7] + "<span class='jaune'> " + fix(p.prestige.bonus, 9) + "</span> " + texts.character[8]);
 	//GENERAL STATS
 	$("#ObjectivesCompleted").html(p.CompletedQuests + " Objectives completed.");
 	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
@@ -44,11 +40,11 @@
 	$("#totalweaponsbought").html("Total weapons bought: <font class='jaune'>" + p.stats.totalweaponsbought + "</font>");
 	$("#totalweaponrerolled").html("Total weapon rerolled: <font class='jaune'>" + p.stats.totalweaponrerolled + "</font>");
 	//CASH STATS
-	$("#cashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + CashText + "</font> " + texts.stats[6]);
-	$("#cashpscount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + CashPSText + "</font> " + texts.stats[7]);
+	$("#cashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.cash, "full") + "</font> " + texts.stats[6]);
+	$("#cashpscount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(getCashPS(), "full") + "</font> " + texts.stats[7]);
 	$("#addcashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + ClicCashText + "</font> " + texts.stats[8]);
-	$("#totalspentcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalspentcash, 2) + "</font> total cash spent");
-	$("#totalcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalcash, 2) + "</font> total cash earned");
+	$("#totalspentcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalspentcash, "full") + "</font> total cash spent");
+	$("#totalcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalcash, "full") + "</font> total cash earned");
 	//MULTIPLIERS - STATS
 	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.prestige.bonus, 9) + "</font>");
 	$("#cashmult").html("Cash (stamina) multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 9) + "</font>");
@@ -59,17 +55,20 @@
 	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
 	//OBJECTIVES
 	$("#objective").html(GetQuestTitle());
-	$("#quest_rewards").html("<font class='jaune'><i class='fa-light fa-coin'></i> " + fix(p.quest.reward + p.quest.reward * (p.prestige.multipliers[2] * 0.1), "dynamic") + "</font>");
+	$("#quest_rewards").html("<i class='fa-light fa-coin'></i> " + fix(p.quest.reward + p.quest.reward * (p.prestige.multipliers[2] * 0.1), "dynamic"));
 
 	if (p.points >= 0.5) $("#ChangeObjective").attr("class", "fluid ui inverted green dollar button");
 	else $("#ChangeObjective").attr("class", "fluid ui inverted basic red button");
 
-	if ($('#tab1').is(":visible")) UpdateWeapons();
-	if ($('#tab2').is(":visible")) UpdateMissions();
-	if ($('#tab3').is(":visible")) VehicleList();
 	$("#successcount").html("<font class='SuccessText'>" + SuccessCount() + "</font>/" + success.length + " " + texts.success[0]);
 	SuccessList();
 	redrawTables();
+}
+
+function UpdateTabs() {
+	if ($('#tab1').is(":visible")) UpdateWeapons();
+	if ($('#tab2').is(":visible")) UpdateMissions();
+	if ($('#tab3').is(":visible")) VehicleList();
 }
 
 function UpdateTexts() {
@@ -108,14 +107,14 @@ function UpdateTexts() {
 
 //MISSIONS TABLE
 function MissionList() {
-	$('#missions').html("<thead><tr><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Value</th><th class='ui center aligned'>Produce</th><th class='ui center aligned'>Manage</th></tr></thead>");
+	$('#missions').html("<thead><tr><th class='ui center aligned'>Mission</th><th class='ui center aligned'>Level</th><th class='ui center aligned'>Price</th><th class='ui center aligned'>Produce</th><th class='ui center aligned'>Manage</th></tr></thead>");
 	$('#missions').append("<tbody />");
 	for (var i in missions) {
 		let CONTENT = $(`
 			<tr id='mission-${i}'><td class='single line ui center aligned type2'>${missions[i].name}</td>
 			<td id='mission-${i}-level' class='single line ui center aligned'>0</td>
 			<td id='mission-${i}-value' class='single line ui center aligned'>0</td>
-			<td id='mission-${i}-cost' class='ui center aligned'>0</td>
+			<td id='mission-${i}-production' class='ui center aligned'>0</td>
 			<td class='ui center aligned'>
 			<div class='ui buttons'>
 			<button id='mission-${i}-btnB1' class='ui green dollar button' onClick='BuyM(${i}, 1);'>Buy 1</button>
@@ -146,11 +145,11 @@ function UpdateMissionsDiv(i) {
 	$("#mission-" + i).attr("class", p.missions[i] < 1 ? '' : 'item-active');
 	$("#mission-" + i + "-level").html(p.missions[i]);
 	$("#mission-" + i + "-value").html("<i class='fa-regular fa-dollar-sign'></i>" + fix(GetMissionPrice(i, 1), 1));
-	$("#mission-" + i + "-cost").attr("class", "ui center aligned" + p.missions[i] < 1 ? '' : 'bold');
-	$("#mission-" + i + "-cost").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
-	$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button" + (GetMissionPrice(i, 1) > p.cash ? ' disabled' : ''));
-	$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button" + (GetMissionPrice(i, 10) > p.cash ? ' disabled' : ''));
-	$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button" + (GetMissionPrice(i, 100) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-production").attr("class", "ui center aligned tc-dollar " + (p.missions[i] < 1 ? '' : 'bold'));
+	$("#mission-" + i + "-production").html("<i class='fa-regular fa-dollar-sign'></i>" + fix((missions[i].value * p.missions[i]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 1) + texts.missions[5]);
+	$("#mission-" + i + "-btnB1").attr("class", "ui green dollar button " + (GetMissionPrice(i, 1) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-btnB10").attr("class", "ui green dollar button " + (GetMissionPrice(i, 10) > p.cash ? ' disabled' : ''));
+	$("#mission-" + i + "-btnB100").attr("class", "ui green dollar button " + (GetMissionPrice(i, 100) > p.cash ? ' disabled' : ''));
 	$("#mission-" + i + "-btnS1").attr("class", "ui red button " + (p.missions[i] < 1 ? 'disabled' : ''));
 	$("#mission-" + i + "-btnS10").attr("class", "ui red button " + (p.missions[i] < 10 ? 'disabled' : ''));
 	$("#mission-" + i + "-btnS100").attr("class", "ui red button " + (p.missions[i] < 100 ? 'disabled' : ''));
@@ -174,7 +173,7 @@ function WeaponList() {
 	for (var i in weapons) {
 		let CONTENT = $(
 			"<tr id='weapon-" + i + "' class='ui center aligned'>" +
-			"<td id='weapon-" + i + "-name' class='ui center aligned type2'>" + GenStarLabel(p.Stars[i]) + "<font class='" + getQuality(p.Stars[i]) + "'>" + weapons[i].name + "</font></td>" +
+			"<td id='weapon-" + i + "-name' class='ui center aligned bold content'>" + GenStarLabel(p.Stars[i]) + "<font class='" + getQuality(p.Stars[i]) + "'>" + weapons[i].name + "</font></td>" +
 			"<td id='weapon-" + i + "-price' class='ui center aligned'>0" + "</td>" +
 			"<td class='ui center aligned'><div class='fluid ui vertical buttons'><div id='weapon-" + i + "-purchase' class='fluid ui button' onClick='buyG(" + i + ");'><div class='hidden content'>" + "</div><div class='visible content'>" + texts.weapons[4] + "</div></div>" +
 			"<button id='weapon-" + i + "-equip' class='fluid ui button' onClick='useW(" + i + ");'></button></div></td>" +
@@ -252,10 +251,10 @@ function VehicleList() {
 function hideVTabs() { for (var id = 1; id < 17; id++) { $("#Vtab" + id).hide(); $("#V" + id).removeClass("active"); } }
 function btnPrestigeD() { $("#btnPrestige").addClass("disabled").addClass("inverted"); }
 function btnPrestigeE() { $("#btnPrestige").removeClass("disabled").removeClass("inverted"); }
-function hideTabs() { for (var id = 1; id < 5; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("inverted basic"); } }
+function hideTabs() { for (var id = 1; id < 6; id++) { $("#tab" + id).hide(); $("#t" + id).removeClass("inverted basic"); } }
 function hideMenus() { for (var id = 1; id < 6; id++) { $('#modal-' + id).modal('hide'); } }
-function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).attr('class', 'ui green dollar button inverted'); } }
-function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#S" + id).removeClass('active'); } }
+function hideWTabs() { for (var id = 0; id < 10; id++) { $('#Wtab' + id).hide(); $("#W" + id).removeClass('active'); } }
+function hideSTabs() { for (var id = 0; id < 10; id++) { $('#Stab' + id).hide(); $("#succcess-btn-" + id).removeClass('active'); } }
 
 function ClickEvents() {
 	$("#game-menu").on("click", "a", function () {
@@ -263,6 +262,7 @@ function ClickEvents() {
 		$("#tab" + id).show();
 		$("#t" + id).addClass("green dollar basic");
 		UpdateUI();
+		UpdateTabs();
 	});
 	$("#sidebar").on("click", "a", function () {
 		var id = $(this).data('id');
@@ -276,7 +276,7 @@ function ClickEvents() {
 		var id = $(this).data('id');
 		hideWTabs();
 		$('#Wtab' + id).show();
-		$("#W" + id).removeClass("inverted");
+		$("#W" + id).addClass("active");
 	});
 	$("#ChangeObjective").on("click", function () {
 		if (p.points >= 0.5) {
@@ -297,7 +297,7 @@ function ClickEvents() {
 		var id = $(this).data('id');
 		hideSTabs();
 		$('#Stab' + id).show();
-		$("#S" + id).addClass("active");
+		$("#succcess-btn-" + id).addClass("active");
 	});
 	$('#colonne-m').on('click', '#close', function () {
 		$(this).closest('#objective').transition('fade');
@@ -339,12 +339,12 @@ function SuccessList() {
 			"<div class='content'><p class='text type2'>" + succes.name + "</p>" +
 			"<p>" + succes.desc + "</p></div></div>"
 		);
-		if (succes.type === 0) { $('#Stab0').append(succesDIV); }
-		if (succes.type === 1) { $('#Stab1').append(succesDIV); } // Player
-		if (succes.type === 2) { $('#Stab2').append(succesDIV); } // Cash
-		if (succes.type === 3) { $('#Stab2').append(succesDIV); } // Missions
-		if (succes.type === 4) { $('#Stab0').append(succesDIV); }
-		if (succes.type === 5) { $('#Stab3').append(succesDIV); }
+		if (succes.type === 0) { $('#Stab0').append(succesDIV); } // Tutorial
+		if (succes.type === 1) { $('#Stab1').append(succesDIV); } // Cash
+		if (succes.type === 2) { $('#Stab2').append(succesDIV); } // Missions
+		//if (succes.type === 3) { $('#Stab2').append(succesDIV); } Unused
+		if (succes.type === 4) { $('#Stab0').append(succesDIV); } // Ranks
+		if (succes.type === 5) { $('#Stab3').append(succesDIV); } // Prestige
 	}
 }
 

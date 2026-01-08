@@ -1,7 +1,5 @@
-const version = "v5.76";
-var alert = 0;
-var CASHPS = 0;
-var WEAPON_MULTIPLIER = 0;
+const version = "v5.77";
+var notify_time = 0;
 var p = {
 	//DEFAULT VARS
 	DateStarted: getDate(),
@@ -58,13 +56,11 @@ $(document).ready(function () {
 	UpdateTexts();
 	ClickEvents();
 	SuccessCount();
-	getCashPS();
 	getPrestigePrice();
 	MissionList();
 	WeaponList();
 	idleFiveLoop();
 	showTutorial(p.tutorial);
-	WEAPON_MULTIPLIER = GetWeaponMult(p.Weapon.Id);
 	$('.ui.sidebar').sidebar('hide');
 });
 
@@ -97,32 +93,34 @@ function idleFiveLoop() {
 	p.rank = rank;
 	if (p.quest.type == 2 && p.rank >= p.quest.objective[0]) getRewards();
 	if (p.quest.type == 1 && p.quest.progression >= p.quest.objective[0]) getRewards();
+	if (p.quest.type === 3 && _.min(p.Stars.slice(1)) === 10) NewObjective();
 	if (p.rank >= p.prestige.price[0]) {
 		if (p.cash >= p.prestige.price[1]) btnPrestigeE();
 		else btnPrestigeD();
 	} else btnPrestigeD();
-	p.cash += CASHPS;
-	p.stats.totalcash += CASHPS;
+	p.cash += getCashPS();
+	p.stats.totalcash += getCashPS();
 	if (p.fl == 1) showTutorialDIV();
-	if (alert > 0) alert--;
+	if (notify_time > 0) notify_time--;
 	else $("#announce").hide();
 	if (p.quest.progression == undefined) p.quest.progression = 0;
 	p.points = Math.round(p.points * 100) / 100;
 	UpdateUI();
-	save();
+	UpdateTabs();
 }
 
 function getCashPS() {
-	CASHPS = 0;
+	let CASHPERSECOND = 0;
 	for (var m in missions) {
 		if (p.missions[m] > 0) {
-			CASHPS += (missions[m].value * p.missions[m]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1));
+			CASHPERSECOND += (missions[m].value * p.missions[m]) * (p.prestige.bonus + (p.prestige.multipliers[0] * 0.1));
 		}
 	}
+	return CASHPERSECOND;
 }
 
 function ClickWeapon() {
-	let CASH_PER_CLICK = p.Weapon.Power * (WEAPON_MULTIPLIER + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
+	let CASH_PER_CLICK = p.Weapon.Power * (GetWeaponMult(p.Weapon.Id) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
 	p.cash += CASH_PER_CLICK;
 	p.stats.totalcash += CASH_PER_CLICK;
 	p.TotalClicks++;
@@ -135,6 +133,7 @@ function ClickWeapon() {
 		if (p.quest.objective[0] <= 0) getRewards();
 	}
 	UpdateUI();
+	save();
 }
 
 function AddPrestige() {
@@ -145,13 +144,11 @@ function AddPrestige() {
 				p.points = Math.trunc(p.rank / 200);
 				p.Weapon.Power = 0.5;
 				p.Weapon.Id = 0;
-				WEAPON_MULTIPLIER = 1;
 				p.Weapon.Class = "Normal";
 				p.WeaponBought = [];
 				p.WeaponType = [];
 				p.rank = 0;
-				p.cash = 0;
-				CASHPS = 0;
+				p.cash = 0;;
 				p.missions = [];
 				p.prestige.level++;
 				p.quest.type = 0;
@@ -162,6 +159,8 @@ function AddPrestige() {
 				SuccessCount();
 				hideMenus();
 				getPrestigePrice();
+				idleFiveLoop();
+				save();
 			}
 		}
 	}
@@ -185,7 +184,7 @@ function getRank(rankNBR) {
 	if (rankNBR >= 1050) Class = "Gold"; // x50 each
 	if (rankNBR >= 2100) Class = "Platinum"; // x100 each
 	if (rankNBR >= 27000) Class = "Heavenly"; // x1000 each
-	return "<font class='" + Class + "'>" + rankNBR + "</font>";
+	return "<span class='ui content " + Class + "'>" + fix(rankNBR, 3) + "</span>";
 }
 
 function buyG(id) {
@@ -210,10 +209,10 @@ function buyG(id) {
 		}
 	}
 	if (p.quest.type === 3 && p.quest.progression >= p.quest.objective[0]) getRewards();
-	WEAPON_MULTIPLIER = GetWeaponMult(p.Weapon.Id);
 	SuccessCount();
 	UpdateUI();
 	UpdateTexts();
+	save();
 }
 
 function genGun() {
@@ -271,7 +270,7 @@ function genGun2() {
 function ALERT(text, seconds) {
 	$("#announce-text").html(text);
 	$("#announce").show();
-	alert = seconds;
+	notify_time = seconds;
 }
 
 function setQuality(Stars) {
@@ -314,11 +313,11 @@ function GetWeaponMult(weaponId) {
 function useW(id) {
 	if (p.WeaponBought[id] == 1 && p.Weapon.Id != id) {
 		p.Weapon.Id = id;
-		WEAPON_MULTIPLIER = GetWeaponMult();
 		p.Weapon.Power = weapons[id].power;
 		setQuality(p.Stars[p.Weapon.Id]);
 	}
 	UpdateUI();
+	save();
 }
 
 function BuyM(id, qty) {
@@ -341,7 +340,7 @@ function BuyM(id, qty) {
 		p.stats.totalspentcash += price;
 		SuccessCount();
 		UpdateMissionsDiv(id);
-		getCashPS();
+		save();
 	}
 }
 
@@ -355,8 +354,8 @@ function SellM(id, qty) {
 	}
 	if (p.quest.type == 1 && id == p.quest.objective[1]) p.quest.progression -= qty;
 	SuccessCount();
-	getCashPS();
-	UpdateUI();
+	UpdateMissionsDiv(id);
+	save();
 }
 
 function GetMissionPrice(id, qty) {
@@ -427,8 +426,8 @@ function buyV(id) {
 		p.prestige.multipliers[vehicules[id].type]++;
 	}
 	VehicleList();
-	getCashPS();
 	UpdateUI();
+	save();
 }
 
 function GetQuestTitle() {
@@ -565,6 +564,7 @@ function NewObjective() {
 	p.quest = QUEST;
 	//console.log("Type: " + getQuestType(QUEST.type) + " | Objective: " + QUEST.objective[1]);
 	//console.log("Reward: " + QUEST.reward + " CP" + " | Chance: " + chance + "%");
+	save();
 }
 
 function getRewards() {
@@ -578,8 +578,8 @@ function ReasignPoints() {
 	p.spentpoints = 0;
 	p.prestige.multipliers = [0, 0, 0];
 	VehicleList();
-	getCashPS();
 	UpdateUI();
+	save();
 }
 
 function GenStarLabel(Stars) {
@@ -609,5 +609,4 @@ function getQuality(Stars) {
 	if (Stars == 9) QUALITY = "Universal";
 	if (Stars == 10) QUALITY = "Dimensional";
 	return QUALITY;
-
 }

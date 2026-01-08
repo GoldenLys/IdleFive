@@ -141,6 +141,8 @@ var vehicules = {
 
 var success = [
     { name: "A fresh start", desc: "Successfully completed the tutorial.", type: 0, },
+    //END OF TYPE 0
+
     { name: "The first dollar", desc: "You've gained $1.", type: 1, value: 1, },
     { name: "A whole handful", desc: "You've gained $10.", type: 1, value: 10, },
     { name: "A well filled bag", desc: "You've gained $100.", type: 1, value: 100, },
@@ -282,7 +284,7 @@ var tutorialtexts = {
 
 var texts = {
     sidebar: ["Success", "Statistics", "Guide", "Save", "Donate"],
-    menu: ["Menu", "Weapons", "Missions", "Character", "Stats"],
+    menu: ["Menu", "Weapons", "Missions", "Character", "Stats", "Achievements"],
     weapons: ["Weapon", "Price", "Base Damage", "Purchase", "Roll stats", "Equip", "Equipped", "Actions"],
     missions: ["Buy", "Sell", "Level", "Value", "produce", "/s"],
     vehicles: ["Price", "adds", "of", "cash", "damage", "multiplier", "Purchase"],

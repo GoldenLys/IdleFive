@@ -128,7 +128,9 @@ i.green.icon {
 }
 
 #imagecontainer {
+    position: relative;
     height: 250px;
+    width: 100%;
 }
 
 #imagecash {
@@ -185,12 +187,6 @@ a,
     left: 39%;
 }
 
-.surc {
-    text-align: center;
-    height: 60%;
-    overflow: auto;
-}
-
 .centrer {
     text-align: center;
 }
@@ -198,7 +194,7 @@ a,
 .title {
     text-align: center;
     font-size: 24px;
-    font-family: "Anton", sans-serif;
+    font-family: 'Saira', sans-serif;
     font-display: swap;
     margin: 2.5vh 0vh 0vh 0vh;
     color: rgb(108, 184, 124);
@@ -257,7 +253,8 @@ a,
 
 .type2,
 .ui.message .header {
-    font-family: 'Anton', sans-serif !important;
+    font-family: 'Saira', sans-serif !important;
+    font-weight: 600;
     font-display: swap;
 }
 
@@ -402,8 +399,8 @@ body ::-webkit-scrollbar-track {
     background-color: rgb(25 25 25 / 50%) !important;
 }
 
-.ui.inverted.table>tbody>tr>td, 
-.ui.inverted.table>tfoot>tr>td, 
+.ui.inverted.table>tbody>tr>td,
+.ui.inverted.table>tfoot>tr>td,
 .ui.inverted.table>tr>td {
     border-color: rgb(166 221 190 / 50%);
 }
@@ -433,17 +430,6 @@ body ::-webkit-scrollbar-track {
 
 .ui.buttons .or {
     z-index: 1;
-}
-
-#imagecontainer {
-    position: relative;
-    min-height: 150px;
-    width: 100%;
-    z-index: 10;
-    background-color: rgb(25 25 25 / 50%);
-    border-radius: .25em;
-    padding-top: 15px;
-    padding-bottom: 15px;
 }
 
 #cash {
@@ -523,6 +509,12 @@ i.ui.logo:after {
 .ui.inverted.green.dollar.buttons .button {
     background-color: transparent;
     -webkit-box-shadow: 0 0 0 2px rgb(108, 184, 124) inset;
+    box-shadow: 0 0 0 2px rgb(108, 184, 124) inset;
+    color: rgb(108, 184, 124);
+}
+
+.ui.inverted.green.basic.button:focus,
+.ui.inverted.green.basic.buttons .button:focus {
     box-shadow: 0 0 0 2px rgb(108, 184, 124) inset;
     color: rgb(108, 184, 124);
 }
@@ -626,6 +618,10 @@ h6.ui.inline.header .sub.header {
     margin-left: 10px;
 }
 
+.ui.header .sub.header {
+    color: #FFF;
+}
+
 .ui.grid>.green.dollar.column,
 .ui.grid>.green.dollar.row,
 .ui.grid>.row>.green.dollar.column {
@@ -635,7 +631,7 @@ h6.ui.inline.header .sub.header {
 
 .ui.label.Normal {
     background-color: rgba(var(--normal), 0.15);
-    color : rgb(var(--normal));
+    color: rgb(var(--normal));
 }
 
 .ui.label.Common {
@@ -686,10 +682,10 @@ h6.ui.inline.header .sub.header {
 }
 
 .ui.message .ui.middle.aligned.content>i {
-    line-height: 1.4285em;   
+    line-height: 1.4285em;
 }
 
-.ui.horizontal.label, 
+.ui.horizontal.label,
 .ui.horizontal.labels .label {
     vertical-align: middle;
     font-family: 'Quicksand', sans-serif;
@@ -704,13 +700,16 @@ h6.ui.inline.header .sub.header {
     margin: 0 0 0 .5em
 }
 
-.ui.divider.inverted, .ui.horizontal.inverted.divider, .ui.vertical.inverted.divider {
+.ui.divider.inverted,
+.ui.horizontal.inverted.divider,
+.ui.vertical.inverted.divider {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.ui.horizontal.divider:after, .ui.horizontal.divider:before {
+.ui.horizontal.divider:after,
+.ui.horizontal.divider:before {
     background-image: none;
     height: 2px;
     background-color: rgb(166 221 190 / 50%);
@@ -750,4 +749,35 @@ h6.ui.inline.header .sub.header {
     border: none;
     background-color: transparent;
     box-shadow: none;
+}
+
+.ui.secondary.inverted.dollar.pointing.menu .active.item {
+    border-color: rgb(108, 184, 124);
+}
+
+.ui.inverted.dollar.menu .item:hover,
+.ui.inverted.dollar.menu .active.item:hover {
+    background: rgb(166 221 190 / 50%);
+}
+
+.ui.inverted.dollar.pointing.menu .item:hover,
+.ui.inverted.dollar.pointing.menu .active.item:hover {
+    background: transparent;
+    border-color: rgb(166 221 190 / 50%);
+}
+
+.ui.secondary.dollar.inverted.menu .active.item {
+    background: rgb(108, 184, 124);
+}
+
+.ui.bold.content,
+.ui.bold.section,
+.ui.bold.header {
+    font-family: 'Saira', sans-serif !important;
+    font-weight: 900;
+}
+
+.ui.bold.header .sub.header {
+    font-family: 'Quicksand', sans-serif !important;
+    font-weight: normal;
 }

@@ -4,11 +4,13 @@
     <title>idleFive is loading..</title>
     <meta charset="UTF-8" name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
     <link rel="shortcut icon" type="image/x-icon" href="images/fav.ico" />
-
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/dropdown.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/components/sidebar.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://site-assets.fontawesome.com" crossorigin>
     <link rel="stylesheet" type="text/css" href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -17,8 +19,6 @@
 <body id="body" class="noselect">
     <!--SIDE BAR-->
     <div id="sidebar" class="ui left demo vertical visible inverted sidebar labeled icon menu">
-        <a class="item" id="menu2" data-id="2">
-            <i class="trophy icon"></i>Success</a>
         <a class="item" id="menu4" data-id="4">
             <i class="info icon"></i>Guide</a>
         <a class="item" id="menu5" data-id="5">
@@ -53,6 +53,8 @@
                     <i class="user icon"></i>Character</a>
                 <a class="ui button item" id="t4" data-id="4">
                     <i class="chart bar icon"></i>Stats</a>
+                <a class="ui button item" id="t5" data-id="5">
+                    <i class="fa-sharp fa-solid fa-award icon"></i>Achievements</a>
             </div>
         </div>
         <div class="topmenu-space"></div>
@@ -61,29 +63,30 @@
             <!--LEFT COLUMN-->
             <div class="column" id="colonne-m">
                 <!--CURRENT WEAPON-->
-                <div id="imagecontainer">
-                    <h3 class="ui blanc header" id="status_cps">
-                        <div class='sub header'></div>
-                    </h3>
-                    <div id="imagecash"></div>
+                <div class="ui sticky grid center aligned inverted internally celled">
+                    <div class="row">
+                        <div class="sixteen wide column">
+                            <h2 class="ui bold header dollar" id="status_cash"></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="sixteen wide column">
+                            <div id="imagecontainer">
+                                <div id="imagecash"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <!--GAME INFOS-->
                 <div class="ui black message">
                     <div id="status" class="ui sticky grid center aligned inverted internally celled">
-                        <div class="row">
-                            <div class="four wide green dollar column">
-                                Cash
-                            </div>
-                            <div class="twelve wide column">
-                                <h3 class="ui inline header dollar" id="status_cash"></h3>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="four wide white column">
                                 Weapon
                             </div>
                             <div class="twelve wide column">
-                                <div class="ui middle aligned content" id="status_weapon"></div>
+                                <h3 class="ui middle aligned bold content" id="status_weapon"></h3>
                             </div>
                         </div>
                         <div class="row">
@@ -91,7 +94,7 @@
                                 Damage
                             </div>
                             <div class="twelve wide column">
-                                <div class="ui middle aligned content" id="status_damage"></div>
+                                <h3 class="ui middle aligned bold content" id="status_damage"></h3>
                             </div>
                         </div>
 
@@ -100,7 +103,7 @@
                                 Rank
                             </div>
                             <div class="twelve wide column">
-                                <div class="ui middle aligned content" id="status_level"></div>
+                                <h3 class="ui middle aligned content" id="status_level"></h3>
                             </div>
                         </div>
                         <div class="row">
@@ -108,14 +111,12 @@
                                 Chips
                             </div>
                             <div class="twelve wide column">
-                                <div class="ui middle aligned content" id="status_points"></div>
+                                <h3 class="ui middle aligned content" id="status_points"></h3>
                             </div>
                         </div>
                     </div>
 
-                    <h4 class="ui horizontal inverted divider section">
-                        <i class="clipboard icon"></i> Objective
-                    </h4>
+                    <h3 class="ui horizontal inverted divider bold big section">Current Objective</h3>
 
                     <div class="ui sticky grid center aligned inverted internally celled">
                         <div class="row">
@@ -125,7 +126,7 @@
                         </div>
                         <div class="row">
                             <div class="sixteen wide column">
-                                <span id="quest_rewards"></span>
+                                <h3 class="ui middle aligned content jaune" id="quest_rewards"></h3>
                             </div>
                         </div>
 
@@ -151,15 +152,15 @@
                 <!--WEAPONS-->
                 <div id="tab1" style="display: none; width: 100%;">
 
-                    <div name="weap-type" class="ui inverted secondary wrapping menu" id="weap-select">
-                        <div id="W1" class="ui green dollar button active" data-id="1"></div>
-                        <div id="W2" class="ui inverted green dollar button" data-id="2"></div>
-                        <div id="W3" class="ui inverted green dollar  button" data-id="3"></div>
-                        <div id="W4" class="ui inverted green dollar button" data-id="4"></div>
-                        <div id="W5" class="ui inverted green dollar button" data-id="5"></div>
-                        <div id="W6" class="ui inverted green dollar button" data-id="6"></div>
-                        <div id="W7" class="ui inverted green dollar button" data-id="7"></div>
-                        <div id="W8" class="ui inverted green dollar button" data-id="8"></div>
+                    <div name="weap-type" class="ui inverted secondary dollar centered fluid wrapping menu" id="weap-select">
+                        <div id="W1" class="item active" data-id="1"></div>
+                        <div id="W2" class="item" data-id="2"></div>
+                        <div id="W3" class="item" data-id="3"></div>
+                        <div id="W4" class="item" data-id="4"></div>
+                        <div id="W5" class="item" data-id="5"></div>
+                        <div id="W6" class="item" data-id="6"></div>
+                        <div id="W7" class="item" data-id="7"></div>
+                        <div id="W8" class="item" data-id="8"></div>
                     </div>
 
                     <table id="Wtab1" class="ui inverted table"></table>
@@ -218,7 +219,7 @@
                     <div class="ui black message">
                         <div class="ui two column centered grid">
                             <div class="column">
-                                <h4 class="ui horizontal divider header">General</h4>
+                                <h4 class="ui horizontal divider bold small header">GENERAL</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="ObjectivesCompleted"></div>
                                     <div id="totalclicks"></div>
@@ -227,7 +228,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h4 class="ui horizontal divider header">Character</h4>
+                                <h4 class="ui horizontal divider bold small header">CHARACTER</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="spcount"></div>
                                     <div id="pointsspent"></div>
@@ -237,7 +238,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h4 class="ui horizontal divider header">Weapons</h4>
+                                <h4 class="ui horizontal divider bold small header">WEAPONS</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="lowestweaponrank"></div>
                                     <div id="highestweaponrank"></div>
@@ -247,7 +248,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h4 class="ui horizontal divider header">Cash</h4>
+                                <h4 class="ui horizontal divider bold small header">CASH</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="cashcount"></div>
                                     <div id="cashpscount"></div>
@@ -257,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h4 class="ui horizontal divider header">Multipliers</h4>
+                                <h4 class="ui horizontal divider bold small header">MULTIPLIERS</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="cashmult"></div>
                                     <div id="damagemult"></div>
@@ -266,13 +267,30 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h4 class="ui horizontal divider header">Infos</h4>
+                                <h4 class="ui horizontal divider bold small header">INFOS</h4>
                                 <div class="ui large full-width invisible segment">
                                     <div id="time"></div>
                                     <div id="version"></div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!--ACHIEVEMENTS-->
+                <div id="tab5" style="display: none; width: 100%;">
+                    <div class="ui black message">
+                        <div id="successtype" class="ui four inverted secondary dollar pointing item menu">
+                            <button id="succcess-btn-0" data-id="0" class="active item">Player</button>
+                            <button id="succcess-btn-1" data-id="1" class="item">Cash</button>
+                            <button id="succcess-btn-2" data-id="2" class="item">Missions</button>
+                            <button id="succcess-btn-3" data-id="3" class="item">Characters</button>
+                        </div>
+
+                        <div id="Stab0" style="display: block;"></div>
+                        <div id="Stab1" style="display: none;"></div>
+                        <div id="Stab2" style="display: none;"></div>
+                        <div id="Stab3" style="display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -301,44 +319,10 @@
             </div>
         </div>
     </div>
-    <!--SUCCESS-->
-    <div class="ui basic modal" id="modal-2">
-        <div class="ui icon header">
-            <i class="star icon"></i>
-            <span id="success-title" class="title blanc">Success</span>
-            <p id="successcount"></p>
-        </div>
-
-        <div class="centrer content">
-            <div id="successtype" class="fluid ui inverted buttons">
-                <button data-id="0" class="ui green dollar basic inverted button">Player</button>
-                <button data-id="1" class="ui green dollar basic inverted button">Cash</button>
-                <button data-id="2" class="ui green dollar basic inverted button">Missions</button>
-                <button data-id="3" class="ui green dollar basic inverted button">Characters</button>
-            </div>
-            <div class="surc">
-                <div id="Stab0" style="display: block;"></div>
-                <div id="Stab1" style="display: none;"></div>
-                <div id="Stab2" style="display: none;"></div>
-                <div id="Stab3" style="display: none;"></div>
-            </div>
-        </div>
-        <div class="actions">
-            <div onclick="hideMenus();" class=" fluid ui red basic inverted button">
-                <i class="remove icon"></i>Close
-            </div>
-        </div>
-    </div>
     <!--UNUSED-->
-    <div class="ui basic modal" id="modal-3">
-        <div class="ui icon header"></div>
-
-        <div class="actions">
-            <div onclick="hideMenus();" class="fluid ui red basic inverted button">
-                <i class="remove icon"></i>Close
-            </div>
-        </div>
-    </div>
+    <div class="ui basic modal" id="modal-2"></div>
+    <!--UNUSED-->
+    <div class="ui basic modal" id="modal-3"></div>
     <!--TUTORIAL-->
     <div class="ui basic modal" id="modal-4">
 

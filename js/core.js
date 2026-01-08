@@ -1,4 +1,4 @@
-const version = "v5.82";
+const version = "v5.83";
 var notify_time = 0;
 const DEFAULT = {
 	//DEFAULT VARS
@@ -380,7 +380,7 @@ function SellM(id, qty) {
 function GetMissionPrice(id, qty) {
     const owned = p.missions[id] || 0;
     const base = new BigNumber(missions[id].price);
-    const modifier = new BigNumber(GetMissionPriceModifier());
+    const modifier = new BigNumber(GetMissionPriceModifier(owned));
 
     if (modifier.eq(1)) {
         return base.times(qty).toNumber();
@@ -392,19 +392,18 @@ function GetMissionPrice(id, qty) {
     return base.times(start).times(factor).toNumber();
 }
 
-function GetMissionPriceModifier() {
-	let amount = p.rank;
+function GetMissionPriceModifier(amount) {
 	Mapping = {
 		1:       1.15,
-		1000:    1.10,
-		10000:   1.05,
-		27000:   1.015,
-		50000:   1.01,
-		100000:  1.005,
-		270000:  1.0015,
-		500000:  1.0001,
-		1000000: 1.00005,
-		2700000: 1.00015
+		50:      1.10,
+		100:     1.05,
+		500:     1.015,
+		1000:    1.01,
+		10000:   1.005,
+		50000:   1.0015,
+		100000:  1.001,
+		500000:  1.0005,
+		1000000: 1.00015
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
 }
@@ -412,7 +411,7 @@ function GetMissionPriceModifier() {
 function GetMissionSellPrice(id, qty) {
     const owned = p.missions[id] || 0;
     const base = new BigNumber(missions[id].price);
-    const modifier = new BigNumber(GetMissionPriceModifier());
+    const modifier = new BigNumber(GetMissionPriceModifier(owned));
 
     const start = modifier.pow(owned - qty);
     const factor = modifier.pow(qty).minus(1).div(modifier.minus(1));

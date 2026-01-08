@@ -1,4 +1,4 @@
-const version = "v5.8";
+const version = "v5.82";
 var notify_time = 0;
 const DEFAULT = {
 	//DEFAULT VARS
@@ -68,14 +68,12 @@ $(document).ready(function () {
 
 function idleFiveLoop() {
 	//DEBUG
-	
 	if (p.stats.totalcash < 0) p.stats.totalcash = 0;
 	if (p.stats.totalspentcash < 0) p.stats.totalspentcash = 0;
 	if (p.stats.character_totalcash < 0) p.stats.character_totalcash = 0;
 	if (p.stats.character_totalspentcash < 0) p.stats.character_totalspentcash = 0;
 	if (p.cash !== p.cash) p.cash = 0;
 	p.cash = truncate2(p.cash);
-	if (p.stats.character_totalcash < p.cash) p.cash = p.stats.character_totalcash - p.stats.character_totalspentcash;
 	for (var stat in p.stats) {
 		if (p.stats[stat] !== p.stats[stat]) p.stats[stat] = 0;
 		if (p.stats[stat] < 0) p.stats[stat] = 0;
@@ -397,14 +395,16 @@ function GetMissionPrice(id, qty) {
 function GetMissionPriceModifier() {
 	let amount = p.rank;
 	Mapping = {
-		1: 1.15,
-		1000: 1.10,
-		10000: 1.05,
-		25000: 1.025,
-		50000: 1.010,
-		75000: 1.005,
-		100000: 1.001,
-		250000: 1
+		1:       1.15,
+		1000:    1.10,
+		10000:   1.05,
+		27000:   1.015,
+		50000:   1.01,
+		100000:  1.005,
+		270000:  1.0015,
+		500000:  1.0001,
+		1000000: 1.00005,
+		2700000: 1.00015
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
 }

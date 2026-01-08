@@ -25,6 +25,13 @@ const suffixes = [
 	{ value: "1e72", symbol: "tV", full: "trivigintillion" }, // trivigintillion
 	{ value: "1e75", symbol: "qV", full: "quattuorvigintillion" }, // quattuorvigintillion
 	{ value: "1e78", symbol: "QV", full: "quinvigintillion" }, // quinvigintillion
+	{ value: "1e81", symbol: "SV", full: "sexvigintillion" }, // sexvigintillion
+	{ value: "1e84", symbol: "SV", full: "septenvigintillion" }, // septenvigintillion
+	{ value: "1e87", symbol: "OV", full: "octovigintillion" }, // octovigintillion
+	{ value: "1e90", symbol: "NV", full: "novemvigintillion" }, // novemvigintillion
+	{ value: "1e93", symbol: "Dc", full: "decvigintillion" }, // decvigintillion
+	{ value: "1e96", symbol: "UV", full: "undecvigintillion" }, // undecvigintillion
+	{ value: "1e99", symbol: "DV", full: "duodecvigintillion" }, // duodecvigintillion
 ];
 
 function formatBigNumberAbbrev(raw, decimals = 2) {
@@ -238,7 +245,7 @@ function truncate2(num) {
 
 	// If scientific notation, convert to full string
 	if (s.includes("e") || s.includes("E")) {
-		s = Number(num).toFixed(20);
+		return num;
 	}
 
 	const dot = s.indexOf(".");

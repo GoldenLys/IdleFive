@@ -1,4 +1,4 @@
-const version = "v5.77";
+const version = "v5.78";
 var notify_time = 0;
 var p = {
 	//DEFAULT VARS
@@ -348,6 +348,7 @@ function SellM(id, qty) {
 	let price = GetMissionSPrice(id, qty);
 	if (p.missions[id] == null) p.missions[id] = 0;
 	p.cash += price;
+	p.stats.totalspentcash -= price;
 	if (p.missions[id] >= qty) {
 		p.missions[id] -= qty;
 		p.rank -= qty;

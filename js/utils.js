@@ -37,7 +37,7 @@ function formatBigNumberAbbrev(raw, decimals = 2) {
 	if (!match) return bn.toFixed(decimals); // no abbreviation
 
 	const divided = bn.div(new BigNumber(match.value));
-	return `${divided.toFixed(decimals)}${match.symbol}`;
+	return `${divided.toFixed(decimals)} ${match.symbol}`;
 }
 
 function formatBigNumberFull(raw, decimals = 2) {
@@ -87,7 +87,7 @@ function fix(number_raw, type) {
 
 	if (type == "dynamic") {
 		if (number_raw != Math.round(number_raw)) VALUE = numeral(number_raw).format("0,0.0");
-        else VALUE = numeral(number_raw).format("0,0");
+		else VALUE = numeral(number_raw).format("0,0");
 		return VALUE;
 	}
 
@@ -155,14 +155,40 @@ var save = function () {
 	}
 };
 
-var load = function () {
-	var savegame = JSON.parse(localStorage.getItem("idleFive5"));
-
-	for (var property in savegame) {
-		if (typeof savegame[property] !== 'undefined') p[property] = savegame[property];
+function load() {
+	const raw = localStorage.getItem("idleFive5");
+	if (!raw) {
+		// No save: start with a fresh clone of DEFAULT
+		p = structuredClone(DEFAULT); // or JSON.parse(JSON.stringify(DEFAULT)) if structuredClone not available
+		UpdateUI();
+		return;
 	}
+
+	let savegame;
+	try {
+		savegame = JSON.parse(raw);
+	} catch (e) {
+		console.error("Failed to parse save:", e);
+		// fallback: reset to defaults
+		p = structuredClone(DEFAULT);
+		UpdateUI();
+		return;
+	}
+
+	// Clone DEFAULT so we don't mutate it
+	const base = (typeof structuredClone === 'function')
+		? structuredClone(DEFAULT)
+		: JSON.parse(JSON.stringify(DEFAULT));
+
+	// Merge save into base (save values overwrite defaults)
+	p = deepMerge(base, savegame || {});
+
+	// Optional: run migrations here if you need to rename fields or transform old formats
+	runMigrations(p);
+
 	UpdateUI();
-};
+}
+
 
 function exportSave() {
 	$("#exportBody").html("<textarea id='saveCode'>" + btoa(JSON.stringify(p)) + "</textarea>");
@@ -208,15 +234,114 @@ var confirmReset = function () {
 };
 
 function truncate2(num) {
-    let s = String(num);
+	let s = String(num);
 
-    // If scientific notation, convert to full string
-    if (s.includes("e") || s.includes("E")) {
-        s = Number(num).toFixed(20); // expand it
+	// If scientific notation, convert to full string
+	if (s.includes("e") || s.includes("E")) {
+		s = Number(num).toFixed(20);
+	}
+
+	const dot = s.indexOf(".");
+	if (dot === -1) return num;
+
+	return Number(s.slice(0, dot + 3));
+}
+
+// Utility: deep merge where objects are merged, arrays are replaced
+function deepMerge(target, source) {
+	if (source == null) return target;
+
+	for (const key of Object.keys(source)) {
+		const srcVal = source[key];
+		const tgtVal = target[key];
+
+		// If both are plain objects, merge recursively
+		if (isPlainObject(tgtVal) && isPlainObject(srcVal)) {
+			target[key] = deepMerge({ ...tgtVal }, srcVal);
+			continue;
+		}
+
+		// If source is an array, replace target with source array
+		if (Array.isArray(srcVal)) {
+			target[key] = srcVal.slice();
+			continue;
+		}
+
+		// Otherwise use source value (covers primitives, null, functions)
+		target[key] = srcVal;
+	}
+
+	return target;
+}
+
+function isPlainObject(v) {
+	return v && typeof v === 'object' && !Array.isArray(v);
+}
+
+function runMigrations(state) {
+  if (!state || typeof state !== 'object') return;
+
+  state.stats = state.stats || {};
+
+  function toNumberSafe(v) {
+    if (v === null || v === undefined) return undefined;
+    if (typeof v === 'number' && Number.isFinite(v)) return v;
+    if (typeof v === 'string') {
+      const cleaned = v.replace(/,/g, '').trim();
+      const n = Number(cleaned);
+      return Number.isFinite(n) ? n : undefined;
     }
+    if (typeof v === 'boolean') return v ? 1 : 0;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
+  }
 
-    const dot = s.indexOf(".");
-    if (dot === -1) return num; // no decimals
+  // Generic move-and-sum for keys where we want to add legacy into stats
+  function moveAndSum(legacyKey, statsKey) {
+    const legacyVal = toNumberSafe(state.hasOwnProperty(legacyKey) ? state[legacyKey] : undefined);
+    const statsVal = toNumberSafe(state.stats.hasOwnProperty(statsKey) ? state.stats[statsKey] : undefined) || 0;
 
-    return Number(s.slice(0, dot + 3)); // keep 2 decimals
+    if (legacyVal !== undefined) {
+      state.stats[statsKey] = statsVal + legacyVal;
+      delete state[legacyKey];
+    } else if (statsVal !== undefined) {
+      state.stats[statsKey] = statsVal;
+    }
+  }
+
+  // Move/sum the keys you requested
+  moveAndSum('TotalClicks', 'totalclicks');
+  moveAndSum('CompletedQuests', 'completedquests');
+
+  // For playTime we explicitly add legacy playTime into stats.totalplaytime
+  const legacyPlay = toNumberSafe(state.hasOwnProperty('playTime') ? state.playTime : undefined);
+  const curPlay = toNumberSafe(state.stats.totalplaytime) || 0;
+  if (legacyPlay !== undefined) {
+    state.stats.totalplaytime = curPlay + legacyPlay;
+    delete state.playTime;
+  } else {
+    // ensure numeric if only stats value exists
+    state.stats.totalplaytime = curPlay;
+  }
+
+  // spentpoints (legacy key name exactly as you specified)
+  moveAndSum('spentpoints', 'spentpoints');
+
+  // Ensure every key from DEFAULT.stats exists and is numeric
+  for (const key in DEFAULT.stats) {
+    if (!Object.prototype.hasOwnProperty.call(DEFAULT.stats, key)) continue;
+    const cur = toNumberSafe(state.stats[key]);
+    if (cur === undefined) {
+      const def = toNumberSafe(DEFAULT.stats[key]);
+      state.stats[key] = def !== undefined ? def : 0;
+    } else {
+      state.stats[key] = cur;
+    }
+  }
+
+  // Basic invariants
+  if (state.stats.totalclicks < 0) state.stats.totalclicks = 0;
+  if (state.stats.completedquests < 0) state.stats.completedquests = 0;
+  if (state.stats.totalplaytime < 0) state.stats.totalplaytime = 0;
+  if (state.stats.spentpoints < 0) state.stats.spentpoints = 0;
 }

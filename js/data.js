@@ -1,11 +1,11 @@
 var missions = {
     // Early-game
-    0: { name: 'Pickpocketing', price: 10, modifier: 1.05, value: 0.1, level: 0 },
-    1: { name: 'Grocery Store Robbery', price: 25, modifier: 1.05, value: 0.5, level: 5 },
-    2: { name: 'Fleeca Heist', price: 50, modifier: 1.05, value: 1, level: 20 },
-    3: { name: 'Security Van Heist', price: 200, modifier: 1.05, value: 5, level: 50 },
-    4: { name: 'Street Race', price: 500, modifier: 1.05, value: 10, level: 100 },
-    5: { name: 'Auto Shop Delivery', price: 1250, modifier: 1.05, value: 50, level: 200 },
+    0: { name: 'Pickpocketing', price: 10, value: 0.1, level: 0 },
+    1: { name: 'Grocery Store Robbery', price: 25, value: 0.5, level: 5 },
+    2: { name: 'Fleeca Heist', price: 50, value: 1, level: 20 },
+    3: { name: 'Security Van Heist', price: 200, value: 5, level: 50 },
+    4: { name: 'Street Race', price: 500, value: 10, level: 100 },
+    5: { name: 'Auto Shop Delivery', price: 1250, value: 50, level: 200 },
     
     // Mid-game
     6: { name: 'Document Forgery', price: 3000, value: 100, level: 300 },
@@ -28,11 +28,11 @@ var missions = {
     21: { name: 'Agency',                  price: 3000000000, value:  60000000, level: 1800 },
 
     // End-game
-    22: { name: 'Pacific Standard Heist', price: 7500000000, modifier: 1.05, value: 150000000, level: 2000 },
-    23: { name: 'Doomsday Heist', price: 20000000000, modifier: 1.05, value: 400000000, level: 2100 },
-    24: { name: 'Union Depository Heist', price: 50000000000, modifier: 1.05, value: 1000000000, level: 2200 },
-    25: { name: 'Casino Heist', price: 125000000000, modifier: 1.05, value: 2500000000, level: 2300 },
-    26: { name: 'Cayo Perico Heist', price: 300000000000, modifier: 1.05, value: 6000000000, level: 2500 },
+    22: { name: 'Pacific Standard Heist', price: 7500000000, value: 150000000, level: 2000 },
+    23: { name: 'Doomsday Heist', price: 20000000000, value: 400000000, level: 2100 },
+    24: { name: 'Union Depository Heist', price: 50000000000, value: 1000000000, level: 2200 },
+    25: { name: 'Casino Heist', price: 125000000000, value: 2500000000, level: 2300 },
+    26: { name: 'Cayo Perico Heist', price: 300000000000, value: 6000000000, level: 2500 },
 };
 
 var weapons = [

@@ -209,6 +209,13 @@ a,
     font-size: 2.5vh;
 }
 
+.tc-spent-dollar,
+.ui.header.spent-dollar {
+    color: rgb(216, 67, 67) !important;
+    text-shadow: 0 0 2px #000000;
+}
+
+
 .tc-dollar,
 .ui.header.dollar {
     color: rgb(108, 184, 124) !important;

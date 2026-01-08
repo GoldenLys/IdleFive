@@ -1,6 +1,6 @@
-const version = "v5.78";
+const version = "v5.8";
 var notify_time = 0;
-var p = {
+const DEFAULT = {
 	//DEFAULT VARS
 	DateStarted: getDate(),
 	fl: 1,
@@ -31,24 +31,26 @@ var p = {
 	succes: [],
 	WeaponBought: [1],
 	WeaponType: [],
-	playTime: 0,
-	TotalClicks: 0,
 	tutorial: 0,
-	CompletedQuests: 0,
-	spentpoints: 0,
 	stats: {
+		spentpoints: 0,
+		totalplaytime: 0,
+		completedquests: 0,
+		totalclicks: 0,
 		totalweaponsbought: 0,
 		totalweaponrerolled: 0,
 		highestrank: 0,
 		totalspentcash: 0,
-		totalcash: 0
+		totalcash: 0,
+		character_totalspentcash: 0,
+		character_totalcash: 0,
 	}
 };
 
+var p = DEFAULT; 
+
 $(document).ready(function () {
-	if (localStorage.getItem("idleFive5") != null) {
-		load();
-	}
+	if (localStorage.getItem("idleFive5") != null) load();
 	setInterval(function () {
 		idleFiveLoop();
 	}, 1000);
@@ -66,8 +68,18 @@ $(document).ready(function () {
 
 function idleFiveLoop() {
 	//DEBUG
+	
+	if (p.stats.totalcash < 0) p.stats.totalcash = 0;
+	if (p.stats.totalspentcash < 0) p.stats.totalspentcash = 0;
+	if (p.stats.character_totalcash < 0) p.stats.character_totalcash = 0;
+	if (p.stats.character_totalspentcash < 0) p.stats.character_totalspentcash = 0;
 	if (p.cash !== p.cash) p.cash = 0;
 	p.cash = truncate2(p.cash);
+	if (p.stats.character_totalcash < p.cash) p.cash = p.stats.character_totalcash - p.stats.character_totalspentcash;
+	for (var stat in p.stats) {
+		if (p.stats[stat] !== p.stats[stat]) p.stats[stat] = 0;
+		if (p.stats[stat] < 0) p.stats[stat] = 0;
+	}
 	for (var m in missions) {
 		if (p.missions[m] == null) p.missions[m] = 0;
 	}
@@ -81,7 +93,7 @@ function idleFiveLoop() {
 		if (p.WeaponType[wtype] == null) p.WeaponType[wtype] = 0;
 
 	//UPDATE VARS
-	p.playTime++;
+	p.stats.totalplaytime++;
 	if (p.prestige.level > 1) p.prestige.bonus = 1 + (p.prestige.level * 0.1) - 0.1;
 	let rank = 0;
 	for (var i in p.missions) {
@@ -100,6 +112,7 @@ function idleFiveLoop() {
 	} else btnPrestigeD();
 	p.cash += getCashPS();
 	p.stats.totalcash += getCashPS();
+	p.stats.character_totalcash += getCashPS();
 	if (p.fl == 1) showTutorialDIV();
 	if (notify_time > 0) notify_time--;
 	else $("#announce").hide();
@@ -123,7 +136,8 @@ function ClickWeapon() {
 	let CASH_PER_CLICK = p.Weapon.Power * (GetWeaponMult(p.Weapon.Id) + ((p.prestige.bonus + p.prestige.multipliers[1]) * 0.1) - 0.1);
 	p.cash += CASH_PER_CLICK;
 	p.stats.totalcash += CASH_PER_CLICK;
-	p.TotalClicks++;
+	p.stats.character_totalcash += CASH_PER_CLICK;
+	p.stats.totalclicks++;
 	if (p.quest.type == 0) {
 		if (p.quest.progression == undefined || isNaN(p.quest.objective[0]) || isNaN(p.quest.objective[1])) {
 			p.quest.progression = 0;
@@ -155,6 +169,8 @@ function AddPrestige() {
 				p.quest.reward = 1;
 				p.quest.progression = 0;
 				p.quest.objective = [10, 0];
+				p.stats.character_totalspentcash = 0;
+				p.stats.character_totalcash = 0;
 				UpdateUI();
 				SuccessCount();
 				hideMenus();
@@ -201,11 +217,13 @@ function buyG(id) {
 			p.WeaponType[weapons[id].type]++;
 			p.stats.totalweaponsbought++;
 			p.stats.totalspentcash += COST;
+			p.stats.character_totalspentcash += COST;
 		} else if (p.cash >= COST * 1.25) {
 			p.cash -= COST * 1.25;
 			genGun2(id);
 			p.stats.totalweaponrerolled++;
 			p.stats.totalspentcash += COST * 1.25;
+			p.stats.character_totalspentcash += COST * 1.25;
 		}
 	}
 	if (p.quest.type === 3 && p.quest.progression >= p.quest.objective[0]) getRewards();
@@ -325,6 +343,8 @@ function BuyM(id, qty) {
 
 	if (price <= p.cash) {
 		p.cash -= price;
+		p.stats.totalspentcash += price;
+		p.stats.character_totalspentcash += price;
 		if (p.missions[id] == null) {
 			p.missions[id] = qty;
 			p.rank += qty;
@@ -337,7 +357,6 @@ function BuyM(id, qty) {
 			else p.quest.progression += qty;
 		}
 		if (p.rank > p.stats.highestrank) p.stats.highestrank = p.rank;
-		p.stats.totalspentcash += price;
 		SuccessCount();
 		UpdateMissionsDiv(id);
 		save();
@@ -345,10 +364,11 @@ function BuyM(id, qty) {
 }
 
 function SellM(id, qty) {
-	let price = GetMissionSPrice(id, qty);
+	let price = GetMissionSellPrice(id, qty);
 	if (p.missions[id] == null) p.missions[id] = 0;
 	p.cash += price;
 	p.stats.totalspentcash -= price;
+	p.stats.character_totalspentcash -= price;
 	if (p.missions[id] >= qty) {
 		p.missions[id] -= qty;
 		p.rank -= qty;
@@ -360,62 +380,44 @@ function SellM(id, qty) {
 }
 
 function GetMissionPrice(id, qty) {
-	let owned = p.missions[id] || 0;
-	let total = new BigNumber(0);
-	let base = new BigNumber(missions[id].price);
-	let modifier = new BigNumber(GetModifierByAmount(owned));
-	let powers = [];
-	let current = modifier.pow(owned);
-	powers.push(current);
+    const owned = p.missions[id] || 0;
+    const base = new BigNumber(missions[id].price);
+    const modifier = new BigNumber(GetMissionPriceModifier());
 
-	for (let i = 1; i < qty; i++) {
-		current = current.times(modifier);
-		powers.push(current);
-	}
-
-	for (let i = 0; i < qty; i++) {
-		total = total.plus(base.times(powers[i]));
-	}
-
-	return total.toNumber();
-}
-
-function GetModifierByAmount(amount) {
-	Mapping = {
-		1: 1.05,
-		50: 1.04,
-		100: 1.03,
-		200: 1.025,
-		300: 1.023,
-		400: 1.0215,
-		500: 1.020,
-		600: 1.018,
-		700: 1.016,
-		800: 1.014,
-		900: 1.012,
-		1000: 1.01,
-		2000: 1.005,
-		10000: 1.001
-	};
-	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.05;
-}
-
-function GetMissionSPrice(id, qty) {
-    let owned = p.missions[id] || 0;
-    let base = new BigNumber(missions[id].price);
-    let modifier = new BigNumber(GetModifierByAmount(owned));
-    let current = modifier.pow(owned);
-    let inv = new BigNumber(1).div(modifier);
-    let total = new BigNumber(0);
-
-    for (let i = 0; i < qty; i++) {
-        let price = base.times(current);
-        total = total.plus(price);
-        current = current.times(inv);
+    if (modifier.eq(1)) {
+        return base.times(qty).toNumber();
     }
 
-    let result = total.div(2);
-    return result.toNumber();
+    const start = modifier.pow(owned);
+    const factor = modifier.pow(qty).minus(1).div(modifier.minus(1));
+
+    return base.times(start).times(factor).toNumber();
+}
+
+function GetMissionPriceModifier() {
+	let amount = p.rank;
+	Mapping = {
+		1: 1.15,
+		1000: 1.10,
+		10000: 1.05,
+		25000: 1.025,
+		50000: 1.010,
+		75000: 1.005,
+		100000: 1.001,
+		250000: 1
+	};
+	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
+}
+
+function GetMissionSellPrice(id, qty) {
+    const owned = p.missions[id] || 0;
+    const base = new BigNumber(missions[id].price);
+    const modifier = new BigNumber(GetMissionPriceModifier());
+
+    const start = modifier.pow(owned - qty);
+    const factor = modifier.pow(qty).minus(1).div(modifier.minus(1));
+
+    return base.times(start).times(factor).toNumber();
 }
 
 function buyV(id) {
@@ -423,7 +425,7 @@ function buyV(id) {
 
 	if (p.points >= price) {
 		p.points -= price;
-		p.spentpoints += price;
+		p.stats.spentpoints += price;
 		p.prestige.multipliers[vehicules[id].type]++;
 	}
 	VehicleList();
@@ -570,13 +572,13 @@ function NewObjective() {
 
 function getRewards() {
 	p.points += p.quest.reward + (p.quest.reward * (p.prestige.multipliers[2] * 0.1));
-	p.CompletedQuests++;
+	p.stats.completedquests++;
 	NewObjective();
 }
 
 function ReasignPoints() {
-	p.points += p.spentpoints;
-	p.spentpoints = 0;
+	p.points += p.stats.spentpoints;
+	p.stats.spentpoints = 0;
 	p.prestige.multipliers = [0, 0, 0];
 	VehicleList();
 	UpdateUI();

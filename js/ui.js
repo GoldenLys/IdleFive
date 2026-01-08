@@ -23,36 +23,38 @@
 	$("#character-text4").html(texts.character[5] + "<span class='jaune'> " + PrestigePoints + " </span> " + texts.character[6]);
 	$("#character-text5").html(texts.character[7] + "<span class='jaune'> " + fix(p.prestige.bonus, 9) + "</span> " + texts.character[8]);
 	//GENERAL STATS
-	$("#ObjectivesCompleted").html(p.CompletedQuests + " Objectives completed.");
-	$("#totalclicks").html("Clicked " + fix(p.TotalClicks, 3) + " times.");
+	$("#ObjectivesCompleted").html(p.stats.completedquests + " Objectives completed.");
+	$("#totalclicks").html("Clicked " + fix(p.stats.totalclicks, 3) + " times.");
 	$("#highestrank").html("Highest rank achieved: " + getRank(p.stats.highestrank));
 	$("#totalsuccess").html("Total successes unlocked: <font class='jaune'>" + SuccessCount() + "</font>/" + success.length);
 	// CHARACTER STATS
 	$("#spcount").html("Character number <font class='jaune'>" + p.prestige.level + "</font>");
-	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.spentpoints, 2) + "</font> points spent");
+	$("#pointsspent").html("<font class='jaune'><i class='fa-light fa-coin'></i>" + fix(p.stats.spentpoints, 2) + "</font> points spent");
 	$("#boughtvehicles1").html("Strength (damage) multiplier <font class='bold jaune'>" + p.prestige.multipliers[0] + "</font>/1000");
 	$("#boughtvehicles2").html("Stamina (cash) multiplier <font class='bold jaune'>" + p.prestige.multipliers[1] + "</font>/1000");
 	$("#boughtvehicles3").html("Stealth (rewards) multiplier <font class='bold jaune'>" + p.prestige.multipliers[2] + "</font>/1000");
-	//WEAPONS - STATS
+	//WEAPONS STATS
 	$("#lowestweaponrank").html("Lowest weapon rank: " + GenStarLabel(_.min(p.Stars.slice(1))));
 	$("#highestweaponrank").html("Highest weapon rank: " + GenStarLabel(_.max(p.Stars.slice(1))));
 	$("#weapons-bought").html("Current weapons acquired: " + WeaponsNBR + "/" + AllWeaponsNBR);
 	$("#totalweaponsbought").html("Total weapons bought: <font class='jaune'>" + p.stats.totalweaponsbought + "</font>");
 	$("#totalweaponrerolled").html("Total weapon rerolled: <font class='jaune'>" + p.stats.totalweaponrerolled + "</font>");
 	//CASH STATS
-	$("#cashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.cash, "full") + "</font> " + texts.stats[6]);
-	$("#cashpscount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(getCashPS(), "full") + "</font> " + texts.stats[7]);
-	$("#addcashcount").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + ClicCashText + "</font> " + texts.stats[8]);
-	$("#totalspentcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalspentcash, "full") + "</font> total cash spent");
-	$("#totalcash").html("<i class='fa-regular fa-dollar-sign'></i><font class='desc tc-dollar'>" + fix(p.stats.totalcash, "full") + "</font> total cash earned");
-	//MULTIPLIERS - STATS
+	$("#cashcount").html("<span class='desc tc-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(p.cash, "full") + "</span> " + texts.stats[6]);
+	$("#cashpscount").html("<span class='desc tc-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(getCashPS(), "full") + "</span> " + texts.stats[7]);
+	$("#addcashcount").html("<span class='desc tc-dollar'><i class='fa-regular fa-dollar-sign'></i>" + ClicCashText + "</span> " + texts.stats[8]);
+	$("#character_totalspentcash").html("<span class='desc tc-spent-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(p.stats.character_totalspentcash, "full") + "</span> spent with character");
+	$("#character_totalcash").html("<span class='desc tc-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(p.stats.character_totalcash, "full") + "</span> earned with character");
+	$("#totalspentcash").html("<span class='desc tc-spent-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(p.stats.totalspentcash, "full") + "</span> spent in total");
+	$("#totalcash").html("<span class='desc tc-dollar'><i class='fa-regular fa-dollar-sign'></i>" + fix(p.stats.totalcash, "full") + "</span> earned in total");
+	//MULTIPLIERS STATS
 	$("#prestigemult").html("Prestige multiplier at <font class='jaune bold'>" + fix(p.prestige.bonus, 9) + "</font>");
 	$("#cashmult").html("Cash (stamina) multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[0] * 0.1)), 9) + "</font>");
 	$("#damagemult").html("Damage (strength) multiplier at <font class='jaune bold'>" + fix((p.prestige.bonus + (p.prestige.multipliers[1] * 0.1)), 9) + "</font>");
 	$("#stealthmult").html("Objective Rewards (stealth) multiplier at <font class='jaune bold'>" + fix(p.prestige.bonus + p.prestige.multipliers[2] * 0.1, 9) + "</font>");
-	//OTHERS - STATS
+	//OTHERS STATS
 
-	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.playTime) + "</font>");
+	$("#time").html(texts.stats[10] + " " + p.DateStarted + "<br />" + texts.stats[11] + " <font class='jaune'>" + toHHMMSS(p.stats.totalplaytime) + "</font>");
 	//OBJECTIVES
 	$("#objective").html(GetQuestTitle());
 	$("#quest_rewards").html("<i class='fa-light fa-coin'></i> " + fix(p.quest.reward + p.quest.reward * (p.prestige.multipliers[2] * 0.1), "dynamic"));

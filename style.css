@@ -137,6 +137,7 @@ i.green.icon {
     background: center / contain no-repeat;
     height: 100%;
     width: 100%;
+    cursor: url("images/hand.cur"), pointer;
 }
 
 #imagecontainer:active #imagecash,
@@ -158,7 +159,6 @@ i.green.icon {
     }
 }
 
-.cash:hover,
 a,
 .button:hover {
     cursor: url("images/hand.cur"), pointer !important;

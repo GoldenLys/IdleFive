@@ -397,15 +397,15 @@ function GetMissionPrice(id, qty) {
 function GetMissionPriceModifier(amount) {
 	Mapping = {
 		1:       1.10,
-		50:      1.085,
-		100:     1.075,
-		500:     1.065,
-		1000:    1.050,
-		5000:    1.025,
-		10000:   1.010,
-		50000:   1.0075,
-		100000:  1.005,
-		500000:  1.0025
+		50:      1.05,
+		100:     1.025,
+		500:     1.015,
+		1000:    1.005,
+		5000:    1.0025,
+		10000:   1.0010,
+		50000:   1.0005,
+		100000:  1.00025,
+		500000:  1.000125
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
 }

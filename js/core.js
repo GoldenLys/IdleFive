@@ -1,4 +1,4 @@
-const version = "v5.83";
+const version = "v5.84";
 var notify_time = 0;
 const DEFAULT = {
 	//DEFAULT VARS
@@ -227,6 +227,7 @@ function buyG(id) {
 	if (p.quest.type === 3 && p.quest.progression >= p.quest.objective[0]) getRewards();
 	SuccessCount();
 	UpdateUI();
+	UpdateTabs();
 	UpdateTexts();
 	save();
 }
@@ -333,6 +334,7 @@ function useW(id) {
 		setQuality(p.Stars[p.Weapon.Id]);
 	}
 	UpdateUI();
+	UpdateTabs();
 	save();
 }
 
@@ -397,13 +399,13 @@ function GetMissionPriceModifier(amount) {
 		1:       1.15,
 		50:      1.10,
 		100:     1.05,
-		500:     1.015,
+		500:     1.025,
 		1000:    1.01,
-		10000:   1.005,
-		50000:   1.0015,
-		100000:  1.001,
-		500000:  1.0005,
-		1000000: 1.00015
+		5000:    1.005,
+		10000:   1.0025,
+		50000:   1.001,
+		100000:  1.0005,
+		500000:  1.00025
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
 }

@@ -1,4 +1,4 @@
-const version = "v5.84";
+const version = "v5.85";
 var notify_time = 0;
 const DEFAULT = {
 	//DEFAULT VARS
@@ -396,16 +396,16 @@ function GetMissionPrice(id, qty) {
 
 function GetMissionPriceModifier(amount) {
 	Mapping = {
-		1:       1.15,
-		50:      1.10,
-		100:     1.05,
-		500:     1.025,
-		1000:    1.01,
-		5000:    1.005,
-		10000:   1.0025,
-		50000:   1.001,
-		100000:  1.0005,
-		500000:  1.00025
+		1:       1.10,
+		50:      1.085,
+		100:     1.075,
+		500:     1.065,
+		1000:    1.050,
+		5000:    1.025,
+		10000:   1.010,
+		50000:   1.0075,
+		100000:  1.005,
+		500000:  1.0025
 	};
 	return Mapping[Object.keys(Mapping).reverse().find(key => amount >= key)] || 1.15;
 }
